@@ -1,0 +1,202 @@
+@edit-bg: rgba(38,38,38,1);                    /*编辑器背景色*/
+@tool-bg: rgba(83,83,83,1);                    /*工具栏背景色*/
+@line-bg: rgba(40,40,40,1);                    /*分割线背景*/
+@line-border-color: rgba(106,106,106,1);       /*分割线描边*/
+@font-color: rgba(245,245,245,1);              /*编辑器字体颜色*/
+@click-bg: rgba(16,16,16,1);                   /*选中工具背景色*/
+@default-border-radius: 3px;                   /*默认圆角大小*/
+@default-font-size: 14px;                      /*默认字体大小*/
+@font-size-12: 12px;                           /*12号字*/
+@input-bg: rgba(61,61,61,1);                   /*input,select等输入框背景色*/
+@input-border-color: rgba(99,99,99,1);         /*input,select等输入框描边颜色*/
+@position-bg: rgba(106,106,106,1);                         /*定位选择器背景*/
+@position-coordinates-bg: rgba(83,83,83,1);                /*定位选择器坐标背景*/
+@position-coordinates-border-color: rgba(26,26,26,1);      /*定位选择器坐标描边*/
+@position-coordinates-selected-bg: rgba(40,40,40,1);       /*定位选择器选中坐标背景*/
+
+li{
+    list-style: none
+}
+.mb6{
+    margin-bottom: 6px;
+}
+.mb10{
+    margin-bottom: 10px;
+}
+.mb20{
+    margin-bottom: 20px;
+}
+.clear{
+    clear: both;
+}
+.m0a{
+    margin: 0 auto;
+}
+.fr{
+    float: right;
+}
+
+/*全景区域高度*/
+.ant-layout-content{
+    height:100%;
+}
+
+.lineDefaultBottom{
+    width:100%;
+    height: 2px;
+    display: block;
+    border-bottom:1px solid @line-border-color;
+    background: @line-bg;
+    float: left;
+}
+.lineDefaultTop{
+    width:100%;
+    height: 2px;
+    display: block;
+    border-top:1px solid @line-border-color;
+    background: @line-bg;
+    float: left;
+}
+.lineCrossBottom{
+    width:100%;
+    height: 2px;
+    bottom: 0px;
+    border-bottom:1px solid @line-border-color;
+    display: block;
+    background: @line-bg;
+    position: absolute;
+}
+
+.lineCrossTop{
+    width:100%;
+    height: 2px;
+    top: 0px;
+    border-top:1px solid @line-border-color;
+    display: block;
+    background: @line-bg;
+    position: absolute;
+}
+
+.lineVerticalRight{
+    width: 2px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    border-right:1px solid @line-border-color;
+    display: block;
+    background: @line-bg;
+    position: absolute;
+}
+
+.lineVerticalLeft{
+    width: 2px;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    border-left:1px solid @line-border-color;
+    display: block;
+    background: @line-bg;
+    position: absolute;
+}
+
+.tool{
+    width: 46px;
+    height: 46px;
+    border-radius: @default-border-radius;
+    text-align: center;
+    line-height: 16px;
+    color: @font-color;
+    padding: 6px 3px 0;
+    margin: 3px;
+    float: left;
+    cursor: pointer;
+    position: relative;
+
+    .icon{
+        font-size: 16px;
+        height: 16px;
+        display: block;
+    }
+
+    span{
+        width: 100%;
+        line-height: 16px;
+        display: block;
+        font-size: 12px;
+        margin-top: 4px;
+    }
+
+    img{
+        position: absolute;
+        right: 2px;
+        bottom: 2px;
+    }
+}
+.Button{
+    width:100%;
+    border-radius: @default-border-radius;
+}
+
+.fontStyle{
+    font-size: @font-size-12;
+    color: @font-color;
+}
+
+.tool:hover,.click{
+    background: rgba(16,16,16,1);
+}
+
+
+/*
+    抽屉样式
+*/
+.drawer{
+    :global{
+        .ant-drawer-body{
+            padding: 0
+        }
+        .ant-drawer-wrapper-body{
+            padding: 0;
+            background:@tool-bg;
+        }
+    }
+    .drawerTitle{
+        background:@tool-bg;
+        line-height: 30px;
+        padding-left:20px;
+        padding-right:20px;
+        color: @font-color;
+        font-size: @font-size-12;
+    }
+    .closable{
+        font-size: @default-font-size;
+        float: right;
+        line-height: 30px;
+        cursor: pointer;
+    }
+}
+/*
+    标题样式 标题+复选框
+*/
+.title{
+    font-size: @font-size-12;
+    color: @font-color;
+    margin-bottom: 5px;
+
+    .checkboxC{
+        float: right;
+        .checkbox{
+            font-size: @font-size-12;
+            color: @font-color;
+        }
+    }
+}
+
+.ant-drawer-right .ant-drawer-content-wrapper{
+    right:auto!important;
+}
+
+.tangram-suggestion-main{
+    z-index:999999 !important;
+}
+

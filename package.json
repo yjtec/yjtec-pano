@@ -1,0 +1,29 @@
+{
+  "name": "yjtec-pano",
+  "version": "0.0.1",
+  "description": "yjtec edit pano",
+  "main": "lib/index.js",
+  "files": [
+    "lib",
+    "es"
+  ],
+  "module": "dist/index.esm.js",
+  "authors": {
+    "name": "MT",
+    "email": "jiangkun13@163.com"
+  },
+  "repository": "https://github.com/yjtec/yjtec-pano/yjtec-pano",
+  "scripts": {
+    "dev": "father doc dev",
+    "build": "father build",
+    "watch": "father build --watch"
+  },
+  "peerDependencies": {
+    "react": "16.x"
+  },
+  "devDependencies": {},
+  "license": "MIT",
+  "dependencies": {
+    "babel-plugin-import": "^1.12.2"
+  }
+}
