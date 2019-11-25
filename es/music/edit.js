@@ -1,3 +1,12 @@
+import "antd/es/checkbox/style";
+import _Checkbox from "antd/es/checkbox";
+import "antd/es/row/style";
+import _Row from "antd/es/row";
+import "antd/es/col/style";
+import _Col from "antd/es/col";
+import "antd/es/icon/style";
+import _Icon from "antd/es/icon";
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -26,7 +35,6 @@ import React from "react";
 import { Component } from "react";
 import { ItemBox, Right, Content } from '@/components/';
 import { Button, Select } from '@/components/Form';
-import { Checkbox, Row, Col, Drawer, Icon } from 'antd';
 import style from './style.less';
 import UploadMusic from '@/components/Media';
 import Modal from '@/components/AllScene';
@@ -187,15 +195,15 @@ function (_Component) {
         }
       }, "\u5220\u9664"), this.props.title), React.createElement("div", {
         className: style.musicBox
-      }, React.createElement(Row, null, React.createElement(Col, {
+      }, React.createElement(_Row, null, React.createElement(_Col, {
         span: 8
       }, React.createElement("div", {
         className: style.musicIcon
-      }, musicUrl ? React.createElement(Icon, {
+      }, musicUrl ? React.createElement(_Icon, {
         type: "customer-service"
-      }) : React.createElement(Icon, {
+      }) : React.createElement(_Icon, {
         type: "plus"
-      }))), React.createElement(Col, {
+      }))), React.createElement(_Col, {
         span: 16
       }, React.createElement("div", {
         className: style.musicRight
@@ -214,7 +222,7 @@ function (_Component) {
         }
       }, React.createElement("span", {
         className: style.checkboxC
-      }, React.createElement(Checkbox, {
+      }, React.createElement(_Checkbox, {
         checked: loop == 0 ? true : false,
         onChange: this.onChange,
         className: style.checkbox
@@ -225,7 +233,7 @@ function (_Component) {
         }
       }, React.createElement("span", {
         className: style.checkboxC
-      }, React.createElement(Checkbox, {
+      }, React.createElement(_Checkbox, {
         checked: defaultPlay,
         onChange: this.handlePlay,
         className: style.checkbox

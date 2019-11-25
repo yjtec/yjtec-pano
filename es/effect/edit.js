@@ -1,3 +1,14 @@
+import "antd/es/row/style";
+import _Row from "antd/es/row";
+import "antd/es/col/style";
+import _Col from "antd/es/col";
+import "antd/es/icon/style";
+import _Icon from "antd/es/icon";
+import "antd/es/button/style";
+import _Button from "antd/es/button";
+import "antd/es/select/style";
+import _Select from "antd/es/select";
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -30,14 +41,13 @@ import React from 'react';
 import { connect } from 'dva';
 import { ItemBox, Right } from '@/components/';
 import { SliderSingle } from '@/components/Form';
-import { List, Avatar, Select, Radio, Row, Col, Icon, Checkbox, Button } from 'antd';
 import { Kr } from '@/utils/kr/';
 import style from './style.less';
 import UploadImg from '@/components/Media';
 import AllScene from '@/components/Media/scene';
 import { ossImgMedia } from '@/utils/oss';
 import Modal from '@/components/AllScene';
-var Option = Select.Option;
+var Option = _Select.Option;
 
 var Effect =
 /*#__PURE__*/
@@ -231,7 +241,7 @@ function (_React$Component) {
         }
       }, "\u5220\u9664") : ''), "\u7279\u6548"), React.createElement("div", {
         className: style.select
-      }, React.createElement(Select, {
+      }, React.createElement(_Select, {
         value: selectValue,
         name: "imageurl",
         placeholder: "\u8BF7\u9009\u62E9\u7279\u6548",
@@ -256,7 +266,7 @@ function (_React$Component) {
         }
       }, React.createElement("span", {
         className: style.checkboxC
-      }, React.createElement(Button, {
+      }, React.createElement(_Button, {
         onClick: function onClick() {
           return _this2.appliedToScene();
         },
@@ -268,7 +278,7 @@ function (_React$Component) {
           color: '#fff',
           borderColor: '#008aff'
         }
-      }, "\u9009\u62E9\u573A\u666F")), "\u5E94\u7528\u5230:")), (isShowImg || selectValue == 'custom') && React.createElement(ItemBox, null, React.createElement(Row, null, React.createElement(Col, {
+      }, "\u9009\u62E9\u573A\u666F")), "\u5E94\u7528\u5230:")), (isShowImg || selectValue == 'custom') && React.createElement(ItemBox, null, React.createElement(_Row, null, React.createElement(_Col, {
         span: 24,
         className: style.mb10
       }, customUrl != '' ? React.createElement("div", {
@@ -282,16 +292,16 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this2.delSkyImg();
         }
-      }, React.createElement(Icon, {
+      }, React.createElement(_Icon, {
         type: "delete"
       }))) : React.createElement("div", {
         className: style.defaultImg
-      }, React.createElement("span", null, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"))), React.createElement(Col, {
+      }, React.createElement("span", null, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"))), React.createElement(_Col, {
         span: 12
-      }, React.createElement(Button, {
+      }, React.createElement(_Button, {
         type: "primary",
         onClick: this.media
-      }, "\u9009\u62E9\u56FE\u7247")), React.createElement(Col, {
+      }, "\u9009\u62E9\u56FE\u7247")), React.createElement(_Col, {
         span: 12,
         className: style.prompt
       }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"), React.createElement(UploadImg, {

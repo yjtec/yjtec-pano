@@ -1,3 +1,6 @@
+import "antd/es/icon/style";
+import _Icon from "antd/es/icon";
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -20,7 +23,6 @@ import React from "react";
 import { Component } from "react";
 import { connect } from 'dva';
 import { ItemBox, Right } from '@/components/';
-import { Checkbox, Input, Button, Icon } from 'antd';
 import { AsyncLoadMap, loadBdMap, MapSearchField } from "@yjtec/bmap";
 import Bmap from "@/components/Bmap";
 import BmapModal from '@/components/Bmap';
@@ -108,7 +110,7 @@ function (_Component) {
         onClick: function onClick() {
           return _this2.props.delLocation();
         }
-      }, React.createElement(Icon, {
+      }, React.createElement(_Icon, {
         type: "delete"
       }))))), React.createElement(BmapModal, {
         visible: bmapVisible,

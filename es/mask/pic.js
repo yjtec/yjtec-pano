@@ -1,3 +1,12 @@
+import "antd/es/row/style";
+import _Row from "antd/es/row";
+import "antd/es/col/style";
+import _Col from "antd/es/col";
+import "antd/es/icon/style";
+import _Icon from "antd/es/icon";
+import "antd/es/button/style";
+import _Button from "antd/es/button";
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18,7 +27,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from "react";
 import { Component } from 'react';
-import { Button, Layout, Checkbox, Row, Col, Drawer, Icon } from 'antd';
 import style from './style.less';
 import UploadImg from '@/components/Media';
 import { ossImgMedia, ossPano } from '@/utils/oss';
@@ -97,7 +105,7 @@ function (_Component) {
         }
       }, React.createElement("span", {
         className: style.checkboxC
-      }, React.createElement(Button, {
+      }, React.createElement(_Button, {
         onClick: function onClick() {
           return _this2.appliedToScene();
         },
@@ -109,7 +117,7 @@ function (_Component) {
           color: '#fff',
           borderColor: '#008aff'
         }
-      }, "\u5E94\u7528\u5230")), title), React.createElement(Row, null, React.createElement(Col, {
+      }, "\u5E94\u7528\u5230")), title), React.createElement(_Row, null, React.createElement(_Col, {
         span: 24,
         className: style.mb10
       }, !Obj.isNull(url) ? React.createElement("div", {
@@ -123,16 +131,16 @@ function (_Component) {
         onClick: function onClick() {
           return _this2.delSkyImg();
         }
-      }, React.createElement(Icon, {
+      }, React.createElement(_Icon, {
         type: "delete"
       }))) : React.createElement("div", {
         className: style.defaultImg
-      }, React.createElement("span", null, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"))), React.createElement(Col, {
+      }, React.createElement("span", null, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"))), React.createElement(_Col, {
         span: 12
-      }, React.createElement(Button, {
+      }, React.createElement(_Button, {
         type: "primary",
         onClick: this.mediaSky
-      }, "\u9009\u62E9\u56FE\u7247")), React.createElement(Col, {
+      }, "\u9009\u62E9\u56FE\u7247")), React.createElement(_Col, {
         span: 12,
         className: style.prompt
       }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"), React.createElement(UploadImg, {

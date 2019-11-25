@@ -1,3 +1,6 @@
+import "antd/es/button/style";
+import _Button from "antd/es/button";
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -18,7 +21,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from 'react';
 import { ItemBox, Right, Content } from '@/components/';
-import { Button, Layout } from 'antd';
 import { Slider } from '@/components/Form/';
 import View from './pano';
 import styles from './style.less';
@@ -64,7 +66,7 @@ function (_React$Component) {
           marginTop: '100px',
           top: '50%'
         }
-      }, React.createElement(Button, {
+      }, React.createElement(_Button, {
         type: "primary",
         onClick: this.props.setView
       }, "\u628A\u5F53\u524D\u89C6\u89D2\u8BBE\u7F6E\u4E3A\u9ED8\u8BA4\u89C6\u89D2")), React.createElement(Right, null, React.createElement(ItemBox, null, React.createElement("p", null, "\u5F53\u524D\u521D\u59CB\u89C6\u89D2"), flag && React.createElement(View, null)), React.createElement(ItemBox, null, React.createElement("p", null, "\u89C6\u89D2(FOV)\u8303\u56F4\u8BBE\u7F6E"), React.createElement(Slider, {
@@ -98,7 +100,7 @@ function (_React$Component) {
         style: {
           textAlign: 'center'
         }
-      }, React.createElement(Button, {
+      }, React.createElement(_Button, {
         type: "primary",
         onClick: this.props.reset
       }, "\u6062\u590D\u9ED8\u8BA4\u8BBE\u7F6E")))));

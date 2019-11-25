@@ -1,13 +1,13 @@
 export default {
   cjs: 'babel',
   esm: 'babel',
-  "plugins": [
+  "extraBabelPlugins": [
     [
       "import",
       {
         "libraryName": "antd",
         "libraryDirectory": "es",
-        "style": "css"
+        "style": true
       }
     ]
   ]
