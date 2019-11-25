@@ -1,0 +1,92 @@
+@import url(../global.less);
+:global{
+    .ant-drawer-body{
+        padding: 0
+    }
+    .ant-drawer-wrapper-body{
+        padding: 0;
+        background:@tool-bg;
+    }
+}
+
+.module{
+    padding: 10px 20px;
+
+}
+.title{
+    font-size: @font-size-12;
+    color: @font-color;
+    margin-bottom: 5px;
+
+    .checkboxC{
+        float: right;
+        .checkbox{
+            font-size: @font-size-12;
+            color: @font-color;
+        }
+    }    
+}
+.defaultImg{
+    width:200px;
+    height:200px;
+    padding: 10px;
+    text-align:center;
+    background:@click-bg;
+    color:@font-color;
+    line-height: 180px;
+    position: relative;
+    border-radius: @default-border-radius;
+    overflow: hidden;
+    span{
+        line-height: 20px;
+        display: block;
+        padding-top:70px;
+    }
+    .delimg{
+        width: 30px;
+        height: 30px;
+        border-radius: @default-border-radius;
+        background: rgba(38,38,38,0.6);
+        color: @font-color;
+        line-height: 30px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        cursor: pointer;
+    }
+}
+.img{
+    width: 180px;
+    max-height: 180px;
+}
+.prompt{
+    font-size: 12px;
+    line-height: 15px;
+    color:@font-color;
+}
+.list{
+    padding-bottom: 15px;
+    :global{
+        .ant-slider{
+            margin-right:6px;
+        }
+    }
+    p{
+        margin-bottom: 5px;
+    }
+}
+.select{
+    width:100%;
+    
+    :global{
+        .ant-select-selection{
+            border-radius: 3px;
+            background: rgba(61,61,61,1);
+            border:1px solid rgba(99,99,99,1);
+            color: rgba(245,245,245,1);
+            height: 30px;
+            line-height: 28px;
+            font-size: 12px;
+        }
+    }
+}
