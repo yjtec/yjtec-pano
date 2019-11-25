@@ -4,7 +4,7 @@ import {ItemBox,Right} from '@/components/';
 import {SliderSingle} from '@/components/Form';
 import {List,Avatar,Select,Radio,Row,Col,Icon,Checkbox,Button} from 'antd';
 import {Kr} from '@/utils/kr/';
-import style from './style.less';
+import './style.less';
 import UploadImg from '@/components/Media';
 import AllScene from '@/components/Media/scene';
 import {ossImgMedia} from '@/utils/oss';
@@ -134,13 +134,13 @@ class Effect extends React.Component{
     return(
       <div>
         <ItemBox>
-          <div className={style.title}>
-            <span className={style.checkboxC}>
+          <div class='title'>
+            <span class='checkboxC'>
               {selectValue ? <div onClick={()=>this.delSkyImg()}>删除</div> : ''}
             </span>
             特效
           </div>
-          <div className={style.select}>
+          <div class='select'>
             <Select value={selectValue} name='imageurl' placeholder="请选择特效" style={{width:'100%'}} onChange={value => this.handleChange('imageurl',value)}>
               {imageUrl.map((item,index)=> (
                 <Option key={index} value={item.value}>{item.label}</Option>
@@ -148,8 +148,8 @@ class Effect extends React.Component{
               <Option value="custom" >自定义</Option>
             </Select>
           </div>
-          <div className={style.title} style={{margin:'10px 0 0 0',lineHeight:'22px'}}>
-            <span className={style.checkboxC}>
+          <div class='title' style={{margin:'10px 0 0 0',lineHeight:'22px'}}>
+            <span class='checkboxC'>
               <Button onClick={()=>this.appliedToScene()} style={{padding:'0 5px',height:'auto',background:'none',fontSize:'12px',color:'#fff',borderColor: '#008aff'}}>
                 选择场景
               </Button>
@@ -161,16 +161,16 @@ class Effect extends React.Component{
           (isShowImg || selectValue == 'custom') && (
             <ItemBox>
               <Row>
-                <Col span={24} className={style.mb10}>
+                <Col span={24} class='mb10'>
                   {customUrl != '' ? 
-                    <div className={style.defaultImg}>
-                      <img alt='aa' src={ossImgMedia(customUrl,'media')} className={style.img} />
-                      <div className={style.delimg} onClick={()=>this.delSkyImg()}>
+                    <div class='defaultImg'>
+                      <img alt='aa' src={ossImgMedia(customUrl,'media')} class='img' />
+                      <div class='delimg' onClick={()=>this.delSkyImg()}>
                         <Icon type="delete" />
                       </div>
                     </div>
                     : 
-                    <div className={style.defaultImg}>
+                    <div class='defaultImg'>
                       <span>
                         建议大小<br/>500X500
                       </span>
@@ -183,7 +183,7 @@ class Effect extends React.Component{
                     选择图片
                   </Button>
                 </Col>
-                <Col span={12} className={style.prompt}>
+                <Col span={12} class='prompt'>
                   建议大小<br/>
                   500X500
                 </Col>
@@ -203,7 +203,7 @@ class Effect extends React.Component{
         <React.Fragment>
           <ItemBox>
             {editItem.map(item =>(
-              <div key={item.key} className={style.list}>
+              <div key={item.key} class='list'>
                 <p>{item.title}</p>
                 <SliderSingle
                   {...item.slider}

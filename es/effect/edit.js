@@ -42,7 +42,7 @@ import { connect } from 'dva';
 import { ItemBox, Right } from '@/components/';
 import { SliderSingle } from '@/components/Form';
 import { Kr } from '@/utils/kr/';
-import style from './style.less';
+import './style.less';
 import UploadImg from '@/components/Media';
 import AllScene from '@/components/Media/scene';
 import { ossImgMedia } from '@/utils/oss';
@@ -232,15 +232,15 @@ function (_React$Component) {
       }
 
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        class: "title"
       }, React.createElement("span", {
-        className: style.checkboxC
+        class: "checkboxC"
       }, selectValue ? React.createElement("div", {
         onClick: function onClick() {
           return _this2.delSkyImg();
         }
       }, "\u5220\u9664") : ''), "\u7279\u6548"), React.createElement("div", {
-        className: style.select
+        class: "select"
       }, React.createElement(_Select, {
         value: selectValue,
         name: "imageurl",
@@ -259,13 +259,13 @@ function (_React$Component) {
       }), React.createElement(Option, {
         value: "custom"
       }, "\u81EA\u5B9A\u4E49"))), React.createElement("div", {
-        className: style.title,
+        class: "title",
         style: {
           margin: '10px 0 0 0',
           lineHeight: '22px'
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        class: "checkboxC"
       }, React.createElement(_Button, {
         onClick: function onClick() {
           return _this2.appliedToScene();
@@ -280,22 +280,22 @@ function (_React$Component) {
         }
       }, "\u9009\u62E9\u573A\u666F")), "\u5E94\u7528\u5230:")), (isShowImg || selectValue == 'custom') && React.createElement(ItemBox, null, React.createElement(_Row, null, React.createElement(_Col, {
         span: 24,
-        className: style.mb10
+        class: "mb10"
       }, customUrl != '' ? React.createElement("div", {
-        className: style.defaultImg
+        class: "defaultImg"
       }, React.createElement("img", {
         alt: "aa",
         src: ossImgMedia(customUrl, 'media'),
-        className: style.img
+        class: "img"
       }), React.createElement("div", {
-        className: style.delimg,
+        class: "delimg",
         onClick: function onClick() {
           return _this2.delSkyImg();
         }
       }, React.createElement(_Icon, {
         type: "delete"
       }))) : React.createElement("div", {
-        className: style.defaultImg
+        class: "defaultImg"
       }, React.createElement("span", null, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"))), React.createElement(_Col, {
         span: 12
       }, React.createElement(_Button, {
@@ -303,7 +303,7 @@ function (_React$Component) {
         onClick: this.media
       }, "\u9009\u62E9\u56FE\u7247")), React.createElement(_Col, {
         span: 12,
-        className: style.prompt
+        class: "prompt"
       }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"), React.createElement(UploadImg, {
         title: "\u56FE\u7247",
         visible: this.state.media,
@@ -313,7 +313,7 @@ function (_React$Component) {
       }))), React.createElement(React.Fragment, null, React.createElement(ItemBox, null, editItem.map(function (item) {
         return React.createElement("div", {
           key: item.key,
-          className: style.list
+          class: "list"
         }, React.createElement("p", null, item.title), React.createElement(SliderSingle, _extends({}, item.slider, {
           defaultValue: data[item.key] ? data[item.key] : item.slider.defaultValue,
           onChange: function onChange(value) {
