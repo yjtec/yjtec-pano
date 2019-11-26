@@ -4,9 +4,7 @@ import {connect} from 'dva';
 import {ItemBox,Right} from '@/components/';
 import {Checkbox,Input,Button,Icon} from 'antd';
 import {AsyncLoadMap,loadBdMap,MapSearchField} from "@yjtec/bmap";
-import Bmap from "@/components/Bmap";
-
-import BmapModal from '@/components/Bmap';
+import BmapModal from './bmapModal';
 
 import style from './style.less';
 

@@ -1,5 +1,9 @@
-import "antd/es/icon/style";
-import _Icon from "antd/es/icon";
+import "antd/es/modal/style";
+import _Modal from "antd/es/modal";
+import "antd/es/button/style";
+import _Button from "antd/es/button";
+import "antd/es/input/style";
+import _Input from "antd/es/input";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -19,13 +23,9 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-import React from "react";
-import { Component } from "react";
-import { connect } from 'dva';
-import { ItemBox, Right } from '@/components/';
+import React, { Component } from "react";
 import { AsyncLoadMap, loadBdMap, MapSearchField } from "@yjtec/bmap";
-import BmapModal from './bmapModal';
-import style from './style.less';
+import './style.less';
 
 var Index =
 /*#__PURE__*/
@@ -44,83 +44,125 @@ function (_Component) {
     }
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this.state = {
+      point: {},
+      coordinateInfo: {},
+      inputValue: '',
+      localSearchArr: []
+    };
 
-    _this.bmapVisible = function () {
-      _this.props.onBmapVisible();
+    _this.handleInputValue = function (e) {
+      _this.setState({
+        inputValue: e.target.value
+      });
+    };
+
+    _this.search = function () {
+      _this.ref.getRelationList(_this.state.inputValue);
     };
 
     _this.handlePoint = function (value) {
-      _this.props.onHandlePoint(value);
-
-      _this.refBmap.setPoint({
-        lng: value.lng,
-        lat: value.lat
+      _this.setState({
+        coordinateInfo: value,
+        point: {
+          lng: value.lng,
+          lat: value.lat
+        },
+        inputValue: value.keyword
       });
+    };
+
+    _this.onCancel = function () {
+      _this.props.onCancel();
+    };
+
+    _this.onOk = function () {
+      _this.onCancel();
+
+      _this.props.onOk(_this.state.coordinateInfo);
     };
 
     return _this;
   }
 
   _createClass(Index, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var point = this.props.point;
+      this.setState({
+        point: point
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(newProps) {
+      if (this.props.point.lng != newProps.point.lng) {
+        if (JSON.stringify(this.props.point) != '{}') {
+          this.setState({
+            point: this.props.point
+          });
+        }
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
+      var localSearchArr = this.state.localSearchArr;
       var _this$props = this.props,
-          bmapVisible = _this$props.bmapVisible,
-          point = _this$props.point,
-          data = _this$props.data;
-      return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
-      }, React.createElement("span", {
-        className: style.checkboxC
-      }, React.createElement("a", {
-        onClick: function onClick() {
-          return _this2.bmapVisible();
+          visible = _this$props.visible,
+          title = _this$props.title;
+      return React.createElement(_Modal, {
+        title: title,
+        onOk: this.onOk,
+        onCancel: this.onCancel,
+        visible: visible,
+        width: 800,
+        className: "selectScene",
+        forceRender: true,
+        destroyOnClose: true
+      }, React.createElement("div", {
+        style: {
+          marginBottom: '20px'
         }
-      }, "\u8BBE\u7F6E\u6807\u6CE8")), "\u5BFC\u822A\u6807\u6CE8"), React.createElement("div", {
-        className: style.mapBox
-      }, React.createElement("div", null, data.lng && data.lat || data.lng == '' || data.lat == '' ? React.createElement(MapSearchField, {
-        id: "mapView",
-        value: {
-          lng: data.lng,
-          lat: data.lat
-        } //默认坐标
-        // searchinput={"false"}                  //是否有输入框
+      }, React.createElement(_Input, {
+        id: "mapSearchInput",
+        value: this.state.inputValue,
+        onChange: this.handleInputValue,
+        style: {
+          width: '200px',
+          float: 'left'
+        }
+      }), React.createElement(_Button, {
+        onClick: function onClick() {
+          return _this2.search();
+        },
+        style: {
+          marginLeft: '10px'
+        }
+      }, "\u641C\u7D22")), React.createElement("div", null, React.createElement(MapSearchField, {
+        id: 'mapsearch',
+        value: this.props.point //默认坐标
         ,
-        onChange: this.props.handleCoordinateInfo,
+        searchinput: 'true' //是否有输入框
+        ,
+        inputid: "mapSearchInput" //绑定input ID
+        // getres={this.getRes}                //结果面板信息
+        ,
+        control: 'true' //是否显示 左上角，添加默认缩放平移控件
+        ,
+        onChange: this.handlePoint,
         ref: function ref(_ref) {
-          return _this2.refBmap = _ref;
+          return _this2.ref = _ref;
         } //把子组件的方法提到父组件中
         ,
         style: {
-          width: '200px',
-          height: '200px'
+          width: '100%',
+          minHeight: '400px',
+          background: '#f5f5f5'
         }
-      }) : '', React.createElement("p", {
-        style: {
-          display: data.lng && data.lat ? 'none' : 'block'
-        }
-      }, "\u5F53\u524D\u9879\u76EE", React.createElement("br", null), "\u6682\u672A\u8BBE\u7F6E\u5730\u56FE\u6807\u6CE8"), React.createElement("span", null), React.createElement("div", {
-        className: style.delLocation,
-        style: {
-          display: data.lng && data.lat ? 'block' : 'none'
-        },
-        onClick: function onClick() {
-          return _this2.props.delLocation();
-        }
-      }, React.createElement(_Icon, {
-        type: "delete"
-      }))))), React.createElement(BmapModal, {
-        visible: bmapVisible,
-        point: {
-          lng: data.lng,
-          lat: data.lat
-        },
-        title: "\u5730\u56FE\u6807\u6CE8",
-        onCancel: this.props.onCancelBmap,
-        onOk: this.handlePoint
-      }));
+      })));
     }
   }]);
 
