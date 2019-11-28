@@ -202,16 +202,18 @@ class Effect extends React.Component{
         
         <React.Fragment>
           <ItemBox>
-            {editItem.map(item =>(
-              <div key={item.key} className={style.list}>
-                <p>{item.title}</p>
-                <SliderSingle
-                  {...item.slider}
-                  defaultValue={data[item.key] ? data[item.key] : item.slider.defaultValue}
-                  onChange={value => this.handleChange(item.key,value)}
-                  />
-              </div>
-            ))}
+            {editItem.map(item =>{
+              return (
+                <div key={item.key} className={style.list}>
+                  <p>{item.title}</p>
+                  <SliderSingle
+                    {...item.slider}
+                    defaultValue={data[item.key] ? data[item.key] : item.slider.defaultValue}
+                    onChange={value => this.handleChange(item.key,value)}
+                    />
+                </div>
+              )
+            })}
           </ItemBox>
         </React.Fragment>
 
