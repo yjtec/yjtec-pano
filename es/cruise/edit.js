@@ -115,8 +115,8 @@ function (_Component) {
       }, React.createElement(SliderSingle, {
         defaultValue: time,
         max: 180,
-        min: 30,
-        step: 30,
+        min: 5,
+        step: 5,
         onChange: function onChange(value) {
           return _this2.handleRotateTime(value);
         }
