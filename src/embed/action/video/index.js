@@ -11,8 +11,10 @@ export default class Video extends React.Component{
       videoUrl:(actionData && actionData.videoUrl) ? actionData.videoUrl : '',
       title:(actionData && actionData.title) ? actionData.title : '',
       thumbUrl:(actionData && actionData.thumbUrl) ? actionData.thumbUrl : '',
-      loop:(actionData && actionData.loop) ? actionData.loop : 1,
-      autoplay:(actionData && actionData.autoplay) ? actionData.autoplay : 1
+      loop:(actionData && actionData.loop == 1) ? 1 : 0,
+      autoplay:(actionData && actionData.autoplay == 1) ? 1 : 0,
+      width:(actionData && actionData.width) ? actionData.width : 300,
+      height:(actionData && actionData.height) ? actionData.height : 180,
     }
   }
 
@@ -25,7 +27,9 @@ export default class Video extends React.Component{
           title:actionData.title,
           thumbUrl:actionData.thumbUrl,
           loop:actionData.loop,
-          autoplay:actionData.autoplay
+          autoplay:actionData.autoplay,
+          width:actionData.width,
+          height:actionData.height
         })
       }
     }
@@ -44,7 +48,7 @@ export default class Video extends React.Component{
     return(
       <div>
         {is_vip == 0 && <VipAuthority />}
-        {is_vip == 1 && <Edit {...this.state} onChange={this.handleVideo} />}
+        {is_vip == 1 && <Edit data={this.state} onChange={this.handleVideo} />}
       </div>
     )
   }

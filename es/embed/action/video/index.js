@@ -1,7 +1,5 @@
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -52,8 +50,10 @@ function (_React$Component) {
       videoUrl: actionData && actionData.videoUrl ? actionData.videoUrl : '',
       title: actionData && actionData.title ? actionData.title : '',
       thumbUrl: actionData && actionData.thumbUrl ? actionData.thumbUrl : '',
-      loop: actionData && actionData.loop ? actionData.loop : 1,
-      autoplay: actionData && actionData.autoplay ? actionData.autoplay : 1
+      loop: actionData && actionData.loop == 1 ? 1 : 0,
+      autoplay: actionData && actionData.autoplay == 1 ? 1 : 0,
+      width: actionData && actionData.width ? actionData.width : 300,
+      height: actionData && actionData.height ? actionData.height : 180
     };
     return _this;
   }
@@ -69,7 +69,9 @@ function (_React$Component) {
             title: actionData.title,
             thumbUrl: actionData.thumbUrl,
             loop: actionData.loop,
-            autoplay: actionData.autoplay
+            autoplay: actionData.autoplay,
+            width: actionData.width,
+            height: actionData.height
           });
         }
       }
@@ -78,9 +80,10 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var is_vip = this.props.is_vip;
-      return React.createElement("div", null, is_vip == 0 && React.createElement(VipAuthority, null), is_vip == 1 && React.createElement(Edit, _extends({}, this.state, {
+      return React.createElement("div", null, is_vip == 0 && React.createElement(VipAuthority, null), is_vip == 1 && React.createElement(Edit, {
+        data: this.state,
         onChange: this.handleVideo
-      })));
+      }));
     }
   }]);
 

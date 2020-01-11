@@ -62,8 +62,6 @@ function (_Component) {
     };
 
     _this.editFineTuning = function (data) {
-      console.log(data);
-
       _this.props.onLocation(data);
     };
 

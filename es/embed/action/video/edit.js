@@ -96,7 +96,7 @@ function (_React$Component) {
 
     _this.handlePlay = function (e) {
       _this.setState({
-        autoplay: e.target.checked ? 1 : 0
+        autoplay: e.target.checked == true ? 1 : 0
       }, function () {
         _this.runChange();
       });
@@ -104,7 +104,7 @@ function (_React$Component) {
 
     _this.handleLoop = function (e) {
       _this.setState({
-        loop: e.target.checked ? 1 : 0
+        loop: e.target.checked == true ? 1 : 0
       }, function () {
         _this.runChange();
       });
@@ -147,22 +147,16 @@ function (_React$Component) {
       });
     };
 
-    var _videoUrl = props.videoUrl,
-        _title = props.title,
-        _thumbUrl = props.thumbUrl,
-        _loop = props.loop,
-        _autoplay = props.autoplay,
-        _width = props.width,
-        _height = props.height;
+    var data = props.data;
     _this.state = {
-      videoUrl: _videoUrl ? _videoUrl : '',
-      title: _title ? _title : '',
-      thumbUrl: _thumbUrl ? _thumbUrl : '',
-      loop: _loop ? _loop : 1,
-      autoplay: _autoplay ? _autoplay : 1,
+      videoUrl: data && data.videoUrl ? data.videoUrl : '',
+      title: data && data.title ? data.title : '',
+      thumbUrl: data && data.thumbUrl ? data.thumbUrl : '',
+      loop: data && data.loop == 1 ? 1 : 0,
+      autoplay: data && data.autoplay == 1 ? 1 : 0,
       imgVisible: false,
-      width: _width ? _width : 300,
-      height: _height ? _height : 180,
+      width: data && data.width ? data.width : 300,
+      height: data && data.height ? data.height : 180,
       videoVisible: false
     };
     return _this;
@@ -268,7 +262,7 @@ function (_React$Component) {
         checked: autoplay == 1 ? true : false,
         onChange: this.handlePlay,
         className: style.checkbox
-      }, "\u662F\u5426")), "\u81EA\u52A8\u64AD\u653E(PC\u6709\u6548)"), React.createElement("div", {
+      })), "\u662F\u5426\u81EA\u52A8\u64AD\u653E(PC\u6709\u6548)"), React.createElement("div", {
         className: style.title,
         style: {
           marginTop: 10
@@ -279,7 +273,7 @@ function (_React$Component) {
         checked: loop == 1 ? true : false,
         onChange: this.handleLoop,
         className: style.checkbox
-      }, "\u662F\u5426")), "\u5FAA\u73AF\u64AD\u653E")), React.createElement(Media, {
+      })), "\u662F\u5426\u5FAA\u73AF\u64AD\u653E")), React.createElement(Media, {
         title: "\u89C6\u9891",
         visible: videoVisible,
         onCancel: this.handleVideoMedia,

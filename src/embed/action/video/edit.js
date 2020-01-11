@@ -10,16 +10,16 @@ import { InputNumber } from '@/components/Form';
 export default class Edit extends React.Component{
   constructor(props) {
     super(props);
-    const {videoUrl,title,thumbUrl,loop,autoplay,width,height} = props;
+    const {data} = props;
     this.state = {
-      videoUrl:videoUrl ? videoUrl : '',
-      title:title ? title : '',
-      thumbUrl:thumbUrl ? thumbUrl :'',
-      loop:loop ? loop : 1,
-      autoplay:autoplay ? autoplay : 1,
+      videoUrl:(data && data.videoUrl) ? data.videoUrl : '',
+      title:(data && data.title) ? data.title : '',
+      thumbUrl:(data && data.thumbUrl) ? data.thumbUrl :'',
+      loop:(data && data.loop == 1) ? 1 : 0,
+      autoplay:(data && data.autoplay == 1) ? 1 : 0,
       imgVisible:false,
-      width:width ? width : 300,
-      height:height ? height : 180,
+      width:(data && data.width) ? data.width : 300,
+      height:(data && data.height) ? data.height : 180,
       videoVisible:false
     }
   }
@@ -78,7 +78,7 @@ export default class Edit extends React.Component{
   //是否自动播放
   handlePlay = (e) => {
     this.setState({
-      autoplay:e.target.checked ? 1 : 0
+      autoplay:e.target.checked == true ? 1 : 0
     },()=>{
       this.runChange()
     })
@@ -86,7 +86,7 @@ export default class Edit extends React.Component{
   //循环播放
   handleLoop = (e) => {
     this.setState({
-      loop:e.target.checked ? 1 : 0
+      loop:e.target.checked == true ? 1 : 0
     },()=>{
       this.runChange()
     })
@@ -200,15 +200,15 @@ export default class Edit extends React.Component{
         <ItemBox> 
           <div className={style.title} style={{marginTop:10}}>
             <span className={style.checkboxC}>
-              <Checkbox checked={autoplay == 1 ? true : false} onChange={this.handlePlay} className={style.checkbox}>是否</Checkbox>
+              <Checkbox checked={autoplay == 1 ? true : false} onChange={this.handlePlay} className={style.checkbox}></Checkbox>
             </span>
-            自动播放(PC有效)
+            是否自动播放(PC有效)
           </div>
           <div className={style.title} style={{marginTop:10}}>
             <span className={style.checkboxC}>
-              <Checkbox checked={loop == 1 ? true : false} onChange={this.handleLoop} className={style.checkbox}>是否</Checkbox>
+              <Checkbox checked={loop == 1 ? true : false} onChange={this.handleLoop} className={style.checkbox}></Checkbox>
             </span>
-            循环播放
+            是否循环播放
           </div>
         </ItemBox>
         <Media 

@@ -23,7 +23,6 @@ class EmbedAdd extends Component{
   }
   //微调位置
   editFineTuning = (data) => {
-    console.log(data)
     this.props.onLocation(data)
   }
   //最终保存
