@@ -1,0 +1,55 @@
+@import '~yjtec-pano/lib/global.less';
+
+.module{
+    padding: 10px 20px;
+
+}
+.hotspotLists{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    background: #3D3D3D;
+    cursor:pointer;
+    .thumb{
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+        float: left;
+        text-align: center;
+        line-height: 30px;
+        position:relative;
+        img{
+            width: 100%;
+        }
+        span{
+            position:absolute;
+            width: 20px;
+            height: 10px;
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -10px;
+            background: #ff6a00;
+            color: #fff;
+            font-size: 8px;
+            line-height: 10px;
+            text-align: center;
+            opacity: 0.5;
+        }
+    }
+    .title{
+        line-height: 40px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .delSelectdPano{
+        float:right;
+        padding-right: 5px;
+        line-height: 40px;
+        color: @font-color;
+        cursor: pointer;
+        font-size: @font-size-12;
+    }
+}

@@ -1,0 +1,135 @@
+.edit{
+    width:140px;
+    // height:480px;
+    position:fixed;
+    bottom:50%;
+    right:260px;
+    margin-bottom:-240px;
+    border-radius:5px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #f5f5f5;
+
+    .bg{
+        background:rgba(0,0,0,0.6);
+    }
+    .spacing{
+        width: 100%;
+        height: 1px;
+        background:rgba(0,0,0,0.5);
+    }
+
+    .fine_tuning_title{
+        width: 100%;
+        line-height: 24px;
+        text-align: center;
+    }
+    .box{
+        width: 100%;
+        padding: 10px 0;
+        .boxTitle{
+            line-height: 24px;
+            text-align: center;
+            width: 100%;
+            cursor: pointer;
+        }
+        .directionC{
+            width: 100%;
+            height: 140px;
+            padding:10px 0;
+            position:relative;
+            .top{
+                width: 30px;
+                position:absolute;
+                top: 10px;
+                left: 50%;
+                margin-left:-15px;
+                span{
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+            }
+            .right{
+                width: 44px;
+                position:absolute;
+                top: 52px;
+                left: 50%;
+                margin-left:9px;
+                span{
+                    line-height: 30px;
+                    float: left;
+                }
+            }
+            .bottom{
+                width: 30px;
+                position:absolute;
+                top: 76px;
+                left: 50%;
+                margin-left:-15px;
+                span{
+                    width: 100%;
+                    display: block;
+                    text-align: center;
+                }
+            }
+            .left{
+                width: 44px;
+                position:absolute;
+                top: 52px;
+                left: 50%;
+                margin-left:-51px;
+                span{
+                    line-height: 30px;
+                    float: left;
+                }
+            }
+            .directionIcon{
+                font-size: 30px;
+                width: 30px;
+                float: left;
+                color: #eee;
+                cursor: pointer;
+            }
+            .directionIcon:hover{
+                color: #fff
+            }
+        }
+        .rotateC{
+            ul{
+                padding-left:10px;
+                li{
+                    width: 30px;
+                    height: 30px;
+                    float: left;
+                    margin: 10px 15px;
+                    .rotateIcon{
+                        font-size: 30px;
+                        cursor: pointer;
+                        color: red;
+                    }
+                }
+            }
+        }
+        .bloomingC{
+            ul{
+                padding-left:10px;
+                li{
+                    width: 30px;
+                    float: left;
+                    text-align: center;
+                    margin: 10px 15px 0 15px;
+                    .bloomingIcon{
+                        font-size: 24px;
+                        cursor: pointer;
+                        color: red;
+                    }
+                    span{
+                        line-height: 24px;
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+}
