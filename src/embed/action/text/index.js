@@ -8,7 +8,7 @@ export default class Text extends React.Component{
     super(props);
     const {actionData} = props;
     this.state = {
-      text:actionData ? actionData.text : '请添加文字内容'
+      text:actionData ? actionData.text : ''
     }
   }
 
