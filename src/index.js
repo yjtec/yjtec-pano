@@ -5,6 +5,7 @@ import Location from './location';
 import View from './view';
 import Cruise from './cruise';
 import Embed from './embed';
+import Roll from './roll';
 export {
   Mask,
   Music,
@@ -12,5 +13,6 @@ export {
   Location,
   View,
   Cruise,
-  Embed
+  Embed,
+  Roll
 }

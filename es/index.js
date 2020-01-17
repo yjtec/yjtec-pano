@@ -5,4 +5,5 @@ import Location from './location';
 import View from './view';
 import Cruise from './cruise';
 import Embed from './embed';
-export { Mask, Music, Effect, Location, View, Cruise, Embed };
+import Roll from './roll';
+export { Mask, Music, Effect, Location, View, Cruise, Embed, Roll };

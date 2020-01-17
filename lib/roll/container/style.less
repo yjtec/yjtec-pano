@@ -1,0 +1,44 @@
+@import '~yjtec-pano/lib/global.less';
+
+.borderPosition{
+    width: 30px;
+    height: 30px;
+    background: @input-bg;
+    border-radius:  @default-border-radius;
+    text-align: center;
+    line-height: 30px;
+    font-size: @font-size-12;
+    color: @font-color;
+    cursor:pointer;
+}
+.pickColor{
+    width: 90px;
+    height: 30px;
+    border-radius: @default-border-radius;
+    border:5px solid @input-border-color;
+    float: right;
+}
+
+.bgalpha{
+    :global{
+        .ant-slider{
+            padding:7px 0;
+            margin: 0 0 10px;
+        }
+        .ant-slider-handle{
+            background: #008aff;
+            border-color: #008aff
+        }
+        .ant-slider-track{
+            background: #008aff;
+        }
+    };
+}
+
+.sliderDiv{
+    :global{
+        .ant-slider{
+            margin-right:6px;
+        }
+    }
+}
