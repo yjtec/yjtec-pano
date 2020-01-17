@@ -82,6 +82,8 @@ function (_React$Component) {
         color: re.colorRgba
       });
 
+      delete newCss.colorRgba;
+
       _this.setState({
         css: newCss
       }, function () {
