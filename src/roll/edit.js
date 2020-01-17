@@ -73,9 +73,16 @@ export default class Text extends React.Component{
   }
 
   text=(re)=>{
-    let newCss = {
-      ...re,
-      color:re.colorRgba
+    let newCss = '';
+    if (re.colorRgba) {
+      newCss = {
+        ...re,
+        color:re.colorRgba
+      }
+    }else{
+      newCss = {
+        ...re
+      }
     }
     delete newCss.colorRgba;
     this.setState({
