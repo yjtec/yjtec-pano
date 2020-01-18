@@ -142,7 +142,7 @@ function (_Component) {
         className: style.title
       }, "\u5BB9\u5668\u5C3A\u5BF8"), React.createElement(_Row, {
         style: {
-          margin: '0 -5px 0'
+          margin: '0 -5px 10px'
         }
       }, containerSize.map(function (item) {
         return React.createElement(_Col, {

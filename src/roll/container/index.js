@@ -73,7 +73,7 @@ class Index extends Component {
           <div className={style.title}>
             容器尺寸
           </div>
-          <Row style={{margin:'0 -5px 0'}}>
+          <Row style={{margin:'0 -5px 10px'}}>
             {containerSize.map(item=>(
               <Col key={item.id} span={24} style={{padding:'0 5px'}}>
                 <InputNumber
