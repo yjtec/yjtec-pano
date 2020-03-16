@@ -9,7 +9,7 @@ export default class Sequence extends React.Component{
     const {actionData} = props;
     this.state = {
       url:(actionData && actionData.url) ? actionData.url : '',
-      playTime:(actionData && actionData.playTime) ? actionData.playTime : {total:1,time:1,pertime:1},
+      playTime:(actionData && actionData.playTime) ? actionData.playTime : {total:1,time:1,pertime:1,fwidth:100,fheight:100},
     }
   }
 
@@ -26,10 +26,10 @@ export default class Sequence extends React.Component{
   }
 
   handleAnimate = ({url,playTime}) => {
-    const {total,time,pertime} = playTime;
+    const {total,time,pertime,fwidth,fheight} = playTime;
     this.setState({
       url:url,
-      playTime:{total,time,pertime}
+      playTime:{total,time,pertime,fwidth,fheight}
     },()=>{
       this.props.onChange(this.state);
     })

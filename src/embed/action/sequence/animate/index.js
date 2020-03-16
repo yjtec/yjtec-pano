@@ -22,7 +22,19 @@ const inputNumber = [
     title:'单帧播放时长',
     inputNumber:{min:0.01,max:10,inputNumberValue:1},
     unit:'秒'
-  }
+  },
+  {
+    id:4,
+    title:'单帧宽度',
+    inputNumber:{min:1,max:400,inputNumberValue:1},
+    unit:'PX'
+  },
+  {
+    id:5,
+    title:'单帧高度',
+    inputNumber:{min:1,max:400,inputNumberValue:1},
+    unit:'PX'
+  },
 ]
 class TypeAnimate extends Component{
   constructor(props) {
@@ -31,7 +43,7 @@ class TypeAnimate extends Component{
     if (playTime == undefined) {
       this.state = {
         url:url ? url : '',
-        playTime:[1,1,1]
+        playTime:[1,1,1,100,100]
       }
     }else{
       const {total,time,pertime} = playTime;
@@ -40,7 +52,9 @@ class TypeAnimate extends Component{
         playTime:[
           total ? total :1,
           time ? time :1,
-          pertime ? pertime:1
+          pertime ? pertime:1,
+          playTime.fwidth ? playTime.fwidth : 100,
+          playTime.fheight ? playTime.fheight : 100,
         ]
       }
     }
@@ -68,6 +82,14 @@ class TypeAnimate extends Component{
       playTime[2] = value
     }
 
+    if(index == 4){
+      playTime[3] = value;
+    }
+
+    if(index == 5){
+      playTime[4] = value;
+    }
+
     this.setState({
       playTime:playTime
     },this.runChange)
@@ -75,7 +97,7 @@ class TypeAnimate extends Component{
   runChange = e => {
     const {url,playTime} = this.state;
     const {onChange} = this.props;
-    onChange({url:url,playTime:{total:playTime[0],time:playTime[1],pertime:playTime[2]}});
+    onChange({url:url,playTime:{total:playTime[0],time:playTime[1],pertime:playTime[2],fwidth:playTime[3],fheight:playTime[4]}});
   }
 
   render(){

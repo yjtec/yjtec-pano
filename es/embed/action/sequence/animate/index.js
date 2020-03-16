@@ -55,6 +55,24 @@ var inputNumber = [{
     inputNumberValue: 1
   },
   unit: '秒'
+}, {
+  id: 4,
+  title: '单帧宽度',
+  inputNumber: {
+    min: 1,
+    max: 400,
+    inputNumberValue: 1
+  },
+  unit: 'PX'
+}, {
+  id: 5,
+  title: '单帧高度',
+  inputNumber: {
+    min: 1,
+    max: 400,
+    inputNumberValue: 1
+  },
+  unit: 'PX'
 }];
 
 var TypeAnimate =
@@ -93,6 +111,14 @@ function (_Component) {
         playTime[2] = value;
       }
 
+      if (index == 4) {
+        playTime[3] = value;
+      }
+
+      if (index == 5) {
+        playTime[4] = value;
+      }
+
       _this.setState({
         playTime: playTime
       }, _this.runChange);
@@ -108,7 +134,9 @@ function (_Component) {
         playTime: {
           total: playTime[0],
           time: playTime[1],
-          pertime: playTime[2]
+          pertime: playTime[2],
+          fwidth: playTime[3],
+          fheight: playTime[4]
         }
       });
     };
@@ -119,7 +147,7 @@ function (_Component) {
     if (_playTime == undefined) {
       _this.state = {
         url: _url ? _url : '',
-        playTime: [1, 1, 1]
+        playTime: [1, 1, 1, 100, 100]
       };
     } else {
       var total = _playTime.total,
@@ -127,7 +155,7 @@ function (_Component) {
           pertime = _playTime.pertime;
       _this.state = {
         url: _url ? _url : '',
-        playTime: [total ? total : 1, time ? time : 1, pertime ? pertime : 1]
+        playTime: [total ? total : 1, time ? time : 1, pertime ? pertime : 1, _playTime.fwidth ? _playTime.fwidth : 100, _playTime.fheight ? _playTime.fheight : 100]
       };
     }
 

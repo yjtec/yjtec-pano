@@ -40,14 +40,18 @@ function (_React$Component) {
           playTime = _ref.playTime;
       var total = playTime.total,
           time = playTime.time,
-          pertime = playTime.pertime;
+          pertime = playTime.pertime,
+          fwidth = playTime.fwidth,
+          fheight = playTime.fheight;
 
       _this.setState({
         url: url,
         playTime: {
           total: total,
           time: time,
-          pertime: pertime
+          pertime: pertime,
+          fwidth: fwidth,
+          fheight: fheight
         }
       }, function () {
         _this.props.onChange(_this.state);
@@ -60,7 +64,9 @@ function (_React$Component) {
       playTime: actionData && actionData.playTime ? actionData.playTime : {
         total: 1,
         time: 1,
-        pertime: 1
+        pertime: 1,
+        fwidth: 100,
+        fheight: 100
       }
     };
     return _this;
