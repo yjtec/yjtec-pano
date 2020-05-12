@@ -1,5 +1,5 @@
 import { Component } from "react";
-import {ItemBox,Right,Content} from '@/components/';
+import {ItemBox,Right,Content,Help} from '@/components/';
 import {Button,Select} from '@/components/Form';
 import {Checkbox,Row,Col,Drawer,Icon} from 'antd';
 import style from './style.less';
@@ -9,6 +9,7 @@ import UploadMusic from '@/components/Media';
 import Modal from '@/components/AllScene';
 
 import {Obj} from 'yjtec-support';
+import {helpShow} from '@/utils/help';
 
 const defaultData = {
   media: false,
@@ -128,7 +129,15 @@ class Music extends Component {
           <span className={style.checkboxC} onClick={()=>this.del()}>
             删除
           </span>
-          {this.props.title}
+          <span style={{float:'left'}}>{this.props.title}</span>
+          {helpShow && 
+            (
+              <div style={{float:'left', width:'18px', height:'18px',position:'relative',marginLeft:'5px'}}>
+                <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+              </div>
+            )
+          }
+          <div style={{clear:'both'}}></div>
         </div>
         <div className={style.musicBox}>
           <Row>

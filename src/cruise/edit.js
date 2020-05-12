@@ -1,9 +1,9 @@
 import { Component } from "react";
-import {ItemBox,Right,Content} from '@/components/';
+import {ItemBox,Right,Content,Help} from '@/components/';
 import {Checkbox} from 'antd';
 import {SliderSingle} from '@/components/Form';
 import style from './style.less';
-
+import {helpShow} from '@/utils/help';
 class CruiseEdit extends Component {
   state = {
     open: 0,
@@ -48,7 +48,15 @@ class CruiseEdit extends Component {
             <span className={style.checkboxC}>
               <Checkbox checked={open == 1 ? true : false} onChange={this.isOpen} className={style.checkbox}>是否开启</Checkbox>
             </span>
-            自动巡游
+            <span style={{float:'left'}}>自动巡游</span>
+            {helpShow && 
+              (
+                <div style={{float:'left', width:'18px', height:'18px', position:'relative',marginLeft:'5px'}}>
+                  <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                </div>
+              )
+            }
+            <div style={{clear:'both'}}></div>
           </div>
           <div className={style.mb20}></div>
           <div className={style.title}>

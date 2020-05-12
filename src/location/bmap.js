@@ -1,11 +1,11 @@
 import {Component} from "react";
 import {connect} from 'dva';
 
-import {ItemBox,Right} from '@/components/';
+import {ItemBox,Right,Help} from '@/components/';
 import {Checkbox,Input,Button,Icon} from 'antd';
 import {AsyncLoadMap,loadBdMap,MapSearchField} from "@yjtec/bmap";
 import BmapModal from './bmapModal';
-
+import {helpShow} from '@/utils/help';
 import style from './style.less';
 
 class Index extends Component{
@@ -28,7 +28,15 @@ class Index extends Component{
             <span className={style.checkboxC}>
               <a onClick={()=>this.bmapVisible()}>设置标注</a>
             </span>
-            导航标注
+            <span style={{float:'left'}}>导航标注</span>
+            {helpShow && 
+              (
+                <div style={{float:'left', width:'18px', height:'18px',position:'relative',marginLeft:'5px'}}>
+                  <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                </div>
+              )
+            }
+            <div style={{clear:'both'}}></div>
           </div>
           <div className={style.mapBox}>
             <div>

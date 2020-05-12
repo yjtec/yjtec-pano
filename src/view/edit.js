@@ -1,10 +1,11 @@
 import React from 'react';
 
-import {ItemBox,Right,Content} from '@/components/';
+import {ItemBox,Right,Content,Help} from '@/components/';
 import {Button,Layout} from 'antd';
 import {Slider} from '@/components/Form/';
 import View from './pano';
 import styles from './style.less';
+import {helpShow} from '@/utils/help';
 
 export default class ViewEdit extends React.Component{
 
@@ -21,7 +22,17 @@ export default class ViewEdit extends React.Component{
         </div>
         <Right>
           <ItemBox>
-            <p>当前初始视角</p>
+            <div style={{marginBottom:'10px'}}>
+              <span style={{float:'left'}}>当前初始视角</span>
+              {helpShow && 
+                (
+                  <div style={{float:'left', width:'18px', height:'18px', position:'relative',marginLeft:'5px'}}>
+                    <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                  </div>
+                )
+              }
+              <div style={{clear:'both'}}></div>
+            </div>
             { flag && <View />}
           </ItemBox>
           <ItemBox>

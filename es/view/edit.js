@@ -20,10 +20,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 import React from 'react';
-import { ItemBox, Right, Content } from '@/components/';
+import { ItemBox, Right, Content, Help } from '@/components/';
 import { Slider } from '@/components/Form/';
 import View from './pano';
 import styles from './style.less';
+import { helpShow } from '@/utils/help';
 
 var ViewEdit =
 /*#__PURE__*/
@@ -69,7 +70,33 @@ function (_React$Component) {
       }, React.createElement(_Button, {
         type: "primary",
         onClick: this.props.setView
-      }, "\u628A\u5F53\u524D\u89C6\u89D2\u8BBE\u7F6E\u4E3A\u9ED8\u8BA4\u89C6\u89D2")), React.createElement(Right, null, React.createElement(ItemBox, null, React.createElement("p", null, "\u5F53\u524D\u521D\u59CB\u89C6\u89D2"), flag && React.createElement(View, null)), React.createElement(ItemBox, null, React.createElement("p", null, "\u89C6\u89D2(FOV)\u8303\u56F4\u8BBE\u7F6E"), React.createElement(Slider, {
+      }, "\u628A\u5F53\u524D\u89C6\u89D2\u8BBE\u7F6E\u4E3A\u9ED8\u8BA4\u89C6\u89D2")), React.createElement(Right, null, React.createElement(ItemBox, null, React.createElement("div", {
+        style: {
+          marginBottom: '10px'
+        }
+      }, React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u5F53\u524D\u521D\u59CB\u89C6\u89D2"), helpShow && React.createElement("div", {
+        style: {
+          float: 'left',
+          width: '18px',
+          height: '18px',
+          position: 'relative',
+          marginLeft: '5px'
+        }
+      }, React.createElement(Help, {
+        style: {
+          fontSize: '14px',
+          color: '#999999',
+          float: 'left'
+        }
+      })), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), flag && React.createElement(View, null)), React.createElement(ItemBox, null, React.createElement("p", null, "\u89C6\u89D2(FOV)\u8303\u56F4\u8BBE\u7F6E"), React.createElement(Slider, {
         onChange: function onChange(value) {
           return _this2.handleView('fov', value);
         },

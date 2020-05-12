@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'dva';
-import {ItemBox,Right} from '@/components/';
+import {ItemBox,Right,Help} from '@/components/';
 import {SliderSingle} from '@/components/Form';
 import {List,Avatar,Select,Radio,Row,Col,Icon,Checkbox,Button} from 'antd';
 import {Kr} from '@/utils/kr/';
@@ -8,7 +8,7 @@ import style from './style.less';
 import UploadImg from '@/components/Media';
 import AllScene from '@/components/Media/scene';
 import {ossImgMedia} from '@/utils/oss';
-
+import {helpShow} from '@/utils/help';
 import Modal from '@/components/AllScene';
 
 const Option = Select.Option;
@@ -138,7 +138,15 @@ class Effect extends React.Component{
             <span className={style.checkboxC}>
               {selectValue ? <div onClick={()=>this.delSkyImg()}>删除</div> : ''}
             </span>
-            特效
+            <span style={{float:'left'}}>特效</span>
+            {helpShow && 
+              (
+                <div style={{float:'left', width:'18px', height:'18px',position:'relative',marginLeft:'5px'}}>
+                  <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                </div>
+              )
+            }
+            <div style={{clear:'both'}}></div>
           </div>
           <div className={style.select}>
             <Select value={selectValue} name='imageurl' placeholder="请选择特效" style={{width:'100%'}} onChange={value => this.handleChange('imageurl',value)}>

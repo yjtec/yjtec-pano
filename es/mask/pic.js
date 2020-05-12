@@ -27,11 +27,13 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from "react";
 import { Component } from 'react';
+import { Help } from '@/components/';
 import style from './style.less';
 import UploadImg from '@/components/Media';
 import { ossImgMedia, ossPano } from '@/utils/oss';
 import { Obj } from 'yjtec-support';
 import Modal from '@/components/AllScene';
+import { helpShow } from '@/utils/help';
 
 var Pic =
 /*#__PURE__*/
@@ -117,7 +119,29 @@ function (_Component) {
           color: '#fff',
           borderColor: '#008aff'
         }
-      }, "\u5E94\u7528\u5230")), title), React.createElement(_Row, null, React.createElement(_Col, {
+      }, "\u5E94\u7528\u5230")), React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, title), helpShow && React.createElement("div", {
+        style: {
+          float: 'left',
+          width: '20px',
+          height: '20px',
+          position: 'relative',
+          marginLeft: '5px'
+        }
+      }, React.createElement(Help, {
+        style: {
+          fontSize: '14px',
+          color: '#999999',
+          float: 'left'
+        }
+      })), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement(_Row, null, React.createElement(_Col, {
         span: 24,
         className: style.mb10
       }, !Obj.isNull(url) ? React.createElement("div", {

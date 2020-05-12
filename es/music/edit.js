@@ -33,12 +33,13 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from "react";
 import { Component } from "react";
-import { ItemBox, Right, Content } from '@/components/';
+import { ItemBox, Right, Content, Help } from '@/components/';
 import { Button, Select } from '@/components/Form';
 import style from './style.less';
 import UploadMusic from '@/components/Media';
 import Modal from '@/components/AllScene';
 import { Obj } from 'yjtec-support';
+import { helpShow } from '@/utils/help';
 var defaultData = {
   media: false,
   musicUrl: '',
@@ -193,7 +194,29 @@ function (_Component) {
         onClick: function onClick() {
           return _this2.del();
         }
-      }, "\u5220\u9664"), this.props.title), React.createElement("div", {
+      }, "\u5220\u9664"), React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, this.props.title), helpShow && React.createElement("div", {
+        style: {
+          float: 'left',
+          width: '18px',
+          height: '18px',
+          position: 'relative',
+          marginLeft: '5px'
+        }
+      }, React.createElement(Help, {
+        style: {
+          fontSize: '14px',
+          color: '#999999',
+          float: 'left'
+        }
+      })), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement("div", {
         className: style.musicBox
       }, React.createElement(_Row, null, React.createElement(_Col, {
         span: 8

@@ -28,10 +28,11 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 import React from 'react';
-import { ItemBox, TextCss } from '@/components/';
+import { ItemBox, TextCss, Help } from '@/components/';
 import Modal from '@/components/AllScene';
 import Container from './container';
 import style from './style.less';
+import { helpShow } from '@/utils/help';
 var defaultData = {
   height: '30',
   bgcolor: '#000000',
@@ -224,7 +225,29 @@ function (_React$Component) {
           color: '#fff',
           borderColor: '#008aff'
         }
-      }, "\u5E94\u7528\u5230")), "\u6EDA\u52A8\u5B57\u5E55"), React.createElement("div", {
+      }, "\u5E94\u7528\u5230")), React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u6EDA\u52A8\u5B57\u5E55"), helpShow && React.createElement("div", {
+        style: {
+          float: 'left',
+          width: '20px',
+          height: '20px',
+          position: 'relative',
+          marginLeft: '5px'
+        }
+      }, React.createElement(Help, {
+        style: {
+          fontSize: '14px',
+          color: '#999999',
+          float: 'left'
+        }
+      })), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement("div", {
         className: style.setupInput
       }, React.createElement(_Input.TextArea, {
         value: text,

@@ -22,9 +22,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from "react";
 import { Component } from "react";
 import { connect } from 'dva';
-import { ItemBox, Right } from '@/components/';
+import { ItemBox, Right, Help } from '@/components/';
 import { AsyncLoadMap, loadBdMap, MapSearchField } from "@yjtec/bmap";
 import BmapModal from './bmapModal';
+import { helpShow } from '@/utils/help';
 import style from './style.less';
 
 var Index =
@@ -78,7 +79,29 @@ function (_Component) {
         onClick: function onClick() {
           return _this2.bmapVisible();
         }
-      }, "\u8BBE\u7F6E\u6807\u6CE8")), "\u5BFC\u822A\u6807\u6CE8"), React.createElement("div", {
+      }, "\u8BBE\u7F6E\u6807\u6CE8")), React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u5BFC\u822A\u6807\u6CE8"), helpShow && React.createElement("div", {
+        style: {
+          float: 'left',
+          width: '18px',
+          height: '18px',
+          position: 'relative',
+          marginLeft: '5px'
+        }
+      }, React.createElement(Help, {
+        style: {
+          fontSize: '14px',
+          color: '#999999',
+          float: 'left'
+        }
+      })), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement("div", {
         className: style.mapBox
       }, React.createElement("div", null, data.lng && data.lat || data.lng == '' || data.lat == '' ? React.createElement(MapSearchField, {
         id: "mapView",

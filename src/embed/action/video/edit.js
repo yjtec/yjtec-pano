@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon,Button,Checkbox } from 'antd';
 import {ItemBox} from '@/components/';
-import {ossImgMedia} from '@/utils/oss';
+import {ossEmbedVideoThumb} from '@/utils/oss';
 import Media from '@/components/Media';
 import {Obj} from 'yjtec-support';
 import style from './style.less';
@@ -138,7 +138,7 @@ export default class Edit extends React.Component{
 
     const thumbBox = (
       <div>
-        <img alt="url" src={ossImgMedia(thumbUrl,'media')} className={style.imgss}/>
+        <img alt="url" src={ossEmbedVideoThumb(thumbUrl)} className={style.imgss}/>
         <div className={style.delimg} onClick={()=>this.delImg()}>
           <Icon type="delete" />
         </div>

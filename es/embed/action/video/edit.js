@@ -25,7 +25,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from 'react';
 import { ItemBox } from '@/components/';
-import { ossImgMedia } from '@/utils/oss';
+import { ossEmbedVideoThumb } from '@/utils/oss';
 import Media from '@/components/Media';
 import { Obj } from 'yjtec-support';
 import style from './style.less';
@@ -189,7 +189,7 @@ function (_React$Component) {
       }, React.createElement("span", null, "\u683C\u5F0FMP4 \u7F16\u7801:H.264"), React.createElement("span", null, "\u89C6\u9891\u9650\u523650M\u4EE5\u5185"));
       var thumbBox = React.createElement("div", null, React.createElement("img", {
         alt: "url",
-        src: ossImgMedia(thumbUrl, 'media'),
+        src: ossEmbedVideoThumb(thumbUrl),
         className: style.imgss
       }), React.createElement("div", {
         className: style.delimg,

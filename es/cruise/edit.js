@@ -21,9 +21,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from "react";
 import { Component } from "react";
-import { ItemBox, Right, Content } from '@/components/';
+import { ItemBox, Right, Content, Help } from '@/components/';
 import { SliderSingle } from '@/components/Form';
 import style from './style.less';
+import { helpShow } from '@/utils/help';
 
 var CruiseEdit =
 /*#__PURE__*/
@@ -106,7 +107,29 @@ function (_Component) {
         checked: open == 1 ? true : false,
         onChange: this.isOpen,
         className: style.checkbox
-      }, "\u662F\u5426\u5F00\u542F")), "\u81EA\u52A8\u5DE1\u6E38"), React.createElement("div", {
+      }, "\u662F\u5426\u5F00\u542F")), React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u81EA\u52A8\u5DE1\u6E38"), helpShow && React.createElement("div", {
+        style: {
+          float: 'left',
+          width: '18px',
+          height: '18px',
+          position: 'relative',
+          marginLeft: '5px'
+        }
+      }, React.createElement(Help, {
+        style: {
+          fontSize: '14px',
+          color: '#999999',
+          float: 'left'
+        }
+      })), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement("div", {
         className: style.mb20
       }), React.createElement("div", {
         className: style.title

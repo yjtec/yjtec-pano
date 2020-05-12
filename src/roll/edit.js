@@ -1,9 +1,10 @@
 import React from 'react';
-import { ItemBox,TextCss } from '@/components/';
+import { ItemBox,TextCss,Help } from '@/components/';
 import { Input,Button } from 'antd';
 import Modal from '@/components/AllScene';
 import Container from './container';
 import style from './style.less';
+import {helpShow} from '@/utils/help';
 const defaultData = {
   height:'30',
   bgcolor:'#000000',
@@ -150,7 +151,15 @@ export default class Text extends React.Component{
                 应用到
               </Button>
             </span>
-            滚动字幕
+            <span style={{float:'left'}}>滚动字幕</span>
+            {helpShow && 
+              (
+                <div style={{float:'left', width:'20px', height:'20px',position:'relative',marginLeft:'5px'}}>
+                  <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                </div>
+              )
+            }
+            <div style={{clear:'both'}}></div>
           </div>
           <div className={style.setupInput}>
             <Input.TextArea value={text} autosize={{minRows:3,maxRows:3}} placeholder='请输入文字信息' style={{borderRadius:3}} onChange={this.textValue}/>

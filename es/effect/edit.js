@@ -39,13 +39,14 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from 'react';
 import { connect } from 'dva';
-import { ItemBox, Right } from '@/components/';
+import { ItemBox, Right, Help } from '@/components/';
 import { SliderSingle } from '@/components/Form';
 import { Kr } from '@/utils/kr/';
 import style from './style.less';
 import UploadImg from '@/components/Media';
 import AllScene from '@/components/Media/scene';
 import { ossImgMedia } from '@/utils/oss';
+import { helpShow } from '@/utils/help';
 import Modal from '@/components/AllScene';
 var Option = _Select.Option;
 
@@ -239,7 +240,29 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this2.delSkyImg();
         }
-      }, "\u5220\u9664") : ''), "\u7279\u6548"), React.createElement("div", {
+      }, "\u5220\u9664") : ''), React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u7279\u6548"), helpShow && React.createElement("div", {
+        style: {
+          float: 'left',
+          width: '18px',
+          height: '18px',
+          position: 'relative',
+          marginLeft: '5px'
+        }
+      }, React.createElement(Help, {
+        style: {
+          fontSize: '14px',
+          color: '#999999',
+          float: 'left'
+        }
+      })), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement("div", {
         className: style.select
       }, React.createElement(_Select, {
         value: selectValue,
