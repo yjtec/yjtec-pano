@@ -16,7 +16,7 @@ export default class ViewEdit extends React.Component{
   render(){
     const { viewdata,flag } = this.props;
     return(
-      <div>
+      <div style={{height:"inherit"}}>
         <div style={{position:'absolute','left':'50%',marginLeft:'-196px',marginTop:'100px',top:'50%'}}>
           <Button type="primary" onClick={this.props.setView}>把当前视角设置为默认视角</Button>
         </div>

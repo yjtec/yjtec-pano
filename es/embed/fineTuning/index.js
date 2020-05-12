@@ -104,11 +104,11 @@ function (_React$Component) {
       if (type == 'rx') {
         if (direction == 1) {
           newData = {
-            rx: moveOperator(rx, 'plus', 1)
+            rx: moveOperator(rx, 'plus', 0.5)
           };
         } else {
           newData = {
-            rx: moveOperator(rx, 'reduce', 1)
+            rx: moveOperator(rx, 'reduce', 0.5)
           };
         }
       }
@@ -116,11 +116,11 @@ function (_React$Component) {
       if (type == 'ry') {
         if (direction == 1) {
           newData = {
-            ry: moveOperator(ry, 'reduce', 1)
+            ry: moveOperator(ry, 'reduce', 0.5)
           };
         } else {
           newData = {
-            ry: moveOperator(ry, 'plus', 1)
+            ry: moveOperator(ry, 'plus', 0.5)
           };
         }
       }
@@ -128,11 +128,11 @@ function (_React$Component) {
       if (type == 'rz') {
         if (direction == 1) {
           newData = {
-            rz: moveOperator(rz, 'plus', 1)
+            rz: moveOperator(rz, 'plus', 0.5)
           };
         } else {
           newData = {
-            rz: moveOperator(rz, 'reduce', 1)
+            rz: moveOperator(rz, 'reduce', 0.5)
           };
         }
       }
@@ -148,11 +148,11 @@ function (_React$Component) {
 
       if (direction == 1) {
         newData = {
-          scale: moveOperator(scale, 'plus', 0.01)
+          scale: moveOperator(scale, 'plus', 0.005)
         };
       } else {
         newData = {
-          scale: moveOperator(scale, 'reduce', 0.01)
+          scale: moveOperator(scale, 'reduce', 0.005)
         };
       }
 

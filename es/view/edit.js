@@ -59,7 +59,11 @@ function (_React$Component) {
       var _this$props = this.props,
           viewdata = _this$props.viewdata,
           flag = _this$props.flag;
-      return React.createElement("div", null, React.createElement("div", {
+      return React.createElement("div", {
+        style: {
+          height: "inherit"
+        }
+      }, React.createElement("div", {
         style: {
           position: 'absolute',
           'left': '50%',

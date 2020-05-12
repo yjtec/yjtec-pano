@@ -35,6 +35,18 @@ class EmbedAdd extends Component{
   }
   render(){
     let { embedTypeData,embedType = 1,data,isVip } = this.props;
+    let saveDiv = (
+      <ItemBox>
+        <Row style={{margin:'0 -5px'}}>
+          <Col span={12} style={{padding:'0 5px'}}>
+            <Button type='primary' onClick={this.handleSave} style={{width:'100%'}}>保存</Button>
+          </Col>
+          <Col span={12}  className={style.panoList} style={{padding:'0 5px'}}>
+            <Button type='danger' onClick={this.handleDelete} style={{width:'100%'}}>删除</Button>
+          </Col>
+        </Row>
+      </ItemBox>
+    );
     return(
       <div className={style.module}>
         <Drawer
@@ -56,16 +68,7 @@ class EmbedAdd extends Component{
             data={data}
             onChange={this.receiveData}
           />
-          <ItemBox>
-            <Row style={{margin:'0 -5px'}}>
-              <Col span={12} style={{padding:'0 5px'}}>
-                <Button type='primary' onClick={this.handleSave} style={{width:'100%'}}>保存</Button>
-              </Col>
-              <Col span={12}  className={style.panoList} style={{padding:'0 5px'}}>
-                <Button type='danger' onClick={this.handleDelete} style={{width:'100%'}}>删除</Button>
-              </Col>
-            </Row>
-          </ItemBox>
+          {(embedType == 4 && isVip == 1) || embedType == 1 || embedType == 2 || embedType == 3 ? saveDiv : ''}
         </Drawer>
 
         <FineTuning 

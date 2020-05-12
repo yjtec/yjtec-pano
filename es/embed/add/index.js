@@ -85,23 +85,7 @@ function (_Component) {
           embedType = _this$props$embedType === void 0 ? 1 : _this$props$embedType,
           data = _this$props.data,
           isVip = _this$props.isVip;
-      return React.createElement("div", {
-        className: style.module
-      }, React.createElement(Drawer, {
-        visible: this.props.visible,
-        destroyOnClose: false,
-        title: "\u5D4C\u5165",
-        onCancel: this.handleCancel
-      }, React.createElement(ItemBox, null, React.createElement(EmbedType, {
-        embedTypeData: embedTypeData,
-        embedType: embedType,
-        onChange: this.handleEmbedType
-      })), React.createElement(Action, {
-        embedType: embedType,
-        isVip: isVip,
-        data: data,
-        onChange: this.receiveData
-      }), React.createElement(ItemBox, null, React.createElement(_Row, {
+      var saveDiv = React.createElement(ItemBox, null, React.createElement(_Row, {
         style: {
           margin: '0 -5px'
         }
@@ -128,7 +112,24 @@ function (_Component) {
         style: {
           width: '100%'
         }
-      }, "\u5220\u9664"))))), React.createElement(FineTuning, {
+      }, "\u5220\u9664"))));
+      return React.createElement("div", {
+        className: style.module
+      }, React.createElement(Drawer, {
+        visible: this.props.visible,
+        destroyOnClose: false,
+        title: "\u5D4C\u5165",
+        onCancel: this.handleCancel
+      }, React.createElement(ItemBox, null, React.createElement(EmbedType, {
+        embedTypeData: embedTypeData,
+        embedType: embedType,
+        onChange: this.handleEmbedType
+      })), React.createElement(Action, {
+        embedType: embedType,
+        isVip: isVip,
+        data: data,
+        onChange: this.receiveData
+      }), embedType == 4 && isVip == 1 || embedType == 1 || embedType == 2 || embedType == 3 ? saveDiv : ''), React.createElement(FineTuning, {
         visible: this.props.visible,
         data: data.locationData,
         embedType: embedType,
