@@ -86,22 +86,6 @@ function (_React$Component) {
       });
     };
 
-    _this.handleW = function (value) {
-      _this.setState({
-        width: value
-      }, function () {
-        _this.runChange();
-      });
-    };
-
-    _this.handleH = function (value) {
-      _this.setState({
-        height: value
-      }, function () {
-        _this.runChange();
-      });
-    };
-
     _this.runChange = function () {
       var _this$state = _this.state,
           img = _this$state.img,
@@ -109,9 +93,7 @@ function (_React$Component) {
 
       _this.props.onChange({
         img: _this.state.img,
-        time: _this.state.time,
-        width: _this.state.width,
-        height: _this.state.height
+        time: _this.state.time
       });
     };
 
@@ -119,9 +101,10 @@ function (_React$Component) {
     _this.state = {
       visible: false,
       time: actionData && actionData.time ? actionData.time : 3,
-      img: actionData && actionData.img ? actionData.img : [],
-      width: actionData && actionData.width ? actionData.width : 100,
-      height: actionData && actionData.height ? actionData.height : 100
+      img: actionData && actionData.img ? actionData.img : []
+      /*width:(actionData && actionData.width) ? actionData.width : 100,
+      height:(actionData && actionData.height) ? actionData.height : 100,*/
+
     };
     return _this;
   }
@@ -148,9 +131,7 @@ function (_React$Component) {
       var _this$state2 = this.state,
           visible = _this$state2.visible,
           img = _this$state2.img,
-          time = _this$state2.time,
-          width = _this$state2.width,
-          height = _this$state2.height;
+          time = _this$state2.time;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("div", {
         className: style.pictitle
       }, "\u56FE\u7247\u5C55\u793A", React.createElement("p", null, "\u5EFA\u8BAE\u5927\u5C0F400X400"), React.createElement(_Button, {
@@ -164,31 +145,7 @@ function (_React$Component) {
         data: img,
         onChange: this.handlePic,
         onClick: this.delImg
-      })))), React.createElement(ItemBox, null, React.createElement("div", {
-        style: {
-          marginBottom: '5px'
-        }
-      }, "\u56FE\u7247\u5BBD\u9AD8"), React.createElement("div", {
-        style: {
-          marginBottom: '10px'
-        }
-      }, React.createElement(InputNumber, {
-        inputNumberValue: width,
-        max: 1000,
-        min: 1,
-        name: '宽',
-        onChange: function onChange(value) {
-          return _this2.handleW(value);
-        }
-      })), React.createElement("div", null, React.createElement(InputNumber, {
-        inputNumberValue: height,
-        max: 1000,
-        min: 1,
-        name: '高',
-        onChange: function onChange(value) {
-          return _this2.handleH(value);
-        }
-      }))), React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("div", {
+      })))), React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("div", {
         className: style.timeTitle,
         style: {
           marginTop: '20px'

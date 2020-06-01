@@ -110,22 +110,6 @@ function (_React$Component) {
       });
     };
 
-    _this.handleW = function (value) {
-      _this.setState({
-        width: value
-      }, function () {
-        _this.runChange();
-      });
-    };
-
-    _this.handleH = function (value) {
-      _this.setState({
-        height: value
-      }, function () {
-        _this.runChange();
-      });
-    };
-
     _this.runChange = function () {
       var _this$state = _this.state,
           videoUrl = _this$state.videoUrl,
@@ -155,15 +139,35 @@ function (_React$Component) {
       loop: data && data.loop == 1 ? 1 : 0,
       autoplay: data && data.autoplay == 1 ? 1 : 0,
       imgVisible: false,
-      width: data && data.width ? data.width : 300,
-      height: data && data.height ? data.height : 180,
+
+      /*width:(data && data.width) ? data.width : 300,
+      height:(data && data.height) ? data.height : 180,*/
       videoVisible: false
     };
     return _this;
-  } //弹出选择视频
-
+  }
 
   _createClass(Edit, [{
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (JSON.stringify(prevProps.data) !== JSON.stringify(this.props.data)) {
+        if (this.props.data) {
+          var data = this.props.data;
+          this.setState({
+            videoUrl: data.videoUrl,
+            title: data.title,
+            thumbUrl: data.thumbUrl,
+            loop: data.loop,
+            autoplay: data.autoplay
+            /*width:actionData.width,
+            height:actionData.height*/
+
+          });
+        }
+      }
+    } //弹出选择视频
+
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -230,28 +234,6 @@ function (_React$Component) {
       }, thumbUrl ? thumbBox : defaultThumbBox), thumbUrl && React.createElement("div", {
         className: style.notes
       }, "\u6CE8\uFF1A\u5C01\u9762\u8BF7\u4E0E\u89C6\u9891\u5C3A\u5BF8\u4FDD\u6301\u4E00\u81F4")), React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.boxtitle
-      }, "\u89C6\u9891\u5BBD\u9AD8"), React.createElement("div", {
-        style: {
-          marginBottom: '10px'
-        }
-      }, React.createElement(InputNumber, {
-        inputNumberValue: width,
-        max: 1000,
-        min: 1,
-        name: '宽',
-        onChange: function onChange(value) {
-          return _this2.handleW(value);
-        }
-      })), React.createElement("div", null, React.createElement(InputNumber, {
-        inputNumberValue: height,
-        max: 1000,
-        min: 1,
-        name: '高',
-        onChange: function onChange(value) {
-          return _this2.handleH(value);
-        }
-      }))), React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title,
         style: {
           marginTop: 10

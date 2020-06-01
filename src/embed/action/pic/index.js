@@ -15,8 +15,8 @@ export default class Pic extends React.Component{
       visible:false,
       time:(actionData && actionData.time) ? actionData.time : 3,
       img:(actionData && actionData.img) ? actionData.img : [],
-      width:(actionData && actionData.width) ? actionData.width : 100,
-      height:(actionData && actionData.height) ? actionData.height : 100,
+      /*width:(actionData && actionData.width) ? actionData.width : 100,
+      height:(actionData && actionData.height) ? actionData.height : 100,*/
     }
   }
 
@@ -72,7 +72,7 @@ export default class Pic extends React.Component{
     })
   }
 
-  //修改宽
+  /*//修改宽
   handleW = (value) => {
     this.setState({
       width: value
@@ -87,15 +87,15 @@ export default class Pic extends React.Component{
     },()=>{
       this.runChange();
     })
-  }
+  }*/
 
   runChange = () =>{
     const {img,time} = this.state;
-    this.props.onChange({img:this.state.img,time:this.state.time,width:this.state.width,height:this.state.height});
+    this.props.onChange({img:this.state.img,time:this.state.time});
   }
 
   render(){
-    const {visible,img,time,width,height} = this.state;
+    const {visible,img,time} = this.state;
     return(
       <div>
       <ItemBox>
@@ -110,7 +110,7 @@ export default class Pic extends React.Component{
           </div>
         </div>
       </ItemBox>
-      <ItemBox>
+      {/*<ItemBox>
         <div style={{marginBottom:'5px'}}>
           图片宽高
         </div>
@@ -132,7 +132,7 @@ export default class Pic extends React.Component{
             onChange={value => this.handleH(value)}
           />
         </div>
-      </ItemBox>
+      </ItemBox>*/}
       <ItemBox>
         <div>
           <div className={style.timeTitle} style={{marginTop:'20px'}}>

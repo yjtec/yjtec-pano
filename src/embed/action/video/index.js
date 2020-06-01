@@ -13,8 +13,8 @@ export default class Video extends React.Component{
       thumbUrl:(actionData && actionData.thumbUrl) ? actionData.thumbUrl : '',
       loop:(actionData && actionData.loop == 1) ? 1 : 0,
       autoplay:(actionData && actionData.autoplay == 1) ? 1 : 0,
-      width:(actionData && actionData.width) ? actionData.width : 300,
-      height:(actionData && actionData.height) ? actionData.height : 180,
+      /*width:(actionData && actionData.width) ? actionData.width : 300,
+      height:(actionData && actionData.height) ? actionData.height : 180,*/
     }
   }
 
@@ -28,8 +28,8 @@ export default class Video extends React.Component{
           thumbUrl:actionData.thumbUrl,
           loop:actionData.loop,
           autoplay:actionData.autoplay,
-          width:actionData.width,
-          height:actionData.height
+          /*width:actionData.width,
+          height:actionData.height*/
         })
       }
     }

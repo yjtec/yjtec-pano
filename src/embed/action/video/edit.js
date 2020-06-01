@@ -18,9 +18,26 @@ export default class Edit extends React.Component{
       loop:(data && data.loop == 1) ? 1 : 0,
       autoplay:(data && data.autoplay == 1) ? 1 : 0,
       imgVisible:false,
-      width:(data && data.width) ? data.width : 300,
-      height:(data && data.height) ? data.height : 180,
+      /*width:(data && data.width) ? data.width : 300,
+      height:(data && data.height) ? data.height : 180,*/
       videoVisible:false
+    }
+  }
+
+  componentDidUpdate(prevProps){
+    if(JSON.stringify(prevProps.data) !== JSON.stringify(this.props.data)){
+      if (this.props.data) {
+        const {data} = this.props;
+        this.setState({
+          videoUrl:data.videoUrl,
+          title:data.title,
+          thumbUrl:data.thumbUrl,
+          loop:data.loop,
+          autoplay:data.autoplay,
+          /*width:actionData.width,
+          height:actionData.height*/
+        })
+      }
     }
   }
 
@@ -91,7 +108,7 @@ export default class Edit extends React.Component{
       this.runChange()
     })
   }
-  //修改宽
+  /*//修改宽
   handleW = (value) => {
     this.setState({
       width: value
@@ -106,7 +123,7 @@ export default class Edit extends React.Component{
     },()=>{
       this.runChange();
     })
-  }
+  }*/
 
   runChange = () => {
     const {videoUrl,title,thumbUrl,loop,autoplay,width,height} = this.state;
@@ -174,7 +191,7 @@ export default class Edit extends React.Component{
           </div>
           {thumbUrl && <div className={style.notes}>注：封面请与视频尺寸保持一致</div>}
         </ItemBox>
-        <ItemBox>
+        {/*<ItemBox>
           <div className={style.boxtitle}>
             视频宽高
           </div>
@@ -196,7 +213,7 @@ export default class Edit extends React.Component{
               onChange={value => this.handleH(value)}
             />
           </div>
-        </ItemBox>
+        </ItemBox>*/}
         <ItemBox> 
           <div className={style.title} style={{marginTop:10}}>
             <span className={style.checkboxC}>
