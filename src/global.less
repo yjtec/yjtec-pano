@@ -7,6 +7,7 @@
 @default-border-radius: 3px;                   /*默认圆角大小*/
 @default-font-size: 14px;                      /*默认字体大小*/
 @font-size-12: 12px;                           /*12号字*/
+@font-size-14: 14px;                           /*12号字*/
 @input-bg: rgba(61,61,61,1);                   /*input,select等输入框背景色*/
 @input-border-color: rgba(99,99,99,1);         /*input,select等输入框描边颜色*/
 @position-bg: rgba(106,106,106,1);                         /*定位选择器背景*/
@@ -146,35 +147,6 @@ li{
     background: rgba(16,16,16,1);
 }
 
-
-/*
-    抽屉样式
-*/
-.drawer{
-    :global{
-        .ant-drawer-body{
-            padding: 0
-        }
-        .ant-drawer-wrapper-body{
-            padding: 0;
-            background:@tool-bg;
-        }
-    }
-    .drawerTitle{
-        background:@tool-bg;
-        line-height: 30px;
-        padding-left:20px;
-        padding-right:20px;
-        color: @font-color;
-        font-size: @font-size-12;
-    }
-    .closable{
-        font-size: @default-font-size;
-        float: right;
-        line-height: 30px;
-        cursor: pointer;
-    }
-}
 /*
     标题样式 标题+复选框
 */
@@ -192,14 +164,9 @@ li{
     }
 }
 
-.ant-drawer-right .ant-drawer-content-wrapper{
-    right:auto!important;
-}
-
 .tangram-suggestion-main{
     z-index:999999 !important;
 }
-
 
 .setupInput{
     :global{

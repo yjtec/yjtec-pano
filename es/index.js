@@ -6,4 +6,6 @@ import View from './view';
 import Cruise from './cruise';
 import Embed from './embed';
 import Roll from './roll';
-export { Mask, Music, Effect, Location, View, Cruise, Embed, Roll };
+import Prompt from './prompt';
+import PageCover from './pageCover';
+export { Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover };

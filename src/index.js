@@ -6,6 +6,8 @@ import View from './view';
 import Cruise from './cruise';
 import Embed from './embed';
 import Roll from './roll';
+import Prompt from './prompt';
+import PageCover from './pageCover';
 export {
   Mask,
   Music,
@@ -14,5 +16,7 @@ export {
   View,
   Cruise,
   Embed,
-  Roll
+  Roll,
+  Prompt,
+  PageCover
 }
