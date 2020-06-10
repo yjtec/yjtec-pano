@@ -35,7 +35,7 @@ class ItemImg extends Component {
   }
 
   render(){
-    const {url} = this.props;
+    const {url,imgSize} = this.props;
     const {userMediaVisible} = this.state;
     return(
       <div>
@@ -51,7 +51,7 @@ class ItemImg extends Component {
               : 
               <div className={style.defaultImg}>
                 <span>
-                  建议大小<br/>500X500
+                  建议大小<br/>{imgSize}
                 </span>
               </div>
             }
@@ -63,7 +63,7 @@ class ItemImg extends Component {
           </Col>
           <Col span={12} className={style.prompt}>
             建议大小<br/>
-            500X500
+            {imgSize}
           </Col>
         </Row>
         <UserMedia

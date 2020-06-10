@@ -70,6 +70,7 @@ class PromptEdit extends Component {
           </div>
           <ItemImg 
             url={pc_img}
+            imgSize='1920X1080'
             onChange={this.pcSelectMedia}
             onDel={this.pcDel}
           />
@@ -90,6 +91,7 @@ class PromptEdit extends Component {
           </div>
           <ItemImg 
             url={app_img}
+            imgSize='360X640'
             onChange={this.appSelectMedia}
             onDel={this.appDel}
           />

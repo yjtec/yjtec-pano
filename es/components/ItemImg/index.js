@@ -85,7 +85,9 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var url = this.props.url;
+      var _this$props = this.props,
+          url = _this$props.url,
+          imgSize = _this$props.imgSize;
       var userMediaVisible = this.state.userMediaVisible;
       return React.createElement("div", null, React.createElement(_Row, null, React.createElement(_Col, {
         span: 24,
@@ -105,7 +107,7 @@ function (_Component) {
         type: "delete"
       }))) : React.createElement("div", {
         className: style.defaultImg
-      }, React.createElement("span", null, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"))), React.createElement(_Col, {
+      }, React.createElement("span", null, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), imgSize))), React.createElement(_Col, {
         span: 12
       }, React.createElement(_Button, {
         type: "primary",
@@ -115,7 +117,7 @@ function (_Component) {
       }, "\u9009\u62E9\u56FE\u7247")), React.createElement(_Col, {
         span: 12,
         className: style.prompt
-      }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500")), React.createElement(UserMedia, {
+      }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), imgSize)), React.createElement(UserMedia, {
         title: "\u56FE\u7247\u7D20\u6750\u5E93",
         mediaType: "1",
         multipleChoices: false,

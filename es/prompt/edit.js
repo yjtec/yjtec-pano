@@ -140,6 +140,7 @@ function (_Component) {
         }
       })), React.createElement(ItemImg, {
         url: pc_img,
+        imgSize: "300X300",
         onChange: this.pcSelectMedia,
         onDel: this.pcDel
       }), React.createElement("div", {
@@ -172,6 +173,7 @@ function (_Component) {
         }
       })), React.createElement(ItemImg, {
         url: app_img,
+        imgSize: "300X300",
         onChange: this.appSelectMedia,
         onDel: this.appDel
       }), React.createElement("div", {
