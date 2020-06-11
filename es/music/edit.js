@@ -160,8 +160,8 @@ function (_Component) {
       var _this$props = this.props,
           data = _this$props.data,
           scenes = _this$props.scenes;
-      var categoryArr = scenes.category;
-      var scenesArr = scenes.scenes;
+      var categoryArr = scenes.data.category;
+      var scenesArr = scenes.data.scenes;
       this.setState(_objectSpread({}, defaultData, {}, data, {
         categoryArr: categoryArr,
         scenesArr: scenesArr
@@ -169,9 +169,22 @@ function (_Component) {
     }
   }, {
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this$props2 = this.props,
+          data = _this$props2.data,
+          scenes = _this$props2.scenes;
+      var categoryArr = scenes.data.category;
+      var scenesArr = scenes.data.scenes;
+
       if (!Obj.isEqual(prevProps.data, this.props.data)) {
         this.setState(_objectSpread({}, defaultData, {}, this.props.data));
+      }
+
+      if (!Obj.isEqual(prevState.categoryArr, categoryArr) || !Obj.isEqual(prevState.scenesArr, scenesArr)) {
+        this.setState(_objectSpread({}, this.state, {
+          categoryArr: categoryArr,
+          scenesArr: scenesArr
+        }));
       }
     }
   }, {

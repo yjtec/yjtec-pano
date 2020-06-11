@@ -10,6 +10,7 @@ import AllScene from '@/components/Media/scene';
 import {ossImgMedia} from '@/utils/oss';
 import {helpShow} from '@/utils/help';
 import Modal from '@/components/AllScene';
+import {Obj} from 'yjtec-support';
 
 const Option = Select.Option;
 class Effect extends React.Component{
@@ -24,8 +25,6 @@ class Effect extends React.Component{
   }
   componentDidMount(){
     const {effect:{data,customUrl},category,scene} = this.props;
-    let categoryArr = category.list;
-    let scenesArr = scene.all;
     if (data.imageurl) {
       this.setState({
         isShow:true,
@@ -34,9 +33,20 @@ class Effect extends React.Component{
     }
 
     this.setState({
-      categoryArr: categoryArr,
-      scenesArr: scenesArr
+      categoryArr: category,
+      scenesArr: scene
     })
+  }
+
+  componentDidUpdate(prevProps,prevState) {
+    const {category,scene} = this.props;
+    if (!Obj.isEqual(prevState.categoryArr,category) || !Obj.isEqual(prevState.scenesArr,scene)) {
+      this.setState({
+        ...this.state,
+        categoryArr:category,
+        scenesArr:scene
+      })
+    }
   }
   
   handleChange(key,value){

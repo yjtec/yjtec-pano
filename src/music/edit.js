@@ -31,8 +31,8 @@ class Music extends Component {
 
   componentDidMount(){
     const {data,scenes} = this.props;
-    let categoryArr = scenes.category;
-    let scenesArr = scenes.scenes;
+    let categoryArr = scenes.data.category;
+    let scenesArr = scenes.data.scenes;
 
     this.setState({
       ...defaultData,...data,
@@ -41,10 +41,20 @@ class Music extends Component {
     })
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps,prevState) {
+    const {data,scenes} = this.props;
+    let categoryArr = scenes.data.category;
+    let scenesArr = scenes.data.scenes;
     if(!Obj.isEqual(prevProps.data,this.props.data)){
       this.setState({
         ...defaultData,...this.props.data
+      })
+    }
+    if (!Obj.isEqual(prevState.categoryArr,categoryArr) || !Obj.isEqual(prevState.scenesArr,scenesArr)) {
+      this.setState({
+        ...this.state,
+        categoryArr:categoryArr,
+        scenesArr:scenesArr
       })
     }
   }

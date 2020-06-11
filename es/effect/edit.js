@@ -21,6 +21,12 @@ function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) ||
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -48,6 +54,7 @@ import AllScene from '@/components/Media/scene';
 import { ossImgMedia } from '@/utils/oss';
 import { helpShow } from '@/utils/help';
 import Modal from '@/components/AllScene';
+import { Obj } from 'yjtec-support';
 var Option = _Select.Option;
 
 var Effect =
@@ -147,8 +154,6 @@ function (_React$Component) {
           customUrl = _this$props$effect.customUrl,
           category = _this$props.category,
           scene = _this$props.scene;
-      var categoryArr = category.list;
-      var scenesArr = scene.all;
 
       if (data.imageurl) {
         this.setState({
@@ -158,9 +163,23 @@ function (_React$Component) {
       }
 
       this.setState({
-        categoryArr: categoryArr,
-        scenesArr: scenesArr
+        categoryArr: category,
+        scenesArr: scene
       });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this$props2 = this.props,
+          category = _this$props2.category,
+          scene = _this$props2.scene;
+
+      if (!Obj.isEqual(prevState.categoryArr, category) || !Obj.isEqual(prevState.scenesArr, scene)) {
+        this.setState(_objectSpread({}, this.state, {
+          categoryArr: category,
+          scenesArr: scene
+        }));
+      }
     }
   }, {
     key: "handleChange",
@@ -199,15 +218,15 @@ function (_React$Component) {
           sceneListVisible = _this$state.sceneListVisible,
           categoryArr = _this$state.categoryArr,
           scenesArr = _this$state.scenesArr;
-      var _this$props2 = this.props,
-          _this$props2$effect = _this$props2.effect,
-          editItem = _this$props2$effect.editItem,
-          data = _this$props2$effect.data,
-          loading = _this$props2.loading,
-          scene = _this$props2.scene,
-          category = _this$props2.category,
-          systemLists = _this$props2.media.systemLists,
-          SysFileList = _this$props2.SysFileList;
+      var _this$props3 = this.props,
+          _this$props3$effect = _this$props3.effect,
+          editItem = _this$props3$effect.editItem,
+          data = _this$props3$effect.data,
+          loading = _this$props3.loading,
+          scene = _this$props3.scene,
+          category = _this$props3.category,
+          systemLists = _this$props3.media.systemLists,
+          SysFileList = _this$props3.SysFileList;
       var imageUrl = SysFileList.map(function (item) {
         return {
           label: item.name,

@@ -5,6 +5,7 @@ import Modal from '@/components/AllScene';
 import Container from './container';
 import style from './style.less';
 import {helpShow} from '@/utils/help';
+import {Obj} from 'yjtec-support';
 const defaultData = {
   height:'30',
   bgcolor:'#000000',
@@ -35,8 +36,8 @@ export default class Text extends React.Component{
     const {scenes,data} = props;
     this.state = {
       selectSceneVisible:false,
-      categoryArr:scenes ? scenes.category : [],
-      scenesArr:scenes ? scenes.scenes : [],
+      categoryArr:scenes ? scenes.data.category : [],
+      scenesArr:scenes ? scenes.data.scenes : [],
 
       text: data ? data.text : '',
       css:(data && data.css) ? data.css : defaultCssData,
@@ -48,10 +49,10 @@ export default class Text extends React.Component{
     }
   }
 
-  componentDidUpdate(prevProps){
+  componentDidUpdate(prevProps,prevState){
+    const {data,scenes} = this.props;
     if(JSON.stringify(prevProps.data) !== JSON.stringify(this.props.data)){
       if (this.props.data) {
-        const {data} = this.props;
         this.setState({
           text:data.text,
           css:(data && data.css) ? data.css : defaultCssData,
@@ -62,6 +63,14 @@ export default class Text extends React.Component{
           interval_time: (data && data.interval_time) ? data.interval_time : defaultData.interval_time,
         })
       }
+    }
+    
+    if (!Obj.isEqual(prevState.categoryArr,scenes.data.category) || !Obj.isEqual(prevState.scenesArr,scenes.data.scenes)) {
+      this.setState({
+        ...this.state,
+        categoryArr:scenes.data.category,
+        scenesArr:scenes.data.scenes
+      })
     }
   }
   

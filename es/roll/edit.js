@@ -33,6 +33,7 @@ import Modal from '@/components/AllScene';
 import Container from './container';
 import style from './style.less';
 import { helpShow } from '@/utils/help';
+import { Obj } from 'yjtec-support';
 var defaultData = {
   height: '30',
   bgcolor: '#000000',
@@ -151,8 +152,8 @@ function (_React$Component) {
         _data = props.data;
     _this.state = {
       selectSceneVisible: false,
-      categoryArr: scenes ? scenes.category : [],
-      scenesArr: scenes ? scenes.scenes : [],
+      categoryArr: scenes ? scenes.data.category : [],
+      scenesArr: scenes ? scenes.data.scenes : [],
       text: _data ? _data.text : '',
       css: _data && _data.css ? _data.css : defaultCssData,
       height: _data && _data.height ? _data.height : defaultData.height,
@@ -166,10 +167,13 @@ function (_React$Component) {
 
   _createClass(Text, [{
     key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this$props = this.props,
+          data = _this$props.data,
+          scenes = _this$props.scenes;
+
       if (JSON.stringify(prevProps.data) !== JSON.stringify(this.props.data)) {
         if (this.props.data) {
-          var data = this.props.data;
           this.setState({
             text: data.text,
             css: data && data.css ? data.css : defaultCssData,
@@ -180,6 +184,13 @@ function (_React$Component) {
             interval_time: data && data.interval_time ? data.interval_time : defaultData.interval_time
           });
         }
+      }
+
+      if (!Obj.isEqual(prevState.categoryArr, scenes.data.category) || !Obj.isEqual(prevState.scenesArr, scenes.data.scenes)) {
+        this.setState(_objectSpread({}, this.state, {
+          categoryArr: scenes.data.category,
+          scenesArr: scenes.data.scenes
+        }));
       }
     }
   }, {
