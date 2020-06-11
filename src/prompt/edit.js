@@ -18,7 +18,7 @@ class PromptEdit extends Component {
     this.setState({
       pc_img:data.pc_img ? data.pc_img : '',
       app_img:data.app_img ? data.app_img : '',
-      time:(data.time == 0 || data.item != '' || data.item != undefined) ? data.time : 5
+      time:(data.time == 0 || data.time) ? data.time : 5
     })
   }
 
