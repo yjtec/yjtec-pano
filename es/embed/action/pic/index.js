@@ -143,8 +143,7 @@ function (_React$Component) {
         size: "small"
       }, "\u9009\u62E9\u56FE\u7247")), React.createElement("div", null, React.createElement(PicList, {
         data: img,
-        onChange: this.handlePic,
-        onClick: this.delImg
+        onDel: this.delImg
       })))), React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("div", {
         className: style.timeTitle,
         style: {

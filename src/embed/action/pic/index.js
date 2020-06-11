@@ -106,7 +106,7 @@ export default class Pic extends React.Component{
             <Button onClick={()=>this.handleShow()} className={style.uploadBtn} type="primary" size="small">选择图片</Button>
           </div>
           <div>
-            <PicList data={img} onChange={this.handlePic} onClick={this.delImg} />
+            <PicList data={img} onDel={this.delImg} />
           </div>
         </div>
       </ItemBox>

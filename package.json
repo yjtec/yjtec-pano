@@ -1,6 +1,6 @@
 {
   "name": "yjtec-pano",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "yjtec edit pano",
   "main": "lib/index.js", 
   "files": [
