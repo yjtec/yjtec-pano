@@ -26,7 +26,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import { ItemBox } from '@/components/';
 import { ossEmbedVideoThumb } from '@/utils/oss';
-import Media from '@/components/Media';
+import UserMedia from '@/components/MediaModal/UserMedia';
 import { Obj } from 'yjtec-support';
 import style from './style.less';
 import { InputNumber } from '@/components/Form';
@@ -49,11 +49,11 @@ function (_React$Component) {
       });
     };
 
-    _this.handleVideoMedia = function (url, name) {
-      if (!Obj.isNull(url)) {
+    _this.handleVideoMedia = function (arr) {
+      if (!Obj.isNull(arr)) {
         _this.setState({
-          videoUrl: url,
-          title: name,
+          videoUrl: arr[0].path.path,
+          title: arr[0].name,
           videoVisible: false
         }, function () {
           _this.runChange();
@@ -71,10 +71,10 @@ function (_React$Component) {
       });
     };
 
-    _this.handleImgMedia = function (url) {
-      if (!Obj.isNull(url)) {
+    _this.handleImgMedia = function (arr) {
+      if (!Obj.isNull(arr)) {
         _this.setState({
-          thumbUrl: url,
+          thumbUrl: arr[0].path.path,
           imgVisible: false
         }, function () {
           _this.runChange();
@@ -84,6 +84,18 @@ function (_React$Component) {
           imgVisible: false
         });
       }
+    };
+
+    _this.closeVideoMediaModal = function () {
+      _this.setState({
+        videoVisible: false
+      });
+    };
+
+    _this.closeImgMediaModal = function () {
+      _this.setState({
+        imgVisible: false
+      });
     };
 
     _this.delImg = function () {
@@ -255,18 +267,22 @@ function (_React$Component) {
         checked: loop == 1 ? true : false,
         onChange: this.handleLoop,
         className: style.checkbox
-      })), "\u662F\u5426\u5FAA\u73AF\u64AD\u653E")), React.createElement(Media, {
-        title: "\u89C6\u9891",
-        visible: videoVisible,
-        onCancel: this.handleVideoMedia,
+      })), "\u662F\u5426\u5FAA\u73AF\u64AD\u653E")), React.createElement(UserMedia, {
+        title: "\u89C6\u9891\u7D20\u6750\u5E93",
         mediaType: "3",
-        accept: ".mp4"
-      }), React.createElement(Media, {
-        title: "\u56FE\u7247",
-        visible: imgVisible,
-        onCancel: this.handleImgMedia,
+        multipleChoices: false,
+        width: "900px",
+        visible: videoVisible,
+        onChange: this.handleVideoMedia,
+        onCancel: this.closeVideoMediaModal
+      }), React.createElement(UserMedia, {
+        title: "\u56FE\u7247\u7D20\u6750\u5E93",
         mediaType: "1",
-        accept: ".jpg,.jpeg,.png"
+        multipleChoices: false,
+        width: "900px",
+        visible: imgVisible,
+        onChange: this.handleImgMedia,
+        onCancel: this.closeImgMediaModal
       }));
     }
   }]);

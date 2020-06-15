@@ -2,7 +2,9 @@ import React,{Component} from 'react';
 import {ItemBox} from '@/components/';
 import {Row,Col} from 'antd';
 import {InputNumber} from '@/components/Form';
-import MediaImg from '@/components/MediaImg';
+
+import { ItemImg } from 'yjtec-pano';
+
 import style from './style.less';
 const inputNumber = [
   {
@@ -60,9 +62,14 @@ class TypeAnimate extends Component{
     }
   }
   
-  handleUrl = url => {
+  selectImg = (arr) => {
     this.setState({
-      url:url
+      url:arr[0].path.path
+    },this.runChange)
+  }
+  delImg=()=>{  //删除图片
+    this.setState({
+      url:''
     },this.runChange)
   }
   hanldeImg = (index,value) => {
@@ -104,7 +111,14 @@ class TypeAnimate extends Component{
     const {url,playTime} = this.state;
     return(
       <div>
-        <MediaImg url={url} width="128" height="128" onChange={this.handleUrl} />
+        {/*<MediaImg url={url} width="100" height="600" onChange={this.handleUrl} />*/}
+        <ItemImg 
+          url={url}
+          imgSize='200X1200'
+          onChange={this.selectImg}
+          onDel={this.delImg}
+        />
+        <div className={style.mb20} ></div>
         {inputNumber.map((item,i)=>(
           <Row key={item.id} className={`${style.configuration} ${style.mb6}`}>
             <Col span={14}>

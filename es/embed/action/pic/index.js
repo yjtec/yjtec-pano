@@ -22,10 +22,10 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import { ItemBox } from '@/components/';
 import { InputNumber } from '@/components/Form';
-import Media from '@/components/Media';
 import PicList from '@/components/PicList';
 import style from '../style.less';
 import { strRandom } from 'yjtec-support';
+import UserMedia from '@/components/MediaModal/UserMedia';
 
 var Pic =
 /*#__PURE__*/
@@ -41,24 +41,29 @@ function (_React$Component) {
 
     _this.handleShow = function () {
       _this.setState({
-        visible: true
+        userMediaVisible: true
       });
     };
 
-    _this.handleChange = function (value) {
-      var img = [];
+    _this.selectImg = function (arr) {
+      var img = _this.state.img;
+      var newImg = [];
 
-      if (value) {
-        img = _this.state.img.concat({
-          id: strRandom(10, {
-            letters: false
-          }),
-          url: value
+      if (arr) {
+        newImg = arr.map(function (item) {
+          return {
+            id: strRandom(10, {
+              letters: false
+            }),
+            url: item.path.path
+          };
         });
       }
 
+      img = img.concat(newImg);
+
       _this.setState({
-        visible: false,
+        userMediaVisible: false,
         img: img
       }, function () {
         _this.runChange();
@@ -99,7 +104,7 @@ function (_React$Component) {
 
     var actionData = props.actionData;
     _this.state = {
-      visible: false,
+      userMediaVisible: false,
       time: actionData && actionData.time ? actionData.time : 3,
       img: actionData && actionData.img ? actionData.img : []
       /*width:(actionData && actionData.width) ? actionData.width : 100,
@@ -116,7 +121,7 @@ function (_React$Component) {
         if (this.props.actionData) {
           var actionData = this.props.actionData;
           this.setState({
-            visible: false,
+            userMediaVisible: false,
             time: actionData.time,
             img: actionData.img
           });
@@ -129,7 +134,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var _this$state2 = this.state,
-          visible = _this$state2.visible,
+          userMediaVisible = _this$state2.userMediaVisible,
           img = _this$state2.img,
           time = _this$state2.time;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("div", {
@@ -164,12 +169,14 @@ function (_React$Component) {
         style: {
           width: '40px'
         }
-      })), React.createElement("p", null, "\u79D2\u540E\u81EA\u52A8\u64AD\u653E\u4E0B\u4E00\u5F20"))), React.createElement(Media, {
-        title: "\u56FE\u7247",
-        mediaType: 1,
-        visible: visible,
-        onCancel: this.handleChange,
-        accept: ".jpg,.png,.jpeg"
+      })), React.createElement("p", null, "\u79D2\u540E\u81EA\u52A8\u64AD\u653E\u4E0B\u4E00\u5F20"))), React.createElement(UserMedia, {
+        title: "\u56FE\u7247\u7D20\u6750\u5E93",
+        mediaType: "1",
+        multipleChoices: true,
+        width: "900px",
+        visible: userMediaVisible,
+        onChange: this.selectImg,
+        onCancel: this.closeMediaModal
       }), React.createElement("div", {
         style: {
           clear: 'both'

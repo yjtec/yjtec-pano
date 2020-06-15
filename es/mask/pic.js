@@ -1,9 +1,3 @@
-import "antd/es/row/style";
-import _Row from "antd/es/row";
-import "antd/es/col/style";
-import _Col from "antd/es/col";
-import "antd/es/icon/style";
-import _Icon from "antd/es/icon";
 import "antd/es/button/style";
 import _Button from "antd/es/button";
 
@@ -29,7 +23,7 @@ import React from "react";
 import { Component } from 'react';
 import { Help } from '@/components/';
 import style from './style.less';
-import UploadImg from '@/components/Media';
+import ItemImg from '../components/ItemImg';
 import { ossImgMedia, ossPano } from '@/utils/oss';
 import { Obj } from 'yjtec-support';
 import Modal from '@/components/AllScene';
@@ -56,16 +50,12 @@ function (_Component) {
       sceneListVisible: false
     };
 
-    _this.delSkyImg = function () {
-      _this.props.onDelSkyImg();
+    _this.delImg = function () {
+      _this.props.onDelImg();
     };
 
-    _this.mediaSky = function () {
-      _this.props.onSelect();
-    };
-
-    _this.onCancel = function (url) {
-      _this.props.onCancel(url);
+    _this.selectImg = function (arr) {
+      _this.props.selectImg(arr[0].path.path);
     };
 
     _this.appliedToScene = function () {
@@ -141,39 +131,12 @@ function (_Component) {
         style: {
           clear: 'both'
         }
-      })), React.createElement(_Row, null, React.createElement(_Col, {
-        span: 24,
-        className: style.mb10
-      }, !Obj.isNull(url) ? React.createElement("div", {
-        className: style.defaultImg
-      }, React.createElement("img", {
-        alt: "aa",
-        src: ossImgMedia(url, 'media'),
-        className: style.img
-      }), React.createElement("div", {
-        className: style.delimg,
-        onClick: function onClick() {
-          return _this2.delSkyImg();
-        }
-      }, React.createElement(_Icon, {
-        type: "delete"
-      }))) : React.createElement("div", {
-        className: style.defaultImg
-      }, React.createElement("span", null, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"))), React.createElement(_Col, {
-        span: 12
-      }, React.createElement(_Button, {
-        type: "primary",
-        onClick: this.mediaSky
-      }, "\u9009\u62E9\u56FE\u7247")), React.createElement(_Col, {
-        span: 12,
-        className: style.prompt
-      }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"), React.createElement(UploadImg, {
-        title: "\u56FE\u7247",
-        mediaType: "1",
-        visible: visible,
-        onCancel: this.onCancel,
-        accept: ".jpg,.jpeg,.png"
-      })), React.createElement(Modal, {
+      })), React.createElement(ItemImg, {
+        url: url,
+        imgSize: "500X500",
+        onChange: this.selectImg,
+        onDel: this.delImg
+      }), React.createElement(Modal, {
         visible: sceneListVisible,
         title: "\u9009\u62E9\u573A\u666F",
         onCancel: this.onCancelAppliedToScene,

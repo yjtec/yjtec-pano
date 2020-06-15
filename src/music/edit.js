@@ -4,7 +4,7 @@ import {Button,Select} from '@/components/Form';
 import {Checkbox,Row,Col,Drawer,Icon} from 'antd';
 import style from './style.less';
 
-import UploadMusic from '@/components/Media';
+import UserMedia from '@/components/MediaModal/UserMedia';
 
 import Modal from '@/components/AllScene';
 
@@ -19,7 +19,7 @@ const defaultData = {
 }
 class Music extends Component {
   state={
-    media: false,
+    userMediaVisible: false,
     musicUrl:'',
     musicTitle:'上传音乐格式为MP3',
     loop:0,
@@ -59,28 +59,8 @@ class Music extends Component {
     }
   }
 
-  media = () => {  //选择用户的素材
-    this.setState({
-      media: true
-    })
-  }
-
-  onCancel = (url,name) => {
-    if (url == undefined) {
-      this.setState({
-        media: false,
-      })
-    }else{
-      this.setState({
-        media: false,
-        musicUrl:url,
-        musicTitle:name
-      },()=>{
-        this.runChange()
-      })
-    }
-  }
-
+  
+  //是否循环
   onChange=(e)=>{
     this.setState({
       loop:e.target.checked == true ? 0 : 1
@@ -88,12 +68,61 @@ class Music extends Component {
       this.runChange()
     })
   }
+  //删除音乐
   del=()=>{
     this.setState({
       ...defaultData
     },()=>{
       this.props.onDel()
     })
+  }
+
+  //应用到所有场景
+  appliedToScene=()=>{
+    this.setState({
+      sceneListVisible: true
+    })
+  }
+  //关闭应用到所有场景
+  onCancelAppliedToScene=()=>{
+    this.setState({
+      sceneListVisible: false
+    })
+  }
+  //设置所有场景
+  setAllScene=(url,sceneIds)=>{
+    this.props.setAllScene(url,sceneIds)
+  }
+  //是否默认播放
+  handlePlay=(e)=>{
+    this.setState({
+      defaultPlay:e.target.checked
+    },()=>{
+      this.runChange();
+    })
+  }
+
+  //打开素材库选择窗口
+  openMediaModal = () => {
+    this.setState({
+      userMediaVisible:true
+    })
+  }
+  //关闭素材库选择窗口
+  closeMediaModal = () => {
+    this.setState({
+      userMediaVisible:false
+    })
+  }
+  //选择素材返回值
+  selectMedia = (arr) => {
+    this.setState({
+      musicUrl: arr[0].path.path,
+      musicTitle: arr[0].name
+    },()=>{
+      this.runChange();
+    });
+    this.closeMediaModal();
   }
 
   runChange=()=>{
@@ -106,32 +135,8 @@ class Music extends Component {
     })
   }
 
-  appliedToScene=()=>{
-    this.setState({
-      sceneListVisible: true
-    })
-  }
-
-  onCancelAppliedToScene=()=>{
-    this.setState({
-      sceneListVisible: false
-    })
-  }
-
-  setAllScene=(url,sceneIds)=>{
-    this.props.setAllScene(url,sceneIds)
-  }
-
-  handlePlay=(e)=>{
-    this.setState({
-      defaultPlay:e.target.checked
-    },()=>{
-      this.runChange();
-    })
-  }
-
   render(){
-    const {musicUrl,musicTitle,loop,defaultPlay,sceneListVisible,categoryArr,scenesArr} = this.state;
+    const {musicUrl,musicTitle,loop,defaultPlay,sceneListVisible,categoryArr,scenesArr,userMediaVisible} = this.state;
 
     return(
       <ItemBox>
@@ -161,7 +166,7 @@ class Music extends Component {
                 <p>
                   {musicTitle ? musicTitle : '上传音乐格式为MP3'}
                 </p>
-                <div onClick={this.media}>
+                <div onClick={this.openMediaModal}>
                   <Button title='选择音乐' />
                 </div>
               </div>
@@ -199,12 +204,15 @@ class Music extends Component {
           onOk={this.setAllScene}
         >
         </Modal>
-        <UploadMusic
-          title='音乐'
+
+        <UserMedia
+          title='音乐素材库'
           mediaType='2'
-          visible={this.state.media}
-          onCancel={this.onCancel}
-          accept='.mp3'
+          multipleChoices={false}
+          width='900px'
+          visible={userMediaVisible}
+          onChange={this.selectMedia}
+          onCancel={this.closeMediaModal}
         />
       </ItemBox>
     )

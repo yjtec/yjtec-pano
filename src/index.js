@@ -8,6 +8,7 @@ import Embed from './embed';
 import Roll from './roll';
 import Prompt from './prompt';
 import PageCover from './pageCover';
+import ItemImg from './components/ItemImg';
 export {
   Mask,
   Music,
@@ -18,5 +19,6 @@ export {
   Embed,
   Roll,
   Prompt,
-  PageCover
+  PageCover,
+  ItemImg
 }

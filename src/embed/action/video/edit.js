@@ -2,7 +2,9 @@ import React from 'react';
 import { Icon,Button,Checkbox } from 'antd';
 import {ItemBox} from '@/components/';
 import {ossEmbedVideoThumb} from '@/utils/oss';
-import Media from '@/components/Media';
+
+import UserMedia from '@/components/MediaModal/UserMedia';
+
 import {Obj} from 'yjtec-support';
 import style from './style.less';
 import { InputNumber } from '@/components/Form';
@@ -48,11 +50,11 @@ export default class Edit extends React.Component{
     })
   }
   //选择视频后的回调
-  handleVideoMedia = (url,name) => {
-    if (!Obj.isNull(url)) {
+  handleVideoMedia = (arr) => {
+    if (!Obj.isNull(arr)) {
       this.setState({
-        videoUrl:url,
-        title:name,
+        videoUrl:arr[0].path.path,
+        title:arr[0].name,
         videoVisible:false
       },()=>{
         this.runChange()
@@ -70,10 +72,10 @@ export default class Edit extends React.Component{
     })
   }
   //选择图片后的回调
-  handleImgMedia = url => {
-    if (!Obj.isNull(url)) {
+  handleImgMedia = arr => {
+    if (!Obj.isNull(arr)) {
       this.setState({
-        thumbUrl:url,
+        thumbUrl:arr[0].path.path,
         imgVisible:false
       },()=>{
         this.runChange()
@@ -83,6 +85,18 @@ export default class Edit extends React.Component{
         imgVisible:false
       })
     }
+  }
+  //关闭视频素材库选择窗口
+  closeVideoMediaModal = () => {
+    this.setState({
+      videoVisible:false
+    })
+  }
+  //关闭图片素材库选择窗口
+  closeImgMediaModal = () => {
+    this.setState({
+      imgVisible:false
+    })
   }
   //删除封页
   delImg = () => {
@@ -108,22 +122,6 @@ export default class Edit extends React.Component{
       this.runChange()
     })
   }
-  /*//修改宽
-  handleW = (value) => {
-    this.setState({
-      width: value
-    },()=>{
-      this.runChange();
-    })
-  }
-  //修改高
-  handleH = (value) => {
-    this.setState({
-      height: value
-    },()=>{
-      this.runChange();
-    })
-  }*/
 
   runChange = () => {
     const {videoUrl,title,thumbUrl,loop,autoplay,width,height} = this.state;
@@ -191,29 +189,7 @@ export default class Edit extends React.Component{
           </div>
           {thumbUrl && <div className={style.notes}>注：封面请与视频尺寸保持一致</div>}
         </ItemBox>
-        {/*<ItemBox>
-          <div className={style.boxtitle}>
-            视频宽高
-          </div>
-          <div style={{marginBottom:'10px'}}>
-            <InputNumber
-              inputNumberValue= {width}
-              max= {1000}
-              min= {1}
-              name={'宽'}
-              onChange={value => this.handleW(value)}
-            />
-          </div>
-          <div>
-            <InputNumber
-              inputNumberValue= {height}
-              max= {1000}
-              min= {1}
-              name={'高'}
-              onChange={value => this.handleH(value)}
-            />
-          </div>
-        </ItemBox>*/}
+
         <ItemBox> 
           <div className={style.title} style={{marginTop:10}}>
             <span className={style.checkboxC}>
@@ -228,20 +204,27 @@ export default class Edit extends React.Component{
             是否循环播放
           </div>
         </ItemBox>
-        <Media 
-          title='视频'
-          visible={videoVisible} 
-          onCancel={this.handleVideoMedia}
+
+        <UserMedia
+          title='视频素材库'
           mediaType='3'
-          accept='.mp4'
+          multipleChoices={false}
+          width='900px'
+          visible={videoVisible}
+          onChange={this.handleVideoMedia}
+          onCancel={this.closeVideoMediaModal}
         />
-        <Media 
-          title='图片'
-          visible={imgVisible} 
-          onCancel={this.handleImgMedia}
+
+        <UserMedia
+          title='图片素材库'
           mediaType='1'
-          accept='.jpg,.jpeg,.png'
+          multipleChoices={false}
+          width='900px'
+          visible={imgVisible}
+          onChange={this.handleImgMedia}
+          onCancel={this.closeImgMediaModal}
         />
+
       </div>
     )
   }

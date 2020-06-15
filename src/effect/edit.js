@@ -5,23 +5,24 @@ import {SliderSingle} from '@/components/Form';
 import {List,Avatar,Select,Radio,Row,Col,Icon,Checkbox,Button} from 'antd';
 import {Kr} from '@/utils/kr/';
 import style from './style.less';
-import UploadImg from '@/components/Media';
 import AllScene from '@/components/Media/scene';
 import {ossImgMedia} from '@/utils/oss';
 import {helpShow} from '@/utils/help';
 import Modal from '@/components/AllScene';
 import {Obj} from 'yjtec-support';
+import UserMedia from '@/components/MediaModal/UserMedia';
 
 const Option = Select.Option;
 class Effect extends React.Component{
   state={
     isShow:false,
     isShowImg:false,
-    media:false,
+    userMediaVisible:false,
     imgUrl: '',
     sceneListVisible: false,
     categoryArr:[],
-    scenesArr:[]
+    scenesArr:[],
+    userMediaVisible:false,
   }
   componentDidMount(){
     const {effect:{data,customUrl},category,scene} = this.props;
@@ -70,26 +71,28 @@ class Effect extends React.Component{
     this.request(tmp);
   }
 
-  media = () => {  //显示选择图片
+  //打开素材库选择窗口
+  openMediaModal = () => {
     this.setState({
-      media: true
+      userMediaVisible:true
     })
   }
-  onCancel = (value) => {  //添加自定义图片时
-    if (value == undefined) {
-      this.setState({
-        media: false,
-      })
-    }else{
-      this.request({
-        imageurl:value
-      });
-      this.setState({
-        media: false
-      })
-    }
+  //选择素材
+  selectMedia = (arr) => {  //添加自定义图片时
+    this.request({
+      imageurl:arr[0].path.path
+    })
+    this.closeMediaModal();
   }
-  delSkyImg = () => { //删除自定义图片
+  //关闭素材库选择窗口
+  closeMediaModal = () => {
+    this.setState({
+      userMediaVisible:false
+    })
+  }
+
+  //删除自定义图片
+  delSkyImg = () => { 
     this.request({
       imageurl:''
     });
@@ -98,16 +101,17 @@ class Effect extends React.Component{
     })
   }
 
-  request = (tmp) => { //请求
-    const {onEdit} = this.props;
-    onEdit(tmp);
+  request = (data) => { //请求
+    this.props.onEdit(data);
   }
 
+  //应用到所有场景
   appliedToScene=()=>{
     this.setState({
       sceneListVisible: true
     })
   }
+  //关闭应用到所有场景
   onCancelAppliedToScene=()=>{
     this.setState({
       sceneListVisible: false
@@ -120,7 +124,7 @@ class Effect extends React.Component{
   }
 
   render(){
-    const {isShow,isShowImg,imgUrl,sceneListVisible,categoryArr,scenesArr} = this.state;
+    const {isShow,isShowImg,imgUrl,sceneListVisible,categoryArr,scenesArr,userMediaVisible} = this.state;
     const {
       effect:{editItem,data},
       loading,
@@ -197,7 +201,7 @@ class Effect extends React.Component{
                 </Col>
 
                 <Col span={12}>
-                  <Button type="primary" onClick={this.media}>
+                  <Button type="primary" onClick={this.openMediaModal}>
                     选择图片
                   </Button>
                 </Col>
@@ -206,12 +210,14 @@ class Effect extends React.Component{
                   500X500
                 </Col>
 
-                <UploadImg 
-                  title='图片'
-                  visible={this.state.media} 
-                  onCancel={this.onCancel}
-                  mediaType={1}
-                  accept='.jpg,.jpeg,.png'
+                <UserMedia
+                  title='图片素材库'
+                  mediaType='1'
+                  multipleChoices={false}
+                  width='900px'
+                  visible={userMediaVisible}
+                  onChange={this.selectMedia}
+                  onCancel={this.closeMediaModal}
                 />
               </Row>
             </ItemBox>

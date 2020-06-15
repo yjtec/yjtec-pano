@@ -8,4 +8,5 @@ import Embed from './embed';
 import Roll from './roll';
 import Prompt from './prompt';
 import PageCover from './pageCover';
-export { Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover };
+import ItemImg from './components/ItemImg';
+export { Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, ItemImg };

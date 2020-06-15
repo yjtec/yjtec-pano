@@ -26,7 +26,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React, { Component } from 'react';
 import { ItemBox } from '@/components/';
 import { InputNumber } from '@/components/Form';
-import MediaImg from '@/components/MediaImg';
+import { ItemImg } from 'yjtec-pano';
 import style from './style.less';
 var inputNumber = [{
   id: 1,
@@ -87,9 +87,16 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(TypeAnimate).call(this, props));
 
-    _this.handleUrl = function (url) {
+    _this.selectImg = function (arr) {
       _this.setState({
-        url: url
+        url: arr[0].path.path
+      }, _this.runChange);
+    };
+
+    _this.delImg = function () {
+      //删除图片
+      _this.setState({
+        url: ''
       }, _this.runChange);
     };
 
@@ -170,11 +177,13 @@ function (_Component) {
       var _this$state2 = this.state,
           url = _this$state2.url,
           playTime = _this$state2.playTime;
-      return React.createElement("div", null, React.createElement(MediaImg, {
+      return React.createElement("div", null, React.createElement(ItemImg, {
         url: url,
-        width: "128",
-        height: "128",
-        onChange: this.handleUrl
+        imgSize: "200X1200",
+        onChange: this.selectImg,
+        onDel: this.delImg
+      }), React.createElement("div", {
+        className: style.mb20
       }), inputNumber.map(function (item, i) {
         return React.createElement(_Row, {
           key: item.id,

@@ -36,7 +36,7 @@ import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
 import { Button, Select } from '@/components/Form';
 import style from './style.less';
-import UploadMusic from '@/components/Media';
+import UserMedia from '@/components/MediaModal/UserMedia';
 import Modal from '@/components/AllScene';
 import { Obj } from 'yjtec-support';
 import { helpShow } from '@/utils/help';
@@ -65,7 +65,7 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Music)).call.apply(_getPrototypeOf2, [this].concat(args)));
     _this.state = {
-      media: false,
+      userMediaVisible: false,
       musicUrl: '',
       musicTitle: '上传音乐格式为MP3',
       loop: 0,
@@ -73,29 +73,6 @@ function (_Component) {
       sceneListVisible: false,
       categoryArr: [],
       scenesArr: []
-    };
-
-    _this.media = function () {
-      //选择用户的素材
-      _this.setState({
-        media: true
-      });
-    };
-
-    _this.onCancel = function (url, name) {
-      if (url == undefined) {
-        _this.setState({
-          media: false
-        });
-      } else {
-        _this.setState({
-          media: false,
-          musicUrl: url,
-          musicTitle: name
-        }, function () {
-          _this.runChange();
-        });
-      }
     };
 
     _this.onChange = function (e) {
@@ -109,21 +86,6 @@ function (_Component) {
     _this.del = function () {
       _this.setState(_objectSpread({}, defaultData), function () {
         _this.props.onDel();
-      });
-    };
-
-    _this.runChange = function () {
-      var _this$state = _this.state,
-          musicUrl = _this$state.musicUrl,
-          musicTitle = _this$state.musicTitle,
-          loop = _this$state.loop,
-          defaultPlay = _this$state.defaultPlay;
-
-      _this.props.onChange({
-        musicUrl: musicUrl,
-        musicTitle: musicTitle,
-        loop: loop,
-        defaultPlay: defaultPlay
       });
     };
 
@@ -148,6 +110,44 @@ function (_Component) {
         defaultPlay: e.target.checked
       }, function () {
         _this.runChange();
+      });
+    };
+
+    _this.openMediaModal = function () {
+      _this.setState({
+        userMediaVisible: true
+      });
+    };
+
+    _this.closeMediaModal = function () {
+      _this.setState({
+        userMediaVisible: false
+      });
+    };
+
+    _this.selectMedia = function (arr) {
+      _this.setState({
+        musicUrl: arr[0].path.path,
+        musicTitle: arr[0].name
+      }, function () {
+        _this.runChange();
+      });
+
+      _this.closeMediaModal();
+    };
+
+    _this.runChange = function () {
+      var _this$state = _this.state,
+          musicUrl = _this$state.musicUrl,
+          musicTitle = _this$state.musicTitle,
+          loop = _this$state.loop,
+          defaultPlay = _this$state.defaultPlay;
+
+      _this.props.onChange({
+        musicUrl: musicUrl,
+        musicTitle: musicTitle,
+        loop: loop,
+        defaultPlay: defaultPlay
       });
     };
 
@@ -186,7 +186,8 @@ function (_Component) {
           scenesArr: scenesArr
         }));
       }
-    }
+    } //是否循环
+
   }, {
     key: "render",
     value: function render() {
@@ -199,7 +200,8 @@ function (_Component) {
           defaultPlay = _this$state2.defaultPlay,
           sceneListVisible = _this$state2.sceneListVisible,
           categoryArr = _this$state2.categoryArr,
-          scenesArr = _this$state2.scenesArr;
+          scenesArr = _this$state2.scenesArr,
+          userMediaVisible = _this$state2.userMediaVisible;
       return React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title
       }, React.createElement("span", {
@@ -244,7 +246,7 @@ function (_Component) {
       }, React.createElement("div", {
         className: style.musicRight
       }, React.createElement("p", null, musicTitle ? musicTitle : '上传音乐格式为MP3'), React.createElement("div", {
-        onClick: this.media
+        onClick: this.openMediaModal
       }, React.createElement(Button, {
         title: "\u9009\u62E9\u97F3\u4E50"
       }))))), React.createElement("div", {
@@ -305,12 +307,14 @@ function (_Component) {
           defaultPlay: defaultPlay
         },
         onOk: this.setAllScene
-      }), React.createElement(UploadMusic, {
-        title: "\u97F3\u4E50",
+      }), React.createElement(UserMedia, {
+        title: "\u97F3\u4E50\u7D20\u6750\u5E93",
         mediaType: "2",
-        visible: this.state.media,
-        onCancel: this.onCancel,
-        accept: ".mp3"
+        multipleChoices: false,
+        width: "900px",
+        visible: userMediaVisible,
+        onChange: this.selectMedia,
+        onCancel: this.closeMediaModal
       }));
     }
   }]);

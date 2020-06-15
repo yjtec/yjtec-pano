@@ -49,12 +49,12 @@ import { ItemBox, Right, Help } from '@/components/';
 import { SliderSingle } from '@/components/Form';
 import { Kr } from '@/utils/kr/';
 import style from './style.less';
-import UploadImg from '@/components/Media';
 import AllScene from '@/components/Media/scene';
 import { ossImgMedia } from '@/utils/oss';
 import { helpShow } from '@/utils/help';
 import Modal from '@/components/AllScene';
 import { Obj } from 'yjtec-support';
+import UserMedia from '@/components/MediaModal/UserMedia';
 var Option = _Select.Option;
 
 var Effect =
@@ -74,42 +74,38 @@ function (_React$Component) {
     }
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Effect)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
+    _this.state = _defineProperty({
       isShow: false,
       isShowImg: false,
-      media: false,
+      userMediaVisible: false,
       imgUrl: '',
       sceneListVisible: false,
       categoryArr: [],
       scenesArr: []
-    };
+    }, "userMediaVisible", false);
 
-    _this.media = function () {
-      //显示选择图片
+    _this.openMediaModal = function () {
       _this.setState({
-        media: true
+        userMediaVisible: true
       });
     };
 
-    _this.onCancel = function (value) {
+    _this.selectMedia = function (arr) {
       //添加自定义图片时
-      if (value == undefined) {
-        _this.setState({
-          media: false
-        });
-      } else {
-        _this.request({
-          imageurl: value
-        });
+      _this.request({
+        imageurl: arr[0].path.path
+      });
 
-        _this.setState({
-          media: false
-        });
-      }
+      _this.closeMediaModal();
+    };
+
+    _this.closeMediaModal = function () {
+      _this.setState({
+        userMediaVisible: false
+      });
     };
 
     _this.delSkyImg = function () {
-      //删除自定义图片
       _this.request({
         imageurl: ''
       });
@@ -119,10 +115,9 @@ function (_React$Component) {
       });
     };
 
-    _this.request = function (tmp) {
+    _this.request = function (data) {
       //请求
-      var onEdit = _this.props.onEdit;
-      onEdit(tmp);
+      _this.props.onEdit(data);
     };
 
     _this.appliedToScene = function () {
@@ -205,19 +200,21 @@ function (_React$Component) {
       }
 
       this.request(tmp);
-    }
+    } //打开素材库选择窗口
+
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var _this$state = this.state,
-          isShow = _this$state.isShow,
-          isShowImg = _this$state.isShowImg,
-          imgUrl = _this$state.imgUrl,
-          sceneListVisible = _this$state.sceneListVisible,
-          categoryArr = _this$state.categoryArr,
-          scenesArr = _this$state.scenesArr;
+      var _this$state2 = this.state,
+          isShow = _this$state2.isShow,
+          isShowImg = _this$state2.isShowImg,
+          imgUrl = _this$state2.imgUrl,
+          sceneListVisible = _this$state2.sceneListVisible,
+          categoryArr = _this$state2.categoryArr,
+          scenesArr = _this$state2.scenesArr,
+          userMediaVisible = _this$state2.userMediaVisible;
       var _this$props3 = this.props,
           _this$props3$effect = _this$props3.effect,
           editItem = _this$props3$effect.editItem,
@@ -342,16 +339,18 @@ function (_React$Component) {
         span: 12
       }, React.createElement(_Button, {
         type: "primary",
-        onClick: this.media
+        onClick: this.openMediaModal
       }, "\u9009\u62E9\u56FE\u7247")), React.createElement(_Col, {
         span: 12,
         className: style.prompt
-      }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"), React.createElement(UploadImg, {
-        title: "\u56FE\u7247",
-        visible: this.state.media,
-        onCancel: this.onCancel,
-        mediaType: 1,
-        accept: ".jpg,.jpeg,.png"
+      }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"), React.createElement(UserMedia, {
+        title: "\u56FE\u7247\u7D20\u6750\u5E93",
+        mediaType: "1",
+        multipleChoices: false,
+        width: "900px",
+        visible: userMediaVisible,
+        onChange: this.selectMedia,
+        onCancel: this.closeMediaModal
       }))), React.createElement(React.Fragment, null, React.createElement(ItemBox, null, editItem.map(function (item) {
         return React.createElement("div", {
           key: item.key,

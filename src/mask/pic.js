@@ -2,7 +2,9 @@ import { Component } from 'react';
 import {Button,Layout,Checkbox,Row,Col,Drawer,Icon} from 'antd';
 import {Help} from '@/components/';
 import style from './style.less';
-import UploadImg from '@/components/Media';
+
+import ItemImg from '../components/ItemImg';
+
 import {ossImgMedia,ossPano} from '@/utils/oss';
 import {Obj} from 'yjtec-support';
 
@@ -13,14 +15,11 @@ class Pic extends Component {
   state={
     sceneListVisible: false,
   }
-  delSkyImg=()=>{
-    this.props.onDelSkyImg();
+  delImg=()=>{
+    this.props.onDelImg();
   }
-  mediaSky=()=>{
-    this.props.onSelect();
-  }
-  onCancel=(url)=>{
-    this.props.onCancel(url);
+  selectImg=(arr)=>{
+    this.props.selectImg(arr[0].path.path);
   }
   appliedToScene=()=>{
     this.setState({
@@ -56,42 +55,12 @@ class Pic extends Component {
           }
           <div style={{clear:'both'}}></div>
         </div>
-        <Row>
-          <Col span={24} className={style.mb10}>
-            {!Obj.isNull(url) ? 
-              <div className={style.defaultImg}>
-                <img alt="aa" src={ossImgMedia(url,'media')} className={style.img} />
-                <div className={style.delimg} onClick={()=>this.delSkyImg()}>
-                  <Icon type="delete" />
-                </div>
-              </div> 
-              : 
-              <div className={style.defaultImg}>
-                <span>
-                  建议大小<br/>500X500
-                </span>
-              </div>
-            }
-          </Col>
-
-          <Col span={12}>
-            <Button type="primary" onClick={this.mediaSky}>
-              选择图片
-            </Button>
-          </Col>
-          <Col span={12} className={style.prompt}>
-            建议大小<br/>
-            500X500
-          </Col>
-
-          <UploadImg
-            title='图片'
-            mediaType='1'
-            visible={visible}
-            onCancel={this.onCancel}
-            accept='.jpg,.jpeg,.png'
-          />
-        </Row>
+        <ItemImg 
+          url={url}
+          imgSize='500X500'
+          onChange={this.selectImg}
+          onDel={this.delImg}
+        />
 
         <Modal
           visible={sceneListVisible}

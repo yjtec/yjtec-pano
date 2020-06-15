@@ -21,14 +21,14 @@ class PromptEdit extends Component {
 
   pcSelectMedia = (arr) => {
     this.setState({
-      pc_img:arr.join()
+      pc_img:arr[0].path.path
     },()=>{
       this.save()
     })
   }
   appSelectMedia = (arr) => {
     this.setState({
-      app_img:arr.join()
+      app_img:arr[0].path.path
     },()=>{
       this.save()
     })
