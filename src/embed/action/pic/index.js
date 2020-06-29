@@ -57,6 +57,12 @@ export default class Pic extends React.Component{
       this.runChange();
     })
   }
+  //关闭素材库选择窗口
+  closeMediaModal = () => {
+    this.setState({
+      userMediaVisible:false
+    })
+  }
   delImg = (data) => {
     const { img } = this.state;
     let newImg = img.filter(item=>{

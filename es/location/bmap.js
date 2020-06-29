@@ -45,39 +45,118 @@ function (_Component) {
     }
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    _this.bmapVisible = function () {
-      _this.props.onBmapVisible();
+    _this.state = {
+      bmapVisible: false,
+      lng: '',
+      lat: '',
+      province: '',
+      city: '',
+      district: '',
+      address: ''
     };
 
-    _this.handlePoint = function (value) {
-      _this.props.onHandlePoint(value);
-
-      _this.refBmap.setPoint({
-        lng: value.lng,
-        lat: value.lat
+    _this.showBmap = function () {
+      _this.setState({
+        bmapVisible: true
       });
+    };
+
+    _this.cancelBmap = function () {
+      _this.setState({
+        bmapVisible: false
+      });
+    };
+
+    _this.handlePoint = function (e) {
+      _this.setState({
+        lng: e ? e.lng : '',
+        lat: e ? e.lat : '',
+        province: e ? e.province : '',
+        city: e ? e.city : '',
+        district: e ? e.district : '',
+        address: e ? e.address : ''
+      }, function () {
+        _this.runChange();
+      });
+    };
+
+    _this.runChange = function () {
+      var _this$state = _this.state,
+          lng = _this$state.lng,
+          lat = _this$state.lat,
+          province = _this$state.province,
+          city = _this$state.city,
+          district = _this$state.district,
+          address = _this$state.address;
+      var point = {
+        lng: lng,
+        lat: lat,
+        province: province,
+        city: city,
+        district: district,
+        address: address
+      };
+
+      _this.props.onChange(point);
+
+      _this.refBmap.setPoint(point);
     };
 
     return _this;
   }
 
   _createClass(Index, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var data = this.props.data;
+      this.setState({
+        lng: data && data.lng ? data.lng : '',
+        lat: data && data.lat ? data.lat : '',
+        province: data && data.province ? data.province : '',
+        city: data && data.city ? data.city : '',
+        district: data && data.district ? data.district : '',
+        address: data && data.address ? data.address : ''
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var data = this.props.data;
+
+      if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
+        if (data) {
+          this.setState({
+            lng: data && data.lng ? data.lng : '',
+            lat: data && data.lat ? data.lat : '',
+            province: data && data.province ? data.province : '',
+            city: data && data.city ? data.city : '',
+            district: data && data.district ? data.district : '',
+            address: data && data.address ? data.address : ''
+          });
+        }
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var _this$props = this.props,
-          bmapVisible = _this$props.bmapVisible,
-          point = _this$props.point,
-          data = _this$props.data;
+      var data = this.props.data;
+      var _this$state2 = this.state,
+          bmapVisible = _this$state2.bmapVisible,
+          lng = _this$state2.lng,
+          lat = _this$state2.lat,
+          province = _this$state2.province,
+          city = _this$state2.city,
+          district = _this$state2.district,
+          address = _this$state2.address;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title
       }, React.createElement("span", {
         className: style.checkboxC
       }, React.createElement("a", {
         onClick: function onClick() {
-          return _this2.bmapVisible();
+          return _this2.showBmap();
         }
       }, "\u8BBE\u7F6E\u6807\u6CE8")), React.createElement("span", {
         style: {
@@ -103,13 +182,13 @@ function (_Component) {
         }
       })), React.createElement("div", {
         className: style.mapBox
-      }, React.createElement("div", null, data.lng && data.lat || data.lng == '' || data.lat == '' ? React.createElement(MapSearchField, {
+      }, React.createElement("div", null, React.createElement(MapSearchField, {
         id: "mapView",
         value: {
           lng: data.lng,
           lat: data.lat
         } //默认坐标
-        // searchinput={"false"}                  //是否有输入框
+        // searchinput={"false"}             //是否有输入框
         ,
         onChange: this.props.handleCoordinateInfo,
         ref: function ref(_ref) {
@@ -120,28 +199,28 @@ function (_Component) {
           width: '200px',
           height: '200px'
         }
-      }) : '', React.createElement("p", {
+      }), React.createElement("p", {
         style: {
-          display: data.lng && data.lat ? 'none' : 'block'
+          display: lng && lat ? 'none' : 'block'
         }
       }, "\u5F53\u524D\u9879\u76EE", React.createElement("br", null), "\u6682\u672A\u8BBE\u7F6E\u5730\u56FE\u6807\u6CE8"), React.createElement("span", null), React.createElement("div", {
         className: style.delLocation,
         style: {
-          display: data.lng && data.lat ? 'block' : 'none'
+          display: lng && lat ? 'block' : 'none'
         },
         onClick: function onClick() {
-          return _this2.props.delLocation();
+          return _this2.handlePoint('');
         }
       }, React.createElement(_Icon, {
         type: "delete"
       }))))), React.createElement(BmapModal, {
         visible: bmapVisible,
         point: {
-          lng: data.lng,
-          lat: data.lat
+          lng: lng,
+          lat: lat
         },
         title: "\u5730\u56FE\u6807\u6CE8",
-        onCancel: this.props.onCancelBmap,
+        onCancel: this.cancelBmap,
         onOk: this.handlePoint
       }));
     }

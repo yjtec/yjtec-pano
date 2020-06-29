@@ -70,6 +70,12 @@ function (_React$Component) {
       });
     };
 
+    _this.closeMediaModal = function () {
+      _this.setState({
+        userMediaVisible: false
+      });
+    };
+
     _this.delImg = function (data) {
       var img = _this.state.img;
       var newImg = img.filter(function (item) {

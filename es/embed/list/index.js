@@ -18,7 +18,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from 'react';
 import IconFont from '@/components/IconFont';
-import { ossImgMedia } from '@/utils/oss';
+import { mediaImgConfig } from '@/utils/oss.config';
 import style from './style.less';
 
 var EmbedList =
@@ -92,13 +92,13 @@ function (_React$Component) {
           }
         }), item.type == 2 && React.createElement("img", {
           alt: "\u56FE\u7247",
-          src: ossImgMedia(item.actionData && item.actionData.img.length > 0 && item.actionData.img[0].url && item.actionData.img[0].url, 'media')
+          src: mediaImgConfig(item.actionData && item.actionData.img.length > 0 && item.actionData.img[0].url && item.actionData.img[0].url, 'img')
         }), item.type == 3 && React.createElement("img", {
           alt: "\u5E8F\u5217\u56FE",
-          src: ossImgMedia(item.actionData && item.actionData.url && item.actionData.url, 'media')
+          src: mediaImgConfig(item.actionData && item.actionData.url && item.actionData.url, 'img')
         }), item.type == 4 && React.createElement("img", {
           alt: "\u89C6\u9891",
-          src: ossImgMedia(item.actionData && item.actionData.thumbUrl && item.actionData.thumbUrl, 'media')
+          src: mediaImgConfig(item.actionData && item.actionData.thumbUrl && item.actionData.thumbUrl, 'img')
         })), React.createElement("div", {
           className: style.title
         }, item.type == 1 && item.actionData.text, item.type == 2 && '嵌入图片', item.type == 3 && '序列图', item.type == 4 && '嵌入视频'));

@@ -50,7 +50,7 @@ import { SliderSingle } from '@/components/Form';
 import { Kr } from '@/utils/kr/';
 import style from './style.less';
 import AllScene from '@/components/Media/scene';
-import { ossImgMedia } from '@/utils/oss';
+import { mediaImgConfig } from '@/utils/oss.config';
 import { helpShow } from '@/utils/help';
 import Modal from '@/components/AllScene';
 import { Obj } from 'yjtec-support';
@@ -324,7 +324,7 @@ function (_React$Component) {
         className: style.defaultImg
       }, React.createElement("img", {
         alt: "aa",
-        src: ossImgMedia(customUrl, 'media'),
+        src: mediaImgConfig(customUrl, 'img'),
         className: style.img
       }), React.createElement("div", {
         className: style.delimg,

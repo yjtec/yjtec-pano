@@ -95,7 +95,7 @@ function (_Component) {
       }, !Obj.isNull(url) ? React.createElement("div", {
         className: style.defaultImg
       }, React.createElement("img", {
-        alt: "aa",
+        alt: "\u5C01\u9762\u56FE",
         src: mediaImgConfig(url, 'img'),
         className: style.img
       }), React.createElement("div", {

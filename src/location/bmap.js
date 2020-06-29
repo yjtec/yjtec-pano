@@ -9,24 +9,91 @@ import {helpShow} from '@/utils/help';
 import style from './style.less';
 
 class Index extends Component{
-
-  bmapVisible = () => {
-    this.props.onBmapVisible()
+  state={
+    bmapVisible:false,
+    lng: '',
+    lat: '',
+    province: '',
+    city: '',
+    district: '',
+    address: ''
   }
 
-  handlePoint = (value) => {
-    this.props.onHandlePoint(value);
-    this.refBmap.setPoint({lng:value.lng,lat:value.lat})
+  componentDidMount(){
+    const {data} = this.props;
+    this.setState({
+      lng: data && data.lng ? data.lng : '',
+      lat: data && data.lat ? data.lat : '',
+      province: data && data.province ? data.province : '',
+      city: data && data.city ? data.city : '',
+      district: data && data.district ? data.district : '',
+      address: data && data.address ? data.address : ''
+    });
   }
- 
+
+  componentDidUpdate(prevProps, prevState) {
+    const {data} = this.props;
+    if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
+      if (data) {
+        this.setState({
+          lng: data && data.lng ? data.lng : '',
+          lat: data && data.lat ? data.lat : '',
+          province: data && data.province ? data.province : '',
+          city: data && data.city ? data.city : '',
+          district: data && data.district ? data.district : '',
+          address: data && data.address ? data.address : ''
+        });
+      }
+    }
+  }
+
+  showBmap = () => {
+    this.setState({
+      bmapVisible:true
+    })
+  }
+
+  cancelBmap = () => {
+    this.setState({
+      bmapVisible:false
+    })
+  }
+
+  handlePoint = (e) => {
+    this.setState({
+      lng: e ? e.lng : '',
+      lat: e ? e.lat : '',
+      province: e ? e.province : '',
+      city: e ? e.city : '',
+      district: e ? e.district : '',
+      address: e ? e.address : ''
+    },()=>{
+      this.runChange();
+    });
+  }
+
+  runChange = () => {
+    const {lng,lat,province,city,district,address} = this.state;
+    const point = {
+      lng: lng,
+      lat: lat,
+      province: province,
+      city: city,
+      district: district,
+      address: address
+    }
+    this.props.onChange(point)
+    this.refBmap.setPoint(point)
+  }
   render(){
-    const {bmapVisible,point,data} = this.props;
+    const {data} = this.props;
+    const {bmapVisible,lng,lat,province,city,district,address} = this.state;
     return(
       <div>
         <ItemBox>
           <div className={style.title}>
             <span className={style.checkboxC}>
-              <a onClick={()=>this.bmapVisible()}>设置标注</a>
+              <a onClick={()=>this.showBmap()}>设置标注</a>
             </span>
             <span style={{float:'left'}}>导航标注</span>
             {helpShow && 
@@ -40,23 +107,20 @@ class Index extends Component{
           </div>
           <div className={style.mapBox}>
             <div>
-              {data.lng && data.lat || data.lng == '' || data.lat == '' ?
-                <MapSearchField 
-                  id={"mapView"}
-                  value={{lng:data.lng,lat:data.lat}}            //默认坐标
-                  // searchinput={"false"}                  //是否有输入框
-                  onChange={this.props.handleCoordinateInfo}
-                  ref={ref => this.refBmap = ref}         //把子组件的方法提到父组件中
-                  style={{width:'200px',height:'200px'}}
-                />
-                : ''
-              }
-              
-              <p style={{display:data.lng && data.lat ? 'none' : 'block'}}>
+              <MapSearchField 
+                id={"mapView"}
+                value={{lng:data.lng,lat:data.lat}}            //默认坐标
+                // searchinput={"false"}             //是否有输入框
+                onChange={this.props.handleCoordinateInfo}
+                ref={ref => this.refBmap = ref}      //把子组件的方法提到父组件中
+                style={{width:'200px',height:'200px'}}
+              />
+
+              <p style={{display:lng && lat ? 'none' : 'block'}}>
                 当前项目<br/>暂未设置地图标注
               </p>
               <span></span>
-              <div className={style.delLocation} style={{display:data.lng && data.lat ? 'block' : 'none'}} onClick={()=>this.props.delLocation()}>
+              <div className={style.delLocation} style={{display:lng && lat ? 'block' : 'none'}} onClick={()=>this.handlePoint('')}>
                 <Icon type="delete" />
               </div>
             </div>
@@ -65,9 +129,9 @@ class Index extends Component{
         </ItemBox>
         <BmapModal
           visible={bmapVisible}
-          point={{lng:data.lng,lat:data.lat}}
+          point={{lng:lng,lat:lat}}
           title='地图标注'
-          onCancel={this.props.onCancelBmap}
+          onCancel={this.cancelBmap}
           onOk={this.handlePoint}
         >
         </BmapModal>

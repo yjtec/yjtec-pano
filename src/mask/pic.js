@@ -5,7 +5,6 @@ import style from './style.less';
 
 import ItemImg from '../components/ItemImg';
 
-import {ossImgMedia,ossPano} from '@/utils/oss';
 import {Obj} from 'yjtec-support';
 
 import Modal from '@/components/AllScene';

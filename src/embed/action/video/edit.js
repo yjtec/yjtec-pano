@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon,Button,Checkbox } from 'antd';
 import {ItemBox} from '@/components/';
-import {ossEmbedVideoThumb} from '@/utils/oss';
+import {mediaImgConfig} from '@/utils/oss.config';
 
 import UserMedia from '@/components/MediaModal/UserMedia';
 
@@ -153,7 +153,7 @@ export default class Edit extends React.Component{
 
     const thumbBox = (
       <div>
-        <img alt="url" src={ossEmbedVideoThumb(thumbUrl)} className={style.imgss}/>
+        <img alt="嵌入视频封面" src={mediaImgConfig(thumbUrl,'img')} className={style.img}/>
         <div className={style.delimg} onClick={()=>this.delImg()}>
           <Icon type="delete" />
         </div>

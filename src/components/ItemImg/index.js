@@ -43,7 +43,7 @@ class ItemImg extends Component {
           <Col span={24} className={style.mb10}>
             {!Obj.isNull(url) ? 
               <div className={style.defaultImg}>
-                <img alt="aa" src={mediaImgConfig(url,'img')} className={style.img} />
+                <img alt="封面图" src={mediaImgConfig(url,'img')} className={style.img} />
                 <div className={style.delimg} onClick={()=>this.del()}>
                   <Icon type="delete" />
                 </div>

@@ -147,6 +147,24 @@ li{
     background: rgba(16,16,16,1);
 }
 
+//input通用样式
+.inputDiv{
+    :global{
+        .ant-input{
+            border-radius: 3px;
+            background: @input-bg;
+            border:1px solid @input-border-color;
+            color: @font-color;
+            // height: 30px;
+            line-height: 28px;
+            font-size: 12px;
+        }
+        .ant-input-password-icon{
+            color: @font-color;
+        }
+    }
+}
+
 /*
     标题样式 标题+复选框
 */
