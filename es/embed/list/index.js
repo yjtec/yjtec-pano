@@ -70,7 +70,8 @@ function (_React$Component) {
       }];
       return React.createElement("div", {
         className: style.module
-      }, data.map(function (item, index) {
+      }, data && data.map(function (item, index) {
+        console.log(item.actionData);
         return React.createElement("div", {
           key: index,
           onClick: function onClick() {
@@ -98,7 +99,7 @@ function (_React$Component) {
           src: mediaImgConfig(item.actionData && item.actionData.url && item.actionData.url, 'img')
         }), item.type == 4 && React.createElement("img", {
           alt: "\u89C6\u9891",
-          src: mediaImgConfig(item.actionData && item.actionData.thumbUrl && item.actionData.thumbUrl, 'img')
+          src: mediaImgConfig(item.actionData && item.actionData.thumbUrl ? item.actionData.thumbUrl : item.actionData.videoUrl, item.actionData && item.actionData.thumbUrl ? 'img' : 'video')
         })), React.createElement("div", {
           className: style.title
         }, item.type == 1 && item.actionData.text, item.type == 2 && '嵌入图片', item.type == 3 && '序列图', item.type == 4 && '嵌入视频'));

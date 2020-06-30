@@ -80,7 +80,7 @@ class Index extends Component{
       province: province,
       city: city,
       district: district,
-      address: address
+      address: address ? address : ''
     }
     this.props.onChange(point)
     this.refBmap.setPoint(point)

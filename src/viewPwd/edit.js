@@ -19,7 +19,7 @@ class LoadsceneAction extends Component {
 
   setViewPwd = (e) => {
     const reg = /^\w+$/;
-    if(reg.test(e.target.value)){
+    if(reg.test(e.target.value) || e.target.value == ''){
       this.setState({
         view_pwd: e.target.value,
         tipsVisible: false
@@ -28,7 +28,7 @@ class LoadsceneAction extends Component {
       });
     }else{
       this.setState({
-        view_pwd: e.target.value,
+        view_pwd: this.state.view_pwd,
         tipsVisible: true
       });
     }

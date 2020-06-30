@@ -23,7 +23,9 @@ export default class EmbedList extends React.Component{
     ]
     return(
       <div className={style.module}>
-        {data.map((item,index)=>(
+        {data && data.map((item,index)=>{
+          console.log(item.actionData)
+          return (
           <div key={index} onClick={()=>this.oneHandle(item.id)} className={style.hotspotLists}>
             <span className={style.delSelectdPano}>{typeData.map(i=>{
               if (i.type == item.type) {
@@ -34,7 +36,7 @@ export default class EmbedList extends React.Component{
               {item.type == 1 && <IconFont type='icon-wenzi' style={{fontSize:'16px'}} />}
               {item.type == 2 && <img alt='图片' src={mediaImgConfig(item.actionData && item.actionData.img.length > 0 && item.actionData.img[0].url && item.actionData.img[0].url,'img')} />}
               {item.type == 3 && <img alt='序列图' src={mediaImgConfig(item.actionData && item.actionData.url && item.actionData.url,'img')} />}
-              {item.type == 4 && <img alt='视频' src={mediaImgConfig(item.actionData && item.actionData.thumbUrl && item.actionData.thumbUrl,'img')} />}
+              {item.type == 4 && <img alt='视频' src={mediaImgConfig(item.actionData && item.actionData.thumbUrl ? item.actionData.thumbUrl : item.actionData.videoUrl,item.actionData && item.actionData.thumbUrl ? 'img' : 'video')} />}
             </div>
             <div className={style.title}>
               {item.type == 1 && item.actionData.text}
@@ -43,7 +45,8 @@ export default class EmbedList extends React.Component{
               {item.type == 4 && '嵌入视频'}
             </div>
           </div>
-        ))}
+        )
+        })}
       </div>
     )
   }

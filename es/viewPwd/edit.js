@@ -50,7 +50,7 @@ function (_Component) {
     _this.setViewPwd = function (e) {
       var reg = /^\w+$/;
 
-      if (reg.test(e.target.value)) {
+      if (reg.test(e.target.value) || e.target.value == '') {
         _this.setState({
           view_pwd: e.target.value,
           tipsVisible: false
@@ -59,7 +59,7 @@ function (_Component) {
         });
       } else {
         _this.setState({
-          view_pwd: e.target.value,
+          view_pwd: _this.state.view_pwd,
           tipsVisible: true
         });
       }

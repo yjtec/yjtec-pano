@@ -94,7 +94,7 @@ function (_Component) {
         province: province,
         city: city,
         district: district,
-        address: address
+        address: address ? address : ''
       };
 
       _this.props.onChange(point);
