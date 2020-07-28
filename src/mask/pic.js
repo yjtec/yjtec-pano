@@ -3,6 +3,7 @@ import {Button,Layout,Checkbox,Row,Col,Drawer,Icon} from 'antd';
 import {Help} from '@/components/';
 import style from './style.less';
 
+import {mediaImgConfig} from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
 
 import {Obj} from 'yjtec-support';
@@ -55,7 +56,7 @@ class Pic extends Component {
           <div style={{clear:'both'}}></div>
         </div>
         <ItemImg 
-          url={url}
+          url={mediaImgConfig(url,'img')}
           imgSize='500X500'
           onChange={this.selectImg}
           onDel={this.delImg}

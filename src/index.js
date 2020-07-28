@@ -11,6 +11,7 @@ import PageCover from './pageCover';
 import LoadsceneAction from './loadsceneAction';
 import ViewPwd from './viewPwd';
 import Gyro from './gyro';
+import OpenAnimation from './openAnimation';
 //单组件
 import ItemImg from './components/ItemImg';
 export {
@@ -28,6 +29,7 @@ export {
   LoadsceneAction,
   ViewPwd,
   Gyro,
+  OpenAnimation,
   //单组件
   ItemImg,
 }

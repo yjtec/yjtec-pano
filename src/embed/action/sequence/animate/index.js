@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {ItemBox} from '@/components/';
 import {Row,Col} from 'antd';
 import {InputNumber} from '@/components/Form';
-
+import {mediaImgConfig} from '@/utils/oss.config';
 import { ItemImg } from 'yjtec-pano';
 
 import style from './style.less';
@@ -113,7 +113,7 @@ class TypeAnimate extends Component{
       <div>
         {/*<MediaImg url={url} width="100" height="600" onChange={this.handleUrl} />*/}
         <ItemImg 
-          url={url}
+          url={mediaImgConfig(url,'img')}
           imgSize='200X1200'
           onChange={this.selectImg}
           onDel={this.delImg}

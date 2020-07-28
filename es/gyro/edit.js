@@ -24,7 +24,6 @@ import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
 import style from './style.less';
 import { helpShow } from '@/utils/help';
-import ItemImg from '../components/ItemImg';
 import { SliderSingle } from '@/components/Form';
 
 var PromptEdit =

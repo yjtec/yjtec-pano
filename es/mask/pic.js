@@ -23,6 +23,7 @@ import React from "react";
 import { Component } from 'react';
 import { Help } from '@/components/';
 import style from './style.less';
+import { mediaImgConfig } from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
 import { Obj } from 'yjtec-support';
 import Modal from '@/components/AllScene';
@@ -131,7 +132,7 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement(ItemImg, {
-        url: url,
+        url: mediaImgConfig(url, 'img'),
         imgSize: "500X500",
         onChange: this.selectImg,
         onDel: this.delImg

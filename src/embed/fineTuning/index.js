@@ -1,7 +1,9 @@
 import React,{Fragment} from 'react';
+import {Input,Button} from 'antd';
 import IconFont from '@/components/IconFont';
 import style from './style.less';
 import LangTap from '@/utils/langTap';
+import {schoolUrl} from '@/utils/url.config';
 
 const defaultData = {
   ath:0,  //左右
@@ -9,7 +11,7 @@ const defaultData = {
   rx:0,
   ry:0,
   rz:0,
-  scale:1
+  scale:0.99
 }
 
 function moveOperator (k,operator,num){
@@ -31,12 +33,13 @@ export default class FineTuning extends React.Component{
       rx:data ? data.rx : defaultData.rx,
       ry:data ? data.ry : defaultData.ry,
       rz:data ? data.rz : defaultData.rz,
-      scale:data ? data.scale : defaultData.scale,
+      scale:data ? data.rscalez : defaultData.scale,
+      editType:1
     }
   }
 
   componentDidUpdate(prevProps){
-    if(JSON.stringify(prevProps.data) !== JSON.stringify(this.props.data)){
+    if(JSON.stringify(prevProps) !== JSON.stringify(this.props)){
       if (this.props.data) {
         const {data} = this.props;
         this.setState({
@@ -45,7 +48,9 @@ export default class FineTuning extends React.Component{
           rx:data.rx,
           ry:data.ry,
           rz:data.rz,
-          scale:data.scale
+          scale:(this.props.embedType == 4 && data.scale < 1 && data.scale != 0) ? 70 : data.scale,
+        },()=>{
+          this.runChange()
         })
       }
     }
@@ -133,9 +138,7 @@ export default class FineTuning extends React.Component{
     }
     this.props.onChange(newData)
   }
-  runChange = () => {
-    this.props.onChange(this.state)
-  }
+  
 
   renderDirection = () => {
     const direction = [
@@ -220,49 +223,142 @@ export default class FineTuning extends React.Component{
     })
   }
 
-  render(){
+  editCoordinate = (type,e) => {
+    switch(type) {
+      case 'rx':
+        this.setState({
+          rx: e.target.value 
+        },()=>{
+          this.runChange()
+        });
+        break;
+      case 'ry':
+        this.setState({
+          ry: e.target.value 
+        },()=>{
+          this.runChange()
+        });
+        break;
+      case 'rz':
+        this.setState({
+          rz: e.target.value 
+        },()=>{
+          this.runChange()
+        });
+        break;
+      case 'scale':
+        this.setState({
+          scale: e.target.value 
+        },()=>{
+          this.runChange()
+        });
+        break;
+      default:
+        return;
+    }
+  }
 
+  switch = (value) => {
+    this.setState({
+      editType: value
+    });
+  }
+
+  runChange = () => {
+    this.props.onChange(this.state)
+  }
+
+  render(){
+    const { rx, ry, rz ,scale } = this.state;
+    const trim = (
+      <div>
+        <div className={`${style.box} ${style.bg}`}>
+          <div className={style.boxTitle}>
+            平 移
+          </div>
+          <div className={style.directionC}>
+            {this.renderDirection()}
+          </div>
+        </div>
+        <div className={style.spacing}></div>
+        <div className={`${style.box} ${style.bg}`}>
+          <div className={style.boxTitle}>
+            旋 转
+          </div>
+          <div className={style.rotateC}>
+            <ul>
+              {this.renderRotate()}
+              <div style={{clear:'both'}}></div>
+            </ul>
+          </div>
+        </div>
+        <div className={style.spacing}></div>
+        <div className={`${style.box} ${style.bg}`}>
+          <div className={style.boxTitle}>
+            缩 放
+          </div>
+          <div className={style.bloomingC}>
+            <ul>
+              {this.renderBlooming()}
+              <div style={{clear:'both'}}></div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    );
+
+    const align = (
+      <div className={`${style.align} ${style.bg}`}>
+        <div className={`${style.item}`}>
+          <span>水平视场(HFOV)</span>
+          <div className={style.inputDiv}>
+            <Input value={scale} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('scale',e)} />
+          </div>
+        </div>
+        <div className={`${style.item}`}>
+          <span>X轴(Yaw)</span>
+          <div className={style.inputDiv}>
+            <Input value={rx} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('rx',e)} />
+          </div>
+        </div>
+        <div className={`${style.item}`}>
+          <span>Y轴(Pitch)</span>
+          <div className={style.inputDiv}>
+            <Input value={ry} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('ry',e)} />
+          </div>
+        </div>
+        <div className={`${style.item}`}>
+          <span>Z轴(Roll)</span>
+          <div className={style.inputDiv}>
+            <Input value={rz} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('rz',e)} />
+          </div>
+        </div>
+        <div className={style.help}>
+          <Button type="primary" style={{width: 'calc(100% - 30px)'}} onClick={()=>this.props.alignment(this.state)}>对齐</Button>
+        </div>
+        <div className={style.help} onClick={()=>{window.open(schoolUrl + '/article/detail/177');}}>
+          使用教程
+        </div>
+      </div>
+    );
     return(
       <div>
         <div className={style.edit} style={{display:(this.props.visible == true && this.props.embedType != 1) ? 'block' : 'none'}}>
           <div className={`${style.fine_tuning_title} ${style.bg}`}>
-            细节调整
+            {this.props.embedType == 4 ? (
+              <div>
+                <span className={`${this.state.editType == 1 && style.seleased}`} onClick={()=>this.switch(1)}>细节调整</span>
+                <span className={`${this.state.editType == 2 && style.seleased}`} onClick={()=>this.switch(2)}>位置对齐</span>
+              </div>
+            ) : (
+              <span className={`${this.state.editType == 1 && style.seleased}`}>细节调整</span>
+            )}
+            
           </div>
           <div className={style.spacing}></div>
-          <div className={`${style.box} ${style.bg}`}>
-            <div className={style.boxTitle}>
-              平 移
-            </div>
-            <div className={style.directionC}>
-              {this.renderDirection()}
-            </div>
-          </div>
+          {this.state.editType == 1 ? trim : align}
           <div className={style.spacing}></div>
-          <div className={`${style.box} ${style.bg}`}>
-            <div className={style.boxTitle}>
-              旋 转
-            </div>
-            <div className={style.rotateC}>
-              <ul>
-                {this.renderRotate()}
-                <div style={{clear:'both'}}></div>
-              </ul>
-            </div>
-          </div>
-          <div className={style.spacing}></div>
-          <div className={`${style.box} ${style.bg}`}>
-            <div className={style.boxTitle}>
-              缩 放
-            </div>
-            <div className={style.bloomingC}>
-              <ul>
-                {this.renderBlooming()}
-                <div style={{clear:'both'}}></div>
-              </ul>
-            </div>
-          </div>
-          <div className={style.spacing}></div>
-          <div className={`${style.box} ${style.bg}`}>
+          <div className={`${style.box} ${style.bg}`} style={{position:'absolute', bottom:'0'}}>
             <div className={style.boxTitle} onClick={()=>this.reset()}>
               重 置
             </div>

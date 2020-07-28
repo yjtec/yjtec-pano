@@ -3,7 +3,6 @@ import {ItemBox,Right,Content,Help} from '@/components/';
 import {Checkbox} from 'antd';
 import style from './style.less';
 import {helpShow} from '@/utils/help';
-import ItemImg from '../components/ItemImg';
 import {SliderSingle} from '@/components/Form';
 
 class PromptEdit extends Component {

@@ -1,3 +1,8 @@
+import "antd/es/button/style";
+import _Button from "antd/es/button";
+import "antd/es/input/style";
+import _Input from "antd/es/input";
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -26,6 +31,7 @@ import React, { Fragment } from 'react';
 import IconFont from '@/components/IconFont';
 import style from './style.less';
 import LangTap from '@/utils/langTap';
+import { schoolUrl } from '@/utils/url.config';
 var defaultData = {
   ath: 0,
   //左右
@@ -34,7 +40,7 @@ var defaultData = {
   rx: 0,
   ry: 0,
   rz: 0,
-  scale: 1
+  scale: 0.99
 };
 
 function moveOperator(k, operator, num) {
@@ -174,10 +180,6 @@ function (_React$Component) {
       _this.props.onChange(newData);
     };
 
-    _this.runChange = function () {
-      _this.props.onChange(_this.state);
-    };
-
     _this.renderDirection = function () {
       var direction = [{
         label: '上',
@@ -277,6 +279,59 @@ function (_React$Component) {
       });
     };
 
+    _this.editCoordinate = function (type, e) {
+      switch (type) {
+        case 'rx':
+          _this.setState({
+            rx: e.target.value
+          }, function () {
+            _this.runChange();
+          });
+
+          break;
+
+        case 'ry':
+          _this.setState({
+            ry: e.target.value
+          }, function () {
+            _this.runChange();
+          });
+
+          break;
+
+        case 'rz':
+          _this.setState({
+            rz: e.target.value
+          }, function () {
+            _this.runChange();
+          });
+
+          break;
+
+        case 'scale':
+          _this.setState({
+            scale: e.target.value
+          }, function () {
+            _this.runChange();
+          });
+
+          break;
+
+        default:
+          return;
+      }
+    };
+
+    _this.switch = function (value) {
+      _this.setState({
+        editType: value
+      });
+    };
+
+    _this.runChange = function () {
+      _this.props.onChange(_this.state);
+    };
+
     var _data = props.data;
     _this.state = {
       ath: _data ? _data.ath : defaultData.ath,
@@ -284,7 +339,8 @@ function (_React$Component) {
       rx: _data ? _data.rx : defaultData.rx,
       ry: _data ? _data.ry : defaultData.ry,
       rz: _data ? _data.rz : defaultData.rz,
-      scale: _data ? _data.scale : defaultData.scale
+      scale: _data ? _data.rscalez : defaultData.scale,
+      editType: 1
     };
     return _this;
   }
@@ -292,7 +348,9 @@ function (_React$Component) {
   _createClass(FineTuning, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (JSON.stringify(prevProps.data) !== JSON.stringify(this.props.data)) {
+      var _this2 = this;
+
+      if (JSON.stringify(prevProps) !== JSON.stringify(this.props)) {
         if (this.props.data) {
           var data = this.props.data;
           this.setState({
@@ -301,7 +359,9 @@ function (_React$Component) {
             rx: data.rx,
             ry: data.ry,
             rz: data.rz,
-            scale: data.scale
+            scale: this.props.embedType == 4 && data.scale < 1 && data.scale != 0 ? 70 : data.scale
+          }, function () {
+            _this2.runChange();
           });
         }
       }
@@ -310,18 +370,14 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
-      return React.createElement("div", null, React.createElement("div", {
-        className: style.edit,
-        style: {
-          display: this.props.visible == true && this.props.embedType != 1 ? 'block' : 'none'
-        }
-      }, React.createElement("div", {
-        className: "".concat(style.fine_tuning_title, " ").concat(style.bg)
-      }, "\u7EC6\u8282\u8C03\u6574"), React.createElement("div", {
-        className: style.spacing
-      }), React.createElement("div", {
+      var _this$state3 = this.state,
+          rx = _this$state3.rx,
+          ry = _this$state3.ry,
+          rz = _this$state3.rz,
+          scale = _this$state3.scale;
+      var trim = React.createElement("div", null, React.createElement("div", {
         className: "".concat(style.box, " ").concat(style.bg)
       }, React.createElement("div", {
         className: style.boxTitle
@@ -351,14 +407,98 @@ function (_React$Component) {
         style: {
           clear: 'both'
         }
-      })))), React.createElement("div", {
+      })))));
+      var align = React.createElement("div", {
+        className: "".concat(style.align, " ").concat(style.bg)
+      }, React.createElement("div", {
+        className: "".concat(style.item)
+      }, React.createElement("span", null, "\u6C34\u5E73\u89C6\u573A(HFOV)"), React.createElement("div", {
+        className: style.inputDiv
+      }, React.createElement(_Input, {
+        value: scale,
+        placeholder: "\u8BF7\u8F93\u5165\u5750\u6807\u503C",
+        onChange: function onChange(e) {
+          return _this3.editCoordinate('scale', e);
+        }
+      }))), React.createElement("div", {
+        className: "".concat(style.item)
+      }, React.createElement("span", null, "X\u8F74(Yaw)"), React.createElement("div", {
+        className: style.inputDiv
+      }, React.createElement(_Input, {
+        value: rx,
+        placeholder: "\u8BF7\u8F93\u5165\u5750\u6807\u503C",
+        onChange: function onChange(e) {
+          return _this3.editCoordinate('rx', e);
+        }
+      }))), React.createElement("div", {
+        className: "".concat(style.item)
+      }, React.createElement("span", null, "Y\u8F74(Pitch)"), React.createElement("div", {
+        className: style.inputDiv
+      }, React.createElement(_Input, {
+        value: ry,
+        placeholder: "\u8BF7\u8F93\u5165\u5750\u6807\u503C",
+        onChange: function onChange(e) {
+          return _this3.editCoordinate('ry', e);
+        }
+      }))), React.createElement("div", {
+        className: "".concat(style.item)
+      }, React.createElement("span", null, "Z\u8F74(Roll)"), React.createElement("div", {
+        className: style.inputDiv
+      }, React.createElement(_Input, {
+        value: rz,
+        placeholder: "\u8BF7\u8F93\u5165\u5750\u6807\u503C",
+        onChange: function onChange(e) {
+          return _this3.editCoordinate('rz', e);
+        }
+      }))), React.createElement("div", {
+        className: style.help
+      }, React.createElement(_Button, {
+        type: "primary",
+        style: {
+          width: 'calc(100% - 30px)'
+        },
+        onClick: function onClick() {
+          return _this3.props.alignment(_this3.state);
+        }
+      }, "\u5BF9\u9F50")), React.createElement("div", {
+        className: style.help,
+        onClick: function onClick() {
+          window.open(schoolUrl + '/article/detail/177');
+        }
+      }, "\u4F7F\u7528\u6559\u7A0B"));
+      return React.createElement("div", null, React.createElement("div", {
+        className: style.edit,
+        style: {
+          display: this.props.visible == true && this.props.embedType != 1 ? 'block' : 'none'
+        }
+      }, React.createElement("div", {
+        className: "".concat(style.fine_tuning_title, " ").concat(style.bg)
+      }, this.props.embedType == 4 ? React.createElement("div", null, React.createElement("span", {
+        className: "".concat(this.state.editType == 1 && style.seleased),
+        onClick: function onClick() {
+          return _this3.switch(1);
+        }
+      }, "\u7EC6\u8282\u8C03\u6574"), React.createElement("span", {
+        className: "".concat(this.state.editType == 2 && style.seleased),
+        onClick: function onClick() {
+          return _this3.switch(2);
+        }
+      }, "\u4F4D\u7F6E\u5BF9\u9F50")) : React.createElement("span", {
+        className: "".concat(this.state.editType == 1 && style.seleased)
+      }, "\u7EC6\u8282\u8C03\u6574")), React.createElement("div", {
+        className: style.spacing
+      }), this.state.editType == 1 ? trim : align, React.createElement("div", {
         className: style.spacing
       }), React.createElement("div", {
-        className: "".concat(style.box, " ").concat(style.bg)
+        className: "".concat(style.box, " ").concat(style.bg),
+        style: {
+          position: 'absolute',
+          bottom: '0'
+        }
       }, React.createElement("div", {
         className: style.boxTitle,
         onClick: function onClick() {
-          return _this2.reset();
+          return _this3.reset();
         }
       }, "\u91CD \u7F6E"))));
     }

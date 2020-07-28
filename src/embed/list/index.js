@@ -24,7 +24,6 @@ export default class EmbedList extends React.Component{
     return(
       <div className={style.module}>
         {data && data.map((item,index)=>{
-          console.log(item.actionData)
           return (
           <div key={index} onClick={()=>this.oneHandle(item.id)} className={style.hotspotLists}>
             <span className={style.delSelectdPano}>{typeData.map(i=>{

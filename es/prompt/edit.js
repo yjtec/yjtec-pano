@@ -21,6 +21,7 @@ import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
 import style from './style.less';
 import { helpShow } from '@/utils/help';
+import { mediaImgConfig } from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
 import { SliderSingle } from '@/components/Form';
 
@@ -140,7 +141,7 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement(ItemImg, {
-        url: pc_img,
+        url: mediaImgConfig(pc_img, 'img'),
         imgSize: "300X300",
         onChange: this.pcSelectMedia,
         onDel: this.pcDel
@@ -173,7 +174,7 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement(ItemImg, {
-        url: app_img,
+        url: mediaImgConfig(app_img, 'img'),
         imgSize: "300X300",
         onChange: this.appSelectMedia,
         onDel: this.appDel

@@ -26,6 +26,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React, { Component } from 'react';
 import { ItemBox } from '@/components/';
 import { InputNumber } from '@/components/Form';
+import { mediaImgConfig } from '@/utils/oss.config';
 import { ItemImg } from 'yjtec-pano';
 import style from './style.less';
 var inputNumber = [{
@@ -178,7 +179,7 @@ function (_Component) {
           url = _this$state2.url,
           playTime = _this$state2.playTime;
       return React.createElement("div", null, React.createElement(ItemImg, {
-        url: url,
+        url: mediaImgConfig(url, 'img'),
         imgSize: "200X1200",
         onChange: this.selectImg,
         onDel: this.delImg

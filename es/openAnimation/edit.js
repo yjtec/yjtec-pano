@@ -1,3 +1,6 @@
+import "antd/es/switch/style";
+import _Switch from "antd/es/switch";
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -16,97 +19,123 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
-import React from 'react';
-import IconFont from '@/components/IconFont';
-import { mediaImgConfig } from '@/utils/oss.config';
+import React from "react";
+import { Component } from "react";
+import { ItemBox, Help } from '@/components/';
 import style from './style.less';
+import { helpShow } from '@/utils/help';
+var actionData = [{
+  title: '普通开场',
+  type: 1
+}, {
+  title: '水平巡游开场',
+  type: 2
+}, {
+  title: '小行星巡游开场',
+  type: 3
+}, {
+  title: '小行星开场',
+  type: 4
+}, {
+  title: '水晶球开场',
+  type: 5
+}];
 
-var EmbedList =
+var OpenAnimation =
 /*#__PURE__*/
-function (_React$Component) {
-  _inherits(EmbedList, _React$Component);
+function (_Component) {
+  _inherits(OpenAnimation, _Component);
 
-  function EmbedList() {
+  function OpenAnimation() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, EmbedList);
+    _classCallCheck(this, OpenAnimation);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EmbedList)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(OpenAnimation)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this.state = {
+      type: 1
+    };
 
-    _this.oneHandle = function (id) {
-      _this.props.onChange(id);
+    _this.selectAction = function (value) {
+      _this.setState({
+        type: value
+      }, function () {
+        _this.runChenge();
+      });
+    };
+
+    _this.runChenge = function () {
+      _this.props.onChange(_this.state);
     };
 
     return _this;
   }
 
-  _createClass(EmbedList, [{
+  _createClass(OpenAnimation, [{
     key: "componentDidMount",
-    value: function componentDidMount() {}
+    value: function componentDidMount() {
+      var data = this.props.data;
+      this.setState({
+        type: data && data.type ? data.type : 1
+      });
+    }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var data = this.props.data;
-      var typeData = [{
-        type: 1,
-        name: '文字标记'
-      }, {
-        type: 2,
-        name: '图片轮播'
-      }, {
-        type: 3,
-        name: '序列图'
-      }, {
-        type: 4,
-        name: '视频'
-      }];
-      return React.createElement("div", {
-        className: style.module
-      }, data && data.map(function (item, index) {
+      var type = this.state.type;
+      var helpShowFlag = false;
+      return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
+        className: style.title
+      }, React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u5F00\u573A\u52A8\u753B"), helpShow && helpShowFlag && React.createElement("div", {
+        style: {
+          float: 'left',
+          width: '18px',
+          height: '18px',
+          position: 'relative',
+          marginLeft: '5px'
+        }
+      }, React.createElement(Help, {
+        style: {
+          fontSize: '14px',
+          color: '#999999',
+          float: 'left'
+        }
+      })), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), actionData.map(function (item) {
         return React.createElement("div", {
-          key: index,
+          className: style.itemBox,
+          key: item.type,
           onClick: function onClick() {
-            return _this2.oneHandle(item.id);
-          },
-          className: style.hotspotLists
-        }, React.createElement("span", {
-          className: style.delSelectdPano
-        }, typeData.map(function (i) {
-          if (i.type == item.type) {
-            return i.name;
+            return _this2.selectAction(item.type);
           }
-        })), React.createElement("div", {
-          className: style.thumb
-        }, item.type == 1 && React.createElement(IconFont, {
-          type: "icon-wenzi",
+        }, React.createElement(_Switch, {
+          size: "small",
+          checked: item.type == type ? true : false,
           style: {
-            fontSize: '16px'
+            float: 'right',
+            marginTop: '8px'
           }
-        }), item.type == 2 && React.createElement("img", {
-          alt: "\u56FE\u7247",
-          src: mediaImgConfig(item.actionData && item.actionData.img.length > 0 && item.actionData.img[0].url && item.actionData.img[0].url, 'img')
-        }), item.type == 3 && React.createElement("img", {
-          alt: "\u5E8F\u5217\u56FE",
-          src: mediaImgConfig(item.actionData && item.actionData.url && item.actionData.url, 'img')
-        }), item.type == 4 && React.createElement("img", {
-          alt: "\u89C6\u9891",
-          src: mediaImgConfig(item.actionData && item.actionData.thumbUrl ? item.actionData.thumbUrl : item.actionData.videoUrl, item.actionData && item.actionData.thumbUrl ? 'img' : 'video')
-        })), React.createElement("div", {
-          className: style.title
-        }, item.type == 1 && item.actionData.text, item.type == 2 && '嵌入图片', item.type == 3 && '序列图', item.type == 4 && '嵌入视频'));
-      }));
+        }), item.title);
+      })));
     }
   }]);
 
-  return EmbedList;
-}(React.Component);
+  return OpenAnimation;
+}(Component);
 
-export { EmbedList as default };
+export default OpenAnimation;

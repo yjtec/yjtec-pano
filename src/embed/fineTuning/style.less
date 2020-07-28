@@ -1,6 +1,8 @@
+@import '~yjtec-pano/lib/global.less';
+
 .edit{
     width:140px;
-    // height:480px;
+    height:578px;
     position:fixed;
     bottom:50%;
     right:260px;
@@ -23,6 +25,14 @@
         width: 100%;
         line-height: 24px;
         text-align: center;
+        span{
+            padding:0 5px;
+            color: #bbbbbb;
+            cursor: pointer;
+        }
+        .seleased{
+            color: #ffffff;
+        }
     }
     .box{
         width: 100%;
@@ -130,6 +140,27 @@
                     }
                 }
             }
+        }
+    }
+
+    .align{
+        min-height: 508px;
+        padding:20px 0;
+        .item{
+            width: 100%;
+            padding: 10px 15px;
+            span{
+                display: block;
+                line-height: 30px;
+                text-align: center;
+            }
+        }
+        .help{
+            margin-top: 10px;
+            text-align:center;
+            width: 100%;
+            line-height: 40px;
+            cursor: pointer;
         }
     }
 }

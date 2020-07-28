@@ -73,6 +73,10 @@ function (_Component) {
       _this.props.onDel();
     };
 
+    _this.alignment = function (data) {
+      _this.props.alignment(data);
+    };
+
     return _this;
   }
 
@@ -117,7 +121,7 @@ function (_Component) {
         className: style.module
       }, React.createElement(Drawer, {
         visible: this.props.visible,
-        destroyOnClose: false,
+        destroyOnClose: true,
         title: "\u5D4C\u5165",
         onCancel: this.handleCancel
       }, React.createElement(ItemBox, null, React.createElement(EmbedType, {
@@ -133,7 +137,8 @@ function (_Component) {
         visible: this.props.visible,
         data: data.locationData,
         embedType: embedType,
-        onChange: this.editFineTuning
+        onChange: this.editFineTuning,
+        alignment: this.alignment
       }));
     }
   }]);

@@ -33,6 +33,10 @@ class EmbedAdd extends Component{
   handleDelete = () => {
     this.props.onDel();
   }
+  //对齐操作
+  alignment = (data) => {
+    this.props.alignment(data);
+  }
   render(){
     let { embedTypeData,embedType = 1,data,isVip } = this.props;
     let saveDiv = (
@@ -51,7 +55,7 @@ class EmbedAdd extends Component{
       <div className={style.module}>
         <Drawer
           visible={this.props.visible}
-          destroyOnClose={false}
+          destroyOnClose={true}
           title='嵌入'
           onCancel={this.handleCancel}
         >
@@ -76,6 +80,7 @@ class EmbedAdd extends Component{
           data={data.locationData} 
           embedType={embedType} 
           onChange={this.editFineTuning}
+          alignment={this.alignment}
         />
       </div>
     )

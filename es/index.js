@@ -10,9 +10,10 @@ import Prompt from './prompt';
 import PageCover from './pageCover';
 import LoadsceneAction from './loadsceneAction';
 import ViewPwd from './viewPwd';
-import Gyro from './gyro'; //单组件
+import Gyro from './gyro';
+import OpenAnimation from './openAnimation'; //单组件
 
 import ItemImg from './components/ItemImg';
 export { //页面功能页
-Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, LoadsceneAction, ViewPwd, Gyro //单组件
+Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, LoadsceneAction, ViewPwd, Gyro, OpenAnimation //单组件
 , ItemImg };
