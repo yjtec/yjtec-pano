@@ -179,7 +179,7 @@ function (_Component) {
           url = _this$state2.url,
           playTime = _this$state2.playTime;
       return React.createElement("div", null, React.createElement(ItemImg, {
-        url: mediaImgConfig(url, 'img'),
+        url: url ? mediaImgConfig(url, 'img') : '',
         imgSize: "200X1200",
         onChange: this.selectImg,
         onDel: this.delImg

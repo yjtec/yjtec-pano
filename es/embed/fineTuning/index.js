@@ -359,7 +359,7 @@ function (_React$Component) {
             rx: data.rx,
             ry: data.ry,
             rz: data.rz,
-            scale: this.props.embedType == 4 && data.scale < 1 && data.scale != 0 ? 70 : data.scale
+            scale: this.props.embedType == 4 && data.scale < 1 && data.scale != 0 ? 40 : data.scale
           }, function () {
             _this2.runChange();
           });
@@ -487,7 +487,7 @@ function (_React$Component) {
         className: "".concat(this.state.editType == 1 && style.seleased)
       }, "\u7EC6\u8282\u8C03\u6574")), React.createElement("div", {
         className: style.spacing
-      }), this.state.editType == 1 ? trim : align, React.createElement("div", {
+      }), this.props.embedType == 4 && this.state.editType == 2 && align, (this.props.embedType == 2 || this.props.embedType == 3 || this.state.editType == 1) && trim, React.createElement("div", {
         className: style.spacing
       }), React.createElement("div", {
         className: "".concat(style.box, " ").concat(style.bg),

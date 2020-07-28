@@ -48,7 +48,7 @@ export default class FineTuning extends React.Component{
           rx:data.rx,
           ry:data.ry,
           rz:data.rz,
-          scale:(this.props.embedType == 4 && data.scale < 1 && data.scale != 0) ? 70 : data.scale,
+          scale:(this.props.embedType == 4 && data.scale < 1 && data.scale != 0) ? 40 : data.scale,
         },()=>{
           this.runChange()
         })
@@ -356,7 +356,8 @@ export default class FineTuning extends React.Component{
             
           </div>
           <div className={style.spacing}></div>
-          {this.state.editType == 1 ? trim : align}
+          {this.props.embedType == 4 && this.state.editType == 2 && align}
+          {(this.props.embedType == 2 || this.props.embedType == 3 || this.state.editType == 1) && trim}
           <div className={style.spacing}></div>
           <div className={`${style.box} ${style.bg}`} style={{position:'absolute', bottom:'0'}}>
             <div className={style.boxTitle} onClick={()=>this.reset()}>
