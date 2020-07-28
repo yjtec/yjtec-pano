@@ -141,7 +141,7 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement(ItemImg, {
-        url: mediaImgConfig(pc_img, 'img'),
+        url: pc_img ? mediaImgConfig(pc_img, 'img') : '',
         imgSize: "300X300",
         onChange: this.pcSelectMedia,
         onDel: this.pcDel
@@ -174,7 +174,7 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement(ItemImg, {
-        url: mediaImgConfig(app_img, 'img'),
+        url: app_img ? mediaImgConfig(app_img, 'img') : '',
         imgSize: "300X300",
         onChange: this.appSelectMedia,
         onDel: this.appDel

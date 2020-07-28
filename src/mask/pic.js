@@ -56,7 +56,7 @@ class Pic extends Component {
           <div style={{clear:'both'}}></div>
         </div>
         <ItemImg 
-          url={mediaImgConfig(url,'img')}
+          url={url ? mediaImgConfig(url,'img') : ''}
           imgSize='500X500'
           onChange={this.selectImg}
           onDel={this.delImg}

@@ -80,7 +80,7 @@ class PromptEdit extends Component {
             <div style={{clear:'both'}}></div>
           </div>
           <ItemImg 
-            url={mediaImgConfig(pc_img,'img')}
+            url={pc_img ? mediaImgConfig(pc_img,'img') : ''}
             imgSize='300X300'
             onChange={this.pcSelectMedia}
             onDel={this.pcDel}
@@ -101,7 +101,7 @@ class PromptEdit extends Component {
             <div style={{clear:'both'}}></div>
           </div>
           <ItemImg 
-            url={mediaImgConfig(app_img,'img')}
+            url={app_img ? mediaImgConfig(app_img,'img') : ''}
             imgSize='300X300'
             onChange={this.appSelectMedia}
             onDel={this.appDel}
