@@ -473,21 +473,16 @@ function (_React$Component) {
         }
       }, React.createElement("div", {
         className: "".concat(style.fine_tuning_title, " ").concat(style.bg)
-      }, this.props.embedType == 4 ? React.createElement("div", null, React.createElement("span", {
-        className: "".concat(this.state.editType == 1 && style.seleased),
-        onClick: function onClick() {
-          return _this3.switch(1);
-        }
-      }, "\u7EC6\u8282\u8C03\u6574"), React.createElement("span", {
+      }, this.props.embedType == 4 ? React.createElement("span", {
         className: "".concat(this.state.editType == 2 && style.seleased),
         onClick: function onClick() {
           return _this3.switch(2);
         }
-      }, "\u4F4D\u7F6E\u5BF9\u9F50")) : React.createElement("span", {
+      }, "\u4F4D\u7F6E\u5BF9\u9F50") : React.createElement("span", {
         className: "".concat(this.state.editType == 1 && style.seleased)
       }, "\u7EC6\u8282\u8C03\u6574")), React.createElement("div", {
         className: style.spacing
-      }), this.props.embedType == 4 && this.state.editType == 2 && align, (this.props.embedType == 2 || this.props.embedType == 3 || this.state.editType == 1) && trim, React.createElement("div", {
+      }), this.props.embedType == 4 && align, (this.props.embedType == 2 || this.props.embedType == 3 || this.state.editType == 1) && trim, React.createElement("div", {
         className: style.spacing
       }), React.createElement("div", {
         className: "".concat(style.box, " ").concat(style.bg),

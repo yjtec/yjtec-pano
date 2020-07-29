@@ -346,17 +346,14 @@ export default class FineTuning extends React.Component{
         <div className={style.edit} style={{display:(this.props.visible == true && this.props.embedType != 1) ? 'block' : 'none'}}>
           <div className={`${style.fine_tuning_title} ${style.bg}`}>
             {this.props.embedType == 4 ? (
-              <div>
-                <span className={`${this.state.editType == 1 && style.seleased}`} onClick={()=>this.switch(1)}>细节调整</span>
-                <span className={`${this.state.editType == 2 && style.seleased}`} onClick={()=>this.switch(2)}>位置对齐</span>
-              </div>
+              <span className={`${this.state.editType == 2 && style.seleased}`} onClick={()=>this.switch(2)}>位置对齐</span>
             ) : (
               <span className={`${this.state.editType == 1 && style.seleased}`}>细节调整</span>
             )}
             
           </div>
           <div className={style.spacing}></div>
-          {this.props.embedType == 4 && this.state.editType == 2 && align}
+          {this.props.embedType == 4 && align}
           {(this.props.embedType == 2 || this.props.embedType == 3 || this.state.editType == 1) && trim}
           <div className={style.spacing}></div>
           <div className={`${style.box} ${style.bg}`} style={{position:'absolute', bottom:'0'}}>
