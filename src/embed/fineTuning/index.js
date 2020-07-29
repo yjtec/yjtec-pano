@@ -1,5 +1,5 @@
 import React,{Fragment} from 'react';
-import {Input,Button} from 'antd';
+import {InputNumber,Button} from 'antd';
 import IconFont from '@/components/IconFont';
 import style from './style.less';
 import LangTap from '@/utils/langTap';
@@ -227,28 +227,28 @@ export default class FineTuning extends React.Component{
     switch(type) {
       case 'rx':
         this.setState({
-          rx: e.target.value 
+          rx: e 
         },()=>{
           this.runChange()
         });
         break;
       case 'ry':
         this.setState({
-          ry: e.target.value 
+          ry: e
         },()=>{
           this.runChange()
         });
         break;
       case 'rz':
         this.setState({
-          rz: e.target.value 
+          rz: e
         },()=>{
           this.runChange()
         });
         break;
       case 'scale':
         this.setState({
-          scale: e.target.value 
+          scale: e
         },()=>{
           this.runChange()
         });
@@ -312,25 +312,25 @@ export default class FineTuning extends React.Component{
         <div className={`${style.item}`}>
           <span>水平视场(HFOV)</span>
           <div className={style.inputDiv}>
-            <Input value={scale} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('scale',e)} />
+            <InputNumber min={1} max={300} value={scale} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('scale',e)} />
           </div>
         </div>
         <div className={`${style.item}`}>
           <span>X轴(Yaw)</span>
           <div className={style.inputDiv}>
-            <Input value={rx} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('rx',e)} />
+            <InputNumber min={-360} max={360} value={rx} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('rx',e)} />
           </div>
         </div>
         <div className={`${style.item}`}>
           <span>Y轴(Pitch)</span>
           <div className={style.inputDiv}>
-            <Input value={ry} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('ry',e)} />
+            <InputNumber min={-360} max={360} value={ry} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('ry',e)} />
           </div>
         </div>
         <div className={`${style.item}`}>
           <span>Z轴(Roll)</span>
           <div className={style.inputDiv}>
-            <Input value={rz} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('rz',e)} />
+            <InputNumber min={-360} max={360} value={rz} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('rz',e)} />
           </div>
         </div>
         <div className={style.help}>

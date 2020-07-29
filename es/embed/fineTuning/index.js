@@ -1,7 +1,7 @@
 import "antd/es/button/style";
 import _Button from "antd/es/button";
-import "antd/es/input/style";
-import _Input from "antd/es/input";
+import "antd/es/input-number/style";
+import _InputNumber from "antd/es/input-number";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
@@ -283,7 +283,7 @@ function (_React$Component) {
       switch (type) {
         case 'rx':
           _this.setState({
-            rx: e.target.value
+            rx: e
           }, function () {
             _this.runChange();
           });
@@ -292,7 +292,7 @@ function (_React$Component) {
 
         case 'ry':
           _this.setState({
-            ry: e.target.value
+            ry: e
           }, function () {
             _this.runChange();
           });
@@ -301,7 +301,7 @@ function (_React$Component) {
 
         case 'rz':
           _this.setState({
-            rz: e.target.value
+            rz: e
           }, function () {
             _this.runChange();
           });
@@ -310,7 +310,7 @@ function (_React$Component) {
 
         case 'scale':
           _this.setState({
-            scale: e.target.value
+            scale: e
           }, function () {
             _this.runChange();
           });
@@ -414,7 +414,9 @@ function (_React$Component) {
         className: "".concat(style.item)
       }, React.createElement("span", null, "\u6C34\u5E73\u89C6\u573A(HFOV)"), React.createElement("div", {
         className: style.inputDiv
-      }, React.createElement(_Input, {
+      }, React.createElement(_InputNumber, {
+        min: 1,
+        max: 300,
         value: scale,
         placeholder: "\u8BF7\u8F93\u5165\u5750\u6807\u503C",
         onChange: function onChange(e) {
@@ -424,7 +426,9 @@ function (_React$Component) {
         className: "".concat(style.item)
       }, React.createElement("span", null, "X\u8F74(Yaw)"), React.createElement("div", {
         className: style.inputDiv
-      }, React.createElement(_Input, {
+      }, React.createElement(_InputNumber, {
+        min: -360,
+        max: 360,
         value: rx,
         placeholder: "\u8BF7\u8F93\u5165\u5750\u6807\u503C",
         onChange: function onChange(e) {
@@ -434,7 +438,9 @@ function (_React$Component) {
         className: "".concat(style.item)
       }, React.createElement("span", null, "Y\u8F74(Pitch)"), React.createElement("div", {
         className: style.inputDiv
-      }, React.createElement(_Input, {
+      }, React.createElement(_InputNumber, {
+        min: -360,
+        max: 360,
         value: ry,
         placeholder: "\u8BF7\u8F93\u5165\u5750\u6807\u503C",
         onChange: function onChange(e) {
@@ -444,7 +450,9 @@ function (_React$Component) {
         className: "".concat(style.item)
       }, React.createElement("span", null, "Z\u8F74(Roll)"), React.createElement("div", {
         className: style.inputDiv
-      }, React.createElement(_Input, {
+      }, React.createElement(_InputNumber, {
+        min: -360,
+        max: 360,
         value: rz,
         placeholder: "\u8BF7\u8F93\u5165\u5750\u6807\u503C",
         onChange: function onChange(e) {

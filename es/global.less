@@ -150,7 +150,7 @@ li{
 //input通用样式
 .inputDiv{
     :global{
-        .ant-input{
+        .ant-input,.ant-input-number-input{
             border-radius: 3px;
             background: @input-bg;
             border:1px solid @input-border-color;
@@ -161,6 +161,12 @@ li{
         }
         .ant-input-password-icon{
             color: @font-color;
+        }
+
+        .ant-input-number{
+            width: 100%;
+            background-color: @input-bg;
+            border:none;
         }
     }
 }
