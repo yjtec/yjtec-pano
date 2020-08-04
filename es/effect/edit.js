@@ -1,25 +1,7 @@
-import "antd/es/row/style";
-import _Row from "antd/es/row";
-import "antd/es/col/style";
-import _Col from "antd/es/col";
-import "antd/es/icon/style";
-import _Icon from "antd/es/icon";
 import "antd/es/button/style";
 import _Button from "antd/es/button";
-import "antd/es/select/style";
-import _Select from "antd/es/select";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
-
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
-
-function _iterableToArrayLimit(arr, i) { if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) { return; } var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -54,8 +36,9 @@ import { mediaImgConfig } from '@/utils/oss.config';
 import { helpShow } from '@/utils/help';
 import Modal from '@/components/AllScene';
 import { Obj } from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
-var Option = _Select.Option;
+import { ItemImg } from 'yjtec-pano';
+import Type from './type';
+import Size from './size';
 
 var Effect =
 /*#__PURE__*/
@@ -74,50 +57,76 @@ function (_React$Component) {
     }
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Effect)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = _defineProperty({
-      isShow: false,
-      isShowImg: false,
-      userMediaVisible: false,
-      imgUrl: '',
+    _this.state = {
+      imageurl: '',
+      type: 'custom',
+      effect_size: 1,
+      ath: 0,
+      atv: 0,
       sceneListVisible: false,
       categoryArr: [],
       scenesArr: []
-    }, "userMediaVisible", false);
+    };
 
-    _this.openMediaModal = function () {
-      _this.setState({
-        userMediaVisible: true
-      });
+    _this.handleChange = function (value) {
+      if (value == 'custom' || value == 'sunlight') {
+        _this.setState({
+          imageurl: '',
+          type: value
+        }, function () {
+          return _this.request();
+        });
+      } else {
+        _this.setState({
+          imageurl: value,
+          type: 'system'
+        }, function () {
+          return _this.request();
+        });
+      }
     };
 
     _this.selectMedia = function (arr) {
       //添加自定义图片时
-      _this.request({
-        imageurl: arr[0].path.path
-      });
-
-      _this.closeMediaModal();
-    };
-
-    _this.closeMediaModal = function () {
       _this.setState({
-        userMediaVisible: false
+        imageurl: arr[0].path.path
+      }, function () {
+        _this.request();
       });
     };
 
     _this.delSkyImg = function () {
-      _this.request({
-        imageurl: ''
-      });
-
       _this.setState({
-        isShowImg: false
+        imageurl: ''
+      }, function () {
+        _this.request();
       });
     };
 
-    _this.request = function (data) {
+    _this.setEffectSize = function (e) {
+      _this.setState({
+        effect_size: e.target.value
+      }, function () {
+        _this.request();
+      });
+    };
+
+    _this.request = function () {
       //请求
-      _this.props.onEdit(data);
+      var _this$state = _this.state,
+          imageurl = _this$state.imageurl,
+          type = _this$state.type,
+          effect_size = _this$state.effect_size,
+          ath = _this$state.ath,
+          atv = _this$state.atv;
+
+      _this.props.onEdit({
+        imageurl: imageurl,
+        type: type,
+        effect_size: effect_size,
+        ath: ath,
+        atv: atv
+      });
     };
 
     _this.appliedToScene = function () {
@@ -144,20 +153,15 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var _this$props = this.props,
-          _this$props$effect = _this$props.effect,
-          data = _this$props$effect.data,
-          customUrl = _this$props$effect.customUrl,
+          data = _this$props.effect.data,
           category = _this$props.category,
           scene = _this$props.scene;
-
-      if (data.imageurl) {
-        this.setState({
-          isShow: true,
-          isShowImg: customUrl != ''
-        });
-      }
-
       this.setState({
+        imageurl: data.imageurl ? data.imageurl : '',
+        type: data.type ? data.type : 'custom',
+        effect_size: data.effect_size ? data.effect_size : 1,
+        ath: data.ath ? data.ath : 0,
+        atv: data.atv ? data.atv : 0,
         categoryArr: category,
         scenesArr: scene
       });
@@ -166,6 +170,7 @@ function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
       var _this$props2 = this.props,
+          data = _this$props2.effect.data,
           category = _this$props2.category,
           scene = _this$props2.scene;
 
@@ -175,84 +180,58 @@ function (_React$Component) {
           scenesArr: scene
         }));
       }
-    }
-  }, {
-    key: "handleChange",
-    value: function handleChange(key, value) {
-      var tmp = {};
-      tmp[key] = value;
 
-      if (key == 'imageurl') {
-        this.setState({
-          isShow: true
-        });
-
-        if (value == 'custom') {
-          this.setState({
-            isShowImg: true
-          });
-          return;
-        } else {
-          this.setState({
-            isShowImg: false
-          });
+      if (data) {
+        if (!Obj.isEqual(prevProps.effect.data, data)) {
+          this.setState(_objectSpread({}, this.state, {
+            imageurl: data.imageurl ? data.imageurl : '',
+            type: data.type ? data.type : 'custom',
+            effect_size: data.effect_size ? data.effect_size : 1,
+            ath: data.ath ? data.ath : 0,
+            atv: data.atv ? data.atv : 0
+          }));
         }
       }
-
-      this.request(tmp);
-    } //打开素材库选择窗口
-
+    }
   }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
       var _this$state2 = this.state,
-          isShow = _this$state2.isShow,
-          isShowImg = _this$state2.isShowImg,
-          imgUrl = _this$state2.imgUrl,
           sceneListVisible = _this$state2.sceneListVisible,
           categoryArr = _this$state2.categoryArr,
           scenesArr = _this$state2.scenesArr,
-          userMediaVisible = _this$state2.userMediaVisible;
+          effect_size = _this$state2.effect_size,
+          type = _this$state2.type,
+          imageurl = _this$state2.imageurl;
       var _this$props3 = this.props,
-          _this$props3$effect = _this$props3.effect,
-          editItem = _this$props3$effect.editItem,
-          data = _this$props3$effect.data,
+          data = _this$props3.effect.data,
           loading = _this$props3.loading,
           scene = _this$props3.scene,
           category = _this$props3.category,
           systemLists = _this$props3.media.systemLists,
           SysFileList = _this$props3.SysFileList;
-      var imageUrl = SysFileList.map(function (item) {
+      var snowAll = SysFileList.map(function (item) {
         return {
           label: item.name,
           'value': item.path.path
         };
-      });
+      }); //选择框value
 
-      var _imageUrl$filter = imageUrl.filter(function (item) {
-        return item.value == data.imageurl;
-      }),
-          _imageUrl$filter2 = _slicedToArray(_imageUrl$filter, 1),
-          re = _imageUrl$filter2[0];
+      var selectType = '';
 
-      var selectValue = '';
-      var customUrl = '';
-
-      if (re) {
-        customUrl = '';
-        selectValue = re.value;
+      if (type == 'system') {
+        selectType = imageurl;
       } else {
-        customUrl = data.imageurl;
-        selectValue = 'custom';
+        selectType = type;
       }
 
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title
       }, React.createElement("span", {
         className: style.checkboxC
-      }, selectValue ? React.createElement("div", {
+      }, imageurl ? React.createElement("div", {
         onClick: function onClick() {
           return _this2.delSkyImg();
         }
@@ -280,24 +259,36 @@ function (_React$Component) {
         }
       })), React.createElement("div", {
         className: style.select
-      }, React.createElement(_Select, {
-        value: selectValue,
-        name: "imageurl",
-        placeholder: "\u8BF7\u9009\u62E9\u7279\u6548",
+      }, React.createElement(Type, {
+        value: selectType,
+        effectList: snowAll,
+        onChange: this.handleChange
+      })), type == 'sunlight' ? React.createElement("div", {
         style: {
-          width: '100%'
+          padding: '20px 0 10px',
+          cursor: 'pointer',
+          color: '#108EE9'
         },
-        onChange: function onChange(value) {
-          return _this2.handleChange('imageurl', value);
+        onClick: function onClick() {
+          return _this2.props.onSetView();
         }
-      }, imageUrl.map(function (item, index) {
-        return React.createElement(Option, {
-          key: index,
-          value: item.value
-        }, item.label);
-      }), React.createElement(Option, {
-        value: "custom"
-      }, "\u81EA\u5B9A\u4E49"))), React.createElement("div", {
+      }, "\u62D6\u52A8\u592A\u9633\u5149\uFF0C\u79FB\u52A8\u4F4D\u7F6E") : React.createElement("div", {
+        style: {
+          padding: '20px 0'
+        }
+      }, React.createElement(Size, {
+        value: effect_size,
+        onChange: this.setEffectSize
+      })), type == 'custom' && React.createElement("div", {
+        style: {
+          padding: '0 0 20px'
+        }
+      }, React.createElement(ItemImg, {
+        url: data && data.imageurl ? mediaImgConfig(data.imageurl, 'img') : '',
+        imgSize: "500X500",
+        onChange: this.selectMedia,
+        onDel: this.delSkyImg
+      })), React.createElement("div", {
         className: style.title,
         style: {
           margin: '10px 0 0 0',
@@ -317,51 +308,7 @@ function (_React$Component) {
           color: '#fff',
           borderColor: '#008aff'
         }
-      }, "\u9009\u62E9\u573A\u666F")), "\u5E94\u7528\u5230:")), (isShowImg || selectValue == 'custom') && React.createElement(ItemBox, null, React.createElement(_Row, null, React.createElement(_Col, {
-        span: 24,
-        className: style.mb10
-      }, customUrl != '' ? React.createElement("div", {
-        className: style.defaultImg
-      }, React.createElement("img", {
-        alt: "aa",
-        src: mediaImgConfig(customUrl, 'img'),
-        className: style.img
-      }), React.createElement("div", {
-        className: style.delimg,
-        onClick: function onClick() {
-          return _this2.delSkyImg();
-        }
-      }, React.createElement(_Icon, {
-        type: "delete"
-      }))) : React.createElement("div", {
-        className: style.defaultImg
-      }, React.createElement("span", null, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"))), React.createElement(_Col, {
-        span: 12
-      }, React.createElement(_Button, {
-        type: "primary",
-        onClick: this.openMediaModal
-      }, "\u9009\u62E9\u56FE\u7247")), React.createElement(_Col, {
-        span: 12,
-        className: style.prompt
-      }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), "500X500"), React.createElement(UserMedia, {
-        title: "\u56FE\u7247\u7D20\u6750\u5E93",
-        mediaType: "1",
-        multipleChoices: false,
-        width: "900px",
-        visible: userMediaVisible,
-        onChange: this.selectMedia,
-        onCancel: this.closeMediaModal
-      }))), React.createElement(React.Fragment, null, React.createElement(ItemBox, null, editItem.map(function (item) {
-        return React.createElement("div", {
-          key: item.key,
-          className: style.list
-        }, React.createElement("p", null, item.title), React.createElement(SliderSingle, _extends({}, item.slider, {
-          defaultValue: data[item.key] ? data[item.key] : item.slider.defaultValue,
-          onChange: function onChange(value) {
-            return _this2.handleChange(item.key, value);
-          }
-        })));
-      }))), React.createElement(Modal, {
+      }, "\u9009\u62E9\u573A\u666F")), "\u5E94\u7528\u5230:")), React.createElement(Modal, {
         visible: sceneListVisible,
         title: "\u9009\u62E9\u573A\u666F",
         onCancel: this.onCancelAppliedToScene,

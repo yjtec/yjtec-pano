@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'dva';
 import {ItemBox,Right,Help} from '@/components/';
 import {SliderSingle} from '@/components/Form';
-import {List,Avatar,Select,Radio,Row,Col,Icon,Checkbox,Button} from 'antd';
+import {Button} from 'antd';
 import {Kr} from '@/utils/kr/';
 import style from './style.less';
 import AllScene from '@/components/Media/scene';
@@ -10,37 +10,39 @@ import {mediaImgConfig} from '@/utils/oss.config';
 import {helpShow} from '@/utils/help';
 import Modal from '@/components/AllScene';
 import {Obj} from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
 
-const Option = Select.Option;
+import { ItemImg } from 'yjtec-pano';
+import Type from './type';
+import Size from './size';
+
 class Effect extends React.Component{
   state={
-    isShow:false,
-    isShowImg:false,
-    userMediaVisible:false,
-    imgUrl: '',
+    imageurl:'',
+    type:'custom',
+    effect_size:1,
+    ath:0,
+    atv:0,
+
     sceneListVisible: false,
     categoryArr:[],
-    scenesArr:[],
-    userMediaVisible:false,
+    scenesArr:[]
   }
   componentDidMount(){
-    const {effect:{data,customUrl},category,scene} = this.props;
-    if (data.imageurl) {
-      this.setState({
-        isShow:true,
-        isShowImg: customUrl != ''
-      })
-    }
-
+    const {effect:{data},category,scene} = this.props;
     this.setState({
+      imageurl:data.imageurl ? data.imageurl : '',
+      type:data.type ? data.type : 'custom',
+      effect_size:data.effect_size ? data.effect_size : 1,
+      ath:data.ath ? data.ath : 0,
+      atv:data.atv ? data.atv : 0,
+
       categoryArr: category,
       scenesArr: scene
     })
   }
 
   componentDidUpdate(prevProps,prevState) {
-    const {category,scene} = this.props;
+    const {effect:{data},category,scene} = this.props;
     if (!Obj.isEqual(prevState.categoryArr,category) || !Obj.isEqual(prevState.scenesArr,scene)) {
       this.setState({
         ...this.state,
@@ -48,61 +50,69 @@ class Effect extends React.Component{
         scenesArr:scene
       })
     }
-  }
-  
-  handleChange(key,value){
-    var tmp = {};
-    tmp[key] =value;   
-    if(key == 'imageurl'){
-      this.setState({
-        isShow:true
-      })
-      if(value == 'custom'){
+    if (data) {
+      if (!Obj.isEqual(prevProps.effect.data,data)) {
         this.setState({
-          isShowImg:true
-        })
-        return;
-      }else{
-        this.setState({
-          isShowImg:false
+          ...this.state,
+          imageurl:data.imageurl ? data.imageurl : '',
+          type:data.type ? data.type : 'custom',
+          effect_size:data.effect_size ? data.effect_size : 1,
+          ath:data.ath ? data.ath : 0,
+          atv:data.atv ? data.atv : 0,
         })
       }
     }
-    this.request(tmp);
+  }
+  
+  handleChange = value => {
+    if(value == 'custom' || value == 'sunlight'){
+      this.setState({
+        imageurl: '',
+        type: value,
+      },()=>this.request())
+    }else{
+      this.setState({
+        imageurl: value,
+        type: 'system'
+      },()=>this.request())
+    }
   }
 
-  //打开素材库选择窗口
-  openMediaModal = () => {
-    this.setState({
-      userMediaVisible:true
-    })
-  }
   //选择素材
   selectMedia = (arr) => {  //添加自定义图片时
-    this.request({
-      imageurl:arr[0].path.path
-    })
-    this.closeMediaModal();
-  }
-  //关闭素材库选择窗口
-  closeMediaModal = () => {
     this.setState({
-      userMediaVisible:false
+      imageurl:arr[0].path.path
+    },()=>{
+      this.request()
     })
   }
 
   //删除自定义图片
   delSkyImg = () => { 
-    this.request({
-      imageurl:''
-    });
     this.setState({
-      isShowImg:false
+      imageurl:''
+    },()=>{
+      this.request()
     })
   }
 
-  request = (data) => { //请求
-    this.props.onEdit(data);
+  setEffectSize = e => {
+    this.setState({
+      effect_size: e.target.value
+    },()=>{
+      this.request();
+    });
+  }
+
+  request = () => { //请求
+    const {imageurl,type,effect_size,ath,atv} = this.state;
+    this.props.onEdit({
+      imageurl:imageurl,
+      type:type,
+      effect_size:effect_size,
+      ath:ath,
+      atv:atv
+    });
   }
 
   //应用到所有场景
@@ -124,33 +134,31 @@ class Effect extends React.Component{
   }
 
   render(){
-    const {isShow,isShowImg,imgUrl,sceneListVisible,categoryArr,scenesArr,userMediaVisible} = this.state;
+    const {sceneListVisible,categoryArr,scenesArr,effect_size,type,imageurl} = this.state;
     const {
-      effect:{editItem,data},
+      effect:{data},
       loading,
       scene,
       category,
       media:{systemLists},
       SysFileList
     } = this.props;
-    const imageUrl =SysFileList.map(item => ({label:item.name,'value':item.path.path}));
 
-    const [re] = imageUrl.filter(item => item.value == data.imageurl);
-    let selectValue = '';
-    let customUrl = '';
-    if(re){
-      customUrl = '';
-      selectValue = re.value;
+    const snowAll =SysFileList.map(item => ({label:item.name,'value':item.path.path}));
+
+    //选择框value
+    let selectType = '';
+    if (type == 'system') {
+      selectType = imageurl
     }else{
-      customUrl = data.imageurl
-      selectValue = 'custom';
+      selectType = type
     }
     return(
       <div>
         <ItemBox>
           <div className={style.title}>
             <span className={style.checkboxC}>
-              {selectValue ? <div onClick={()=>this.delSkyImg()}>删除</div> : ''}
+              {imageurl ? <div onClick={()=>this.delSkyImg()}>删除</div> : ''}
             </span>
             <span style={{float:'left'}}>特效</span>
             {helpShow && 
@@ -163,13 +171,33 @@ class Effect extends React.Component{
             <div style={{clear:'both'}}></div>
           </div>
           <div className={style.select}>
-            <Select value={selectValue} name='imageurl' placeholder="请选择特效" style={{width:'100%'}} onChange={value => this.handleChange('imageurl',value)}>
-              {imageUrl.map((item,index)=> (
-                <Option key={index} value={item.value}>{item.label}</Option>
-              ))}
-              <Option value="custom" >自定义</Option>
-            </Select>
+            <Type value={selectType} effectList={snowAll} onChange={this.handleChange} />
           </div>
+
+          {type == 'sunlight' ? 
+            (
+              <div style={{padding:'20px 0 10px',cursor:'pointer',color:'#108EE9'}} onClick={()=>this.props.onSetView()}>
+                拖动太阳光，移动位置
+              </div>
+            ):(
+              <div style={{padding:'20px 0'}}>
+                <Size value={effect_size} onChange={this.setEffectSize} />
+              </div>
+            )
+          }
+
+          {type == 'custom' && (
+              <div style={{padding:'0 0 20px'}}>
+                <ItemImg 
+                  url={data && data.imageurl ? mediaImgConfig(data.imageurl,'img') : ''}
+                  imgSize='500X500'
+                  onChange={this.selectMedia}
+                  onDel={this.delSkyImg}
+                />
+              </div>
+            )
+          }
+          
           <div className={style.title} style={{margin:'10px 0 0 0',lineHeight:'22px'}}>
             <span className={style.checkboxC}>
               <Button onClick={()=>this.appliedToScene()} style={{padding:'0 5px',height:'auto',background:'none',fontSize:'12px',color:'#fff',borderColor: '#008aff'}}>
@@ -179,68 +207,23 @@ class Effect extends React.Component{
             应用到:
           </div>
         </ItemBox>
-        {
-          (isShowImg || selectValue == 'custom') && (
-            <ItemBox>
-              <Row>
-                <Col span={24} className={style.mb10}>
-                  {customUrl != '' ? 
-                    <div className={style.defaultImg}>
-                      <img alt='aa' src={mediaImgConfig(customUrl,'img')} className={style.img} />
-                      <div className={style.delimg} onClick={()=>this.delSkyImg()}>
-                        <Icon type="delete" />
-                      </div>
-                    </div>
-                    : 
-                    <div className={style.defaultImg}>
-                      <span>
-                        建议大小<br/>500X500
-                      </span>
-                    </div>
-                  }
-                </Col>
 
-                <Col span={12}>
-                  <Button type="primary" onClick={this.openMediaModal}>
-                    选择图片
-                  </Button>
-                </Col>
-                <Col span={12} className={style.prompt}>
-                  建议大小<br/>
-                  500X500
-                </Col>
-
-                <UserMedia
-                  title='图片素材库'
-                  mediaType='1'
-                  multipleChoices={false}
-                  width='900px'
-                  visible={userMediaVisible}
-                  onChange={this.selectMedia}
-                  onCancel={this.closeMediaModal}
-                />
-              </Row>
-            </ItemBox>
-          )
-        }
-        
-        <React.Fragment>
-          <ItemBox>
-            {editItem.map(item =>{
-              return (
-                <div key={item.key} className={style.list}>
-                  <p>{item.title}</p>
-                  <SliderSingle
-                    {...item.slider}
-                    defaultValue={data[item.key] ? data[item.key] : item.slider.defaultValue}
-                    onChange={value => this.handleChange(item.key,value)}
-                    />
-                </div>
-              )
-            })}
-          </ItemBox>
-        </React.Fragment>
-
+        {/*老的编辑方式
+        <ItemBox>
+          {editItem.map(item =>{
+            return (
+              <div key={item.key} className={style.list}>
+                <p>{item.title}</p>
+                <SliderSingle
+                  {...item.slider}
+                  defaultValue={data[item.key] ? data[item.key] : item.slider.defaultValue}
+                  onChange={value => this.handleChange(item.key,value)}
+                  />
+              </div>
+            )
+          })}
+        </ItemBox>
+        */}
         <Modal
           visible={sceneListVisible}
           title='选择场景'

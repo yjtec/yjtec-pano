@@ -96,7 +96,7 @@ function (_Component) {
         className: style.defaultImg
       }, React.createElement("img", {
         alt: "\u5C01\u9762\u56FE",
-        src: url,
+        src: url && url,
         className: style.img
       }), React.createElement("div", {
         className: style.delimg,
