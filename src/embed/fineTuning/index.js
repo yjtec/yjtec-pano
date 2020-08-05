@@ -5,6 +5,7 @@ import style from './style.less';
 import LangTap from '@/utils/langTap';
 import {schoolUrl} from '@/utils/url.config';
 import {helpShow} from '@/utils/help';
+
 const defaultData = {
   ath:0,  //左右
   atv:0,  //上下

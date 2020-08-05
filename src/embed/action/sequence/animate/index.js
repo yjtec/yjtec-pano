@@ -38,6 +38,13 @@ const inputNumber = [
     unit:'PX'
   },
 ]
+const defaultPlayTime = {
+  total:1,
+  time:1,
+  pertime:1,
+  fwidth:100,
+  fheight:100
+}
 class TypeAnimate extends Component{
   constructor(props) {
     super(props);
@@ -52,11 +59,11 @@ class TypeAnimate extends Component{
       this.state = {
         url:url ? url : '',
         playTime:[
-          total ? total :1,
-          time ? time :1,
-          pertime ? pertime:1,
-          playTime.fwidth ? playTime.fwidth : 100,
-          playTime.fheight ? playTime.fheight : 100,
+          total ? total : defaultPlayTime.total,
+          time ? time : defaultPlayTime.time,
+          pertime ? pertime: defaultPlayTime.pertime,
+          playTime.fwidth ? playTime.fwidth : defaultPlayTime.fwidth,
+          playTime.fheight ? playTime.fheight : defaultPlayTime.fheight,
         ]
       }
     }
@@ -68,8 +75,14 @@ class TypeAnimate extends Component{
     },this.runChange)
   }
   delImg=()=>{  //删除图片
+    let arr = Object.getOwnPropertyNames(defaultPlayTime);
+    let valArr = arr.map(item=>{
+      return defaultPlayTime[item]
+    })
+
     this.setState({
-      url:''
+      url:'',
+      playTime: valArr
     },this.runChange)
   }
   hanldeImg = (index,value) => {
@@ -104,7 +117,11 @@ class TypeAnimate extends Component{
   runChange = e => {
     const {url,playTime} = this.state;
     const {onChange} = this.props;
-    onChange({url:url,playTime:{total:playTime[0],time:playTime[1],pertime:playTime[2],fwidth:playTime[3],fheight:playTime[4]}});
+    if (url) {
+      onChange({url:url,playTime:{total:playTime[0],time:playTime[1],pertime:playTime[2],fwidth:playTime[3],fheight:playTime[4]}});
+    }else{
+      onChange({url:url,playTime:defaultPlayTime});
+    }
   }
 
   render(){
