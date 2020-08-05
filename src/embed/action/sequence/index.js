@@ -3,13 +3,20 @@ import {ItemBox} from '@/components/';
 import Animate from './animate';
 import style from '../style.less';
 
+const defaultPlayTime = {
+  total:1,
+  time:1,
+  pertime:1,
+  fwidth:100,
+  fheight:100
+}
 export default class Sequence extends React.Component{
   constructor(props) {
     super(props);
     const {actionData} = props;
     this.state = {
       url:(actionData && actionData.url) ? actionData.url : '',
-      playTime:(actionData && actionData.playTime) ? actionData.playTime : {total:1,time:1,pertime:1,fwidth:100,fheight:100},
+      playTime:(actionData && actionData.playTime) ? actionData.playTime : defaultPlayTime
     }
   }
 

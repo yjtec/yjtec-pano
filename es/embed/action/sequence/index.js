@@ -22,6 +22,13 @@ import React from 'react';
 import { ItemBox } from '@/components/';
 import Animate from './animate';
 import style from '../style.less';
+var defaultPlayTime = {
+  total: 1,
+  time: 1,
+  pertime: 1,
+  fwidth: 100,
+  fheight: 100
+};
 
 var Sequence =
 /*#__PURE__*/
@@ -61,13 +68,7 @@ function (_React$Component) {
     var actionData = props.actionData;
     _this.state = {
       url: actionData && actionData.url ? actionData.url : '',
-      playTime: actionData && actionData.playTime ? actionData.playTime : {
-        total: 1,
-        time: 1,
-        pertime: 1,
-        fwidth: 100,
-        fheight: 100
-      }
+      playTime: actionData && actionData.playTime ? actionData.playTime : defaultPlayTime
     };
     return _this;
   }

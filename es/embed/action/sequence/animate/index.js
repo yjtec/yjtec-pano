@@ -75,6 +75,13 @@ var inputNumber = [{
   },
   unit: 'PX'
 }];
+var defaultPlayTime = {
+  total: 1,
+  time: 1,
+  pertime: 1,
+  fwidth: 100,
+  fheight: 100
+};
 
 var TypeAnimate =
 /*#__PURE__*/
@@ -96,8 +103,14 @@ function (_Component) {
 
     _this.delImg = function () {
       //删除图片
+      var arr = Object.getOwnPropertyNames(defaultPlayTime);
+      var valArr = arr.map(function (item) {
+        return defaultPlayTime[item];
+      });
+
       _this.setState({
-        url: ''
+        url: '',
+        playTime: valArr
       }, _this.runChange);
     };
 
@@ -137,16 +150,24 @@ function (_Component) {
           url = _this$state.url,
           playTime = _this$state.playTime;
       var onChange = _this.props.onChange;
-      onChange({
-        url: url,
-        playTime: {
-          total: playTime[0],
-          time: playTime[1],
-          pertime: playTime[2],
-          fwidth: playTime[3],
-          fheight: playTime[4]
-        }
-      });
+
+      if (url) {
+        onChange({
+          url: url,
+          playTime: {
+            total: playTime[0],
+            time: playTime[1],
+            pertime: playTime[2],
+            fwidth: playTime[3],
+            fheight: playTime[4]
+          }
+        });
+      } else {
+        onChange({
+          url: url,
+          playTime: defaultPlayTime
+        });
+      }
     };
 
     var _playTime = props.playTime,
@@ -163,7 +184,7 @@ function (_Component) {
           pertime = _playTime.pertime;
       _this.state = {
         url: _url ? _url : '',
-        playTime: [total ? total : 1, time ? time : 1, pertime ? pertime : 1, _playTime.fwidth ? _playTime.fwidth : 100, _playTime.fheight ? _playTime.fheight : 100]
+        playTime: [total ? total : defaultPlayTime.total, time ? time : defaultPlayTime.time, pertime ? pertime : defaultPlayTime.pertime, _playTime.fwidth ? _playTime.fwidth : defaultPlayTime.fwidth, _playTime.fheight ? _playTime.fheight : defaultPlayTime.fheight]
       };
     }
 
