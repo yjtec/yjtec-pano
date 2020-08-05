@@ -90,7 +90,11 @@ class Effect extends React.Component{
   //删除自定义图片
   delSkyImg = () => { 
     this.setState({
-      imageurl:''
+      imageurl:'',
+      type:'custom',
+      effect_size:1,
+      ath:0,
+      atv:0
     },()=>{
       this.request()
     })
@@ -158,7 +162,7 @@ class Effect extends React.Component{
         <ItemBox>
           <div className={style.title}>
             <span className={style.checkboxC}>
-              {imageurl ? <div onClick={()=>this.delSkyImg()}>删除</div> : ''}
+              {(imageurl || type == 'sunlight') ? <div onClick={()=>this.delSkyImg()}>删除</div> : ''}
             </span>
             <span style={{float:'left'}}>特效</span>
             {helpShow && 

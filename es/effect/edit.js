@@ -97,7 +97,11 @@ function (_React$Component) {
 
     _this.delSkyImg = function () {
       _this.setState({
-        imageurl: ''
+        imageurl: '',
+        type: 'custom',
+        effect_size: 1,
+        ath: 0,
+        atv: 0
       }, function () {
         _this.request();
       });
@@ -231,7 +235,7 @@ function (_React$Component) {
         className: style.title
       }, React.createElement("span", {
         className: style.checkboxC
-      }, imageurl ? React.createElement("div", {
+      }, imageurl || type == 'sunlight' ? React.createElement("div", {
         onClick: function onClick() {
           return _this2.delSkyImg();
         }
