@@ -176,7 +176,7 @@ class Effect extends React.Component{
 
           {type == 'sunlight' ? 
             (
-              <div style={{padding:'20px 0 10px',cursor:'pointer',color:'#108EE9'}} onClick={()=>this.props.onSetView()}>
+              <div style={{padding:'20px 0 10px',cursor:'pointer',color:'#108EE9',fontSize:'14px'}} onClick={()=>this.props.onSetView()}>
                 拖动太阳光，移动位置
               </div>
             ):(
@@ -190,7 +190,7 @@ class Effect extends React.Component{
               <div style={{padding:'0 0 20px'}}>
                 <ItemImg 
                   url={data && data.imageurl ? mediaImgConfig(data.imageurl,'img') : ''}
-                  imgSize='500X500'
+                  imgSize='100X100'
                   onChange={this.selectMedia}
                   onDel={this.delSkyImg}
                 />

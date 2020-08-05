@@ -267,7 +267,8 @@ function (_React$Component) {
         style: {
           padding: '20px 0 10px',
           cursor: 'pointer',
-          color: '#108EE9'
+          color: '#108EE9',
+          fontSize: '14px'
         },
         onClick: function onClick() {
           return _this2.props.onSetView();
@@ -285,7 +286,7 @@ function (_React$Component) {
         }
       }, React.createElement(ItemImg, {
         url: data && data.imageurl ? mediaImgConfig(data.imageurl, 'img') : '',
-        imgSize: "500X500",
+        imgSize: "100X100",
         onChange: this.selectMedia,
         onDel: this.delSkyImg
       })), React.createElement("div", {
