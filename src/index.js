@@ -12,6 +12,7 @@ import LoadsceneAction from './loadsceneAction';
 import ViewPwd from './viewPwd';
 import Gyro from './gyro';
 import OpenAnimation from './openAnimation';
+import SandTable from './sandTable';
 //单组件
 import ItemImg from './components/ItemImg';
 export {
@@ -30,6 +31,7 @@ export {
   ViewPwd,
   Gyro,
   OpenAnimation,
+  SandTable,
   //单组件
   ItemImg,
 }

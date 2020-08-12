@@ -1,0 +1,37 @@
+@import url(../../global.less);
+
+.title{
+    font-size: @font-size-12;
+    color: @font-color;
+    margin-bottom: 5px;
+
+    .checkboxC{
+        float: right;
+        .checkbox{
+            font-size: @font-size-12;
+            color: @font-color;
+        }
+    }    
+}
+
+.panoLists{
+    :global{
+        .ant-row{
+            margin-right:-3px;
+            margin-left:-3px;
+        }
+    }
+    .panoList{
+        padding:0 3px 6px;
+        span{
+            color: @font-color;
+            font-size: @font-size-12;
+            text-align: center;
+            display: block;
+            line-height: 24px;
+            text-overflow: ellipsis;
+            white-space:nowrap;
+            overflow: hidden;
+        }
+    }
+}

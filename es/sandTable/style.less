@@ -1,0 +1,124 @@
+@import url(../global.less);
+:global{
+    .ant-drawer-body{
+        padding: 0
+    }
+    .ant-drawer-wrapper-body{
+        padding: 0;
+        background:@tool-bg;
+    }
+}
+.module{
+    padding: 10px 20px;
+
+}
+.title{
+    font-size: @font-size-12;
+    color: @font-color;
+    margin-bottom: 5px;
+
+    .checkboxC{
+        float: right;
+        .checkbox{
+            font-size: @font-size-12;
+            color: @font-color;
+        }
+    }
+}
+.defaultImg{
+    width:200px;
+    height:200px;
+    padding: 10px;
+    text-align:center;
+    background:@click-bg;
+    color:@font-color;
+    line-height: 180px;
+    border-radius: @default-border-radius;
+    span{
+        line-height: 20px;
+        display: block;
+        padding-top:70px;
+    }
+    .delimg{
+        width: 30px;
+        height: 30px;
+        border-radius: @default-border-radius;
+        background: @edit-bg;
+        color: @font-color;
+        line-height: 30px;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        cursor: pointer;
+    }
+}
+.img{
+    width: 180px;
+    max-height: 180px
+}
+.prompt{
+    font-size: 12px;
+    line-height: 15px;
+    color:@font-color;
+}
+.editSandImg{
+    width:400px;
+    height:400px;
+    padding:20px;
+    background:@click-bg;
+    position: fixed;
+    top:56px;
+    right:240px;
+    line-height:360px;
+}
+.drawerTitle{
+    background:@tool-bg;
+    line-height: 30px;
+    padding-left:10px;
+    padding-right:10px;
+    color: @font-color;
+    font-size: @font-size-12;
+}
+.closable{
+    font-size: @default-font-size;
+    float: right;
+    line-height: 30px;
+    cursor: pointer;
+}
+.panoList{
+    text-align: center;
+    padding: 10px;
+    img{
+        width: 100%;
+        height: 60px;
+    }
+    span{
+        color: @font-color;
+    }
+}
+.selectdPanoList{
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+    background: #3D3D3D;
+    img{
+        width: 30px;
+        height: 30px;
+        margin: 5px;
+        float: left;
+    }
+    .title{
+        line-height: 40px;
+        text-overflow: ellipsis;
+        white-space:nowrap;
+        overflow: hidden;
+    }
+    .delSelectdPano{
+        float:right;
+        padding-right: 5px;
+        line-height: 40px;
+        color: @font-color;
+        cursor: pointer;
+        font-size: @font-size-12;
+    }
+}
