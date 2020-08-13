@@ -30,7 +30,7 @@ var residualArr = function residualArr(arr1, arr2) {
   var new_arr = [];
   arr1.map(function (item) {
     if (!arr2.some(function (j) {
-      return item.id == j.scene_id && item.x !== '';
+      return item.id == j.scene_id && item.x !== '' && item.x !== null;
     })) {
       new_arr.push(item);
     }
@@ -57,7 +57,6 @@ function (_Component) {
           data = _this$props.data,
           spots = _this$props.spots,
           onChange = _this$props.onChange;
-      console.log(residualArr(scene, spots));
       return React.createElement("div", null, React.createElement("div", {
         className: style.title
       }, "\u9009\u62E9\u76EE\u6807\u573A\u666F"), React.createElement("div", {

@@ -7,7 +7,7 @@ import {panoImgConfig} from '@/utils/oss.config';
 const residualArr = (arr1,arr2) => {
   let new_arr = [];
   arr1.map(item=>{
-    if (!arr2.some(j => return item.id == j.scene_id && item.x !== '')) {
+    if (!arr2.some(j => item.id == j.scene_id && item.x !== '' && item.x !== null)) {
       new_arr.push(item); 
     }
   })
@@ -18,7 +18,6 @@ const residualArr = (arr1,arr2) => {
 class ActionScene extends Component{
   render(){
     const {scene,data,spots,onChange} = this.props;
-    console.log(residualArr(scene,spots))
     return (
       <div>
         <div className={style.title}>
