@@ -32,7 +32,8 @@ class SceneList extends Component {
         ...data,
         scene_name:scene.name,
         scene_id:scene.id,
-        scene_thumb:scene.thumb.path
+        scene_thumb:scene.thumb.path,
+        domain:scene.domain
       }
     })
   }
