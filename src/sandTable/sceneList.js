@@ -1,10 +1,20 @@
 import { Component } from "react";
 import {Row,Col} from 'antd';
+import {connect} from 'dva';
 import {ItemBox,Drawer} from '@/components/';
 import {Button} from '@/components/Form';
 import style from './style.less';
 import Scene from './scene';
+const residualArr = (arr1,arr2) => {
+  let new_arr = [];
+  arr1.map(item=>{
+    if (!arr2.some(j => item.id == j.scene_id && item.x !== '' && item.x !== null)) {
+      new_arr.push(item); 
+    }
+  })
 
+  return new_arr;
+}
 class SceneList extends Component {
   state = {
     data:{
@@ -31,6 +41,14 @@ class SceneList extends Component {
     const {data} = this.state;
     if (data.scene_id) {
       this.props.onCancel(data);
+      this.setState({
+        data:{
+          heading:0,
+          align:'topleft',
+          x:0,
+          y:0
+        } 
+      });
     }
   }
   handleCancel = () => {
@@ -38,7 +56,7 @@ class SceneList extends Component {
   }
  
   render () {
-    const {visible,spots} = this.props;
+    const {visible,spots,scene} = this.props;
     const {data} = this.state;
     return(
       <Drawer
@@ -53,7 +71,12 @@ class SceneList extends Component {
         <ItemBox>
           <Row style={{margin:'0 -10px'}}>
             <Col span={24} className={style.panoList}>
-              <Button title="完成" onClick={this.handleSave}/>
+              <Button 
+                disabled={residualArr(scene,spots).length > 0 ? false : true} 
+                style={{backgroundColor: '#008aff', borderColor: '#008aff', color:'rgba(255,255,255,1)'}} 
+                title="完成" 
+                onClick={this.handleSave}
+              />
             </Col>
           </Row>
         </ItemBox>
@@ -61,4 +84,6 @@ class SceneList extends Component {
     );
   }
 }
-export default SceneList;
+export default connect(({scene})=>({
+  scene:scene.all
+}))(SceneList);

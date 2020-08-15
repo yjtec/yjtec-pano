@@ -9,7 +9,6 @@ const ItemDefault = function(props) {
   return <div onClick={()=>onClick(item)} className={style.item} style={{left:`${x-7.5}px`,top:`${y-7.5}px`}} />
 }
 
-
 class Imground extends Component{
   constructor(props) {
     super(props);
@@ -96,7 +95,7 @@ class Imground extends Component{
       this.setState({
         list:re,
         heading:heading
-      })      
+      })
       //console.log(ce.offsetX,ce.offsetY);
     }
 
@@ -109,6 +108,7 @@ class Imground extends Component{
   handleChange = () => {
     const {onChange} = this.props;
     const {activeKey,left,top,heading} = this.state;
+    
     onChange({key:activeKey,x:left,y:top,heading});
   }
   render(){

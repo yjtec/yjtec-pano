@@ -29,10 +29,23 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from "react";
 import { Component } from "react";
+import { connect } from 'dva';
 import { ItemBox, Drawer } from '@/components/';
 import { Button } from '@/components/Form';
 import style from './style.less';
 import Scene from './scene';
+
+var residualArr = function residualArr(arr1, arr2) {
+  var new_arr = [];
+  arr1.map(function (item) {
+    if (!arr2.some(function (j) {
+      return item.id == j.scene_id && item.x !== '' && item.x !== null;
+    })) {
+      new_arr.push(item);
+    }
+  });
+  return new_arr;
+};
 
 var SceneList =
 /*#__PURE__*/
@@ -78,6 +91,15 @@ function (_Component) {
 
       if (data.scene_id) {
         _this.props.onCancel(data);
+
+        _this.setState({
+          data: {
+            heading: 0,
+            align: 'topleft',
+            x: 0,
+            y: 0
+          }
+        });
       }
     };
 
@@ -93,7 +115,8 @@ function (_Component) {
     value: function render() {
       var _this$props = this.props,
           visible = _this$props.visible,
-          spots = _this$props.spots;
+          spots = _this$props.spots,
+          scene = _this$props.scene;
       var data = this.state.data;
       return React.createElement(Drawer, {
         visible: visible,
@@ -112,6 +135,12 @@ function (_Component) {
         span: 24,
         className: style.panoList
       }, React.createElement(Button, {
+        disabled: residualArr(scene, spots).length > 0 ? false : true,
+        style: {
+          backgroundColor: '#008aff',
+          borderColor: '#008aff',
+          color: 'rgba(255,255,255,1)'
+        },
         title: "\u5B8C\u6210",
         onClick: this.handleSave
       })))));
@@ -121,4 +150,9 @@ function (_Component) {
   return SceneList;
 }(Component);
 
-export default SceneList;
+export default connect(function (_ref) {
+  var scene = _ref.scene;
+  return {
+    scene: scene.all
+  };
+})(SceneList);
