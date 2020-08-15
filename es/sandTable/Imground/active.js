@@ -52,8 +52,8 @@ function (_Component) {
       return React.createElement("div", {
         className: style.active,
         style: {
-          left: "".concat(left - 25, "px"),
-          top: "".concat(top - 25, "px"),
+          left: "".concat(left - 20, "px"),
+          top: "".concat(top - 20, "px"),
           transform: "rotate(".concat(rotate, "deg)")
         }
       }, React.createElement("img", {

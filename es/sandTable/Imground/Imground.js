@@ -38,8 +38,8 @@ var ItemDefault = function ItemDefault(props) {
     },
     className: style.item,
     style: {
-      left: "".concat(x, "px"),
-      top: "".concat(y, "px")
+      left: "".concat(x - 7.5, "px"),
+      top: "".concat(y - 7.5, "px")
     }
   });
 };
@@ -76,9 +76,9 @@ function (_Component) {
         var moveX = ce.pageX - diffX;
         var moveY = ce.pageY - diffY;
         if (moveX < 0) moveX = 0;
-        if (moveX > 260) moveX = 260;
+        if (moveX > 400) moveX = 400;
         if (moveY < 0) moveY = 0;
-        if (moveY > 260) moveY = 260;
+        if (moveY > 400) moveY = 400;
         var re = list.map(function (item) {
           return item.scene_id == activeKey ? _objectSpread({}, item, {
             x: moveX,

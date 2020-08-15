@@ -4,6 +4,7 @@ import IconFont from '@/components/IconFont';
 import style from './style.less';
 import LangTap from '@/utils/langTap';
 import {schoolUrl} from '@/utils/url.config';
+import {helpShow} from '@/utils/help';
 
 const defaultData = {
   ath:0,  //左右
@@ -336,7 +337,7 @@ export default class FineTuning extends React.Component{
         <div className={style.help}>
           <Button type="primary" style={{width: 'calc(100% - 30px)'}} onClick={()=>this.props.alignment(this.state)}>对齐</Button>
         </div>
-        <div className={style.help} onClick={()=>{window.open(schoolUrl + '/article/detail/177');}}>
+        <div className={style.help} style={{display:helpShow ? 'block' : 'none'}} onClick={()=>{window.open(schoolUrl + '/article/detail/177');}}>
           使用教程
         </div>
       </div>

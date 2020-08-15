@@ -6,7 +6,7 @@ import {Obj} from 'yjtec-support';
 const ItemDefault = function(props) {
   const {item,onClick} = props;
   const {x,y} = item;
-  return <div onClick={()=>onClick(item)} className={style.item} style={{left:`${x}px`,top:`${y}px`}} />
+  return <div onClick={()=>onClick(item)} className={style.item} style={{left:`${x-7.5}px`,top:`${y-7.5}px`}} />
 }
 
 
@@ -46,9 +46,9 @@ class Imground extends Component{
       let moveX = ce.pageX - diffX;
       let moveY = ce.pageY - diffY;
       if(moveX < 0 ) moveX = 0;
-      if(moveX > 260) moveX = 260;
+      if(moveX > 400) moveX = 400;
       if(moveY < 0 ) moveY = 0;
-      if(moveY > 260) moveY = 260;
+      if(moveY > 400) moveY = 400;
       const re = list.map(
         item => item.scene_id == activeKey ? 
         {
@@ -73,7 +73,7 @@ class Imground extends Component{
   }
 
   hanldePoinerDown = (e,item)=>{
-    let diffX = e.clientX ;
+    let diffX = e.clientX;
     let diffY = e.clientY;
     document.onmousemove = em =>{
       const {activeKey,list} = this.state;
@@ -114,6 +114,7 @@ class Imground extends Component{
   render(){
     const {activeKey,left,top,list} = this.state;
     const {src} = this.props;
+
     return(
       <div className={style.container}>
         <div className={style.map} style={{backgroundImage:`url(${src})`}} ref={el => this.container = el} >

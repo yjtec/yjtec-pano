@@ -15,8 +15,8 @@ export default class ImgroundActive extends Component{
     //const {onDown,left,top} = this.props;
     return (
       <div className={style.active} style={{
-        left:`${left-25}px`,
-        top:`${top-25}px`,
+        left:`${left-20}px`,
+        top:`${top-20}px`,
         transform: `rotate(${rotate}deg)`
       }}>
         <img src={KrEditUrl + 'images/round.png'} width="" />

@@ -32,6 +32,7 @@ import IconFont from '@/components/IconFont';
 import style from './style.less';
 import LangTap from '@/utils/langTap';
 import { schoolUrl } from '@/utils/url.config';
+import { helpShow } from '@/utils/help';
 var defaultData = {
   ath: 0,
   //左右
@@ -470,6 +471,9 @@ function (_React$Component) {
         }
       }, "\u5BF9\u9F50")), React.createElement("div", {
         className: style.help,
+        style: {
+          display: helpShow ? 'block' : 'none'
+        },
         onClick: function onClick() {
           window.open(schoolUrl + '/article/detail/177');
         }
