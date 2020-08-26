@@ -9,12 +9,12 @@ class Type extends React.Component{
     return (
       <div>
         <Select value={value} name='imageurl' placeholder="请选择特效" style={{width:'100%'}} onChange={this.props.onChange}>
-            {effectList.map((item,index)=> (
-              <Option key={index} value={item.value}>{item.label}</Option>
-            ))}
-            <Option value="sunlight" >太阳光</Option>
-            <Option value="custom" >自定义</Option>
-          </Select>
+          {effectList.map((item,index)=> (
+            <Option key={index} value={item.value}>{item.label}</Option>
+          ))}
+          <Option value="sunlight" >太阳光</Option>
+          <Option value="custom" >自定义</Option>
+        </Select>
       </div>
     );
   }

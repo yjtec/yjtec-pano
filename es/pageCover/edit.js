@@ -1,3 +1,10 @@
+import "antd/es/checkbox/style";
+import _Checkbox from "antd/es/checkbox";
+import "antd/es/message/style";
+import _Message from "antd/es/message";
+import "antd/es/select/style";
+import _Select from "antd/es/select";
+
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19,10 +26,21 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from "react";
 import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
+import { SliderSingle, Color } from '@/components/Form';
 import style from './style.less';
 import { helpShow } from '@/utils/help';
 import { mediaImgConfig } from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
+var optionData = [{
+  id: 1,
+  value: 1,
+  label: '自动进入'
+}, {
+  id: 2,
+  value: 2,
+  label: '点击进入'
+}];
+var Option = _Select.Option;
 
 var PromptEdit =
 /*#__PURE__*/
@@ -43,36 +61,121 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PromptEdit)).call.apply(_getPrototypeOf2, [this].concat(args)));
     _this.state = {
       pc_img: '',
-      app_img: ''
+      app_img: '',
+      type: 1,
+      time: 5,
+      bg_color: {
+        r: 0,
+        g: 0,
+        b: 0,
+        a: 0.65
+      },
+      bg_img: '',
+      repeat: 1
     };
 
-    _this.pcSelectMedia = function (arr) {
+    _this.handleImg = function (type, arr) {
+      switch (type) {
+        case 'pc_img':
+          _this.setState({
+            pc_img: arr[0].path.path
+          }, function () {
+            _this.save();
+          });
+
+          break;
+
+        case 'app_img':
+          _this.setState({
+            app_img: arr[0].path.path
+          }, function () {
+            _this.save();
+          });
+
+          break;
+
+        case 'bg_img':
+          _this.setState({
+            bg_img: arr[0].path.path
+          }, function () {
+            _this.save();
+          });
+
+          break;
+
+        default:
+          _Message.warning('类型错误！');
+
+      }
+    };
+
+    _this.handleDel = function (type) {
+      switch (type) {
+        case 'pc_img':
+          _this.setState({
+            pc_img: ''
+          }, function () {
+            _this.save();
+          });
+
+          break;
+
+        case 'app_img':
+          _this.setState({
+            app_img: ''
+          }, function () {
+            _this.save();
+          });
+
+          break;
+
+        case 'bg_img':
+          _this.setState({
+            bg_img: ''
+          }, function () {
+            _this.save();
+          });
+
+          break;
+
+        default:
+          _Message.warning('类型错误！');
+
+      }
+    };
+
+    _this.handleEntryMode = function (value) {
       _this.setState({
-        pc_img: arr[0].path.path
+        type: value
       }, function () {
         _this.save();
       });
     };
 
-    _this.appSelectMedia = function (arr) {
+    _this.handleTime = function (value) {
       _this.setState({
-        app_img: arr[0].path.path
+        time: value
       }, function () {
         _this.save();
       });
     };
 
-    _this.pcDel = function () {
+    _this.handleBgColor = function (e) {
       _this.setState({
-        pc_img: ''
+        bg_color: {
+          r: e.rgb.r,
+          g: e.rgb.g,
+          b: e.rgb.b,
+          a: e.rgb.a
+        }
       }, function () {
         _this.save();
       });
     };
 
-    _this.appDel = function () {
+    _this.setRepeat = function (e) {
       _this.setState({
-        app_img: ''
+        repeat: e.target.checked ? 1 : 0
       }, function () {
         _this.save();
       });
@@ -92,15 +195,32 @@ function (_Component) {
       var data = this.props.data;
       this.setState({
         pc_img: data.pc_img ? data.pc_img : '',
-        app_img: data.app_img ? data.app_img : ''
+        app_img: data.app_img ? data.app_img : '',
+        type: data.type ? data.type : 1,
+        time: data.time ? data.time : 5,
+        bg_color: data.bg_color ? data.bg_color : {
+          r: 0,
+          g: 0,
+          b: 0,
+          a: 0.65
+        },
+        bg_img: data.bg_img ? data.bg_img : '',
+        repeat: data.repeat ? data.repeat : 1
       });
     }
   }, {
     key: "render",
     value: function render() {
+      var _this2 = this;
+
       var _this$state = this.state,
           pc_img = _this$state.pc_img,
-          app_img = _this$state.app_img;
+          app_img = _this$state.app_img,
+          type = _this$state.type,
+          time = _this$state.time,
+          bg_color = _this$state.bg_color,
+          bg_img = _this$state.bg_img,
+          repeat = _this$state.repeat;
       var helpShowFlag = false;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title
@@ -128,9 +248,13 @@ function (_Component) {
         }
       })), React.createElement(ItemImg, {
         url: pc_img ? mediaImgConfig(pc_img, 'img') : '',
-        imgSize: "1920X1080",
-        onChange: this.pcSelectMedia,
-        onDel: this.pcDel
+        imgSize: "500X500",
+        onChange: function onChange(arr) {
+          return _this2.handleImg('pc_img', arr);
+        },
+        onDel: function onDel() {
+          return _this2.handleDel('pc_img');
+        }
       }), React.createElement("div", {
         className: style.mb10
       })), React.createElement(ItemBox, null, React.createElement("div", {
@@ -161,9 +285,110 @@ function (_Component) {
         }
       })), React.createElement(ItemImg, {
         url: app_img ? mediaImgConfig(app_img, 'img') : '',
-        imgSize: "360X640",
-        onChange: this.appSelectMedia,
-        onDel: this.appDel
+        imgSize: "300X300",
+        onChange: function onChange(arr) {
+          return _this2.handleImg('app_img', arr);
+        },
+        onDel: function onDel() {
+          return _this2.handleDel('app_img');
+        }
+      }), React.createElement("div", {
+        className: style.mb10
+      })), React.createElement(ItemBox, null, React.createElement("div", {
+        className: style.mb10
+      }), React.createElement("div", {
+        className: style.title
+      }, React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u8FDB\u5165\u65B9\u5F0F"), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement("div", {
+        className: style.selectDiv
+      }, React.createElement(_Select, {
+        placeholder: "\u9009\u62E9\u8FDB\u5165\u65B9\u5F0F",
+        name: "imageurl",
+        value: type,
+        style: {
+          width: '100%'
+        },
+        onChange: this.handleEntryMode
+      }, optionData.map(function (item, index) {
+        return React.createElement(Option, {
+          key: index,
+          value: item.value
+        }, item.label);
+      }))), React.createElement("div", {
+        className: style.mb10
+      }), type == 1 && React.createElement("div", null, React.createElement("div", {
+        className: style.title
+      }, React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u505C\u7559\u65F6\u957F"), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement("div", {
+        className: style.sliderDiv
+      }, React.createElement(SliderSingle, {
+        defaultValue: time,
+        max: 60,
+        min: 1,
+        step: 1,
+        onChange: function onChange(value) {
+          return _this2.handleTime(value);
+        }
+      })), React.createElement("div", {
+        className: style.mb10
+      }))), React.createElement(ItemBox, null, React.createElement("div", {
+        className: style.mb10
+      }), React.createElement("div", {
+        className: style.title
+      }, React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u80CC\u666F\u8272\u8BBE\u7F6E"), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement(Color, {
+        color: bg_color,
+        onChange: this.handleBgColor
+      }), React.createElement("div", {
+        className: style.mb10
+      }), React.createElement("div", {
+        className: style.title
+      }, React.createElement("span", {
+        className: style.checkboxC
+      }, React.createElement(_Checkbox, {
+        checked: repeat == 1 ? true : false,
+        onChange: this.setRepeat,
+        className: style.checkbox
+      }, "\u80CC\u666F\u5E73\u94FA")), React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u80CC\u666F\u56FE\u8BBE\u7F6E"), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      })), React.createElement(ItemImg, {
+        url: bg_img ? mediaImgConfig(bg_img, 'img') : '',
+        imgSize: "100X100",
+        onChange: function onChange(arr) {
+          return _this2.handleImg('bg_img', arr);
+        },
+        onDel: function onDel() {
+          return _this2.handleDel('bg_img');
+        }
+      }), React.createElement("div", {
+        className: style.mb10
       })));
     }
   }]);
