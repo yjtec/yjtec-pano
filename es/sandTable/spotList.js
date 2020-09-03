@@ -52,7 +52,7 @@ function (_Component) {
         onClick: function onClick() {
           return _this.props.addSpot();
         }
-      }, "\u6DFB\u52A0\u70ED\u70B9")), React.createElement("div", {
+      }, "\u6DFB\u52A0\u6807\u8BB0")), React.createElement("div", {
         style: {
           marginTop: '20px'
         }

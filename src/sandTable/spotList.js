@@ -13,7 +13,7 @@ class spotList extends Component {
           添加热点
         </div>
         <div>
-          <Button type="primary" className={style.Button} style={{width:'100%'}} onClick={()=>this.props.addSpot()}>添加热点</Button>
+          <Button type="primary" className={style.Button} style={{width:'100%'}} onClick={()=>this.props.addSpot()}>添加标记</Button>
         </div>
         <div style={{marginTop:'20px'}}>
           {data && data.map((item)=>{
