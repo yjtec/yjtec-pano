@@ -39,10 +39,12 @@ function (_Component) {
       var _this$props = this.props,
           url = _this$props.url,
           spots = _this$props.spots,
-          onChange = _this$props.onChange;
+          onChange = _this$props.onChange,
+          delSpot = _this$props.delSpot;
       return React.createElement(Imground, {
         src: mediaImgConfig(url, 'sandImg'),
         list: spots,
+        delSpot: delSpot,
         onChange: onChange
       });
     }

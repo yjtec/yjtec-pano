@@ -22,19 +22,38 @@ class Imground extends Component{
   }
 
   componentDidUpdate(prevProps) {
-    if(!Obj.isEqual(prevProps.list,this.props.list)){
+    const {list,delSpot} = this.props;
+    let data = {};
+    if(!Obj.isEqual(prevProps.list,list)){
+      if (this.state.activeKey == delSpot){
+        data = {
+          activeKey:1,
+          list:list,
+          left:0,
+          top:0,
+          heading:0
+        }
+      }else{
+        data = {
+          list:list
+        }
+      }
       this.setState({
-        list:this.props.list
-      })
+        ...data 
+      });
     }
   }
 
   handleClick = item =>{
+    console.log(171717)
+    const {onChange} = this.props;
     this.setState({
       activeKey:item.scene_id,
       left:item.x,
       top:item.y,
       heading:item.heading
+    },()=>{
+      this.handleChange();
     })
   }
   handleDown = (e,item) => {
@@ -76,10 +95,8 @@ class Imground extends Component{
     let diffY = e.clientY;
     document.onmousemove = em =>{
       const {activeKey,list} = this.state;
-      //console.log(ce.clientX,ce.clientY);
       var moveX = em.clientX - diffX;
       var moveY = em.clientY - diffY;
-      //console.log(moveX,moveY ,'x y ');
       var heading = Math.floor(180/(Math.PI/Math.atan2(moveY,moveX)));
       if(heading < 0 ){
         heading = 360 + heading;
@@ -96,7 +113,6 @@ class Imground extends Component{
         list:re,
         heading:heading
       })
-      //console.log(ce.offsetX,ce.offsetY);
     }
 
     document.onmouseup = ce => {
@@ -108,13 +124,11 @@ class Imground extends Component{
   handleChange = () => {
     const {onChange} = this.props;
     const {activeKey,left,top,heading} = this.state;
-    
     onChange({key:activeKey,x:left,y:top,heading});
   }
   render(){
     const {activeKey,left,top,list} = this.state;
     const {src} = this.props;
-
     return(
       <div className={style.container}>
         <div className={style.map} style={{backgroundImage:`url(${src})`}} ref={el => this.container = el} >

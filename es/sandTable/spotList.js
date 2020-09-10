@@ -40,7 +40,9 @@ function (_Component) {
     value: function render() {
       var _this = this;
 
-      var data = this.props.data;
+      var _this$props = this.props,
+          data = _this$props.data,
+          editSpotId = _this$props.editSpotId;
       return React.createElement("div", null, React.createElement("div", {
         className: style.title
       }, "\u6DFB\u52A0\u70ED\u70B9"), React.createElement("div", null, React.createElement(_Button, {
@@ -67,7 +69,8 @@ function (_Component) {
               return _this.props.delSpot(item.scene_id);
             }
           }, "\u5220\u9664"), React.createElement("img", {
-            alt: "\u6C99\u76D8\u56FE\u7247",
+            className: editSpotId == item.scene_id ? style.click : '',
+            alt: item.scene_name,
             src: item.scene_thumb
           }), React.createElement("div", {
             className: style.title
@@ -82,7 +85,8 @@ function (_Component) {
               return _this.props.delSpot(item.scene_id);
             }
           }, "\u5220\u9664"), React.createElement("img", {
-            alt: "\u6C99\u76D8\u56FE\u7247",
+            className: editSpotId == item.scene_id ? style.click : '',
+            alt: item.scene_name,
             src: ossPanoUrl + item.scene_thumb
           }), React.createElement("div", {
             className: style.title
@@ -97,7 +101,8 @@ function (_Component) {
               return _this.props.delSpot(item.scene_id);
             }
           }, "\u5220\u9664"), React.createElement("img", {
-            alt: "\u6C99\u76D8\u56FE\u7247",
+            className: editSpotId == item.scene_id ? style.click : '',
+            alt: item.scene_name,
             src: ossMediaUrl + item.scene_thumb
           }), React.createElement("div", {
             className: style.title

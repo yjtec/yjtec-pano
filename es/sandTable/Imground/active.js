@@ -47,8 +47,7 @@ function (_Component) {
       var _this$state = this.state,
           left = _this$state.left,
           top = _this$state.top,
-          rotate = _this$state.rotate; //const {onDown,left,top} = this.props;
-
+          rotate = _this$state.rotate;
       return React.createElement("div", {
         className: style.active,
         style: {

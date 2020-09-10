@@ -6,7 +6,7 @@ import {ossPanoUrl,ossMediaUrl} from '@/utils/url.config';
 class spotList extends Component {
   
   render() {
-    const {data} = this.props;
+    const {data,editSpotId} = this.props;
     return (
       <div>
         <div className={style.title}>
@@ -21,7 +21,7 @@ class spotList extends Component {
               return(
                 <div key={item.scene_id} className={style.selectdPanoList}>
                   <span className={style.delSelectdPano} onClick={()=>this.props.delSpot(item.scene_id)}>删除</span>
-                  <img alt='沙盘图片' src={item.scene_thumb} />
+                  <img className={editSpotId == item.scene_id ? style.click : ''} alt={item.scene_name} src={item.scene_thumb} />
                   <div className={style.title}>{item.scene_name}</div>
                 </div>
               )
@@ -29,7 +29,7 @@ class spotList extends Component {
               return(
                 <div key={item.scene_id} className={style.selectdPanoList}>
                   <span className={style.delSelectdPano} onClick={()=>this.props.delSpot(item.scene_id)}>删除</span>
-                  <img alt='沙盘图片' src={ossPanoUrl + item.scene_thumb} />
+                  <img className={editSpotId == item.scene_id ? style.click : ''} alt={item.scene_name} src={ossPanoUrl + item.scene_thumb} />
                   <div className={style.title}>{item.scene_name}</div>
                 </div>
               )
@@ -37,7 +37,7 @@ class spotList extends Component {
               return(
                 <div key={item.scene_id} className={style.selectdPanoList}>
                   <span className={style.delSelectdPano} onClick={()=>this.props.delSpot(item.scene_id)}>删除</span>
-                  <img alt='沙盘图片' src={ossMediaUrl + item.scene_thumb} />
+                  <img className={editSpotId == item.scene_id ? style.click : ''} alt={item.scene_name} src={ossMediaUrl + item.scene_thumb} />
                   <div className={style.title}>{item.scene_name}</div>
                 </div>
               )

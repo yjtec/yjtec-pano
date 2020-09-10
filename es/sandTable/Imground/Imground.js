@@ -57,11 +57,16 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Imground).call(this, props));
 
     _this.handleClick = function (item) {
+      console.log(171717);
+      var onChange = _this.props.onChange;
+
       _this.setState({
         activeKey: item.scene_id,
         left: item.x,
         top: item.y,
         heading: item.heading
+      }, function () {
+        _this.handleChange();
       });
     };
 
@@ -109,11 +114,9 @@ function (_Component) {
       document.onmousemove = function (em) {
         var _this$state2 = _this.state,
             activeKey = _this$state2.activeKey,
-            list = _this$state2.list; //console.log(ce.clientX,ce.clientY);
-
+            list = _this$state2.list;
         var moveX = em.clientX - diffX;
-        var moveY = em.clientY - diffY; //console.log(moveX,moveY ,'x y ');
-
+        var moveY = em.clientY - diffY;
         var heading = Math.floor(180 / (Math.PI / Math.atan2(moveY, moveX)));
 
         if (heading < 0) {
@@ -129,8 +132,7 @@ function (_Component) {
         _this.setState({
           list: re,
           heading: heading
-        }); //console.log(ce.offsetX,ce.offsetY);
-
+        });
       };
 
       document.onmouseup = function (ce) {
@@ -170,10 +172,27 @@ function (_Component) {
   _createClass(Imground, [{
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      if (!Obj.isEqual(prevProps.list, this.props.list)) {
-        this.setState({
-          list: this.props.list
-        });
+      var _this$props = this.props,
+          list = _this$props.list,
+          delSpot = _this$props.delSpot;
+      var data = {};
+
+      if (!Obj.isEqual(prevProps.list, list)) {
+        if (this.state.activeKey == delSpot) {
+          data = {
+            activeKey: 1,
+            list: list,
+            left: 0,
+            top: 0,
+            heading: 0
+          };
+        } else {
+          data = {
+            list: list
+          };
+        }
+
+        this.setState(_objectSpread({}, data));
       }
     }
   }, {

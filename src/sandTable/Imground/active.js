@@ -12,7 +12,6 @@ export default class ImgroundActive extends Component{
   }
   render(){
     const {left,top,rotate} = this.state;
-    //const {onDown,left,top} = this.props;
     return (
       <div className={style.active} style={{
         left:`${left-20}px`,

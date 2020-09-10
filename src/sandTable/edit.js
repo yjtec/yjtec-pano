@@ -5,11 +5,12 @@ import Imground from './Imground/Imground';
 
 class ImgEdit extends Component {
   render () {
-    const {url,spots,onChange} = this.props;
+    const {url,spots,onChange,delSpot} = this.props;
     return(
       <Imground 
         src={mediaImgConfig(url,'sandImg')} 
         list={spots}
+        delSpot={delSpot}
         onChange={onChange}
       />
     );
