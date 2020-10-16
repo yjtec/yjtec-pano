@@ -41,7 +41,8 @@ var defaultData = {
   rx: 0,
   ry: 0,
   rz: 0,
-  scale: 0.99
+  scale: 0.99,
+  edit_type: 1
 };
 
 function moveOperator(k, operator, num) {
@@ -325,7 +326,10 @@ function (_React$Component) {
 
     _this.switch = function (value) {
       _this.setState({
-        editType: value
+        scale: value == 1 ? 0.99 : 31.5,
+        edit_type: value
+      }, function () {
+        _this.runChange();
       });
     };
 
@@ -341,7 +345,7 @@ function (_React$Component) {
       ry: _data ? _data.ry : defaultData.ry,
       rz: _data ? _data.rz : defaultData.rz,
       scale: _data ? _data.rscalez : defaultData.scale,
-      editType: 1
+      edit_type: _data ? _data.edit_type : defaultData.edit_type
     };
     return _this;
   }
@@ -360,7 +364,8 @@ function (_React$Component) {
             rx: data.rx,
             ry: data.ry,
             rz: data.rz,
-            scale: this.props.embedType == 4 && data.scale < 1 && data.scale != 0 ? 40 : data.scale
+            scale: data.scale,
+            edit_type: data.edit_type ? data.edit_type : 1
           }, function () {
             _this2.runChange();
           });
@@ -377,7 +382,8 @@ function (_React$Component) {
           rx = _this$state3.rx,
           ry = _this$state3.ry,
           rz = _this$state3.rz,
-          scale = _this$state3.scale;
+          scale = _this$state3.scale,
+          edit_type = _this$state3.edit_type;
       var trim = React.createElement("div", null, React.createElement("div", {
         className: "".concat(style.box, " ").concat(style.bg)
       }, React.createElement("div", {
@@ -485,16 +491,27 @@ function (_React$Component) {
         }
       }, React.createElement("div", {
         className: "".concat(style.fine_tuning_title, " ").concat(style.bg)
-      }, this.props.embedType == 4 ? React.createElement("span", {
-        className: "".concat(this.state.editType == 2 && style.seleased),
+      }, this.props.embedType == 4 ? React.createElement("div", null, React.createElement("span", {
+        className: "".concat(edit_type == 1 && style.seleased),
+        style: {
+          width: '50%'
+        },
+        onClick: function onClick() {
+          return _this3.switch(1);
+        }
+      }, "\u7EC6\u8282\u8C03\u6574"), React.createElement("span", {
+        className: "".concat(edit_type == 2 && style.seleased),
+        style: {
+          width: '50%'
+        },
         onClick: function onClick() {
           return _this3.switch(2);
         }
-      }, "\u4F4D\u7F6E\u5BF9\u9F50") : React.createElement("span", {
-        className: "".concat(this.state.editType == 1 && style.seleased)
+      }, "\u4F4D\u7F6E\u5BF9\u9F50")) : React.createElement("span", {
+        className: "".concat(edit_type == 1 && style.seleased)
       }, "\u7EC6\u8282\u8C03\u6574")), React.createElement("div", {
         className: style.spacing
-      }), this.props.embedType == 4 && align, (this.props.embedType == 2 || this.props.embedType == 3 || this.state.editType == 1) && trim, React.createElement("div", {
+      }), this.props.embedType == 4 && edit_type == 2 && align, (this.props.embedType == 2 || this.props.embedType == 3) && trim, this.props.embedType == 4 && edit_type == 1 && trim, React.createElement("div", {
         className: style.spacing
       }), React.createElement("div", {
         className: "".concat(style.box, " ").concat(style.bg),

@@ -12,7 +12,8 @@ const defaultData = {
   rx:0,
   ry:0,
   rz:0,
-  scale:0.99
+  scale:0.99,
+  edit_type:1
 }
 
 function moveOperator (k,operator,num){
@@ -35,7 +36,7 @@ export default class FineTuning extends React.Component{
       ry:data ? data.ry : defaultData.ry,
       rz:data ? data.rz : defaultData.rz,
       scale:data ? data.rscalez : defaultData.scale,
-      editType:1
+      edit_type:data ? data.edit_type : defaultData.edit_type,
     }
   }
 
@@ -43,15 +44,17 @@ export default class FineTuning extends React.Component{
     if(JSON.stringify(prevProps) !== JSON.stringify(this.props)){
       if (this.props.data) {
         const {data} = this.props;
+
         this.setState({
           ath:data.ath,
           atv:data.atv,
           rx:data.rx,
           ry:data.ry,
           rz:data.rz,
-          scale:(this.props.embedType == 4 && data.scale < 1 && data.scale != 0) ? 40 : data.scale,
+          scale:data.scale,
+          edit_type:data.edit_type ? data.edit_type : 1,
         },()=>{
-          this.runChange()
+          this.runChange();
         })
       }
     }
@@ -76,7 +79,7 @@ export default class FineTuning extends React.Component{
     this.setState({
       ...newData
     },()=> {
-      this.runChange()
+      this.runChange();
     })
   }
   //设置rx左右旋转left为'+' right为'-'
@@ -109,7 +112,7 @@ export default class FineTuning extends React.Component{
     this.setState({
       ...newData
     },()=> {
-      this.runChange()
+      this.runChange();
     })
   }
 
@@ -124,7 +127,7 @@ export default class FineTuning extends React.Component{
     this.setState({
       ...newData
     },()=> {
-      this.runChange()
+      this.runChange();
     })
   }
 
@@ -261,7 +264,10 @@ export default class FineTuning extends React.Component{
 
   switch = (value) => {
     this.setState({
-      editType: value
+      scale:value == 1 ? 0.99 : 31.5,
+      edit_type: value
+    },()=>{
+      this.runChange();
     });
   }
 
@@ -270,7 +276,7 @@ export default class FineTuning extends React.Component{
   }
 
   render(){
-    const { rx, ry, rz ,scale } = this.state;
+    const { rx, ry, rz ,scale, edit_type } = this.state;
     const trim = (
       <div>
         <div className={`${style.box} ${style.bg}`}>
@@ -347,15 +353,19 @@ export default class FineTuning extends React.Component{
         <div className={style.edit} style={{display:(this.props.visible == true && this.props.embedType != 1) ? 'block' : 'none'}}>
           <div className={`${style.fine_tuning_title} ${style.bg}`}>
             {this.props.embedType == 4 ? (
-              <span className={`${this.state.editType == 2 && style.seleased}`} onClick={()=>this.switch(2)}>位置对齐</span>
+              <div>
+                <span className={`${edit_type == 1 && style.seleased}`} style={{width:'50%'}} onClick={()=>this.switch(1)}>细节调整</span>
+                <span className={`${edit_type == 2 && style.seleased}`} style={{width:'50%'}} onClick={()=>this.switch(2)}>位置对齐</span>
+              </div>
             ) : (
-              <span className={`${this.state.editType == 1 && style.seleased}`}>细节调整</span>
+              <span className={`${edit_type == 1 && style.seleased}`}>细节调整</span>
             )}
             
           </div>
           <div className={style.spacing}></div>
-          {this.props.embedType == 4 && align}
-          {(this.props.embedType == 2 || this.props.embedType == 3 || this.state.editType == 1) && trim}
+          {this.props.embedType == 4 && edit_type == 2 && align}
+          {(this.props.embedType == 2 || this.props.embedType == 3) && trim}
+          {this.props.embedType == 4 && edit_type == 1 && trim}
           <div className={style.spacing}></div>
           <div className={`${style.box} ${style.bg}`} style={{position:'absolute', bottom:'0'}}>
             <div className={style.boxTitle} onClick={()=>this.reset()}>

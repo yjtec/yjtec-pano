@@ -157,6 +157,7 @@ class Effect extends React.Component{
     }else{
       selectType = type
     }
+
     return(
       <div>
         <ItemBox>
