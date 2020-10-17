@@ -7,6 +7,7 @@ import {AsyncLoadMap,loadBdMap,MapSearchField} from "@yjtec/bmap";
 import BmapModal from './bmapModal';
 import {helpShow} from '@/utils/help';
 import style from './style.less';
+import AppliedToScene from './appliedToScene';
 
 class Index extends Component{
   state={
@@ -86,7 +87,7 @@ class Index extends Component{
     this.refBmap.setPoint(point)
   }
   render(){
-    const {data} = this.props;
+    const {data,title} = this.props;
     const {bmapVisible,lng,lat,province,city,district,address} = this.state;
     return(
       <div>
@@ -95,7 +96,7 @@ class Index extends Component{
             <span className={style.checkboxC}>
               <a onClick={()=>this.showBmap()}>设置标注</a>
             </span>
-            <span style={{float:'left'}}>导航标注</span>
+            <span style={{float:'left'}}>{title}</span>
             {helpShow && 
               (
                 <div style={{float:'left', width:'18px', height:'18px',position:'relative',marginLeft:'5px'}}>
@@ -125,8 +126,16 @@ class Index extends Component{
               </div>
             </div>
           </div>
-
         </ItemBox>
+        {this.props.applied && 
+          <ItemBox>
+            <div>
+              <span style={{float:'right'}}><AppliedToScene scenes={this.props.scenes} onSetAll={this.props.onSetAll} /></span>
+              应用到：
+            </div>
+          </ItemBox>
+        }
+        
         <BmapModal
           visible={bmapVisible}
           point={{lng:lng,lat:lat}}

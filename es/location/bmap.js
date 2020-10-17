@@ -27,6 +27,7 @@ import { AsyncLoadMap, loadBdMap, MapSearchField } from "@yjtec/bmap";
 import BmapModal from './bmapModal';
 import { helpShow } from '@/utils/help';
 import style from './style.less';
+import AppliedToScene from './appliedToScene';
 
 var Index =
 /*#__PURE__*/
@@ -141,7 +142,9 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var data = this.props.data;
+      var _this$props = this.props,
+          data = _this$props.data,
+          title = _this$props.title;
       var _this$state2 = this.state,
           bmapVisible = _this$state2.bmapVisible,
           lng = _this$state2.lng,
@@ -162,7 +165,7 @@ function (_Component) {
         style: {
           float: 'left'
         }
-      }, "\u5BFC\u822A\u6807\u6CE8"), helpShow && React.createElement("div", {
+      }, title), helpShow && React.createElement("div", {
         style: {
           float: 'left',
           width: '18px',
@@ -213,7 +216,14 @@ function (_Component) {
         }
       }, React.createElement(_Icon, {
         type: "delete"
-      }))))), React.createElement(BmapModal, {
+      }))))), React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("span", {
+        style: {
+          float: 'right'
+        }
+      }, React.createElement(AppliedToScene, {
+        scenes: this.props.scenes,
+        onSetAll: this.props.onSetAll
+      })), "\u5E94\u7528\u5230\uFF1A")), React.createElement(BmapModal, {
         visible: bmapVisible,
         point: {
           lng: lng,
