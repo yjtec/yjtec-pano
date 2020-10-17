@@ -73,11 +73,13 @@ function (_React$Component) {
     value: function componentDidUpdate(prevProps, prevState) {
       var scenes = this.props.scenes;
 
-      if (!Obj.isEqual(prevState.categoryArr, scenes.data.category) || !Obj.isEqual(prevState.scenesArr, scenes.data.scenes)) {
-        this.setState(_objectSpread({}, this.state, {
-          categoryArr: scenes.data.category,
-          scenesArr: scenes.data.scenes
-        }));
+      if (scenes && scenes.data && scenes.data.scenes) {
+        if (!Obj.isEqual(prevState.categoryArr, scenes.data.category) || !Obj.isEqual(prevState.scenesArr, scenes.data.scenes)) {
+          this.setState(_objectSpread({}, this.state, {
+            categoryArr: scenes.data.category,
+            scenesArr: scenes.data.scenes
+          }));
+        }
       }
     }
   }, {

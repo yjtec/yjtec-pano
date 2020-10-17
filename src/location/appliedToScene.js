@@ -19,12 +19,14 @@ export default class Text extends React.Component{
   componentDidUpdate(prevProps,prevState){
     const {scenes} = this.props;
     
-    if (!Obj.isEqual(prevState.categoryArr,scenes.data.category) || !Obj.isEqual(prevState.scenesArr,scenes.data.scenes)) {
-      this.setState({
-        ...this.state,
-        categoryArr:scenes.data.category,
-        scenesArr:scenes.data.scenes
-      })
+    if (scenes && scenes.data && scenes.data.scenes){
+      if (!Obj.isEqual(prevState.categoryArr,scenes.data.category) || !Obj.isEqual(prevState.scenesArr,scenes.data.scenes)) {
+        this.setState({
+          ...this.state,
+          categoryArr:scenes.data.category,
+          scenesArr:scenes.data.scenes
+        })
+      }
     }
   }
 

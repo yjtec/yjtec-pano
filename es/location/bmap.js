@@ -216,7 +216,7 @@ function (_Component) {
         }
       }, React.createElement(_Icon, {
         type: "delete"
-      }))))), React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("span", {
+      }))))), this.props.applied && React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("span", {
         style: {
           float: 'right'
         }
