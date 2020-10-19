@@ -17,8 +17,7 @@ class Index extends Component{
     province: '',
     city: '',
     district: '',
-    address: '',
-    timeout:100000
+    address: ''
   }
 
   componentDidMount(){
@@ -43,11 +42,7 @@ class Index extends Component{
           province: data && data.province ? data.province : '',
           city: data && data.city ? data.city : '',
           district: data && data.district ? data.district : '',
-          address: data && data.address ? data.address : '',
-        },()=>{
-          setTimeout(()=>{
-            this.refBmap.setPoint(this.state)
-          },this.state.timeout);
+          address: data && data.address ? data.address : ''
         });
       }
     }
@@ -72,8 +67,7 @@ class Index extends Component{
       province: e ? e.province : '',
       city: e ? e.city : '',
       district: e ? e.district : '',
-      address: e ? e.address : '',
-      timeout:1000
+      address: e ? e.address : ''
     },()=>{
       this.runChange();
     });
