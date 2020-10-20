@@ -48,8 +48,8 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
     _this.state = {
       bmapVisible: false,
-      lng: '',
-      lat: '',
+      lng: 113.666773,
+      lat: 34.752728,
       province: '',
       city: '',
       district: '',
@@ -70,8 +70,8 @@ function (_Component) {
 
     _this.handlePoint = function (e) {
       _this.setState({
-        lng: e ? e.lng : '',
-        lat: e ? e.lat : '',
+        lng: e ? e.lng : 113.666773,
+        lat: e ? e.lat : 34.752728,
         province: e ? e.province : '',
         city: e ? e.city : '',
         district: e ? e.district : '',
@@ -111,8 +111,8 @@ function (_Component) {
     value: function componentDidMount() {
       var data = this.props.data;
       this.setState({
-        lng: data && data.lng ? data.lng : '',
-        lat: data && data.lat ? data.lat : '',
+        lng: data && data.lng ? data.lng : 113.666773,
+        lat: data && data.lat ? data.lat : 34.752728,
         province: data && data.province ? data.province : '',
         city: data && data.city ? data.city : '',
         district: data && data.district ? data.district : '',
@@ -127,8 +127,8 @@ function (_Component) {
       if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
         if (data) {
           this.setState({
-            lng: data && data.lng ? data.lng : '',
-            lat: data && data.lat ? data.lat : '',
+            lng: data && data.lng ? data.lng : 113.666773,
+            lat: data && data.lat ? data.lat : 34.752728,
             province: data && data.province ? data.province : '',
             city: data && data.city ? data.city : '',
             district: data && data.district ? data.district : '',
@@ -188,8 +188,8 @@ function (_Component) {
       }, React.createElement("div", null, React.createElement(MapSearchField, {
         id: "mapView",
         value: {
-          lng: data.lng,
-          lat: data.lat
+          lng: lng,
+          lat: lat
         } //默认坐标
         ,
         isposition: "false" // searchinput={"false"}             //是否有输入框
@@ -205,12 +205,12 @@ function (_Component) {
         }
       }), React.createElement("p", {
         style: {
-          display: lng && lat ? 'none' : 'block'
+          display: data.lng && data.lat ? 'none' : 'block'
         }
       }, "\u5F53\u524D\u9879\u76EE", React.createElement("br", null), "\u6682\u672A\u8BBE\u7F6E\u5730\u56FE\u6807\u6CE8"), React.createElement("span", null), React.createElement("div", {
         className: style.delLocation,
         style: {
-          display: lng && lat ? 'block' : 'none'
+          display: data.lng && data.lat ? 'block' : 'none'
         },
         onClick: function onClick() {
           return _this2.handlePoint('');

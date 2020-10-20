@@ -12,8 +12,8 @@ import AppliedToScene from './appliedToScene';
 class Index extends Component{
   state={
     bmapVisible:false,
-    lng: '',
-    lat: '',
+    lng: 113.666773,
+    lat: 34.752728,
     province: '',
     city: '',
     district: '',
@@ -23,8 +23,8 @@ class Index extends Component{
   componentDidMount(){
     const {data} = this.props;
     this.setState({
-      lng: data && data.lng ? data.lng : '',
-      lat: data && data.lat ? data.lat : '',
+      lng: data && data.lng ? data.lng : 113.666773,
+      lat: data && data.lat ? data.lat : 34.752728,
       province: data && data.province ? data.province : '',
       city: data && data.city ? data.city : '',
       district: data && data.district ? data.district : '',
@@ -37,8 +37,8 @@ class Index extends Component{
     if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
       if (data) {
         this.setState({
-          lng: data && data.lng ? data.lng : '',
-          lat: data && data.lat ? data.lat : '',
+          lng: data && data.lng ? data.lng : 113.666773,
+          lat: data && data.lat ? data.lat : 34.752728,
           province: data && data.province ? data.province : '',
           city: data && data.city ? data.city : '',
           district: data && data.district ? data.district : '',
@@ -62,8 +62,8 @@ class Index extends Component{
 
   handlePoint = (e) => {
     this.setState({
-      lng: e ? e.lng : '',
-      lat: e ? e.lat : '',
+      lng: e ? e.lng : 113.666773,
+      lat: e ? e.lat : 34.752728,
       province: e ? e.province : '',
       city: e ? e.city : '',
       district: e ? e.district : '',
@@ -110,7 +110,7 @@ class Index extends Component{
             <div>
               <MapSearchField 
                 id={"mapView"}
-                value={{lng:data.lng,lat:data.lat}}            //默认坐标
+                value={{lng:lng,lat:lat}}            //默认坐标
                 isposition='false'
                 // searchinput={"false"}             //是否有输入框
                 onChange={this.props.handleCoordinateInfo}
@@ -118,11 +118,11 @@ class Index extends Component{
                 style={{width:'200px',height:'200px'}}
               />
 
-              <p style={{display:lng && lat ? 'none' : 'block'}}>
+              <p style={{display:data.lng && data.lat ? 'none' : 'block'}}>
                 当前项目<br/>暂未设置地图标注
               </p>
               <span></span>
-              <div className={style.delLocation} style={{display:lng && lat ? 'block' : 'none'}} onClick={()=>this.handlePoint('')}>
+              <div className={style.delLocation} style={{display:data.lng && data.lat ? 'block' : 'none'}} onClick={()=>this.handlePoint('')}>
                 <Icon type="delete" />
               </div>
             </div>
