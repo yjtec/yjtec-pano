@@ -53,8 +53,7 @@ function (_Component) {
       province: '',
       city: '',
       district: '',
-      address: '',
-      timeout: 100000
+      address: ''
     };
 
     _this.showBmap = function () {
@@ -76,8 +75,7 @@ function (_Component) {
         province: e ? e.province : '',
         city: e ? e.city : '',
         district: e ? e.district : '',
-        address: e ? e.address : '',
-        timeout: 1000
+        address: e ? e.address : ''
       }, function () {
         _this.runChange();
       });
@@ -124,8 +122,6 @@ function (_Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      var _this2 = this;
-
       var data = this.props.data;
 
       if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
@@ -137,10 +133,6 @@ function (_Component) {
             city: data && data.city ? data.city : '',
             district: data && data.district ? data.district : '',
             address: data && data.address ? data.address : ''
-          }, function () {
-            setTimeout(function () {
-              _this2.refBmap.setPoint(_this2.state);
-            }, _this2.state.timeout);
           });
         }
       }
@@ -148,7 +140,7 @@ function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var _this$props = this.props,
           data = _this$props.data,
@@ -167,7 +159,7 @@ function (_Component) {
         className: style.checkboxC
       }, React.createElement("a", {
         onClick: function onClick() {
-          return _this3.showBmap();
+          return _this2.showBmap();
         }
       }, "\u8BBE\u7F6E\u6807\u6CE8")), React.createElement("span", {
         style: {
@@ -199,11 +191,12 @@ function (_Component) {
           lng: data.lng,
           lat: data.lat
         } //默认坐标
-        // searchinput={"false"}             //是否有输入框
+        ,
+        isposition: "false" // searchinput={"false"}             //是否有输入框
         ,
         onChange: this.props.handleCoordinateInfo,
         ref: function ref(_ref) {
-          return _this3.refBmap = _ref;
+          return _this2.refBmap = _ref;
         } //把子组件的方法提到父组件中
         ,
         style: {
@@ -220,7 +213,7 @@ function (_Component) {
           display: lng && lat ? 'block' : 'none'
         },
         onClick: function onClick() {
-          return _this3.handlePoint('');
+          return _this2.handlePoint('');
         }
       }, React.createElement(_Icon, {
         type: "delete"

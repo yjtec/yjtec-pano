@@ -95,6 +95,7 @@ class Index extends Component{
           <MapSearchField 
             id={'mapsearch'}
             value={this.props.point}            //默认坐标
+            isposition='false'
             searchinput={'true'}                //是否有输入框
             inputid="mapSearchInput"            //绑定input ID
             // getres={this.getRes}                //结果面板信息
