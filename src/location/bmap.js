@@ -12,8 +12,10 @@ import AppliedToScene from './appliedToScene';
 class Index extends Component{
   state={
     bmapVisible:false,
-    lng: 113.666773,
-    lat: 34.752728,
+    // lng: 113.666773,
+    // lat: 34.752728,
+    lng: '',
+    lat: '',
     province: '',
     city: '',
     district: '',
@@ -23,8 +25,8 @@ class Index extends Component{
   componentDidMount(){
     const {data} = this.props;
     this.setState({
-      lng: data && data.lng ? data.lng : 113.666773,
-      lat: data && data.lat ? data.lat : 34.752728,
+      lng: data && data.lng ? data.lng : '',
+      lat: data && data.lat ? data.lat : '',
       province: data && data.province ? data.province : '',
       city: data && data.city ? data.city : '',
       district: data && data.district ? data.district : '',
@@ -37,8 +39,8 @@ class Index extends Component{
     if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
       if (data) {
         this.setState({
-          lng: data && data.lng ? data.lng : 113.666773,
-          lat: data && data.lat ? data.lat : 34.752728,
+          lng: data && data.lng ? data.lng : '',
+          lat: data && data.lat ? data.lat : '',
           province: data && data.province ? data.province : '',
           city: data && data.city ? data.city : '',
           district: data && data.district ? data.district : '',
@@ -62,8 +64,8 @@ class Index extends Component{
 
   handlePoint = (e) => {
     this.setState({
-      lng: e ? e.lng : 113.666773,
-      lat: e ? e.lat : 34.752728,
+      lng: e ? e.lng : '',
+      lat: e ? e.lat : '',
       province: e ? e.province : '',
       city: e ? e.city : '',
       district: e ? e.district : '',
@@ -110,7 +112,7 @@ class Index extends Component{
             <div>
               <MapSearchField 
                 id={"mapView"}
-                value={{lng:lng,lat:lat}}            //默认坐标
+                value={{lng:data.lng,lat:data.lat}}            //默认坐标
                 isposition='false'
                 // searchinput={"false"}             //是否有输入框
                 onChange={this.props.handleCoordinateInfo}

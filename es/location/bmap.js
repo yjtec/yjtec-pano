@@ -48,8 +48,10 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Index)).call.apply(_getPrototypeOf2, [this].concat(args)));
     _this.state = {
       bmapVisible: false,
-      lng: 113.666773,
-      lat: 34.752728,
+      // lng: 113.666773,
+      // lat: 34.752728,
+      lng: '',
+      lat: '',
       province: '',
       city: '',
       district: '',
@@ -70,8 +72,8 @@ function (_Component) {
 
     _this.handlePoint = function (e) {
       _this.setState({
-        lng: e ? e.lng : 113.666773,
-        lat: e ? e.lat : 34.752728,
+        lng: e ? e.lng : '',
+        lat: e ? e.lat : '',
         province: e ? e.province : '',
         city: e ? e.city : '',
         district: e ? e.district : '',
@@ -111,8 +113,8 @@ function (_Component) {
     value: function componentDidMount() {
       var data = this.props.data;
       this.setState({
-        lng: data && data.lng ? data.lng : 113.666773,
-        lat: data && data.lat ? data.lat : 34.752728,
+        lng: data && data.lng ? data.lng : '',
+        lat: data && data.lat ? data.lat : '',
         province: data && data.province ? data.province : '',
         city: data && data.city ? data.city : '',
         district: data && data.district ? data.district : '',
@@ -127,8 +129,8 @@ function (_Component) {
       if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
         if (data) {
           this.setState({
-            lng: data && data.lng ? data.lng : 113.666773,
-            lat: data && data.lat ? data.lat : 34.752728,
+            lng: data && data.lng ? data.lng : '',
+            lat: data && data.lat ? data.lat : '',
             province: data && data.province ? data.province : '',
             city: data && data.city ? data.city : '',
             district: data && data.district ? data.district : '',
@@ -188,8 +190,8 @@ function (_Component) {
       }, React.createElement("div", null, React.createElement(MapSearchField, {
         id: "mapView",
         value: {
-          lng: lng,
-          lat: lat
+          lng: data.lng,
+          lat: data.lat
         } //默认坐标
         ,
         isposition: "false" // searchinput={"false"}             //是否有输入框
