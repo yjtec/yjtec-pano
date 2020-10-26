@@ -63,6 +63,7 @@ class Index extends Component{
   }
 
   handlePoint = (e) => {
+    console.log(e)
     this.setState({
       lng: e ? e.lng : '',
       lat: e ? e.lat : '',

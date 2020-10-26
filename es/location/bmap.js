@@ -71,6 +71,8 @@ function (_Component) {
     };
 
     _this.handlePoint = function (e) {
+      console.log(e);
+
       _this.setState({
         lng: e ? e.lng : '',
         lat: e ? e.lat : '',
