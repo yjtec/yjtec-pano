@@ -46,7 +46,9 @@ function (_Component) {
     _this.state = {
       open: 0,
       time: 30,
-      switchScene: 1
+      speed: 5,
+      switchScene: 1,
+      angle_view: 1
     };
 
     _this.isOpen = function (e) {
@@ -65,9 +67,25 @@ function (_Component) {
       });
     };
 
+    _this.handleSpeed = function (value) {
+      _this.setState({
+        speed: value
+      }, function () {
+        _this.runChenge();
+      });
+    };
+
     _this.switchScene = function (e) {
       _this.setState({
         switchScene: e.target.checked ? 1 : 0
+      }, function () {
+        _this.runChenge();
+      });
+    };
+
+    _this.angleView = function (e) {
+      _this.setState({
+        angle_view: e.target.checked ? 1 : 0
       }, function () {
         _this.runChenge();
       });
@@ -87,7 +105,9 @@ function (_Component) {
       this.setState({
         open: data.open,
         time: data.time,
-        switchScene: data.switchScene
+        speed: data.speed ? data.speed : 5,
+        switchScene: data.switchScene,
+        angle_view: data.angle_view ? data.angle_view : 1
       });
     }
   }, {
@@ -98,7 +118,9 @@ function (_Component) {
       var _this$state = this.state,
           open = _this$state.open,
           time = _this$state.time,
-          switchScene = _this$state.switchScene;
+          speed = _this$state.speed,
+          switchScene = _this$state.switchScene,
+          angle_view = _this$state.angle_view;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title
       }, React.createElement("span", {
@@ -147,13 +169,35 @@ function (_Component) {
         className: style.mb20
       }), React.createElement("div", {
         className: style.title
+      }, "\u5DE1\u6E38\u901F\u5EA6(\u5EA6/S)"), React.createElement("div", {
+        className: style.sliderDiv
+      }, React.createElement(SliderSingle, {
+        defaultValue: speed,
+        max: 100,
+        min: 1,
+        step: 5,
+        onChange: function onChange(value) {
+          return _this2.handleSpeed(value);
+        }
+      })), React.createElement("div", {
+        className: style.mb20
+      }), React.createElement("div", {
+        className: style.title
       }, React.createElement("span", {
         className: style.checkboxC
       }, React.createElement(_Checkbox, {
         checked: switchScene == 1 ? true : false,
         onChange: this.switchScene,
         className: style.checkbox
-      })), "\u65CB\u8F6C\u7ED3\u675F\u540E\u81EA\u52A8\u8DF3\u8F6C\u4E0B\u4E00\u4E2A\u573A\u666F")));
+      })), "\u65CB\u8F6C\u7ED3\u675F\u540E\u81EA\u52A8\u8DF3\u8F6C\u4E0B\u4E00\u4E2A\u573A\u666F"), React.createElement("div", {
+        className: style.title
+      }, React.createElement("span", {
+        className: style.checkboxC
+      }, React.createElement(_Checkbox, {
+        checked: angle_view == 1 ? true : false,
+        onChange: this.angleView,
+        className: style.checkbox
+      })), "\u4F7F\u7528\u573A\u666F\u89C6\u89D2\u5DE1\u6E38")));
     }
   }]);
 

@@ -8,7 +8,9 @@ class CruiseEdit extends Component {
   state = {
     open: 0,
     time: 30,
-    switchScene: 1
+    speed: 5,
+    switchScene: 1,
+    angle_view: 1
   }
 
   componentDidMount(){
@@ -16,7 +18,9 @@ class CruiseEdit extends Component {
     this.setState({
       open: data.open,
       time: data.time,
-      switchScene: data.switchScene
+      speed: data.speed ? data.speed : 5,
+      switchScene: data.switchScene,
+      angle_view: data.angle_view ? data.angle_view : 1
     })
   }
 
@@ -30,9 +34,19 @@ class CruiseEdit extends Component {
       time: value
     },()=>{this.runChenge()})
   }
+  handleSpeed = (value) => {
+    this.setState({
+      speed: value
+    },()=>{this.runChenge()})
+  }
   switchScene = (e) => {
     this.setState({
       switchScene: e.target.checked ? 1 : 0
+    },()=>{this.runChenge()})
+  }
+  angleView = (e) => {
+    this.setState({
+      angle_view: e.target.checked ? 1 : 0
     },()=>{this.runChenge()})
   }
 
@@ -40,7 +54,7 @@ class CruiseEdit extends Component {
     this.props.onChange(this.state);
   }
   render () {
-    const {open,time,switchScene} = this.state;
+    const {open,time,speed,switchScene,angle_view} = this.state;
     return(
       <div>
         <ItemBox>
@@ -73,10 +87,29 @@ class CruiseEdit extends Component {
           </div>
           <div className={style.mb20}></div>
           <div className={style.title}>
+            巡游速度(度/S)
+          </div>
+          <div className={style.sliderDiv}>
+            <SliderSingle
+              defaultValue= {speed}
+              max= {100}
+              min= {1}
+              step= {1}
+              onChange={value => this.handleSpeed(value)}
+            />
+          </div>
+          <div className={style.mb20}></div>
+          <div className={style.title}>
             <span className={style.checkboxC}>
               <Checkbox checked={switchScene == 1 ? true : false} onChange={this.switchScene} className={style.checkbox}></Checkbox>
             </span>
             旋转结束后自动跳转下一个场景
+          </div>
+          <div className={style.title}>
+            <span className={style.checkboxC}>
+              <Checkbox checked={angle_view == 1 ? true : false} onChange={this.angleView} className={style.checkbox}></Checkbox>
+            </span>
+            使用场景视角巡游
           </div>
         </ItemBox>
       </div>
