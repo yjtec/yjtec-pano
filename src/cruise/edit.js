@@ -80,8 +80,8 @@ class CruiseEdit extends Component {
             <SliderSingle
               defaultValue= {time}
               max= {180}
-              min= {5}
-              step= {5}
+              min= {1}
+              step= {1}
               onChange={value => this.handleRotateTime(value)}
             />
           </div>
