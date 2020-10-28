@@ -114,7 +114,7 @@ class Index extends Component{
               <MapSearchField 
                 id={"mapView"}
                 value={{lng:data.lng,lat:data.lat}}            //默认坐标
-                isposition='false'
+                isposition={'true'}
                 // searchinput={"false"}             //是否有输入框
                 onChange={this.props.handleCoordinateInfo}
                 ref={ref => this.refBmap = ref}      //把子组件的方法提到父组件中

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {Modal,Input,Button} from 'antd';
 import {AsyncLoadMap,loadBdMap,MapSearchField} from "@yjtec/bmap";
 import './style.less';
-
 class Index extends Component{
 
   state={
@@ -95,7 +94,7 @@ class Index extends Component{
           <MapSearchField 
             id={'mapsearch'}
             value={this.props.point}            //默认坐标
-            isposition='false'
+            isposition={'true'}
             searchinput={'true'}                //是否有输入框
             inputid="mapSearchInput"            //绑定input ID
             // getres={this.getRes}                //结果面板信息
