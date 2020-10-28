@@ -49,7 +49,7 @@ class Pic extends Component {
           {helpShow && 
             (
               <div style={{float:'left', width:'20px', height:'20px',position:'relative',marginLeft:'5px'}}>
-                <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                <Help link={'mask'} style={{fontSize:'14px',color:'#999999',float:'left'}} />
               </div>
             )
           }

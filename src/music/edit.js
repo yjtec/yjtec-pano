@@ -148,7 +148,7 @@ class Music extends Component {
           {helpShow && 
             (
               <div style={{float:'left', width:'18px', height:'18px',position:'relative',marginLeft:'5px'}}>
-                <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                <Help link={'music'} style={{fontSize:'14px',color:'#999999',float:'left'}} />
               </div>
             )
           }

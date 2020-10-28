@@ -91,6 +91,7 @@ function (_React$Component) {
           marginLeft: '5px'
         }
       }, React.createElement(Help, {
+        link: 'view',
         style: {
           fontSize: '14px',
           color: '#999999',

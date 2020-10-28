@@ -37,16 +37,15 @@ class OpenAnimation extends Component {
   }
   render () {
     const {type} = this.state;
-    const helpShowFlag = false;
     return(
       <div>
         <ItemBox>
           <div className={style.title}>
             <span style={{float:'left'}}>开场动画</span>
-            {helpShow && helpShowFlag && 
+            {helpShow && 
               (
                 <div style={{float:'left', width:'18px', height:'18px', position:'relative',marginLeft:'5px'}}>
-                  <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                  <Help link={'open_animation'} style={{fontSize:'14px',color:'#999999',float:'left'}} />
                 </div>
               )
             }

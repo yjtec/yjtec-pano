@@ -122,7 +122,7 @@ function (_Component) {
         style: {
           float: 'left'
         }
-      }, "PC\u7AEF"), helpShow && helpShowFlag && React.createElement("div", {
+      }, "PC\u7AEF"), helpShow && React.createElement("div", {
         style: {
           float: 'left',
           width: '18px',
@@ -131,6 +131,7 @@ function (_Component) {
           marginLeft: '5px'
         }
       }, React.createElement(Help, {
+        link: 'prompt',
         style: {
           fontSize: '14px',
           color: '#999999',
@@ -155,7 +156,7 @@ function (_Component) {
         style: {
           float: 'left'
         }
-      }, "\u79FB\u52A8\u7AEF"), helpShow && helpShowFlag && React.createElement("div", {
+      }, "\u79FB\u52A8\u7AEF"), helpShow && React.createElement("div", {
         style: {
           float: 'left',
           width: '18px',
@@ -164,6 +165,7 @@ function (_Component) {
           marginLeft: '5px'
         }
       }, React.createElement(Help, {
+        link: 'prompt',
         style: {
           fontSize: '14px',
           color: '#999999',

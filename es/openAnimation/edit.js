@@ -91,14 +91,13 @@ function (_Component) {
       var _this2 = this;
 
       var type = this.state.type;
-      var helpShowFlag = false;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title
       }, React.createElement("span", {
         style: {
           float: 'left'
         }
-      }, "\u5F00\u573A\u52A8\u753B"), helpShow && helpShowFlag && React.createElement("div", {
+      }, "\u5F00\u573A\u52A8\u753B"), helpShow && React.createElement("div", {
         style: {
           float: 'left',
           width: '18px',
@@ -107,6 +106,7 @@ function (_Component) {
           marginLeft: '5px'
         }
       }, React.createElement(Help, {
+        link: 'open_animation',
         style: {
           fontSize: '14px',
           color: '#999999',

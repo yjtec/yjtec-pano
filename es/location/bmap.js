@@ -148,7 +148,8 @@ function (_Component) {
 
       var _this$props = this.props,
           data = _this$props.data,
-          title = _this$props.title;
+          title = _this$props.title,
+          help = _this$props.help;
       var _this$state2 = this.state,
           bmapVisible = _this$state2.bmapVisible,
           lng = _this$state2.lng,
@@ -178,6 +179,7 @@ function (_Component) {
           marginLeft: '5px'
         }
       }, React.createElement(Help, {
+        link: help,
         style: {
           fontSize: '14px',
           color: '#999999',

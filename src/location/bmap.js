@@ -90,7 +90,7 @@ class Index extends Component{
     this.refBmap.setPoint(point)
   }
   render(){
-    const {data,title} = this.props;
+    const {data,title,help} = this.props;
     const {bmapVisible,lng,lat,province,city,district,address} = this.state;
     return(
       <div>
@@ -103,7 +103,7 @@ class Index extends Component{
             {helpShow && 
               (
                 <div style={{float:'left', width:'18px', height:'18px',position:'relative',marginLeft:'5px'}}>
-                  <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                  <Help link={help} style={{fontSize:'14px',color:'#999999',float:'left'}} />
                 </div>
               )
             }

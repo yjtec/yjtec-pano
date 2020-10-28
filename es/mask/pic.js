@@ -122,6 +122,7 @@ function (_Component) {
           marginLeft: '5px'
         }
       }, React.createElement(Help, {
+        link: 'mask',
         style: {
           fontSize: '14px',
           color: '#999999',

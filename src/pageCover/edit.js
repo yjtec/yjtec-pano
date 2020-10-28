@@ -114,16 +114,15 @@ class PromptEdit extends Component {
 
   render () {
     const {pc_img,app_img,type,time,bg_color,bg_img,repeat} = this.state;
-    const helpShowFlag = false;
     return(
       <div>
         <ItemBox>
          <div className={style.title}>
             <span style={{float:'left'}}>PC端</span>
-            {helpShow && helpShowFlag &&
+            {helpShow &&
               (
                 <div style={{float:'left', width:'18px', height:'18px', position:'relative',marginLeft:'5px'}}>
-                  <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                  <Help link={'page_cover'} style={{fontSize:'14px',color:'#999999',float:'left'}} />
                 </div>
               )
             }
@@ -141,10 +140,10 @@ class PromptEdit extends Component {
           <div className={style.mb10}></div>
           <div className={style.title}>
             <span style={{float:'left'}}>移动端</span>
-            {helpShow && helpShowFlag &&
+            {helpShow &&
               (
                 <div style={{float:'left', width:'18px', height:'18px', position:'relative',marginLeft:'5px'}}>
-                  <Help style={{fontSize:'14px',color:'#999999',float:'left'}} />
+                  <Help link={'page_cover'} style={{fontSize:'14px',color:'#999999',float:'left'}} />
                 </div>
               )
             }

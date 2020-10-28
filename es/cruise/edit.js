@@ -142,6 +142,7 @@ function (_Component) {
           marginLeft: '5px'
         }
       }, React.createElement(Help, {
+        link: 'cruise',
         style: {
           fontSize: '14px',
           color: '#999999',

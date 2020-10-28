@@ -249,6 +249,7 @@ function (_React$Component) {
           marginLeft: '5px'
         }
       }, React.createElement(Help, {
+        link: 'roll',
         style: {
           fontSize: '14px',
           color: '#999999',
