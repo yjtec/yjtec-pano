@@ -57,7 +57,6 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Imground).call(this, props));
 
     _this.handleClick = function (item) {
-      console.log(171717);
       var onChange = _this.props.onChange;
 
       _this.setState({
@@ -224,7 +223,7 @@ function (_Component) {
           style: {
             left: "".concat(item.x - 25, "px"),
             top: "".concat(item.y - 25, "px"),
-            transform: "rotate(".concat(item.heading, "deg)")
+            transform: "rotate(".concat(item.heading + 90, "deg)")
           }
         }, React.createElement("img", {
           src: KrEditUrl + '/images/round.png',

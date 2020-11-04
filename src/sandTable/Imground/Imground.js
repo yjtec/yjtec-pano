@@ -45,7 +45,6 @@ class Imground extends Component{
   }
 
   handleClick = item =>{
-    console.log(171717)
     const {onChange} = this.props;
     this.setState({
       activeKey:item.scene_id,
@@ -140,7 +139,7 @@ class Imground extends Component{
                 style={{
                 left:`${item.x-25}px`,
                 top:`${item.y-25}px`,
-                transform: `rotate(${item.heading}deg)`
+                transform: `rotate(${item.heading + 90}deg)`
               }}>
                 <img src={KrEditUrl+'/images/round.png'} width="" />
                 <div className={style.center} onMouseDown={(e)=>this.handleDown(e,item)} ref={ele => this.dragEle = ele}  />
