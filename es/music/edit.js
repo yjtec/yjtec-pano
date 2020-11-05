@@ -34,7 +34,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from "react";
 import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
-import { Button, Select } from '@/components/Form';
+import { Button, Select, SliderSingle } from '@/components/Form';
 import style from './style.less';
 import UserMedia from '@/components/MediaModal/UserMedia';
 import Modal from '@/components/AllScene';
@@ -44,7 +44,8 @@ var defaultData = {
   media: false,
   musicUrl: '',
   musicTitle: '上传音乐格式为MP3',
-  loop: 0
+  loop: 0,
+  volume: 100
 };
 
 var Music =
@@ -69,6 +70,7 @@ function (_Component) {
       musicUrl: '',
       musicTitle: '上传音乐格式为MP3',
       loop: 0,
+      volume: 100,
       defaultPlay: true,
       sceneListVisible: false,
       categoryArr: [],
@@ -136,18 +138,28 @@ function (_Component) {
       _this.closeMediaModal();
     };
 
+    _this.setVolume = function (value) {
+      _this.setState({
+        volume: value
+      }, function () {
+        _this.runChange();
+      });
+    };
+
     _this.runChange = function () {
       var _this$state = _this.state,
           musicUrl = _this$state.musicUrl,
           musicTitle = _this$state.musicTitle,
           loop = _this$state.loop,
-          defaultPlay = _this$state.defaultPlay;
+          defaultPlay = _this$state.defaultPlay,
+          volume = _this$state.volume;
 
       _this.props.onChange({
         musicUrl: musicUrl,
         musicTitle: musicTitle,
         loop: loop,
-        defaultPlay: defaultPlay
+        defaultPlay: defaultPlay,
+        volume: volume
       });
     };
 
@@ -201,7 +213,8 @@ function (_Component) {
           sceneListVisible = _this$state2.sceneListVisible,
           categoryArr = _this$state2.categoryArr,
           scenesArr = _this$state2.scenesArr,
-          userMediaVisible = _this$state2.userMediaVisible;
+          userMediaVisible = _this$state2.userMediaVisible,
+          volume = _this$state2.volume;
       return React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title
       }, React.createElement("span", {
@@ -259,13 +272,17 @@ function (_Component) {
         style: {
           marginTop: 10
         }
-      }, React.createElement("span", {
-        className: style.checkboxC
-      }, React.createElement(_Checkbox, {
-        checked: loop == 0 ? true : false,
-        onChange: this.onChange,
-        className: style.checkbox
-      }, "\u662F\u5426\u5FAA\u73AF")), "\u5FAA\u73AF\u64AD\u653E"), React.createElement("div", {
+      }, "\u8BBE\u7F6E\u97F3\u91CF"), React.createElement("div", {
+        className: style.sliderDiv
+      }, React.createElement(SliderSingle, {
+        defaultValue: volume,
+        max: 100,
+        min: 1,
+        step: 1,
+        onChange: function onChange(value) {
+          return _this2.setVolume(value);
+        }
+      })), React.createElement("div", {
         className: style.title,
         style: {
           marginTop: 10
@@ -276,7 +293,26 @@ function (_Component) {
         checked: defaultPlay,
         onChange: this.handlePlay,
         className: style.checkbox
-      }, "\u662F\u5426\u64AD\u653E")), "\u9ED8\u8BA4\u64AD\u653E"), React.createElement("div", {
+      })), "\u9ED8\u8BA4\u5F00\u542F ", React.createElement("i", {
+        style: {
+          color: '#999999'
+        }
+      }, "(\u8FDB\u5165\u573A\u666F\u81EA\u52A8\u64AD\u653E)")), React.createElement("div", {
+        className: style.title,
+        style: {
+          marginTop: 10
+        }
+      }, React.createElement("span", {
+        className: style.checkboxC
+      }, React.createElement(_Checkbox, {
+        checked: loop == 0 ? true : false,
+        onChange: this.onChange,
+        className: style.checkbox
+      })), "\u5FAA\u73AF\u64AD\u653E ", React.createElement("i", {
+        style: {
+          color: '#999999'
+        }
+      }, "(\u4E0D\u52FE\u9009\u5219\u53EA\u64AD\u653E1\u6B21)")), React.createElement("div", {
         className: style.title,
         style: {
           margin: '10px 0 0 0',
@@ -298,6 +334,9 @@ function (_Component) {
       })), "\u5E94\u7528\u5230:"), React.createElement(Modal, {
         visible: sceneListVisible,
         title: "\u9009\u62E9\u573A\u666F",
+        style: {
+          color: '#000000'
+        },
         onCancel: this.onCancelAppliedToScene,
         categoryArr: categoryArr,
         scenesArr: scenesArr,
@@ -305,7 +344,8 @@ function (_Component) {
           musicUrl: musicUrl,
           musicTitle: musicTitle,
           loop: loop,
-          defaultPlay: defaultPlay
+          defaultPlay: defaultPlay,
+          volume: volume
         },
         onOk: this.setAllScene
       }), React.createElement(UserMedia, {

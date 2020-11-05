@@ -1,6 +1,6 @@
 import { Component } from "react";
 import {ItemBox,Right,Content,Help} from '@/components/';
-import {Button,Select} from '@/components/Form';
+import {Button,Select,SliderSingle} from '@/components/Form';
 import {Checkbox,Row,Col,Drawer,Icon} from 'antd';
 import style from './style.less';
 
@@ -15,7 +15,8 @@ const defaultData = {
   media: false,
   musicUrl:'',
   musicTitle:'上传音乐格式为MP3',
-  loop:0
+  loop:0,
+  volume:100
 }
 class Music extends Component {
   state={
@@ -23,6 +24,7 @@ class Music extends Component {
     musicUrl:'',
     musicTitle:'上传音乐格式为MP3',
     loop:0,
+    volume:100,
     defaultPlay:true,
     sceneListVisible:false,
     categoryArr:[],
@@ -125,18 +127,28 @@ class Music extends Component {
     this.closeMediaModal();
   }
 
+  //设置音乐音量
+  setVolume = value => {
+    this.setState({
+      volume: value
+    },()=>{
+      this.runChange();
+    });
+  }
+
   runChange=()=>{
-    const {musicUrl,musicTitle,loop,defaultPlay} = this.state;
+    const {musicUrl,musicTitle,loop,defaultPlay,volume} = this.state;
     this.props.onChange({
       musicUrl: musicUrl,
       musicTitle: musicTitle,
       loop: loop,
-      defaultPlay: defaultPlay
+      defaultPlay: defaultPlay,
+      volume:volume
     })
   }
 
   render(){
-    const {musicUrl,musicTitle,loop,defaultPlay,sceneListVisible,categoryArr,scenesArr,userMediaVisible} = this.state;
+    const {musicUrl,musicTitle,loop,defaultPlay,sceneListVisible,categoryArr,scenesArr,userMediaVisible,volume} = this.state;
 
     return(
       <ItemBox>
@@ -174,18 +186,32 @@ class Music extends Component {
           </Row>
           <div style={{clear:'both'}}></div>
         </div>
+
         <div className={style.title} style={{marginTop:10}}>
-          <span className={style.checkboxC}>
-            <Checkbox checked={loop == 0 ? true : false} onChange={this.onChange} className={style.checkbox}>是否循环</Checkbox>
-          </span>
-          循环播放
+          设置音量
+        </div>
+        <div className={style.sliderDiv}>
+          <SliderSingle
+            defaultValue= {volume}
+            max= {100}
+            min= {1}
+            step= {1}
+            onChange={value => this.setVolume(value)}
+          />
         </div>
 
         <div className={style.title} style={{marginTop:10}}>
           <span className={style.checkboxC}>
-            <Checkbox checked={defaultPlay} onChange={this.handlePlay} className={style.checkbox}>是否播放</Checkbox>
+            <Checkbox checked={defaultPlay} onChange={this.handlePlay} className={style.checkbox}></Checkbox>
           </span>
-          默认播放
+          默认开启 <i style={{color:'#999999'}}>(进入场景自动播放)</i>
+        </div>
+
+        <div className={style.title} style={{marginTop:10}}>
+          <span className={style.checkboxC}>
+            <Checkbox checked={loop == 0 ? true : false} onChange={this.onChange} className={style.checkbox}></Checkbox>
+          </span>
+          循环播放 <i style={{color:'#999999'}}>(不勾选则只播放1次)</i>
         </div>
 
         <div className={style.title} style={{margin:'10px 0 0 0',lineHeight:'22px'}}>
@@ -197,10 +223,11 @@ class Music extends Component {
         <Modal
           visible={sceneListVisible}
           title='选择场景'
+          style={{color:'#000000'}}
           onCancel={this.onCancelAppliedToScene}
           categoryArr={categoryArr}
           scenesArr={scenesArr}
-          data={{musicUrl:musicUrl,musicTitle:musicTitle,loop:loop,defaultPlay:defaultPlay}}
+          data={{musicUrl:musicUrl,musicTitle:musicTitle,loop:loop,defaultPlay:defaultPlay,volume:volume}}
           onOk={this.setAllScene}
         >
         </Modal>
