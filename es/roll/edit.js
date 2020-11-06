@@ -54,7 +54,7 @@ var defaultCssData = {
   fontStyle: 'none',
   textDecoration: 'none',
   textAlign: 'center',
-  lineHeight: '20px',
+  lineHeight: '30px',
   textIndent: '0px',
   letterSpacing: '0px'
 };
