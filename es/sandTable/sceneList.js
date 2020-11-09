@@ -128,7 +128,12 @@ function (_Component) {
         data: data,
         spots: spots,
         onChange: this.handleScene
-      })), React.createElement(ItemBox, null, React.createElement(_Row, {
+      })), React.createElement(ItemBox, {
+        style: {
+          position: 'absolute',
+          bottom: '0'
+        }
+      }, React.createElement(_Row, {
         style: {
           margin: '0 -10px'
         }

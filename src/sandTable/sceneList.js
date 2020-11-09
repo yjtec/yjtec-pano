@@ -55,7 +55,7 @@ class SceneList extends Component {
   handleCancel = () => {
     this.props.onCancel();
   }
- 
+
   render () {
     const {visible,spots,scene} = this.props;
     const {data} = this.state;
@@ -69,7 +69,7 @@ class SceneList extends Component {
         <ItemBox>
           <Scene data={data} spots={spots} onChange={this.handleScene}/>
         </ItemBox>
-        <ItemBox>
+        <ItemBox style={{position:'absolute',bottom:'0'}}>
           <Row style={{margin:'0 -10px'}}>
             <Col span={24} className={style.panoList}>
               <Button 
