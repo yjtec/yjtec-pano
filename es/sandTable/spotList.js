@@ -45,7 +45,7 @@ function (_Component) {
           editSpotId = _this$props.editSpotId;
       return React.createElement("div", null, React.createElement("div", {
         className: style.title
-      }, "\u6DFB\u52A0\u70ED\u70B9"), React.createElement("div", null, React.createElement(_Button, {
+      }, "\u6807\u8BB0\u7BA1\u7406"), React.createElement("div", null, React.createElement(_Button, {
         type: "primary",
         className: style.Button,
         style: {

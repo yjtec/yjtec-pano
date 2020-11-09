@@ -10,7 +10,7 @@ class spotList extends Component {
     return (
       <div>
         <div className={style.title}>
-          添加热点
+          标记管理
         </div>
         <div>
           <Button type="primary" className={style.Button} style={{width:'100%'}} onClick={()=>this.props.addSpot()}>添加标记</Button>
