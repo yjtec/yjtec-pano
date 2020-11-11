@@ -15,6 +15,7 @@ import OpenAnimation from './openAnimation';
 import SandTable from './sandTable'; //单组件
 
 import ItemImg from './components/ItemImg';
+import Details from './details';
 export { //页面功能页
-Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, LoadsceneAction, ViewPwd, Gyro, OpenAnimation, SandTable //单组件
+Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, LoadsceneAction, ViewPwd, Gyro, OpenAnimation, SandTable, Details //单组件
 , ItemImg };

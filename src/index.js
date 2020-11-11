@@ -15,6 +15,7 @@ import OpenAnimation from './openAnimation';
 import SandTable from './sandTable';
 //单组件
 import ItemImg from './components/ItemImg';
+import Details from './details';
 export {
   //页面功能页
   Mask,
@@ -32,6 +33,7 @@ export {
   Gyro,
   OpenAnimation,
   SandTable,
+  Details,
   //单组件
   ItemImg,
 }
