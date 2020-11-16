@@ -3,7 +3,7 @@ import {Icon} from 'antd';
 import { isUrl,isMark } from '@/utils/utils';
 import IconFont from '@/components/IconFont';
 import style from './style.less';
-import Edit from './edit';
+import {mediaImgConfig} from '@/utils/oss.config';
 
 const getIcon = icon =>{
   if (typeof icon === 'string') {
@@ -18,41 +18,27 @@ const getIcon = icon =>{
   return icon;
 }
 export default class DetailsList extends React.Component {
-  state = {
-    visible:false,
-  }
 
-  openEdit = (e) => {
-    this.setState({
-      visible: true
-    });
+  openEdit = (id) => {
+    this.props.getItem(id);
   }
 
   render() {
-    const { visible } = this.state;
+    const  {list,data} = this.props;
     return (
       <div>
         <div className={style.list}>
-          <div className={style.item}>
-            <span>1</span>
-            <img src="https://res.jsvry.cn/prod/head_img/2020/05/23/1947442cpzktf.jpg?x-oss-process=image/resize,m_fill,h_100,w_100,limit_0" alt="图片" onClick={()=>this.openEdit()}/>
-            <p onClick={()=>this.openEdit()}>这里是标题这里是标题</p>
-            {getIcon('icon-huishouzhan')}
-          </div>
-          <div className={style.item} onClick={()=>this.openEdit()}>
-            <span>2</span>
-            <img src="https://res.jsvry.cn/prod/head_img/2020/05/23/1947442cpzktf.jpg?x-oss-process=image/resize,m_fill,h_100,w_100,limit_0" alt="图片" onClick={()=>this.openEdit()}/>
-            <p onClick={()=>this.openEdit()}>这里是标题这里是标题</p>
-            {getIcon('icon-huishouzhan')}
-          </div>
-          <div className={style.item} onClick={()=>this.openEdit()}>
-            <span>3</span>
-            <img src="https://res.jsvry.cn/prod/head_img/2020/05/23/1947442cpzktf.jpg?x-oss-process=image/resize,m_fill,h_100,w_100,limit_0" alt="图片" onClick={()=>this.openEdit()}/>
-            <p onClick={()=>this.openEdit()}>这里是标题这里是标题</p>
-            {getIcon('icon-huishouzhan')}
-          </div>
+        {
+          list && list.map((item,index)=>(
+            <div className={style.item} key={index}>
+              <span>{index + 1}</span>
+              {item.url && <img src={mediaImgConfig(item.url,'img')} alt={item.title} onClick={()=>this.openEdit(item.id)}/>}
+              <p onClick={()=>this.openEdit(item.id)}>{item.title}</p>
+              <div onClick={()=>this.props.delItem(item.id)}>{getIcon('icon-huishouzhan')}</div>
+            </div>
+          ))
+        }
         </div>
-        <Edit visible={visible} krpano={this.props.krpano} />
       </div>
     );
   }

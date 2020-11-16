@@ -23,7 +23,7 @@ import React from 'react';
 import { isUrl, isMark } from '@/utils/utils';
 import IconFont from '@/components/IconFont';
 import style from './style.less';
-import Edit from './edit';
+import { mediaImgConfig } from '@/utils/oss.config';
 
 var getIcon = function getIcon(icon) {
   if (typeof icon === 'string') {
@@ -72,14 +72,9 @@ function (_React$Component) {
     }
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DetailsList)).call.apply(_getPrototypeOf2, [this].concat(args)));
-    _this.state = {
-      visible: false
-    };
 
-    _this.openEdit = function (e) {
-      _this.setState({
-        visible: true
-      });
+    _this.openEdit = function (id) {
+      _this.props.getItem(id);
     };
 
     return _this;
@@ -90,55 +85,31 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var visible = this.state.visible;
+      var _this$props = this.props,
+          list = _this$props.list,
+          data = _this$props.data;
       return React.createElement("div", null, React.createElement("div", {
         className: style.list
-      }, React.createElement("div", {
-        className: style.item
-      }, React.createElement("span", null, "1"), React.createElement("img", {
-        src: "https://res.jsvry.cn/prod/head_img/2020/05/23/1947442cpzktf.jpg?x-oss-process=image/resize,m_fill,h_100,w_100,limit_0",
-        alt: "\u56FE\u7247",
-        onClick: function onClick() {
-          return _this2.openEdit();
-        }
-      }), React.createElement("p", {
-        onClick: function onClick() {
-          return _this2.openEdit();
-        }
-      }, "\u8FD9\u91CC\u662F\u6807\u9898\u8FD9\u91CC\u662F\u6807\u9898"), getIcon('icon-huishouzhan')), React.createElement("div", {
-        className: style.item,
-        onClick: function onClick() {
-          return _this2.openEdit();
-        }
-      }, React.createElement("span", null, "2"), React.createElement("img", {
-        src: "https://res.jsvry.cn/prod/head_img/2020/05/23/1947442cpzktf.jpg?x-oss-process=image/resize,m_fill,h_100,w_100,limit_0",
-        alt: "\u56FE\u7247",
-        onClick: function onClick() {
-          return _this2.openEdit();
-        }
-      }), React.createElement("p", {
-        onClick: function onClick() {
-          return _this2.openEdit();
-        }
-      }, "\u8FD9\u91CC\u662F\u6807\u9898\u8FD9\u91CC\u662F\u6807\u9898"), getIcon('icon-huishouzhan')), React.createElement("div", {
-        className: style.item,
-        onClick: function onClick() {
-          return _this2.openEdit();
-        }
-      }, React.createElement("span", null, "3"), React.createElement("img", {
-        src: "https://res.jsvry.cn/prod/head_img/2020/05/23/1947442cpzktf.jpg?x-oss-process=image/resize,m_fill,h_100,w_100,limit_0",
-        alt: "\u56FE\u7247",
-        onClick: function onClick() {
-          return _this2.openEdit();
-        }
-      }), React.createElement("p", {
-        onClick: function onClick() {
-          return _this2.openEdit();
-        }
-      }, "\u8FD9\u91CC\u662F\u6807\u9898\u8FD9\u91CC\u662F\u6807\u9898"), getIcon('icon-huishouzhan'))), React.createElement(Edit, {
-        visible: visible,
-        krpano: this.props.krpano
-      }));
+      }, list && list.map(function (item, index) {
+        return React.createElement("div", {
+          className: style.item,
+          key: index
+        }, React.createElement("span", null, index + 1), item.url && React.createElement("img", {
+          src: mediaImgConfig(item.url, 'img'),
+          alt: item.title,
+          onClick: function onClick() {
+            return _this2.openEdit(item.id);
+          }
+        }), React.createElement("p", {
+          onClick: function onClick() {
+            return _this2.openEdit(item.id);
+          }
+        }, item.title), React.createElement("div", {
+          onClick: function onClick() {
+            return _this2.props.delItem(item.id);
+          }
+        }, getIcon('icon-huishouzhan')));
+      })));
     }
   }]);
 

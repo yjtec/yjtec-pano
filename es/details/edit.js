@@ -1,7 +1,15 @@
 import "antd/es/input/style";
 import _Input from "antd/es/input";
+import "antd/es/message/style";
+import _message from "antd/es/message";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -44,7 +52,6 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(DetailsEdit)).call.apply(_getPrototypeOf2, [this].concat(args)));
     _this.state = {
-      visible: true,
       title: '',
       url: '',
       fov: '',
@@ -56,35 +63,37 @@ function (_React$Component) {
       var krpano = _this.props.krpano;
 
       _this.setState({
-        fov: parseInt(krpano.get('view.fov'))
-      });
-    };
-
-    _this.handleCancel = function () {
-      _this.setState({
-        visible: false
+        fov: krpano.get('view.fov')
+      }, function () {
+        _this.saveOne();
       });
     };
 
     _this.setTitle = function (e) {
       _this.setState({
         title: e.target.value
+      }, function () {
+        _this.saveOne();
       });
     };
 
     _this.delImg = function () {
       _this.setState({
         url: ''
+      }, function () {
+        _this.saveOne();
       });
     };
 
     _this.selectImg = function (arr) {
       _this.setState({
         url: arr[0].path.path
+      }, function () {
+        _this.saveOne();
       });
     };
 
-    _this.save = function () {
+    _this.saveOne = function () {
       var _this$state = _this.state,
           title = _this$state.title,
           url = _this$state.url,
@@ -98,7 +107,37 @@ function (_React$Component) {
         ath: ath,
         atv: atv
       };
-      console.log(ath, atv);
+
+      _this.props.saveOne(data);
+    };
+
+    _this.save = function () {
+      var _this$state2 = _this.state,
+          title = _this$state2.title,
+          url = _this$state2.url,
+          fov = _this$state2.fov,
+          ath = _this$state2.ath,
+          atv = _this$state2.atv;
+
+      if (!title) {
+        _message.warning('请输入标题');
+
+        return;
+      }
+
+      var data = {
+        title: title,
+        url: url,
+        fov: fov,
+        ath: ath,
+        atv: atv
+      };
+
+      _this.props.saveList(data);
+    };
+
+    _this.onCancel = function () {
+      _this.props.onCloseEdit();
     };
 
     return _this;
@@ -107,10 +146,10 @@ function (_React$Component) {
   _createClass(DetailsEdit, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var visible = this.props.visible;
-      this.setState({
-        visible: visible
-      });
+      var _this$props = this.props,
+          visible = _this$props.visible,
+          data = _this$props.data;
+      this.setState(_objectSpread({}, data));
       this.scrollFunc(); //注册监听事件
 
       if (document.addEventListener) {
@@ -124,12 +163,13 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      var visible = this.props.visible;
-
-      if (visible != prevState.visible) {
-        this.setState({
-          visible: visible
-        });
+      if (JSON.stringify(this.props.data) != JSON.stringify(prevProps.data)) {
+        if (this.props.data) {
+          var _this$props2 = this.props,
+              visible = _this$props2.visible,
+              data = _this$props2.data;
+          this.setState(_objectSpread({}, data));
+        }
       }
     }
   }, {
@@ -137,21 +177,21 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var _this$state2 = this.state,
-          visible = _this$state2.visible,
-          title = _this$state2.title,
-          url = _this$state2.url,
-          fov = _this$state2.fov;
+      var _this$state3 = this.state,
+          title = _this$state3.title,
+          url = _this$state3.url,
+          fov = _this$state3.fov;
+      var visible = this.props.visible;
       return React.createElement(Drawer, {
         visible: visible,
         title: '细节设置',
         destroyOnClose: false,
-        onCancel: this.handleCancel
+        onCancel: this.onCancel
       }, React.createElement(ItemBox, null, React.createElement("div", {
         className: style.detailsEdit
       }, React.createElement("div", {
         className: style.tips
-      }, React.createElement("p", null, React.createElement("span", null, "\u5F53\u524D\u89C6\u89D2\u8303\u56F4\uFF08FOV\uFF09: ", fov), "\u901A\u8FC7\u653E\u5927\u6216\u7F29\u5C0F\u5168\u666F\uFF0C\u8BBE\u7F6E\u6700\u7EC8\u7684\u89C6\u89D2\u663E\u793A\u8303\u56F4")))), React.createElement(ItemBox, {
+      }, React.createElement("p", null, React.createElement("span", null, "\u5F53\u524D\u89C6\u89D2\u8303\u56F4\uFF08FOV\uFF09: ", parseInt(fov)), "\u901A\u8FC7\u653E\u5927\u6216\u7F29\u5C0F\u5168\u666F\uFF0C\u8BBE\u7F6E\u6700\u7EC8\u7684\u89C6\u89D2\u663E\u793A\u8303\u56F4")))), React.createElement(ItemBox, {
         style: {
           padding: '10px 0'
         }
