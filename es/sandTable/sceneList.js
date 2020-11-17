@@ -119,7 +119,11 @@ function (_Component) {
           spots = _this$props.spots,
           scene = _this$props.scene;
       var data = this.state.data;
-      return React.createElement(Drawer, {
+      return React.createElement("div", {
+        style: {
+          position: 'relative'
+        }
+      }, React.createElement(Drawer, {
         visible: visible,
         title: "\u9009\u62E9\u573A\u666F",
         destroyOnClose: false,
@@ -128,12 +132,16 @@ function (_Component) {
         data: data,
         spots: spots,
         onChange: this.handleScene
-      })), React.createElement(ItemBox, {
+      })), React.createElement("div", {
         style: {
           position: 'absolute',
-          bottom: '0'
+          bottom: '0',
+          width: '100%',
+          background: '#494949'
         }
-      }, React.createElement(_Row, {
+      }, React.createElement("div", {
+        className: style.lineDefaultBottom
+      }), React.createElement(ItemBox, null, React.createElement(_Row, {
         style: {
           margin: '0 -10px'
         }
@@ -149,7 +157,7 @@ function (_Component) {
         },
         title: "\u5B8C\u6210",
         onClick: this.handleSave
-      })))));
+      })))))));
     }
   }]);
 

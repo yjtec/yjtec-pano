@@ -19,7 +19,7 @@ class ActionScene extends Component{
   render(){
     const {scene,data,spots,onChange} = this.props;
     return (
-      <div>
+      <div style={{marginBottom:'72px'}}>
         <div className={style.title}>
           选择目标场景
         </div>

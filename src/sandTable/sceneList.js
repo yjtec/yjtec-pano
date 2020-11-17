@@ -60,28 +60,33 @@ class SceneList extends Component {
     const {visible,spots,scene} = this.props;
     const {data} = this.state;
     return(
-      <Drawer
-        visible={visible}
-        title='选择场景'
-        destroyOnClose={false}
-        onCancel={this.handleCancel}
-      >
-        <ItemBox>
-          <Scene data={data} spots={spots} onChange={this.handleScene}/>
-        </ItemBox>
-        <ItemBox style={{position:'absolute',bottom:'0'}}>
-          <Row style={{margin:'0 -10px'}}>
-            <Col span={24} className={style.panoList}>
-              <Button 
-                disabled={residualArr(scene,spots).length > 0 ? false : true} 
-                style={{backgroundColor: '#008aff', borderColor: '#008aff', color:'rgba(255,255,255,1)'}} 
-                title="完成" 
-                onClick={this.handleSave}
-              />
-            </Col>
-          </Row>
-        </ItemBox>
-      </Drawer>
+      <div style={{position:'relative'}}>
+        <Drawer
+          visible={visible}
+          title='选择场景'
+          destroyOnClose={false}
+          onCancel={this.handleCancel}
+        >
+            <ItemBox>
+              <Scene data={data} spots={spots} onChange={this.handleScene}/>
+            </ItemBox>
+            <div style={{position:'absolute',bottom:'0',width:'100%',background:'#494949'}}>
+              <div className={style.lineDefaultBottom}></div>
+              <ItemBox>
+                <Row style={{margin:'0 -10px'}}>
+                  <Col span={24} className={style.panoList}>
+                    <Button 
+                      disabled={residualArr(scene,spots).length > 0 ? false : true} 
+                      style={{backgroundColor: '#008aff', borderColor: '#008aff', color:'rgba(255,255,255,1)'}} 
+                      title="完成" 
+                      onClick={this.handleSave}
+                    />
+                  </Col>
+                </Row>
+              </ItemBox>
+            </div>
+        </Drawer>
+      </div>
     );
   }
 }

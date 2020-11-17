@@ -57,7 +57,11 @@ function (_Component) {
           data = _this$props.data,
           spots = _this$props.spots,
           onChange = _this$props.onChange;
-      return React.createElement("div", null, React.createElement("div", {
+      return React.createElement("div", {
+        style: {
+          marginBottom: '72px'
+        }
+      }, React.createElement("div", {
         className: style.title
       }, "\u9009\u62E9\u76EE\u6807\u573A\u666F"), React.createElement("div", {
         className: style.panoLists
