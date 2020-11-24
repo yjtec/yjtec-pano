@@ -1,8 +1,8 @@
 {
   "name": "yjtec-pano",
-  "version": "0.4.14",
+  "version": "0.4.15",
   "description": "yjtec edit pano",
-  "main": "lib/index.js", 
+  "main": "lib/index.js",
   "files": [
     "lib",
     "es"
@@ -24,6 +24,7 @@
   "devDependencies": {},
   "license": "MIT",
   "dependencies": {
-    "babel-plugin-import": "^1.12.2"
+    "babel-plugin-import": "^1.12.2",
+    "braft-editor": "^2.3.9"
   }
 }

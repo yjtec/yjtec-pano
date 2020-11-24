@@ -13,9 +13,10 @@ import ViewPwd from './viewPwd';
 import Gyro from './gyro';
 import OpenAnimation from './openAnimation';
 import SandTable from './sandTable';
+import Details from './details';
 //单组件
 import ItemImg from './components/ItemImg';
-import Details from './details';
+import Editor from './components/editor';
 export {
   //页面功能页
   Mask,
@@ -36,4 +37,5 @@ export {
   Details,
   //单组件
   ItemImg,
+  Editor
 }

@@ -12,10 +12,11 @@ import LoadsceneAction from './loadsceneAction';
 import ViewPwd from './viewPwd';
 import Gyro from './gyro';
 import OpenAnimation from './openAnimation';
-import SandTable from './sandTable'; //单组件
+import SandTable from './sandTable';
+import Details from './details'; //单组件
 
 import ItemImg from './components/ItemImg';
-import Details from './details';
+import Editor from './components/editor';
 export { //页面功能页
 Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, LoadsceneAction, ViewPwd, Gyro, OpenAnimation, SandTable, Details //单组件
-, ItemImg };
+, ItemImg, Editor };
