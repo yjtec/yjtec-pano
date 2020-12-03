@@ -47,7 +47,8 @@ export default class braftEditor extends React.Component {
 
   //提交html
   handleEditorChange = (editorState) => {
-    const htmlContent = this.state.editorState.toHTML();
+    const htmlContent = editorState.toHTML();
+
     this.setState({ 
       editorState
     },()=>{
@@ -89,11 +90,8 @@ export default class braftEditor extends React.Component {
           extendControls={extendControls}
           onChange={this.handleEditorChange}
         />
-
         <Media visible={mediaVisible} onChange={this.mediaHandler} onClose={this.mediaClose}/>
       </div>
     )
-
   }
-
 }

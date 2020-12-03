@@ -26,8 +26,13 @@ export default class modalEditor extends React.Component {
     });
   }
   
-    //打开素材库选择窗口
+  //打开素材库选择窗口
   openMediaModal = () => {
+    if (this.state.type != 'IMAGE') {
+      this.setState({
+        url:[] 
+      });
+    }
     this.setState({
       type:'IMAGE',
       userMediaVisible:true
@@ -47,6 +52,11 @@ export default class modalEditor extends React.Component {
 
   //弹出选择视频
   handleVideoShow = () => {
+    if (this.state.type != 'VIDEO') {
+      this.setState({
+        url:[] 
+      });
+    }
     this.setState({
       type:'VIDEO',
       videoVisible:true
@@ -167,7 +177,6 @@ export default class modalEditor extends React.Component {
             <span onClick={()=>this.setUploadType()}>{uploadType == 1 ? '添加网络资源' : '添加本地资源'}</span>
           </div>
         </Modal>
-
 
         <UserMedia
           title='图片素材库'

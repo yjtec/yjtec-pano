@@ -67,6 +67,12 @@ function (_React$Component) {
     };
 
     _this.openMediaModal = function () {
+      if (_this.state.type != 'IMAGE') {
+        _this.setState({
+          url: []
+        });
+      }
+
       _this.setState({
         type: 'IMAGE',
         userMediaVisible: true
@@ -86,6 +92,12 @@ function (_React$Component) {
     };
 
     _this.handleVideoShow = function () {
+      if (_this.state.type != 'VIDEO') {
+        _this.setState({
+          url: []
+        });
+      }
+
       _this.setState({
         type: 'VIDEO',
         videoVisible: true

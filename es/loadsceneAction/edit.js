@@ -1,3 +1,5 @@
+import "antd/es/checkbox/style";
+import _Checkbox from "antd/es/checkbox";
 import "antd/es/switch/style";
 import _Switch from "antd/es/switch";
 
@@ -65,12 +67,21 @@ function (_Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(LoadsceneAction)).call.apply(_getPrototypeOf2, [this].concat(args)));
     _this.state = {
-      type: 1
+      type: 1,
+      keepView: 1
     };
 
     _this.selectAction = function (value) {
       _this.setState({
         type: value
+      }, function () {
+        _this.runChenge();
+      });
+    };
+
+    _this.setKeepView = function (e) {
+      _this.setState({
+        keepView: e.target.checked ? 1 : 0
       }, function () {
         _this.runChenge();
       });
@@ -88,7 +99,8 @@ function (_Component) {
     value: function componentDidMount() {
       var data = this.props.data;
       this.setState({
-        type: data && data.type ? data.type : 1
+        type: data && data.type ? data.type : 1,
+        keepView: data && data.keepView ? data.keepView : 0
       });
     }
   }, {
@@ -96,7 +108,9 @@ function (_Component) {
     value: function render() {
       var _this2 = this;
 
-      var type = this.state.type;
+      var _this$state = this.state,
+          type = _this$state.type,
+          keepView = _this$state.keepView;
       var helpShowFlag = false;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title
@@ -137,7 +151,18 @@ function (_Component) {
             marginTop: '8px'
           }
         }), item.title);
-      })));
+      })), React.createElement(ItemBox, null, React.createElement("div", {
+        className: style.title,
+        style: {
+          marginTop: '10px'
+        }
+      }, React.createElement("span", {
+        className: style.checkboxC
+      }, React.createElement(_Checkbox, {
+        checked: keepView == 1 ? true : false,
+        onChange: this.setKeepView,
+        className: style.checkbox
+      })), "\u5207\u6362\u573A\u666F\u65F6\u4FDD\u6301\u89C6\u89D2")));
     }
   }]);
 

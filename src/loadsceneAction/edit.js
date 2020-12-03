@@ -1,6 +1,6 @@
 import { Component } from "react";
 import {ItemBox,Help} from '@/components/';
-import {Switch} from 'antd';
+import {Switch,Checkbox} from 'antd';
 import style from './style.less';
 import {helpShow} from '@/utils/help';
 
@@ -16,13 +16,15 @@ const actionData = [
 
 class LoadsceneAction extends Component {
   state = {
-    type:1
+    type:1,
+    keepView:1
   }
 
   componentDidMount(){
     const { data } = this.props;
     this.setState({
       type:data && data.type ? data.type : 1,
+      keepView:data && data.keepView ? data.keepView : 0,
     })
   }
 
@@ -34,11 +36,17 @@ class LoadsceneAction extends Component {
     });
   }
 
+  setKeepView = (e) => {
+    this.setState({
+      keepView: e.target.checked ? 1 : 0
+    },()=>{this.runChenge()})
+  }
+
   runChenge = () => {
     this.props.onChange(this.state);
   }
   render () {
-    const {type} = this.state;
+    const {type,keepView} = this.state;
     const helpShowFlag = false;
     return(
       <div>
@@ -63,6 +71,14 @@ class LoadsceneAction extends Component {
               </div>
             )
           })}
+        </ItemBox>
+        <ItemBox>
+          <div className={style.title} style={{marginTop:'10px'}}>
+            <span className={style.checkboxC}>
+              <Checkbox checked={keepView == 1 ? true : false} onChange={this.setKeepView} className={style.checkbox}></Checkbox>
+            </span>
+            切换场景时保持视角
+          </div>
         </ItemBox>
       </div>
     );

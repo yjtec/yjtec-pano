@@ -77,7 +77,7 @@ function (_React$Component) {
     };
 
     _this.handleEditorChange = function (editorState) {
-      var htmlContent = _this.state.editorState.toHTML();
+      var htmlContent = editorState.toHTML();
 
       _this.setState({
         editorState: editorState
