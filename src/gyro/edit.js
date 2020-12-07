@@ -37,9 +37,9 @@ class PromptEdit extends Component {
         <ItemBox>
          <div className={style.title}>
             <span className={style.checkboxC}>
-              <Checkbox checked={auto_open == 1 ? true : false} onChange={this.isOpen} className={style.checkbox}>是否开启</Checkbox>
+              <Checkbox checked={auto_open == 1 ? true : false} onChange={this.isOpen} className={style.checkbox}></Checkbox>
             </span>
-            <span style={{float:'left'}}>手机陀螺仪功能</span>
+            <span style={{float:'left'}}>开启手机陀螺仪功能</span>
             {helpShow && helpShowFlag && 
               (
                 <div style={{float:'left', width:'18px', height:'18px', position:'relative',marginLeft:'5px'}}>
@@ -49,7 +49,7 @@ class PromptEdit extends Component {
             }
             <div style={{clear:'both'}}></div>
             <div className={style.tigs}>
-              开启后作品将默认启用陀螺仪功能
+              注：开启后作品将默认启用陀螺仪功能
             </div>
           </div>
         </ItemBox>

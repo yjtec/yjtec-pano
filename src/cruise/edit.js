@@ -60,9 +60,9 @@ class CruiseEdit extends Component {
         <ItemBox>
           <div className={style.title}>
             <span className={style.checkboxC}>
-              <Checkbox checked={open == 1 ? true : false} onChange={this.isOpen} className={style.checkbox}>是否开启</Checkbox>
+              <Checkbox checked={open == 1 ? true : false} onChange={this.isOpen} className={style.checkbox}></Checkbox>
             </span>
-            <span style={{float:'left'}}>自动巡游</span>
+            <span style={{float:'left'}}>开启自动巡游</span>
             {helpShow && 
               (
                 <div style={{float:'left', width:'18px', height:'18px', position:'relative',marginLeft:'5px'}}>

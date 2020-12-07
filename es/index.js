@@ -13,10 +13,14 @@ import ViewPwd from './viewPwd';
 import Gyro from './gyro';
 import OpenAnimation from './openAnimation';
 import SandTable from './sandTable';
-import Details from './details'; //单组件
+import Details from './details';
+import RightClick from './rightClick';
+import Comment from './comment';
+import Loading_config from './loading_config';
+import Initial_scene from './initial_scene'; //单组件
 
 import ItemImg from './components/ItemImg';
 import Editor from './components/editor';
 export { //页面功能页
-Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, LoadsceneAction, ViewPwd, Gyro, OpenAnimation, SandTable, Details //单组件
+Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, LoadsceneAction, ViewPwd, Gyro, OpenAnimation, SandTable, Details, RightClick, Comment, Loading_config, Initial_scene //单组件
 , ItemImg, Editor };

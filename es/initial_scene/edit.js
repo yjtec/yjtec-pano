@@ -1,7 +1,13 @@
-import "antd/es/checkbox/style";
-import _Checkbox from "antd/es/checkbox";
+import "antd/es/switch/style";
+import _Switch from "antd/es/switch";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -21,35 +27,53 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from "react";
 import { Component } from "react";
-import { ItemBox, Right, Content, Help } from '@/components/';
+import { ItemBox, Help } from '@/components/';
 import style from './style.less';
 import { helpShow } from '@/utils/help';
-import { SliderSingle } from '@/components/Form';
+import { mediaImgConfig } from '@/utils/oss.config';
+import ItemImg from '../components/ItemImg';
 
-var PromptEdit =
+var LoadingEdit =
 /*#__PURE__*/
 function (_Component) {
-  _inherits(PromptEdit, _Component);
+  _inherits(LoadingEdit, _Component);
 
-  function PromptEdit() {
+  function LoadingEdit() {
     var _getPrototypeOf2;
 
     var _this;
 
-    _classCallCheck(this, PromptEdit);
+    _classCallCheck(this, LoadingEdit);
 
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(PromptEdit)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(LoadingEdit)).call.apply(_getPrototypeOf2, [this].concat(args)));
     _this.state = {
-      auto_open: 0
+      state: false,
+      url: ''
     };
 
-    _this.isOpen = function (e) {
+    _this.loadingState = function (e) {
       _this.setState({
-        auto_open: e.target.checked ? 1 : 0
+        state: e
+      }, function () {
+        _this.save();
+      });
+    };
+
+    _this.selectImg = function (arr) {
+      _this.setState({
+        url: arr[0].path.path
+      }, function () {
+        _this.save();
+      });
+    };
+
+    _this.delImg = function () {
+      _this.setState({
+        url: ''
       }, function () {
         _this.save();
       });
@@ -62,56 +86,46 @@ function (_Component) {
     return _this;
   }
 
-  _createClass(PromptEdit, [{
+  _createClass(LoadingEdit, [{
     key: "componentDidMount",
     value: function componentDidMount() {
       var data = this.props.data;
-      this.setState({
-        auto_open: data && data.auto_open ? data.auto_open : 0
-      });
+      this.setState(_objectSpread({}, data));
     }
   }, {
     key: "render",
     value: function render() {
-      var auto_open = this.state.auto_open;
-      var helpShowFlag = false;
+      var _this2 = this;
+
+      var _this$state = this.state,
+          url = _this$state.url,
+          state = _this$state.state;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         className: style.title
       }, React.createElement("span", {
         className: style.checkboxC
-      }, React.createElement(_Checkbox, {
-        checked: auto_open == 1 ? true : false,
-        onChange: this.isOpen,
-        className: style.checkbox
-      })), React.createElement("span", {
-        style: {
-          float: 'left'
+      }, React.createElement(_Switch, {
+        size: "small",
+        checked: state,
+        onClick: function onClick(e) {
+          return _this2.loadingState(e);
         }
-      }, "\u5F00\u542F\u624B\u673A\u9640\u87BA\u4EEA\u529F\u80FD"), helpShow && helpShowFlag && React.createElement("div", {
-        style: {
-          float: 'left',
-          width: '18px',
-          height: '18px',
-          position: 'relative',
-          marginLeft: '5px'
-        }
-      }, React.createElement(Help, {
-        style: {
-          fontSize: '14px',
-          color: '#999999',
-          float: 'left'
-        }
-      })), React.createElement("div", {
+      })), "\u52A0\u8F7D\u52A8\u753B", React.createElement("div", {
         style: {
           clear: 'both'
         }
       }), React.createElement("div", {
-        className: style.tigs
-      }, "\u6CE8\uFF1A\u5F00\u542F\u540E\u4F5C\u54C1\u5C06\u9ED8\u8BA4\u542F\u7528\u9640\u87BA\u4EEA\u529F\u80FD"))));
+        className: style.tips
+      }, "\u6CE8\uFF1A\u5F00\u542F\u540E\u9879\u76EE\u52A0\u8F7D\u52A8\u753B\u5C06\u4F7F\u7528\u4F60\u81EA\u5B9A\u4E49\u7684\u52A8\u753B")), React.createElement(ItemImg, {
+        url: url ? mediaImgConfig(url, 'img') : '',
+        imgSize: "100X100",
+        onChange: this.selectImg,
+        onDel: this.delImg
+      })));
     }
   }]);
 
-  return PromptEdit;
+  return LoadingEdit;
 }(Component);
 
-export default PromptEdit;
+export default LoadingEdit;

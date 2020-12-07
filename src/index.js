@@ -14,6 +14,10 @@ import Gyro from './gyro';
 import OpenAnimation from './openAnimation';
 import SandTable from './sandTable';
 import Details from './details';
+import RightClick from './rightClick';
+import Comment from './comment';
+import Loading_config from './loading_config';
+import Initial_scene from './initial_scene';
 //单组件
 import ItemImg from './components/ItemImg';
 import Editor from './components/editor';
@@ -35,6 +39,10 @@ export {
   OpenAnimation,
   SandTable,
   Details,
+  RightClick,
+  Comment,
+  Loading_config,
+  Initial_scene,
   //单组件
   ItemImg,
   Editor
