@@ -29,7 +29,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React, { Fragment } from 'react';
 import IconFont from '@/components/IconFont';
-import style from './style.less';
+import styles from './style.less';
 import LangTap from '@/utils/langTap';
 import { schoolUrl } from '@/utils/url.config';
 import { helpShow } from '@/utils/help';
@@ -205,10 +205,10 @@ function (_React$Component) {
         position: 1
       }];
       return direction.map(function (item, index) {
-        var className = style[item.type];
+        var className = styles[item.type];
         var Move = LangTap(React.createElement(IconFont, {
           type: item.icon,
-          className: style.directionIcon
+          className: styles.directionIcon
         }), function () {
           _this.moveHotspot(item.type);
         }, 100);
@@ -248,7 +248,7 @@ function (_React$Component) {
       return rotate.map(function (item, index) {
         var Rotate = LangTap(React.createElement(IconFont, {
           type: item.icon,
-          className: style.rotateIcon
+          className: styles.rotateIcon
         }), function () {
           _this.setRy(item.type, item.operator);
         }, 100);
@@ -271,7 +271,7 @@ function (_React$Component) {
       return blooming.map(function (item, index) {
         var Blooming = LangTap(React.createElement(IconFont, {
           type: item.icon,
-          className: style.bloomingIcon
+          className: styles.bloomingIcon
         }), function () {
           _this.setScale(item.operator);
         }, 100);
@@ -385,42 +385,42 @@ function (_React$Component) {
           scale = _this$state3.scale,
           edit_type = _this$state3.edit_type;
       var trim = React.createElement("div", null, React.createElement("div", {
-        className: "".concat(style.box, " ").concat(style.bg)
+        className: "".concat(styles.box, " ").concat(styles.bg)
       }, React.createElement("div", {
-        className: style.boxTitle
+        className: styles.boxTitle
       }, "\u5E73 \u79FB"), React.createElement("div", {
-        className: style.directionC
+        className: styles.directionC
       }, this.renderDirection())), React.createElement("div", {
-        className: style.spacing
+        className: styles.spacing
       }), React.createElement("div", {
-        className: "".concat(style.box, " ").concat(style.bg)
+        className: "".concat(styles.box, " ").concat(styles.bg)
       }, React.createElement("div", {
-        className: style.boxTitle
+        className: styles.boxTitle
       }, "\u65CB \u8F6C"), React.createElement("div", {
-        className: style.rotateC
+        className: styles.rotateC
       }, React.createElement("ul", null, this.renderRotate(), React.createElement("div", {
         style: {
           clear: 'both'
         }
       })))), React.createElement("div", {
-        className: style.spacing
+        className: styles.spacing
       }), React.createElement("div", {
-        className: "".concat(style.box, " ").concat(style.bg)
+        className: "".concat(styles.box, " ").concat(styles.bg)
       }, React.createElement("div", {
-        className: style.boxTitle
+        className: styles.boxTitle
       }, "\u7F29 \u653E"), React.createElement("div", {
-        className: style.bloomingC
+        className: styles.bloomingC
       }, React.createElement("ul", null, this.renderBlooming(), React.createElement("div", {
         style: {
           clear: 'both'
         }
       })))));
       var align = React.createElement("div", {
-        className: "".concat(style.align, " ").concat(style.bg)
+        className: "".concat(styles.align, " ").concat(styles.bg)
       }, React.createElement("div", {
-        className: "".concat(style.item)
+        className: "".concat(styles.item)
       }, React.createElement("span", null, "\u6C34\u5E73\u89C6\u573A(HFOV)"), React.createElement("div", {
-        className: style.inputDiv
+        className: styles.inputDiv
       }, React.createElement(_InputNumber, {
         min: 1,
         max: 300,
@@ -430,9 +430,9 @@ function (_React$Component) {
           return _this3.editCoordinate('scale', e);
         }
       }))), React.createElement("div", {
-        className: "".concat(style.item)
+        className: "".concat(styles.item)
       }, React.createElement("span", null, "X\u8F74(Yaw)"), React.createElement("div", {
-        className: style.inputDiv
+        className: styles.inputDiv
       }, React.createElement(_InputNumber, {
         min: -360,
         max: 360,
@@ -442,9 +442,9 @@ function (_React$Component) {
           return _this3.editCoordinate('rx', e);
         }
       }))), React.createElement("div", {
-        className: "".concat(style.item)
+        className: "".concat(styles.item)
       }, React.createElement("span", null, "Y\u8F74(Pitch)"), React.createElement("div", {
-        className: style.inputDiv
+        className: styles.inputDiv
       }, React.createElement(_InputNumber, {
         min: -360,
         max: 360,
@@ -454,9 +454,9 @@ function (_React$Component) {
           return _this3.editCoordinate('ry', e);
         }
       }))), React.createElement("div", {
-        className: "".concat(style.item)
+        className: "".concat(styles.item)
       }, React.createElement("span", null, "Z\u8F74(Roll)"), React.createElement("div", {
-        className: style.inputDiv
+        className: styles.inputDiv
       }, React.createElement(_InputNumber, {
         min: -360,
         max: 360,
@@ -466,7 +466,7 @@ function (_React$Component) {
           return _this3.editCoordinate('rz', e);
         }
       }))), React.createElement("div", {
-        className: style.help
+        className: styles.help
       }, React.createElement(_Button, {
         type: "primary",
         style: {
@@ -476,7 +476,7 @@ function (_React$Component) {
           return _this3.props.alignment(_this3.state);
         }
       }, "\u5BF9\u9F50")), React.createElement("div", {
-        className: style.help,
+        className: styles.help,
         style: {
           display: helpShow ? 'block' : 'none'
         },
@@ -485,14 +485,14 @@ function (_React$Component) {
         }
       }, "\u4F7F\u7528\u6559\u7A0B"));
       return React.createElement("div", null, React.createElement("div", {
-        className: style.edit,
+        className: styles.edit,
         style: {
           display: this.props.visible == true && this.props.embedType != 1 ? 'block' : 'none'
         }
       }, React.createElement("div", {
-        className: "".concat(style.fine_tuning_title, " ").concat(style.bg)
+        className: "".concat(styles.fine_tuning_title, " ").concat(styles.bg)
       }, this.props.embedType == 4 ? React.createElement("div", null, React.createElement("span", {
-        className: "".concat(edit_type == 1 && style.seleased),
+        className: "".concat(edit_type == 1 && styles.seleased),
         style: {
           width: '50%'
         },
@@ -500,7 +500,7 @@ function (_React$Component) {
           return _this3.switch(1);
         }
       }, "\u7EC6\u8282\u8C03\u6574"), React.createElement("span", {
-        className: "".concat(edit_type == 2 && style.seleased),
+        className: "".concat(edit_type == 2 && styles.seleased),
         style: {
           width: '50%'
         },
@@ -508,19 +508,19 @@ function (_React$Component) {
           return _this3.switch(2);
         }
       }, "\u4F4D\u7F6E\u5BF9\u9F50")) : React.createElement("span", {
-        className: "".concat(edit_type == 1 && style.seleased)
+        className: "".concat(edit_type == 1 && styles.seleased)
       }, "\u7EC6\u8282\u8C03\u6574")), React.createElement("div", {
-        className: style.spacing
+        className: styles.spacing
       }), this.props.embedType == 4 && edit_type == 2 && align, (this.props.embedType == 2 || this.props.embedType == 3) && trim, this.props.embedType == 4 && edit_type == 1 && trim, React.createElement("div", {
-        className: style.spacing
+        className: styles.spacing
       }), React.createElement("div", {
-        className: "".concat(style.box, " ").concat(style.bg),
+        className: "".concat(styles.box, " ").concat(styles.bg),
         style: {
           position: 'absolute',
           bottom: '0'
         }
       }, React.createElement("div", {
-        className: style.boxTitle,
+        className: styles.boxTitle,
         onClick: function onClick() {
           return _this3.reset();
         }

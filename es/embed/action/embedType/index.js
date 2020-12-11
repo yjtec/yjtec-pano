@@ -18,7 +18,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from 'react';
 import { Select } from "@/components/Form";
-import style from '../style.less';
+import styles from '../style.less';
 
 var EmbedType =
 /*#__PURE__*/
@@ -52,7 +52,7 @@ function (_React$Component) {
           embedTypeData = _this$props.embedTypeData,
           embedType = _this$props.embedType;
       return React.createElement("div", null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u5D4C\u5165\u7C7B\u578B"), React.createElement(Select, {
         data: embedTypeData,
         defaultValue: embedType,

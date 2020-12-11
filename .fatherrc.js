@@ -7,5 +7,5 @@ export default {
       "libraryDirectory": "es",
       "style": true
     }]
-  ]
+  ],
 }

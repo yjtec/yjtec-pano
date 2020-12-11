@@ -1,14 +1,14 @@
 import { Component } from 'react';
 import {Button,Layout,Checkbox,Row,Col,Drawer,Icon} from 'antd';
 import {Help} from '@/components/';
-import style from './style.less';
+import styles from './style.less';
 
 import {mediaImgConfig} from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
 
 import {Obj} from 'yjtec-support';
 
-import Modal from '@/components/AllScene';
+import Modal from '@/components/ApplyToScene';
 import {helpShow} from '@/utils/help';
 
 class Pic extends Component {
@@ -39,8 +39,8 @@ class Pic extends Component {
     const {sceneListVisible} = this.state;
     return(
       <div>
-        <div className={style.title} style={{margin:'10px 0 10px 0',lineHeight:'22px'}}>
-          <span className={style.checkboxC}>
+        <div className={styles.title} style={{margin:'10px 0 10px 0',lineHeight:'22px'}}>
+          <span className={styles.checkboxC}>
             <Button onClick={()=>this.appliedToScene()} style={{padding:'0 5px',height:'auto',background:'none',fontSize:'12px',color:'#fff',borderColor: '#008aff'}}>
               应用到
             </Button>

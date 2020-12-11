@@ -2,7 +2,7 @@ import { Component } from "react";
 import {ItemBox} from '@/components/';
 import {InputNumber,Input,Button,Select,Color,SliderSingle} from '@/components/Form';
 import {Layout,Checkbox,Row,Col,Drawer,Icon,Radio,Slider} from 'antd';
-import style from './style.less';
+import styles from './style.less';
 import {connect} from 'dva';
 import {Obj} from 'yjtec-support';
 import { hexToRgb } from '@/utils/utils';
@@ -70,7 +70,7 @@ class Index extends Component {
     return(
       <div>
         <ItemBox>
-          <div className={style.title}>
+          <div className={styles.title}>
             容器尺寸
           </div>
           <Row style={{margin:'0 -5px 10px'}}>
@@ -84,7 +84,7 @@ class Index extends Component {
               </Col>
             ))}
           </Row>
-          <div className={style.title}>
+          <div className={styles.title}>
             容器背景
           </div>
           <div>
@@ -94,10 +94,10 @@ class Index extends Component {
             sliderSingleData.map(item=>{
               return (
                 <div key={item.key}>
-                  <div className={style.title}>
+                  <div className={styles.title}>
                     {item.title}
                   </div>
-                  <div className={style.sliderDiv}>
+                  <div className={styles.sliderDiv}>
                     <SliderSingle
                       defaultValue= {item.defaultValue}
                       max= {item.max}

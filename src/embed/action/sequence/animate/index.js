@@ -5,7 +5,7 @@ import {InputNumber} from '@/components/Form';
 import {mediaImgConfig} from '@/utils/oss.config';
 import { ItemImg } from 'yjtec-pano';
 
-import style from './style.less';
+import styles from './style.less';
 const inputNumber = [
   {
     id:1,
@@ -135,9 +135,9 @@ class TypeAnimate extends Component{
           onChange={this.selectImg}
           onDel={this.delImg}
         />
-        <div className={style.mb20} ></div>
+        <div className={styles.mb20} ></div>
         {inputNumber.map((item,i)=>(
-          <Row key={item.id} className={`${style.configuration} ${style.mb6}`}>
+          <Row key={item.id} className={`${styles.configuration} ${styles.mb6}`}>
             <Col span={14}>
               {item.title}
             </Col>

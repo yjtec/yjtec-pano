@@ -19,6 +19,13 @@ export default class CommentEdit extends React.Component {
     type:1
   }
 
+  componentDidMount() {
+    const { data } = this.props;
+    this.setState({
+      ...data 
+    });
+  }
+
   commentState = e =>{
     this.setState({
       state: e

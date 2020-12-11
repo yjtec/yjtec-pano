@@ -33,7 +33,7 @@ import React from "react";
 import { Component } from "react";
 import { ItemBox } from '@/components/';
 import { InputNumber, Input, Button, Select, Color, SliderSingle } from '@/components/Form';
-import style from './style.less';
+import styles from './style.less';
 import { connect } from 'dva';
 import { Obj } from 'yjtec-support';
 import { hexToRgb } from '@/utils/utils';
@@ -139,7 +139,7 @@ function (_Component) {
         step: 0.1
       }];
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u5BB9\u5668\u5C3A\u5BF8"), React.createElement(_Row, {
         style: {
           margin: '0 -5px 10px'
@@ -158,7 +158,7 @@ function (_Component) {
           }
         })));
       })), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u5BB9\u5668\u80CC\u666F"), React.createElement("div", null, React.createElement(Color, {
         color: bgcolor && _objectSpread({}, hexToRgb(bgcolor), {
           a: bgalpha
@@ -168,9 +168,9 @@ function (_Component) {
         return React.createElement("div", {
           key: item.key
         }, React.createElement("div", {
-          className: style.title
+          className: styles.title
         }, item.title), React.createElement("div", {
-          className: style.sliderDiv
+          className: styles.sliderDiv
         }, React.createElement(SliderSingle, {
           defaultValue: item.defaultValue,
           max: item.max,

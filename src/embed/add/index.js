@@ -5,7 +5,7 @@ import { Drawer,ItemBox } from '@/components/';
 import { EmbedType } from '../action';
 import Action from './action';
 import FineTuning from '../fineTuning';
-import style from './style.less';
+import styles from './style.less';
 
 class EmbedAdd extends Component{
 
@@ -45,14 +45,14 @@ class EmbedAdd extends Component{
           <Col span={12} style={{padding:'0 5px'}}>
             <Button type='primary' onClick={this.handleSave} style={{width:'100%'}}>保存</Button>
           </Col>
-          <Col span={12}  className={style.panoList} style={{padding:'0 5px'}}>
+          <Col span={12}  className={styles.panoList} style={{padding:'0 5px'}}>
             <Button type='danger' onClick={this.handleDelete} style={{width:'100%'}}>删除</Button>
           </Col>
         </Row>
       </ItemBox>
     );
     return(
-      <div className={style.module}>
+      <div className={styles.module}>
         <Drawer
           visible={this.props.visible}
           destroyOnClose={true}

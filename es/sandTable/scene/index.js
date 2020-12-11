@@ -22,7 +22,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 import React, { Component } from 'react';
-import style from './style.less';
+import styles from './style.less';
 import { connect } from 'dva';
 import { panoImgConfig } from '@/utils/oss.config';
 
@@ -62,14 +62,14 @@ function (_Component) {
           marginBottom: '72px'
         }
       }, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u9009\u62E9\u76EE\u6807\u573A\u666F"), React.createElement("div", {
-        className: style.panoLists
+        className: styles.panoLists
       }, React.createElement(_Row, null, residualArr(scene, spots).map(function (item) {
         return React.createElement(_Col, {
           key: item.id,
           span: 8,
-          className: style.panoList,
+          className: styles.panoList,
           onClick: function onClick() {
             return onChange(item);
           }

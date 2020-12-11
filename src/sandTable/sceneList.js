@@ -3,7 +3,7 @@ import {Row,Col} from 'antd';
 import {connect} from 'dva';
 import {ItemBox,Drawer} from '@/components/';
 import {Button} from '@/components/Form';
-import style from './style.less';
+import styles from './style.less';
 import Scene from './scene';
 const residualArr = (arr1,arr2) => {
   let new_arr = [];
@@ -71,10 +71,10 @@ class SceneList extends Component {
               <Scene data={data} spots={spots} onChange={this.handleScene}/>
             </ItemBox>
             <div style={{position:'absolute',bottom:'0',width:'100%',background:'#494949'}}>
-              <div className={style.lineDefaultBottom}></div>
+              <div className={styles.lineDefaultBottom}></div>
               <ItemBox>
                 <Row style={{margin:'0 -10px'}}>
-                  <Col span={24} className={style.panoList}>
+                  <Col span={24} className={styles.panoList}>
                     <Button 
                       disabled={residualArr(scene,spots).length > 0 ? false : true} 
                       style={{backgroundColor: '#008aff', borderColor: '#008aff', color:'rgba(255,255,255,1)'}} 

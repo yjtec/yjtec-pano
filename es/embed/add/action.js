@@ -21,7 +21,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import { Drawer, ItemBox } from '@/components/';
 import { EmbedType, Pic, Sequence, Text, Video } from '../action';
-import style from './style.less';
 
 var EmbedAction =
 /*#__PURE__*/

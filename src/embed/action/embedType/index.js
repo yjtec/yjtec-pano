@@ -1,6 +1,6 @@
 import React from 'react'
 import { Select } from "@/components/Form"
-import style from '../style.less'
+import styles from '../style.less'
 
 export default class EmbedType extends React.Component{
 
@@ -12,7 +12,7 @@ export default class EmbedType extends React.Component{
     const { embedTypeData,embedType } = this.props;
     return(
       <div>
-        <div className={style.title}>
+        <div className={styles.title}>
           嵌入类型
         </div>
         <Select data={embedTypeData} defaultValue={embedType} onChange={this.hanldeType} />

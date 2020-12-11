@@ -1,7 +1,7 @@
 import { Component } from "react";
 import {ItemBox,Right,Content,Help} from '@/components/';
 import {Checkbox,Input,message} from 'antd';
-import style from './style.less';
+import styles from './style.less';
 import {helpShow} from '@/utils/help';
 import {SliderSingle,Button} from '@/components/Form';
 import {formatUrl} from '@/utils/utils';
@@ -98,7 +98,7 @@ class RightClickEdit extends Component {
               <Button title='添加自定义链接' disabled={data.length >= 3 ? true : false} style={{backgroundColor:'#008aff',color:'#fff',borderColor:'#008aff'}} onClick={()=> this.handleAdd()}/>
             </div>
             <div style={{clear:'both'}}></div>
-            <div className={style.tips}>
+            <div className={styles.tips}>
               注：最多可添加3个自定义链接
             </div>
           </div>
@@ -106,9 +106,9 @@ class RightClickEdit extends Component {
         <ItemBox>
           {
             data.map((item,index) => (
-              <div key={index} className={style.rightClickItem}>
-                <div className={style.title}>
-                  <span className={style.checkboxC} onClick={()=>this.del(index)}>
+              <div key={index} className={styles.rightClickItem}>
+                <div className={styles.title}>
+                  <span className={styles.checkboxC} onClick={()=>this.del(index)}>
                     删除
                   </span>
                   自定义链接({index + 1})

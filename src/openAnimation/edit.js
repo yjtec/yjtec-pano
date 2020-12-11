@@ -1,7 +1,7 @@
 import { Component } from "react";
 import {ItemBox,Help} from '@/components/';
 import {Switch} from 'antd';
-import style from './style.less';
+import styles from './style.less';
 import {helpShow} from '@/utils/help';
 
 const actionData = [
@@ -40,7 +40,7 @@ class OpenAnimation extends Component {
     return(
       <div>
         <ItemBox>
-          <div className={style.title}>
+          <div className={styles.title}>
             <span style={{float:'left'}}>开场动画</span>
             {helpShow && 
               (
@@ -54,7 +54,7 @@ class OpenAnimation extends Component {
           
           {actionData.map(item => {
             return (
-              <div className={style.itemBox} key={item.type} onClick={()=>this.selectAction(item.type)}>
+              <div className={styles.itemBox} key={item.type} onClick={()=>this.selectAction(item.type)}>
                 <Switch size="small" checked={item.type == type ? true : false} style={{float:'right',marginTop:'8px'}} />
                 {item.title}
               </div>

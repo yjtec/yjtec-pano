@@ -28,7 +28,7 @@ import { ItemBox } from '@/components/';
 import { mediaImgConfig } from '@/utils/oss.config';
 import UserMedia from '@/components/MediaModal/UserMedia';
 import { Obj } from 'yjtec-support';
-import style from './style.less';
+import styles from './style.less';
 import { InputNumber } from '@/components/Form';
 
 var Edit =
@@ -195,20 +195,20 @@ function (_React$Component) {
           width = _this$state2.width,
           height = _this$state2.height;
       var videoBox = React.createElement("div", {
-        className: style.videoList
+        className: styles.videoList
       }, React.createElement(_Icon, {
         type: "play-square",
-        className: style.icon
+        className: styles.icon
       }), React.createElement("p", null, title));
       var defaultVideoBox = React.createElement("div", {
-        className: style.videoList
+        className: styles.videoList
       }, React.createElement("span", null, "\u683C\u5F0FMP4 \u7F16\u7801:H.264"), React.createElement("span", null, "\u89C6\u9891\u9650\u523650M\u4EE5\u5185"));
       var thumbBox = React.createElement("div", null, React.createElement("img", {
         alt: "\u5D4C\u5165\u89C6\u9891\u5C01\u9762",
         src: mediaImgConfig(thumbUrl, 'img'),
-        className: style.img
+        className: styles.img
       }), React.createElement("div", {
-        className: style.delimg,
+        className: styles.delimg,
         onClick: function onClick() {
           return _this2.delImg();
         }
@@ -216,21 +216,21 @@ function (_React$Component) {
         type: "delete"
       })));
       var defaultThumbBox = React.createElement("div", null, React.createElement("div", {
-        className: style.tips
+        className: styles.tips
       }, React.createElement("p", null, "\u5C01\u9762\u8BF7\u4E0E\u89C6\u9891\u5C3A\u5BF8\u4FDD\u6301\u4E00\u81F4")));
       return React.createElement("div", {
-        className: style.box
+        className: styles.box
       }, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.boxtitle
+        className: styles.boxtitle
       }, "\u5D4C\u5165\u89C6\u9891", React.createElement(_Button, {
         onClick: function onClick() {
           return _this2.handleVideoShow();
         },
-        className: style.uploadBtn,
+        className: styles.uploadBtn,
         type: "primary",
         size: "small"
       }, "\u9009\u62E9\u89C6\u9891")), videoUrl && title ? videoBox : defaultVideoBox), React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.boxtitle,
+        className: styles.boxtitle,
         style: {
           marginTop: '10px'
         }
@@ -238,35 +238,35 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this2.handleImgShow();
         },
-        className: style.uploadBtn,
+        className: styles.uploadBtn,
         type: "primary",
         size: "small"
       }, "\u9009\u62E9\u56FE\u7247")), React.createElement("div", {
-        className: style.thumb
+        className: styles.thumb
       }, thumbUrl ? thumbBox : defaultThumbBox), thumbUrl && React.createElement("div", {
-        className: style.notes
+        className: styles.notes
       }, "\u6CE8\uFF1A\u5C01\u9762\u8BF7\u4E0E\u89C6\u9891\u5C3A\u5BF8\u4FDD\u6301\u4E00\u81F4")), React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           marginTop: 10
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: autoplay == 1 ? true : false,
         onChange: this.handlePlay,
-        className: style.checkbox
+        className: styles.checkbox
       })), "\u662F\u5426\u81EA\u52A8\u64AD\u653E(PC\u6709\u6548)"), React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           marginTop: 10
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: loop == 1 ? true : false,
         onChange: this.handleLoop,
-        className: style.checkbox
+        className: styles.checkbox
       })), "\u662F\u5426\u5FAA\u73AF\u64AD\u653E")), React.createElement(UserMedia, {
         title: "\u89C6\u9891\u7D20\u6750\u5E93",
         mediaType: "3",

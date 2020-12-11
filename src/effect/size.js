@@ -1,13 +1,13 @@
 import React from 'react';
 import {Radio} from 'antd';
-import style from './style.less';
+import styles from './style.less';
 
 class Size extends React.Component{
   
   render() {
     const {value} = this.props;
     return (
-      <div className={style.sunlightSize}>
+      <div className={styles.sunlightSize}>
         <Radio.Group onChange={this.props.onChange} value={value}>
           <Radio value={1}>小</Radio>
           <Radio value={2}>中</Radio>

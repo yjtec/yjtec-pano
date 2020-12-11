@@ -1,7 +1,7 @@
 import React from 'react';
 import {ItemBox} from '@/components/';
 import Animate from './animate';
-import style from '../style.less';
+import styles from '../style.less';
 
 const defaultPlayTime = {
   total:1,
@@ -46,7 +46,7 @@ export default class Sequence extends React.Component{
     return(
       <div>
         <ItemBox>
-          <div className={style.title}>
+          <div className={styles.title}>
             序列图
           </div>
           <Animate {...this.state} onChange={this.handleAnimate} />

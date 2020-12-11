@@ -30,7 +30,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import { Drawer, ItemBox } from '@/components/';
 import { Button } from '@/components/Form';
-import style from './style.less';
+import styles from './style.less';
 import { mediaImgConfig } from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
 
@@ -188,26 +188,26 @@ function (_React$Component) {
         destroyOnClose: false,
         onCancel: this.onCancel
       }, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.detailsEdit
+        className: styles.detailsEdit
       }, React.createElement("div", {
-        className: style.tips
+        className: styles.tips
       }, React.createElement("p", null, React.createElement("span", null, "\u5F53\u524D\u89C6\u89D2\u8303\u56F4\uFF08FOV\uFF09: ", parseInt(fov)), "\u901A\u8FC7\u653E\u5927\u6216\u7F29\u5C0F\u5168\u666F\uFF0C\u8BBE\u7F6E\u6700\u7EC8\u7684\u89C6\u89D2\u663E\u793A\u8303\u56F4")))), React.createElement(ItemBox, {
         style: {
           padding: '10px 0'
         }
       }, React.createElement("div", {
-        className: style.itemTitle
+        className: styles.itemTitle
       }, "\u6807\u9898"), React.createElement("div", {
-        className: style.inputDiv
+        className: styles.inputDiv
       }, React.createElement(_Input, {
         placeholder: "\u8BF7\u8F93\u5165\u6807\u9898",
         maxLength: 16,
         value: title,
         onChange: this.setTitle
       })), React.createElement("div", {
-        className: style.mb20
+        className: styles.mb20
       }), React.createElement("div", {
-        className: style.itemTitle
+        className: styles.itemTitle
       }, "\u5C01\u9762"), React.createElement(ItemImg, {
         url: url ? mediaImgConfig(url, 'img') : '',
         imgSize: "200X200",

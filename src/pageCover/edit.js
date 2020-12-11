@@ -2,7 +2,7 @@ import { Component } from "react";
 import {ItemBox,Right,Content,Help} from '@/components/';
 import {SliderSingle,Color} from '@/components/Form';
 import {Select,Button,Message,Checkbox} from 'antd';
-import style from './style.less';
+import styles from './style.less';
 import {helpShow} from '@/utils/help';
 
 import {mediaImgConfig} from '@/utils/oss.config';
@@ -117,7 +117,7 @@ class PromptEdit extends Component {
     return(
       <div>
         <ItemBox>
-         <div className={style.title}>
+         <div className={styles.title}>
             <span style={{float:'left'}}>PC端</span>
             {helpShow &&
               (
@@ -134,11 +134,11 @@ class PromptEdit extends Component {
             onChange={arr=>this.handleImg('pc_img',arr)}
             onDel={() => this.handleDel('pc_img')}
           />
-          <div className={style.mb10}></div>
+          <div className={styles.mb10}></div>
         </ItemBox>
         <ItemBox>
-          <div className={style.mb10}></div>
-          <div className={style.title}>
+          <div className={styles.mb10}></div>
+          <div className={styles.title}>
             <span style={{float:'left'}}>移动端</span>
             {helpShow &&
               (
@@ -155,31 +155,31 @@ class PromptEdit extends Component {
             onChange={arr => this.handleImg('app_img',arr)}
             onDel={() => this.handleDel('app_img')}
           />
-          <div className={style.mb10}></div>
+          <div className={styles.mb10}></div>
         </ItemBox>
 
         <ItemBox>
-          <div className={style.mb10}></div>
-          <div className={style.title}>
+          <div className={styles.mb10}></div>
+          <div className={styles.title}>
             <span style={{float:'left'}}>进入方式</span>
             <div style={{clear:'both'}}></div>
           </div>
-          <div className={style.selectDiv}>
+          <div className={styles.selectDiv}>
             <Select placeholder="选择进入方式" name="imageurl" value={type} style={{width:'100%'}} onChange={this.handleEntryMode}>
               {optionData.map((item,index)=> (
                 <Option key={index} value={item.value}>{item.label}</Option>
               ))}
             </Select>
           </div>
-          <div className={style.mb10}></div>
+          <div className={styles.mb10}></div>
           {
             type == 1 && (
               <div>
-                <div className={style.title}>
+                <div className={styles.title}>
                   <span style={{float:'left'}}>停留时长</span>
                   <div style={{clear:'both'}}></div>
                 </div>
-                <div className={style.sliderDiv}>
+                <div className={styles.sliderDiv}>
                   <SliderSingle
                     defaultValue= {time}
                     max= {60}
@@ -188,22 +188,22 @@ class PromptEdit extends Component {
                     onChange={value => this.handleTime(value)}
                   />
                 </div>
-                <div className={style.mb10}></div>
+                <div className={styles.mb10}></div>
               </div>
             )
           }
         </ItemBox>
         <ItemBox>
-          <div className={style.mb10}></div>
-          <div className={style.title}>
+          <div className={styles.mb10}></div>
+          <div className={styles.title}>
             <span style={{float:'left'}}>背景色设置</span>
             <div style={{clear:'both'}}></div>
           </div>
           <Color color={bg_color} onChange={this.handleBgColor}/>
-          <div className={style.mb10}></div>
-          <div className={style.title}>
-            <span className={style.checkboxC}>
-              <Checkbox checked={repeat == 1 ? true : false} onChange={this.setRepeat} className={style.checkbox}>背景平铺</Checkbox>
+          <div className={styles.mb10}></div>
+          <div className={styles.title}>
+            <span className={styles.checkboxC}>
+              <Checkbox checked={repeat == 1 ? true : false} onChange={this.setRepeat} className={styles.checkbox}>背景平铺</Checkbox>
             </span>
             <span style={{float:'left'}}>背景图设置</span>
             <div style={{clear:'both'}}></div>
@@ -214,7 +214,7 @@ class PromptEdit extends Component {
             onChange={arr => this.handleImg('bg_img',arr)}
             onDel={() => this.handleDel('bg_img')}
           />
-          <div className={style.mb10}></div>
+          <div className={styles.mb10}></div>
         </ItemBox>
       </div>
     );

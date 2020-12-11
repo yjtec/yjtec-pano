@@ -21,7 +21,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import { ItemBox } from '@/components/';
 import Animate from './animate';
-import style from '../style.less';
+import styles from '../style.less';
 var defaultPlayTime = {
   total: 1,
   time: 1,
@@ -90,7 +90,7 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u5E8F\u5217\u56FE"), React.createElement(Animate, _extends({}, this.state, {
         onChange: this.handleAnimate
       }))));

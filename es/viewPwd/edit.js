@@ -22,7 +22,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from "react";
 import { Component } from "react";
 import { ItemBox, Help } from '@/components/';
-import style from './style.less';
+import styles from './style.less';
 import { helpShow } from '@/utils/help';
 
 var LoadsceneAction =
@@ -88,7 +88,7 @@ function (_Component) {
           tipsVisible = _this$state.tipsVisible;
       var helpShowFlag = false;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
         style: {
           float: 'left'
@@ -112,16 +112,16 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement("div", {
-        className: "".concat(style.inputDiv, " ").concat(tipsVisible && style.viewPwd)
+        className: "".concat(styles.inputDiv, " ").concat(tipsVisible && style.viewPwd)
       }, React.createElement(_Input.Password, {
         placeholder: "\u8BF7\u8F93\u5165\u5BC6\u7801",
         maxLength: 16,
         value: view_pwd,
         onChange: this.setViewPwd
       })), React.createElement("div", {
-        className: style.tigs
+        className: styles.tigs
       }, "\u6CE8\uFF1A\u4EC5\u652F\u6301 \u82F1\u6587\u5927\u5C0F\u5199\u3001\u6570\u5B57\u3001\u4E0B\u5212\u7EBF\u3002"), React.createElement("div", {
-        className: style.mb20
+        className: styles.mb20
       })));
     }
   }]);

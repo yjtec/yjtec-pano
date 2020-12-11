@@ -18,7 +18,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from "react";
 import { Component } from "react";
-import style from './style.less';
 import { mediaImgConfig } from '@/utils/oss.config';
 import Imground from './Imground/Imground';
 

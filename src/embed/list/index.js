@@ -1,7 +1,7 @@
 import React from 'react';
 import IconFont from '@/components/IconFont';
 import {mediaImgConfig} from '@/utils/oss.config';
-import style from './style.less';
+import styles from './style.less';
 
 export default class EmbedList extends React.Component{
 
@@ -22,22 +22,22 @@ export default class EmbedList extends React.Component{
       {type:4,name:'视频'}
     ]
     return(
-      <div className={style.module}>
+      <div className={styles.module}>
         {data && data.map((item,index)=>{
           return (
-          <div key={index} onClick={()=>this.oneHandle(item.id)} className={style.hotspotLists}>
-            <span className={style.delSelectdPano}>{typeData.map(i=>{
+          <div key={index} onClick={()=>this.oneHandle(item.id)} className={styles.hotspotLists}>
+            <span className={styles.delSelectdPano}>{typeData.map(i=>{
               if (i.type == item.type) {
                 return i.name
               }
             })}</span>
-            <div className={style.thumb}>
+            <div className={styles.thumb}>
               {item.type == 1 && <IconFont type='icon-wenzi' style={{fontSize:'16px'}} />}
               {item.type == 2 && <img alt='图片' src={mediaImgConfig(item.actionData && item.actionData.img.length > 0 && item.actionData.img[0].url && item.actionData.img[0].url,'img')} />}
               {item.type == 3 && <img alt='序列图' src={mediaImgConfig(item.actionData && item.actionData.url && item.actionData.url,'img')} />}
               {item.type == 4 && <img alt='视频' src={mediaImgConfig(item.actionData && item.actionData.thumbUrl ? item.actionData.thumbUrl : item.actionData.videoUrl,item.actionData && item.actionData.thumbUrl ? 'img' : 'video')} />}
             </div>
-            <div className={style.title}>
+            <div className={styles.title}>
               {item.type == 1 && item.actionData.text}
               {item.type == 2 && '嵌入图片'}
               {item.type == 3 && '序列图'}

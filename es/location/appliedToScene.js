@@ -27,8 +27,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from 'react';
 import { ItemBox, TextCss, Help } from '@/components/';
-import Modal from '@/components/AllScene';
-import style from './style.less';
+import Modal from '@/components/ApplyToScene';
+import styles from './style.less';
 import { Obj } from 'yjtec-support';
 
 var Text =

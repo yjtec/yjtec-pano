@@ -35,9 +35,9 @@ import React from "react";
 import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
 import { Button, Select, SliderSingle } from '@/components/Form';
-import style from './style.less';
+import styles from './style.less';
 import UserMedia from '@/components/MediaModal/UserMedia';
-import Modal from '@/components/AllScene';
+import Modal from '@/components/ApplyToScene';
 import { Obj } from 'yjtec-support';
 import { helpShow } from '@/utils/help';
 var defaultData = {
@@ -216,9 +216,9 @@ function (_Component) {
           userMediaVisible = _this$state2.userMediaVisible,
           volume = _this$state2.volume;
       return React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
-        className: style.checkboxC,
+        className: styles.checkboxC,
         onClick: function onClick() {
           return _this2.del();
         }
@@ -246,11 +246,11 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement("div", {
-        className: style.musicBox
+        className: styles.musicBox
       }, React.createElement(_Row, null, React.createElement(_Col, {
         span: 8
       }, React.createElement("div", {
-        className: style.musicIcon
+        className: styles.musicIcon
       }, musicUrl ? React.createElement(_Icon, {
         type: "customer-service"
       }) : React.createElement(_Icon, {
@@ -258,7 +258,7 @@ function (_Component) {
       }))), React.createElement(_Col, {
         span: 16
       }, React.createElement("div", {
-        className: style.musicRight
+        className: styles.musicRight
       }, React.createElement("p", null, musicTitle ? musicTitle : '上传音乐格式为MP3'), React.createElement("div", {
         onClick: this.openMediaModal
       }, React.createElement(Button, {
@@ -268,12 +268,12 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           marginTop: 10
         }
       }, "\u8BBE\u7F6E\u97F3\u91CF"), React.createElement("div", {
-        className: style.sliderDiv
+        className: styles.sliderDiv
       }, React.createElement(SliderSingle, {
         defaultValue: volume,
         max: 100,
@@ -283,43 +283,43 @@ function (_Component) {
           return _this2.setVolume(value);
         }
       })), React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           marginTop: 10
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: defaultPlay,
         onChange: this.handlePlay,
-        className: style.checkbox
+        className: styles.checkbox
       })), "\u9ED8\u8BA4\u5F00\u542F ", React.createElement("i", {
         style: {
           color: '#999999'
         }
       }, "(\u8FDB\u5165\u573A\u666F\u81EA\u52A8\u64AD\u653E)")), React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           marginTop: 10
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: loop == 0 ? true : false,
         onChange: this.onChange,
-        className: style.checkbox
+        className: styles.checkbox
       })), "\u5FAA\u73AF\u64AD\u653E ", React.createElement("i", {
         style: {
           color: '#999999'
         }
       }, "(\u4E0D\u52FE\u9009\u5219\u53EA\u64AD\u653E1\u6B21)")), React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           margin: '10px 0 0 0',
           lineHeight: '22px'
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(Button, {
         onClick: function onClick() {
           return _this2.appliedToScene();

@@ -19,7 +19,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from "react";
 import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
-import style from './style.less';
+import styles from './style.less';
 import { helpShow } from '@/utils/help';
 import { mediaImgConfig } from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
@@ -117,7 +117,7 @@ function (_Component) {
           time = _this$state.time;
       var helpShowFlag = false;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
         style: {
           float: 'left'
@@ -147,11 +147,11 @@ function (_Component) {
         onChange: this.pcSelectMedia,
         onDel: this.pcDel
       }), React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       })), React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       }), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
         style: {
           float: 'left'
@@ -181,13 +181,13 @@ function (_Component) {
         onChange: this.appSelectMedia,
         onDel: this.appDel
       }), React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       })), React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       }), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u663E\u793A\u65F6\u95F4(S)"), React.createElement("div", {
-        className: style.sliderDiv
+        className: styles.sliderDiv
       }, React.createElement(SliderSingle, {
         defaultValue: time,
         max: 10,

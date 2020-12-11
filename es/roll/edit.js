@@ -29,9 +29,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from 'react';
 import { ItemBox, TextCss, Help } from '@/components/';
-import Modal from '@/components/AllScene';
+import Modal from '@/components/ApplyToScene';
 import Container from './container';
-import style from './style.less';
+import styles from './style.less';
 import { helpShow } from '@/utils/help';
 import { Obj } from 'yjtec-support';
 var defaultData = {
@@ -217,13 +217,13 @@ function (_React$Component) {
         interval_time: interval_time
       };
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           margin: '0 0 10px 0',
           lineHeight: '22px'
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Button, {
         onClick: function onClick() {
           return _this2.appliedToScene();
@@ -260,7 +260,7 @@ function (_React$Component) {
           clear: 'both'
         }
       })), React.createElement("div", {
-        className: style.setupInput
+        className: styles.setupInput
       }, React.createElement(_Input.TextArea, {
         value: text,
         autosize: {

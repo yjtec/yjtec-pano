@@ -1,12 +1,12 @@
 import React,{Component} from 'react';
-import style from './style.less';
+import styles from './style.less';
 import {KrEditUrl} from '@/utils/url.config';
 import {Obj} from 'yjtec-support';
 
 const ItemDefault = function(props) {
   const {item,onClick} = props;
   const {x,y} = item;
-  return <div onClick={()=>onClick(item)} className={style.item} style={{left:`${x-7.5}px`,top:`${y-7.5}px`}} />
+  return <div onClick={()=>onClick(item)} className={styles.item} style={{left:`${x-7.5}px`,top:`${y-7.5}px`}} />
 }
 
 class Imground extends Component{
@@ -129,21 +129,21 @@ class Imground extends Component{
     const {activeKey,left,top,list} = this.state;
     const {src} = this.props;
     return(
-      <div className={style.container}>
-        <div className={style.map} style={{backgroundImage:`url(${src})`}} ref={el => this.container = el} >
+      <div className={styles.container}>
+        <div className={styles.map} style={{backgroundImage:`url(${src})`}} ref={el => this.container = el} >
           {list && list.map(item => 
             <React.Fragment key={item.scene_id}> 
             {item.scene_id == activeKey ? 
               (<div 
-                className={style.active} 
+                className={styles.active} 
                 style={{
                 left:`${item.x-25}px`,
                 top:`${item.y-25}px`,
                 transform: `rotate(${item.heading + 90}deg)`
               }}>
                 <img src={KrEditUrl+'/images/round.png'} width="" />
-                <div className={style.center} onMouseDown={(e)=>this.handleDown(e,item)} ref={ele => this.dragEle = ele}  />
-                <div className={style.pointer} onMouseDown={(e) => this.hanldePoinerDown(e,item)} ref={ele => this.pointerEle = ele}  />
+                <div className={styles.center} onMouseDown={(e)=>this.handleDown(e,item)} ref={ele => this.dragEle = ele}  />
+                <div className={styles.pointer} onMouseDown={(e) => this.hanldePoinerDown(e,item)} ref={ele => this.pointerEle = ele}  />
               </div>)
               : 
               <ItemDefault onClick={this.handleClick} item={item} />

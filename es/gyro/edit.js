@@ -22,7 +22,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from "react";
 import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
-import style from './style.less';
+import styles from './style.less';
 import { helpShow } from '@/utils/help';
 import { SliderSingle } from '@/components/Form';
 
@@ -76,13 +76,13 @@ function (_Component) {
       var auto_open = this.state.auto_open;
       var helpShowFlag = false;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: auto_open == 1 ? true : false,
         onChange: this.isOpen,
-        className: style.checkbox
+        className: styles.checkbox
       })), React.createElement("span", {
         style: {
           float: 'left'
@@ -106,7 +106,7 @@ function (_Component) {
           clear: 'both'
         }
       }), React.createElement("div", {
-        className: style.tigs
+        className: styles.tigs
       }, "\u6CE8\uFF1A\u5F00\u542F\u540E\u4F5C\u54C1\u5C06\u9ED8\u8BA4\u542F\u7528\u9640\u87BA\u4EEA\u529F\u80FD"))));
     }
   }]);

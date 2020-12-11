@@ -24,7 +24,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from "react";
 import { Component } from "react";
 import { ItemBox, Help } from '@/components/';
-import style from './style.less';
+import styles from './style.less';
 import { helpShow } from '@/utils/help';
 var actionData = [{
   title: '无特效切换',
@@ -113,7 +113,7 @@ function (_Component) {
           keepView = _this$state.keepView;
       var helpShowFlag = false;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
         style: {
           float: 'left'
@@ -138,7 +138,7 @@ function (_Component) {
         }
       })), actionData.map(function (item) {
         return React.createElement("div", {
-          className: style.itemBox,
+          className: styles.itemBox,
           key: item.type,
           onClick: function onClick() {
             return _this2.selectAction(item.type);
@@ -152,16 +152,16 @@ function (_Component) {
           }
         }), item.title);
       })), React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           marginTop: '10px'
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: keepView == 1 ? true : false,
         onChange: this.setKeepView,
-        className: style.checkbox
+        className: styles.checkbox
       })), "\u5207\u6362\u573A\u666F\u65F6\u4FDD\u6301\u89C6\u89D2")));
     }
   }]);

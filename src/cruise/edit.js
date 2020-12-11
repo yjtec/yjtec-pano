@@ -2,7 +2,7 @@ import { Component } from "react";
 import {ItemBox,Right,Content,Help} from '@/components/';
 import {Checkbox} from 'antd';
 import {SliderSingle} from '@/components/Form';
-import style from './style.less';
+import styles from './style.less';
 import {helpShow} from '@/utils/help';
 class CruiseEdit extends Component {
   state = {
@@ -20,7 +20,7 @@ class CruiseEdit extends Component {
       time: data.time,
       speed: data.speed ? data.speed : 5,
       switchScene: data.switchScene,
-      angle_view: data.angle_view ? data.angle_view : 1
+      angle_view: data.angle_view != undefined ? data.angle_view : 1
     })
   }
 
@@ -58,9 +58,9 @@ class CruiseEdit extends Component {
     return(
       <div>
         <ItemBox>
-          <div className={style.title}>
-            <span className={style.checkboxC}>
-              <Checkbox checked={open == 1 ? true : false} onChange={this.isOpen} className={style.checkbox}></Checkbox>
+          <div className={styles.title}>
+            <span className={styles.checkboxC}>
+              <Checkbox checked={open == 1 ? true : false} onChange={this.isOpen} className={styles.checkbox}></Checkbox>
             </span>
             <span style={{float:'left'}}>开启自动巡游</span>
             {helpShow && 
@@ -72,11 +72,11 @@ class CruiseEdit extends Component {
             }
             <div style={{clear:'both'}}></div>
           </div>
-          <div className={style.mb20}></div>
-          <div className={style.title}>
+          <div className={styles.mb20}></div>
+          <div className={styles.title}>
             场景旋转时间(S)
           </div>
-          <div className={style.sliderDiv}>
+          <div className={styles.sliderDiv}>
             <SliderSingle
               defaultValue= {time}
               max= {180}
@@ -85,11 +85,11 @@ class CruiseEdit extends Component {
               onChange={value => this.handleRotateTime(value)}
             />
           </div>
-          <div className={style.mb20}></div>
-          <div className={style.title}>
+          <div className={styles.mb20}></div>
+          <div className={styles.title}>
             巡游速度(度/S)
           </div>
-          <div className={style.sliderDiv}>
+          <div className={styles.sliderDiv}>
             <SliderSingle
               defaultValue= {speed}
               max= {100}
@@ -98,16 +98,16 @@ class CruiseEdit extends Component {
               onChange={value => this.handleSpeed(value)}
             />
           </div>
-          <div className={style.mb20}></div>
-          <div className={style.title}>
-            <span className={style.checkboxC}>
-              <Checkbox checked={switchScene == 1 ? true : false} onChange={this.switchScene} className={style.checkbox}></Checkbox>
+          <div className={styles.mb20}></div>
+          <div className={styles.title}>
+            <span className={styles.checkboxC}>
+              <Checkbox checked={switchScene == 1 ? true : false} onChange={this.switchScene} className={styles.checkbox}></Checkbox>
             </span>
             旋转结束后自动跳转下一个场景
           </div>
-          <div className={style.title}>
-            <span className={style.checkboxC}>
-              <Checkbox checked={angle_view == 1 ? true : false} onChange={this.angleView} className={style.checkbox}></Checkbox>
+          <div className={styles.title}>
+            <span className={styles.checkboxC}>
+              <Checkbox checked={angle_view == 1 ? true : false} onChange={this.angleView} className={styles.checkbox}></Checkbox>
             </span>
             使用场景视角巡游
           </div>

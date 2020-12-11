@@ -32,7 +32,7 @@ import { Component } from "react";
 import { connect } from 'dva';
 import { ItemBox, Drawer } from '@/components/';
 import { Button } from '@/components/Form';
-import style from './style.less';
+import styles from './style.less';
 import Scene from './scene';
 
 var residualArr = function residualArr(arr1, arr2) {
@@ -140,14 +140,14 @@ function (_Component) {
           background: '#494949'
         }
       }, React.createElement("div", {
-        className: style.lineDefaultBottom
+        className: styles.lineDefaultBottom
       }), React.createElement(ItemBox, null, React.createElement(_Row, {
         style: {
           margin: '0 -10px'
         }
       }, React.createElement(_Col, {
         span: 24,
-        className: style.panoList
+        className: styles.panoList
       }, React.createElement(Button, {
         disabled: residualArr(scene, spots).length > 0 ? false : true,
         style: {

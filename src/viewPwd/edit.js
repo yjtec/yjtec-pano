@@ -1,7 +1,7 @@
 import { Component } from "react";
 import {ItemBox,Help} from '@/components/';
 import {Input} from 'antd';
-import style from './style.less';
+import styles from './style.less';
 import {helpShow} from '@/utils/help';
 
 class LoadsceneAction extends Component {
@@ -43,7 +43,7 @@ class LoadsceneAction extends Component {
     return(
       <div>
         <ItemBox>
-          <div className={style.title}>
+          <div className={styles.title}>
             <span style={{float:'left'}}>密码访问</span>
             {helpShow && helpShowFlag && 
               (
@@ -55,14 +55,14 @@ class LoadsceneAction extends Component {
             <div style={{clear:'both'}}></div>
           </div>
           
-          <div className={`${style.inputDiv} ${tipsVisible && style.viewPwd}`}>
+          <div className={`${styles.inputDiv} ${tipsVisible && style.viewPwd}`}>
             <Input.Password placeholder="请输入密码" maxLength={16} value={view_pwd} onChange={this.setViewPwd}/>
           </div>
-          <div className={style.tigs}>
+          <div className={styles.tigs}>
             注：仅支持 英文大小写、数字、下划线。
           </div>
           
-          <div className={style.mb20}></div>
+          <div className={styles.mb20}></div>
         </ItemBox>
       </div>
     );

@@ -1,5 +1,4 @@
 import { Component } from "react";
-import style from './style.less';
 import {mediaImgConfig} from '@/utils/oss.config';
 import Imground from './Imground/Imground';
 

@@ -23,7 +23,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 import React, { Component } from 'react';
-import style from './style.less';
+import styles from './style.less';
 import { KrEditUrl } from '@/utils/url.config';
 import { Obj } from 'yjtec-support';
 
@@ -36,7 +36,7 @@ var ItemDefault = function ItemDefault(props) {
     onClick: function onClick() {
       return _onClick(item);
     },
-    className: style.item,
+    className: styles.item,
     style: {
       left: "".concat(x - 7.5, "px"),
       top: "".concat(y - 7.5, "px")
@@ -206,9 +206,9 @@ function (_Component) {
           list = _this$state4.list;
       var src = this.props.src;
       return React.createElement("div", {
-        className: style.container
+        className: styles.container
       }, React.createElement("div", {
-        className: style.map,
+        className: styles.map,
         style: {
           backgroundImage: "url(".concat(src, ")")
         },
@@ -219,7 +219,7 @@ function (_Component) {
         return React.createElement(React.Fragment, {
           key: item.scene_id
         }, item.scene_id == activeKey ? React.createElement("div", {
-          className: style.active,
+          className: styles.active,
           style: {
             left: "".concat(item.x - 25, "px"),
             top: "".concat(item.y - 25, "px"),
@@ -229,7 +229,7 @@ function (_Component) {
           src: KrEditUrl + '/images/round.png',
           width: ""
         }), React.createElement("div", {
-          className: style.center,
+          className: styles.center,
           onMouseDown: function onMouseDown(e) {
             return _this2.handleDown(e, item);
           },
@@ -237,7 +237,7 @@ function (_Component) {
             return _this2.dragEle = ele;
           }
         }), React.createElement("div", {
-          className: style.pointer,
+          className: styles.pointer,
           onMouseDown: function onMouseDown(e) {
             return _this2.hanldePoinerDown(e, item);
           },

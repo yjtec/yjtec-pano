@@ -1,7 +1,7 @@
 import { Component } from "react";
 import {ItemBox,Right,Content,Help} from '@/components/';
 import {Checkbox} from 'antd';
-import style from './style.less';
+import styles from './style.less';
 import {helpShow} from '@/utils/help';
 import {SliderSingle} from '@/components/Form';
 
@@ -35,9 +35,9 @@ class PromptEdit extends Component {
     return(
       <div>
         <ItemBox>
-         <div className={style.title}>
-            <span className={style.checkboxC}>
-              <Checkbox checked={auto_open == 1 ? true : false} onChange={this.isOpen} className={style.checkbox}></Checkbox>
+         <div className={styles.title}>
+            <span className={styles.checkboxC}>
+              <Checkbox checked={auto_open == 1 ? true : false} onChange={this.isOpen} className={styles.checkbox}></Checkbox>
             </span>
             <span style={{float:'left'}}>开启手机陀螺仪功能</span>
             {helpShow && helpShowFlag && 
@@ -48,7 +48,7 @@ class PromptEdit extends Component {
               )
             }
             <div style={{clear:'both'}}></div>
-            <div className={style.tigs}>
+            <div className={styles.tigs}>
               注：开启后作品将默认启用陀螺仪功能
             </div>
           </div>

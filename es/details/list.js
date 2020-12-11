@@ -22,7 +22,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import { isUrl, isMark } from '@/utils/utils';
 import IconFont from '@/components/IconFont';
-import style from './style.less';
+import styles from './style.less';
 import { mediaImgConfig } from '@/utils/oss.config';
 
 var getIcon = function getIcon(icon) {
@@ -30,7 +30,7 @@ var getIcon = function getIcon(icon) {
     if (icon.startsWith('icon-')) {
       return React.createElement(IconFont, {
         type: icon,
-        className: style.icon
+        className: styles.icon
       });
     }
 
@@ -40,7 +40,7 @@ var getIcon = function getIcon(icon) {
           return React.createElement("img", {
             src: icon,
             alt: "icon",
-            className: style.icon
+            className: styles.icon
           });
         }
       });
@@ -48,7 +48,7 @@ var getIcon = function getIcon(icon) {
 
     return React.createElement(_Icon, {
       type: icon,
-      className: style.icon
+      className: styles.icon
     });
   }
 
@@ -89,10 +89,10 @@ function (_React$Component) {
           list = _this$props.list,
           data = _this$props.data;
       return React.createElement("div", null, React.createElement("div", {
-        className: style.list
+        className: styles.list
       }, list && list.map(function (item, index) {
         return React.createElement("div", {
-          className: style.item,
+          className: styles.item,
           key: index
         }, React.createElement("span", null, index + 1), item.url && React.createElement("img", {
           src: mediaImgConfig(item.url, 'img'),

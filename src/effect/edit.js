@@ -4,11 +4,10 @@ import {ItemBox,Right,Help} from '@/components/';
 import {SliderSingle} from '@/components/Form';
 import {Button} from 'antd';
 import {Kr} from '@/utils/kr/';
-import style from './style.less';
-import AllScene from '@/components/Media/scene';
+import styles from './style.less';
 import {mediaImgConfig} from '@/utils/oss.config';
 import {helpShow} from '@/utils/help';
-import Modal from '@/components/AllScene';
+import Modal from '@/components/ApplyToScene';
 import {Obj} from 'yjtec-support';
 
 import { ItemImg } from 'yjtec-pano';
@@ -161,8 +160,8 @@ class Effect extends React.Component{
     return(
       <div>
         <ItemBox>
-          <div className={style.title}>
-            <span className={style.checkboxC}>
+          <div className={styles.title}>
+            <span className={styles.checkboxC}>
               {(imageurl || type == 'sunlight') ? <div onClick={()=>this.delSkyImg()}>删除</div> : ''}
             </span>
             <span style={{float:'left'}}>特效</span>
@@ -175,7 +174,7 @@ class Effect extends React.Component{
             }
             <div style={{clear:'both'}}></div>
           </div>
-          <div className={style.select}>
+          <div className={styles.select}>
             <Type value={selectType} effectList={snowAll} onChange={this.handleChange} />
           </div>
 
@@ -203,8 +202,8 @@ class Effect extends React.Component{
             )
           }
           
-          <div className={style.title} style={{margin:'10px 0 0 0',lineHeight:'22px'}}>
-            <span className={style.checkboxC}>
+          <div className={styles.title} style={{margin:'10px 0 0 0',lineHeight:'22px'}}>
+            <span className={styles.checkboxC}>
               <Button onClick={()=>this.appliedToScene()} style={{padding:'0 5px',height:'auto',background:'none',fontSize:'12px',color:'#fff',borderColor: '#008aff'}}>
                 选择场景
               </Button>
@@ -217,7 +216,7 @@ class Effect extends React.Component{
         <ItemBox>
           {editItem.map(item =>{
             return (
-              <div key={item.key} className={style.list}>
+              <div key={item.key} className={styles.list}>
                 <p>{item.title}</p>
                 <SliderSingle
                   {...item.slider}

@@ -2,7 +2,7 @@ import React from 'react';
 import {Input,message} from 'antd';
 import {Drawer,ItemBox} from '@/components/';
 import {Button} from '@/components/Form';
-import style from './style.less';
+import styles from './style.less';
 
 import {mediaImgConfig} from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
@@ -120,8 +120,8 @@ export default class DetailsEdit extends React.Component {
         onCancel={this.onCancel}
       >
         <ItemBox>
-          <div className={style.detailsEdit}>
-            <div className={style.tips}>
+          <div className={styles.detailsEdit}>
+            <div className={styles.tips}>
               <p>
                 <span>当前视角范围（FOV）: {parseInt(fov)}</span>
                 通过放大或缩小全景，设置最终的视角显示范围
@@ -130,14 +130,14 @@ export default class DetailsEdit extends React.Component {
           </div>
         </ItemBox>
         <ItemBox style={{padding:'10px 0'}}>
-          <div className={style.itemTitle}>
+          <div className={styles.itemTitle}>
             标题
           </div>
-          <div className={style.inputDiv}>
+          <div className={styles.inputDiv}>
             <Input placeholder="请输入标题" maxLength={16} value={title} onChange={this.setTitle}/>
           </div>
-          <div className={style.mb20}></div>
-          <div className={style.itemTitle}>
+          <div className={styles.mb20}></div>
+          <div className={styles.itemTitle}>
             封面
           </div>
           <ItemImg 

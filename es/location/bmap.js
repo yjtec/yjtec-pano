@@ -26,7 +26,7 @@ import { ItemBox, Right, Help } from '@/components/';
 import { AsyncLoadMap, loadBdMap, MapSearchField } from "@yjtec/bmap";
 import BmapModal from './bmapModal';
 import { helpShow } from '@/utils/help';
-import style from './style.less';
+import styles from './style.less';
 import AppliedToScene from './appliedToScene';
 
 var Index =
@@ -158,10 +158,10 @@ function (_Component) {
           city = _this$state2.city,
           district = _this$state2.district,
           address = _this$state2.address;
-      return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+      return React.createElement("div", null, React.createElement("div", {
+        className: styles.title
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement("a", {
         onClick: function onClick() {
           return _this2.showBmap();
@@ -190,7 +190,7 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement("div", {
-        className: style.mapBox
+        className: styles.mapBox
       }, React.createElement("div", null, React.createElement(MapSearchField, {
         id: "mapView",
         value: {
@@ -214,7 +214,7 @@ function (_Component) {
           display: data.lng && data.lat ? 'none' : 'block'
         }
       }, "\u5F53\u524D\u9879\u76EE", React.createElement("br", null), "\u6682\u672A\u8BBE\u7F6E\u5730\u56FE\u6807\u6CE8"), React.createElement("span", null), React.createElement("div", {
-        className: style.delLocation,
+        className: styles.delLocation,
         style: {
           display: data.lng && data.lat ? 'block' : 'none'
         },
@@ -223,14 +223,18 @@ function (_Component) {
         }
       }, React.createElement(_Icon, {
         type: "delete"
-      }))))), this.props.applied && React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("span", {
+      })))), this.props.applied && React.createElement("div", {
+        style: {
+          marginTop: '20px'
+        }
+      }, React.createElement("span", {
         style: {
           float: 'right'
         }
       }, React.createElement(AppliedToScene, {
         scenes: this.props.scenes,
         onSetAll: this.props.onSetAll
-      })), "\u5E94\u7528\u5230\uFF1A")), React.createElement(BmapModal, {
+      })), "\u5E94\u7528\u5230\uFF1A"), React.createElement(BmapModal, {
         visible: bmapVisible,
         point: {
           lng: lng,

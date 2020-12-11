@@ -32,7 +32,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from "react";
 import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
-import style from './style.less';
+import styles from './style.less';
 import { helpShow } from '@/utils/help';
 import { SliderSingle, Button } from '@/components/Form';
 import { formatUrl } from '@/utils/utils';
@@ -177,15 +177,15 @@ function (_Component) {
           clear: 'both'
         }
       }), React.createElement("div", {
-        className: style.tips
+        className: styles.tips
       }, "\u6CE8\uFF1A\u6700\u591A\u53EF\u6DFB\u52A03\u4E2A\u81EA\u5B9A\u4E49\u94FE\u63A5"))), React.createElement(ItemBox, null, data.map(function (item, index) {
         return React.createElement("div", {
           key: index,
-          className: style.rightClickItem
+          className: styles.rightClickItem
         }, React.createElement("div", {
-          className: style.title
+          className: styles.title
         }, React.createElement("span", {
-          className: style.checkboxC,
+          className: styles.checkboxC,
           onClick: function onClick() {
             return _this2.del(index);
           }

@@ -19,7 +19,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import IconFont from '@/components/IconFont';
 import { mediaImgConfig } from '@/utils/oss.config';
-import style from './style.less';
+import styles from './style.less';
 
 var EmbedList =
 /*#__PURE__*/
@@ -69,22 +69,22 @@ function (_React$Component) {
         name: '视频'
       }];
       return React.createElement("div", {
-        className: style.module
+        className: styles.module
       }, data && data.map(function (item, index) {
         return React.createElement("div", {
           key: index,
           onClick: function onClick() {
             return _this2.oneHandle(item.id);
           },
-          className: style.hotspotLists
+          className: styles.hotspotLists
         }, React.createElement("span", {
-          className: style.delSelectdPano
+          className: styles.delSelectdPano
         }, typeData.map(function (i) {
           if (i.type == item.type) {
             return i.name;
           }
         })), React.createElement("div", {
-          className: style.thumb
+          className: styles.thumb
         }, item.type == 1 && React.createElement(IconFont, {
           type: "icon-wenzi",
           style: {
@@ -100,7 +100,7 @@ function (_React$Component) {
           alt: "\u89C6\u9891",
           src: mediaImgConfig(item.actionData && item.actionData.thumbUrl ? item.actionData.thumbUrl : item.actionData.videoUrl, item.actionData && item.actionData.thumbUrl ? 'img' : 'video')
         })), React.createElement("div", {
-          className: style.title
+          className: styles.title
         }, item.type == 1 && item.actionData.text, item.type == 2 && '嵌入图片', item.type == 3 && '序列图', item.type == 4 && '嵌入视频'));
       }));
     }

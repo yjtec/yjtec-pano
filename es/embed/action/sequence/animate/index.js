@@ -28,7 +28,7 @@ import { ItemBox } from '@/components/';
 import { InputNumber } from '@/components/Form';
 import { mediaImgConfig } from '@/utils/oss.config';
 import { ItemImg } from 'yjtec-pano';
-import style from './style.less';
+import styles from './style.less';
 var inputNumber = [{
   id: 1,
   title: '序列帧总帧数',
@@ -205,11 +205,11 @@ function (_Component) {
         onChange: this.selectImg,
         onDel: this.delImg
       }), React.createElement("div", {
-        className: style.mb20
+        className: styles.mb20
       }), inputNumber.map(function (item, i) {
         return React.createElement(_Row, {
           key: item.id,
-          className: "".concat(style.configuration, " ").concat(style.mb6)
+          className: "".concat(styles.configuration, " ").concat(styles.mb6)
         }, React.createElement(_Col, {
           span: 14
         }, item.title), React.createElement(_Col, {

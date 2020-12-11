@@ -27,7 +27,7 @@ import React from "react";
 import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
 import { SliderSingle, Color } from '@/components/Form';
-import style from './style.less';
+import styles from './style.less';
 import { helpShow } from '@/utils/help';
 import { mediaImgConfig } from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
@@ -222,7 +222,7 @@ function (_Component) {
           bg_img = _this$state.bg_img,
           repeat = _this$state.repeat;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
         style: {
           float: 'left'
@@ -256,11 +256,11 @@ function (_Component) {
           return _this2.handleDel('pc_img');
         }
       }), React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       })), React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       }), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
         style: {
           float: 'left'
@@ -294,11 +294,11 @@ function (_Component) {
           return _this2.handleDel('app_img');
         }
       }), React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       })), React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       }), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
         style: {
           float: 'left'
@@ -308,7 +308,7 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement("div", {
-        className: style.selectDiv
+        className: styles.selectDiv
       }, React.createElement(_Select, {
         placeholder: "\u9009\u62E9\u8FDB\u5165\u65B9\u5F0F",
         name: "imageurl",
@@ -323,9 +323,9 @@ function (_Component) {
           value: item.value
         }, item.label);
       }))), React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       }), type == 1 && React.createElement("div", null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
         style: {
           float: 'left'
@@ -335,7 +335,7 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement("div", {
-        className: style.sliderDiv
+        className: styles.sliderDiv
       }, React.createElement(SliderSingle, {
         defaultValue: time,
         max: 60,
@@ -345,11 +345,11 @@ function (_Component) {
           return _this2.handleTime(value);
         }
       })), React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       }))), React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       }), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
         style: {
           float: 'left'
@@ -362,15 +362,15 @@ function (_Component) {
         color: bg_color,
         onChange: this.handleBgColor
       }), React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       }), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: repeat == 1 ? true : false,
         onChange: this.setRepeat,
-        className: style.checkbox
+        className: styles.checkbox
       }, "\u80CC\u666F\u5E73\u94FA")), React.createElement("span", {
         style: {
           float: 'left'
@@ -389,7 +389,7 @@ function (_Component) {
           return _this2.handleDel('bg_img');
         }
       }), React.createElement("div", {
-        className: style.mb10
+        className: styles.mb10
       })));
     }
   }]);

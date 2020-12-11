@@ -30,11 +30,10 @@ import { connect } from 'dva';
 import { ItemBox, Right, Help } from '@/components/';
 import { SliderSingle } from '@/components/Form';
 import { Kr } from '@/utils/kr/';
-import style from './style.less';
-import AllScene from '@/components/Media/scene';
+import styles from './style.less';
 import { mediaImgConfig } from '@/utils/oss.config';
 import { helpShow } from '@/utils/help';
-import Modal from '@/components/AllScene';
+import Modal from '@/components/ApplyToScene';
 import { Obj } from 'yjtec-support';
 import { ItemImg } from 'yjtec-pano';
 import Type from './type';
@@ -232,9 +231,9 @@ function (_React$Component) {
       }
 
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, imageurl || type == 'sunlight' ? React.createElement("div", {
         onClick: function onClick() {
           return _this2.delSkyImg();
@@ -263,7 +262,7 @@ function (_React$Component) {
           clear: 'both'
         }
       })), React.createElement("div", {
-        className: style.select
+        className: styles.select
       }, React.createElement(Type, {
         value: selectType,
         effectList: snowAll,
@@ -295,13 +294,13 @@ function (_React$Component) {
         onChange: this.selectMedia,
         onDel: this.delSkyImg
       })), React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           margin: '10px 0 0 0',
           lineHeight: '22px'
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Button, {
         onClick: function onClick() {
           return _this2.appliedToScene();

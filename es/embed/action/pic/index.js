@@ -23,7 +23,7 @@ import React from 'react';
 import { ItemBox } from '@/components/';
 import { InputNumber } from '@/components/Form';
 import PicList from '@/components/PicList';
-import style from '../style.less';
+import styles from '../style.less';
 import { strRandom } from 'yjtec-support';
 import UserMedia from '@/components/MediaModal/UserMedia';
 
@@ -144,26 +144,26 @@ function (_React$Component) {
           img = _this$state2.img,
           time = _this$state2.time;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("div", {
-        className: style.pictitle
+        className: styles.pictitle
       }, "\u56FE\u7247\u5C55\u793A", React.createElement("p", null, "\u5EFA\u8BAE\u5927\u5C0F400X400"), React.createElement(_Button, {
         onClick: function onClick() {
           return _this2.handleShow();
         },
-        className: style.uploadBtn,
+        className: styles.uploadBtn,
         type: "primary",
         size: "small"
       }, "\u9009\u62E9\u56FE\u7247")), React.createElement("div", null, React.createElement(PicList, {
         data: img,
         onDel: this.delImg
       })))), React.createElement(ItemBox, null, React.createElement("div", null, React.createElement("div", {
-        className: style.timeTitle,
+        className: styles.timeTitle,
         style: {
           marginTop: '20px'
         }
       }, React.createElement("span", null, "\u4EA4\u4E92\u65F6\u95F4")), React.createElement("div", {
-        className: style.timeInput
+        className: styles.timeInput
       }, React.createElement("div", {
-        className: style.input
+        className: styles.input
       }, React.createElement(InputNumber, {
         inputNumberValue: time,
         max: 10,

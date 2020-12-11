@@ -29,7 +29,7 @@ import { Drawer, ItemBox } from '@/components/';
 import { EmbedType } from '../action';
 import Action from './action';
 import FineTuning from '../fineTuning';
-import style from './style.less';
+import styles from './style.less';
 
 var EmbedAdd =
 /*#__PURE__*/
@@ -106,7 +106,7 @@ function (_Component) {
         }
       }, "\u4FDD\u5B58")), React.createElement(_Col, {
         span: 12,
-        className: style.panoList,
+        className: styles.panoList,
         style: {
           padding: '0 5px'
         }
@@ -118,7 +118,7 @@ function (_Component) {
         }
       }, "\u5220\u9664"))));
       return React.createElement("div", {
-        className: style.module
+        className: styles.module
       }, React.createElement(Drawer, {
         visible: this.props.visible,
         destroyOnClose: true,

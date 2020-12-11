@@ -1,9 +1,9 @@
 import React from 'react';
 import { ItemBox,TextCss,Help } from '@/components/';
 import { Input,Button } from 'antd';
-import Modal from '@/components/AllScene';
+import Modal from '@/components/ApplyToScene';
 import Container from './container';
-import style from './style.less';
+import styles from './style.less';
 import {helpShow} from '@/utils/help';
 import {Obj} from 'yjtec-support';
 const defaultData = {
@@ -154,8 +154,8 @@ export default class Text extends React.Component{
     return(
       <div>
         <ItemBox>
-          <div className={style.title} style={{margin:'0 0 10px 0',lineHeight:'22px'}}>
-            <span className={style.checkboxC}>
+          <div className={styles.title} style={{margin:'0 0 10px 0',lineHeight:'22px'}}>
+            <span className={styles.checkboxC}>
               <Button onClick={()=>this.appliedToScene()} style={{padding:'0 5px',height:'auto',background:'none',fontSize:'12px',color:'#fff',borderColor: '#008aff'}}>
                 应用到
               </Button>
@@ -170,7 +170,7 @@ export default class Text extends React.Component{
             }
             <div style={{clear:'both'}}></div>
           </div>
-          <div className={style.setupInput}>
+          <div className={styles.setupInput}>
             <Input.TextArea value={text} autosize={{minRows:3,maxRows:3}} placeholder='请输入文字信息' style={{borderRadius:3}} onChange={this.textValue}/>
           </div>
         </ItemBox>

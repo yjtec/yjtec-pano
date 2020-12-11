@@ -17,7 +17,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 import React, { Component } from 'react';
-import style from './style.less';
+import styles from './style.less';
 import { KrEditUrl } from '@/utils/url.config';
 
 var ImgroundActive =
@@ -49,7 +49,7 @@ function (_Component) {
           top = _this$state.top,
           rotate = _this$state.rotate;
       return React.createElement("div", {
-        className: style.active,
+        className: styles.active,
         style: {
           left: "".concat(left - 20, "px"),
           top: "".concat(top - 20, "px"),
@@ -59,13 +59,13 @@ function (_Component) {
         src: KrEditUrl + 'images/round.png',
         width: ""
       }), React.createElement("div", {
-        className: style.center,
+        className: styles.center,
         onMouseDown: this.handleDown,
         ref: function ref(ele) {
           return _this2.dragEle = ele;
         }
       }), React.createElement("div", {
-        className: style.pointer,
+        className: styles.pointer,
         onMouseDown: this.hanldePoinerDown,
         ref: function ref(ele) {
           return _this2.pointerEle = ele;

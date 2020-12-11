@@ -1,7 +1,6 @@
 import React from 'react';
 import { Drawer,ItemBox } from '@/components/';
 import { EmbedType,Pic,Sequence,Text,Video } from '../action';
-import style from './style.less';
 
 export default class EmbedAction extends React.Component{
 

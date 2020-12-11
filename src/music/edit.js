@@ -2,11 +2,11 @@ import { Component } from "react";
 import {ItemBox,Right,Content,Help} from '@/components/';
 import {Button,Select,SliderSingle} from '@/components/Form';
 import {Checkbox,Row,Col,Drawer,Icon} from 'antd';
-import style from './style.less';
+import styles from './style.less';
 
 import UserMedia from '@/components/MediaModal/UserMedia';
 
-import Modal from '@/components/AllScene';
+import Modal from '@/components/ApplyToScene';
 
 import {Obj} from 'yjtec-support';
 import {helpShow} from '@/utils/help';
@@ -152,8 +152,8 @@ class Music extends Component {
 
     return(
       <ItemBox>
-        <div className={style.title}>
-          <span className={style.checkboxC} onClick={()=>this.del()}>
+        <div className={styles.title}>
+          <span className={styles.checkboxC} onClick={()=>this.del()}>
             删除
           </span>
           <span style={{float:'left'}}>{this.props.title}</span>
@@ -166,15 +166,15 @@ class Music extends Component {
           }
           <div style={{clear:'both'}}></div>
         </div>
-        <div className={style.musicBox}>
+        <div className={styles.musicBox}>
           <Row>
             <Col span={8}>
-              <div className={style.musicIcon}>
+              <div className={styles.musicIcon}>
                 {musicUrl ? <Icon type="customer-service" /> : <Icon type="plus" />}
               </div>
             </Col>
             <Col span={16}>
-              <div className={style.musicRight}>
+              <div className={styles.musicRight}>
                 <p>
                   {musicTitle ? musicTitle : '上传音乐格式为MP3'}
                 </p>
@@ -187,10 +187,10 @@ class Music extends Component {
           <div style={{clear:'both'}}></div>
         </div>
 
-        <div className={style.title} style={{marginTop:10}}>
+        <div className={styles.title} style={{marginTop:10}}>
           设置音量
         </div>
-        <div className={style.sliderDiv}>
+        <div className={styles.sliderDiv}>
           <SliderSingle
             defaultValue= {volume}
             max= {100}
@@ -200,22 +200,22 @@ class Music extends Component {
           />
         </div>
 
-        <div className={style.title} style={{marginTop:10}}>
-          <span className={style.checkboxC}>
-            <Checkbox checked={defaultPlay} onChange={this.handlePlay} className={style.checkbox}></Checkbox>
+        <div className={styles.title} style={{marginTop:10}}>
+          <span className={styles.checkboxC}>
+            <Checkbox checked={defaultPlay} onChange={this.handlePlay} className={styles.checkbox}></Checkbox>
           </span>
           默认开启 <i style={{color:'#999999'}}>(进入场景自动播放)</i>
         </div>
 
-        <div className={style.title} style={{marginTop:10}}>
-          <span className={style.checkboxC}>
-            <Checkbox checked={loop == 0 ? true : false} onChange={this.onChange} className={style.checkbox}></Checkbox>
+        <div className={styles.title} style={{marginTop:10}}>
+          <span className={styles.checkboxC}>
+            <Checkbox checked={loop == 0 ? true : false} onChange={this.onChange} className={styles.checkbox}></Checkbox>
           </span>
           循环播放 <i style={{color:'#999999'}}>(不勾选则只播放1次)</i>
         </div>
 
-        <div className={style.title} style={{margin:'10px 0 0 0',lineHeight:'22px'}}>
-          <span className={style.checkboxC}>
+        <div className={styles.title} style={{margin:'10px 0 0 0',lineHeight:'22px'}}>
+          <span className={styles.checkboxC}>
             <Button onClick={()=>this.appliedToScene()} style={{padding:'0 5px',height:'auto',background:'none',fontSize:'12px'}} title="选择场景"/>
           </span>
           应用到:

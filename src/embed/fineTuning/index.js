@@ -1,7 +1,7 @@
 import React,{Fragment} from 'react';
 import {InputNumber,Button} from 'antd';
 import IconFont from '@/components/IconFont';
-import style from './style.less';
+import styles from './style.less';
 import LangTap from '@/utils/langTap';
 import {schoolUrl} from '@/utils/url.config';
 import {helpShow} from '@/utils/help';
@@ -152,9 +152,9 @@ export default class FineTuning extends React.Component{
       {label:'左',icon:'icon-xiangzuo',type:'left',position:1}
     ];
     return direction.map((item,index)=>{
-      const className = style[item.type];
+      const className = styles[item.type];
       const Move = LangTap(
-        <IconFont type={item.icon} className={style.directionIcon} />,
+        <IconFont type={item.icon} className={styles.directionIcon} />,
         ()=>{
           this.moveHotspot(item.type);
         },100
@@ -193,7 +193,7 @@ export default class FineTuning extends React.Component{
     ];
     return rotate.map((item,index)=>{
       const Rotate = LangTap(
-        <IconFont type={item.icon} className={style.rotateIcon} />,
+        <IconFont type={item.icon} className={styles.rotateIcon} />,
         ()=>{
           this.setRy(item.type,item.operator);
         },100
@@ -213,7 +213,7 @@ export default class FineTuning extends React.Component{
     ];
     return blooming.map((item,index)=>{
       const Blooming = LangTap(
-        <IconFont type={item.icon} className={style.bloomingIcon} />,
+        <IconFont type={item.icon} className={styles.bloomingIcon} />,
         ()=>{
           this.setScale(item.operator);
         },100
@@ -279,32 +279,32 @@ export default class FineTuning extends React.Component{
     const { rx, ry, rz ,scale, edit_type } = this.state;
     const trim = (
       <div>
-        <div className={`${style.box} ${style.bg}`}>
-          <div className={style.boxTitle}>
+        <div className={`${styles.box} ${styles.bg}`}>
+          <div className={styles.boxTitle}>
             平 移
           </div>
-          <div className={style.directionC}>
+          <div className={styles.directionC}>
             {this.renderDirection()}
           </div>
         </div>
-        <div className={style.spacing}></div>
-        <div className={`${style.box} ${style.bg}`}>
-          <div className={style.boxTitle}>
+        <div className={styles.spacing}></div>
+        <div className={`${styles.box} ${styles.bg}`}>
+          <div className={styles.boxTitle}>
             旋 转
           </div>
-          <div className={style.rotateC}>
+          <div className={styles.rotateC}>
             <ul>
               {this.renderRotate()}
               <div style={{clear:'both'}}></div>
             </ul>
           </div>
         </div>
-        <div className={style.spacing}></div>
-        <div className={`${style.box} ${style.bg}`}>
-          <div className={style.boxTitle}>
+        <div className={styles.spacing}></div>
+        <div className={`${styles.box} ${styles.bg}`}>
+          <div className={styles.boxTitle}>
             缩 放
           </div>
-          <div className={style.bloomingC}>
+          <div className={styles.bloomingC}>
             <ul>
               {this.renderBlooming()}
               <div style={{clear:'both'}}></div>
@@ -315,60 +315,60 @@ export default class FineTuning extends React.Component{
     );
 
     const align = (
-      <div className={`${style.align} ${style.bg}`}>
-        <div className={`${style.item}`}>
+      <div className={`${styles.align} ${styles.bg}`}>
+        <div className={`${styles.item}`}>
           <span>水平视场(HFOV)</span>
-          <div className={style.inputDiv}>
+          <div className={styles.inputDiv}>
             <InputNumber min={1} max={300} value={scale} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('scale',e)} />
           </div>
         </div>
-        <div className={`${style.item}`}>
+        <div className={`${styles.item}`}>
           <span>X轴(Yaw)</span>
-          <div className={style.inputDiv}>
+          <div className={styles.inputDiv}>
             <InputNumber min={-360} max={360} value={rx} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('rx',e)} />
           </div>
         </div>
-        <div className={`${style.item}`}>
+        <div className={`${styles.item}`}>
           <span>Y轴(Pitch)</span>
-          <div className={style.inputDiv}>
+          <div className={styles.inputDiv}>
             <InputNumber min={-360} max={360} value={ry} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('ry',e)} />
           </div>
         </div>
-        <div className={`${style.item}`}>
+        <div className={`${styles.item}`}>
           <span>Z轴(Roll)</span>
-          <div className={style.inputDiv}>
+          <div className={styles.inputDiv}>
             <InputNumber min={-360} max={360} value={rz} placeholder='请输入坐标值' onChange={(e)=>this.editCoordinate('rz',e)} />
           </div>
         </div>
-        <div className={style.help}>
+        <div className={styles.help}>
           <Button type="primary" style={{width: 'calc(100% - 30px)'}} onClick={()=>this.props.alignment(this.state)}>对齐</Button>
         </div>
-        <div className={style.help} style={{display:helpShow ? 'block' : 'none'}} onClick={()=>{window.open(schoolUrl + '/article/detail/177');}}>
+        <div className={styles.help} style={{display:helpShow ? 'block' : 'none'}} onClick={()=>{window.open(schoolUrl + '/article/detail/177');}}>
           使用教程
         </div>
       </div>
     );
     return(
       <div>
-        <div className={style.edit} style={{display:(this.props.visible == true && this.props.embedType != 1) ? 'block' : 'none'}}>
-          <div className={`${style.fine_tuning_title} ${style.bg}`}>
+        <div className={styles.edit} style={{display:(this.props.visible == true && this.props.embedType != 1) ? 'block' : 'none'}}>
+          <div className={`${styles.fine_tuning_title} ${styles.bg}`}>
             {this.props.embedType == 4 ? (
               <div>
-                <span className={`${edit_type == 1 && style.seleased}`} style={{width:'50%'}} onClick={()=>this.switch(1)}>细节调整</span>
-                <span className={`${edit_type == 2 && style.seleased}`} style={{width:'50%'}} onClick={()=>this.switch(2)}>位置对齐</span>
+                <span className={`${edit_type == 1 && styles.seleased}`} style={{width:'50%'}} onClick={()=>this.switch(1)}>细节调整</span>
+                <span className={`${edit_type == 2 && styles.seleased}`} style={{width:'50%'}} onClick={()=>this.switch(2)}>位置对齐</span>
               </div>
             ) : (
-              <span className={`${edit_type == 1 && style.seleased}`}>细节调整</span>
+              <span className={`${edit_type == 1 && styles.seleased}`}>细节调整</span>
             )}
             
           </div>
-          <div className={style.spacing}></div>
+          <div className={styles.spacing}></div>
           {this.props.embedType == 4 && edit_type == 2 && align}
           {(this.props.embedType == 2 || this.props.embedType == 3) && trim}
           {this.props.embedType == 4 && edit_type == 1 && trim}
-          <div className={style.spacing}></div>
-          <div className={`${style.box} ${style.bg}`} style={{position:'absolute', bottom:'0'}}>
-            <div className={style.boxTitle} onClick={()=>this.reset()}>
+          <div className={styles.spacing}></div>
+          <div className={`${styles.box} ${styles.bg}`} style={{position:'absolute', bottom:'0'}}>
+            <div className={styles.boxTitle} onClick={()=>this.reset()}>
               重 置
             </div>
           </div>

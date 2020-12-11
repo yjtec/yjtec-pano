@@ -1,7 +1,7 @@
 import { Component } from "react";
 import {ItemBox,Right,Content,Help} from '@/components/';
 import {Button,Message} from 'antd';
-import style from './style.less';
+import styles from './style.less';
 import {helpShow} from '@/utils/help';
 
 import {mediaImgConfig} from '@/utils/oss.config';
@@ -68,7 +68,7 @@ class PromptEdit extends Component {
     return(
       <div>
         <ItemBox>
-         <div className={style.title}>
+         <div className={styles.title}>
             <span style={{float:'left'}}>PC端</span>
             {helpShow && 
               (
@@ -85,11 +85,11 @@ class PromptEdit extends Component {
             onChange={this.pcSelectMedia}
             onDel={this.pcDel}
           />
-          <div className={style.mb10}></div>
+          <div className={styles.mb10}></div>
         </ItemBox>
         <ItemBox>
-          <div className={style.mb10}></div>
-          <div className={style.title}>
+          <div className={styles.mb10}></div>
+          <div className={styles.title}>
             <span style={{float:'left'}}>移动端</span>
             {helpShow && 
               (
@@ -106,14 +106,14 @@ class PromptEdit extends Component {
             onChange={this.appSelectMedia}
             onDel={this.appDel}
           />
-          <div className={style.mb10}></div>
+          <div className={styles.mb10}></div>
         </ItemBox>
         <ItemBox>
-          <div className={style.mb10}></div>
-          <div className={style.title}>
+          <div className={styles.mb10}></div>
+          <div className={styles.title}>
             显示时间(S)
           </div>
-          <div className={style.sliderDiv}>
+          <div className={styles.sliderDiv}>
             <SliderSingle
               defaultValue= {time}
               max= {10}

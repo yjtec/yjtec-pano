@@ -21,7 +21,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from "react";
 import { Component } from "react";
-import style from './style.less';
+import styles from './style.less';
 import { ossPanoUrl, ossMediaUrl } from '@/utils/url.config';
 
 var spotList =
@@ -44,10 +44,10 @@ function (_Component) {
           data = _this$props.data,
           editSpotId = _this$props.editSpotId;
       return React.createElement("div", null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u6807\u8BB0\u7BA1\u7406"), React.createElement("div", null, React.createElement(_Button, {
         type: "primary",
-        className: style.Button,
+        className: styles.Button,
         style: {
           width: '100%'
         },
@@ -62,9 +62,9 @@ function (_Component) {
         if (item.scene_thumb.indexOf('//') != -1) {
           return React.createElement("div", {
             key: item.scene_id,
-            className: style.selectdPanoList
+            className: styles.selectdPanoList
           }, React.createElement("span", {
-            className: style.delSelectdPano,
+            className: styles.delSelectdPano,
             onClick: function onClick() {
               return _this.props.delSpot(item.scene_id);
             }
@@ -73,14 +73,14 @@ function (_Component) {
             alt: item.scene_name,
             src: item.scene_thumb
           }), React.createElement("div", {
-            className: style.title
+            className: styles.title
           }, item.scene_name));
         } else if (item.scene_thumb.substring(0, 6) == '/panos') {
           return React.createElement("div", {
             key: item.scene_id,
-            className: style.selectdPanoList
+            className: styles.selectdPanoList
           }, React.createElement("span", {
-            className: style.delSelectdPano,
+            className: styles.delSelectdPano,
             onClick: function onClick() {
               return _this.props.delSpot(item.scene_id);
             }
@@ -89,14 +89,14 @@ function (_Component) {
             alt: item.scene_name,
             src: ossPanoUrl + item.scene_thumb
           }), React.createElement("div", {
-            className: style.title
+            className: styles.title
           }, item.scene_name));
         } else {
           return React.createElement("div", {
             key: item.scene_id,
-            className: style.selectdPanoList
+            className: styles.selectdPanoList
           }, React.createElement("span", {
-            className: style.delSelectdPano,
+            className: styles.delSelectdPano,
             onClick: function onClick() {
               return _this.props.delSpot(item.scene_id);
             }
@@ -105,7 +105,7 @@ function (_Component) {
             alt: item.scene_name,
             src: ossMediaUrl + item.scene_thumb
           }), React.createElement("div", {
-            className: style.title
+            className: styles.title
           }, item.scene_name));
         }
       })));

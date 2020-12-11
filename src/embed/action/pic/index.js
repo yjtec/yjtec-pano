@@ -3,7 +3,7 @@ import { ItemBox } from '@/components/';
 import { Button } from 'antd';
 import { InputNumber } from '@/components/Form';
 import PicList from '@/components/PicList';
-import style from '../style.less';
+import styles from '../style.less';
 import {strRandom} from 'yjtec-support';
 import UserMedia from '@/components/MediaModal/UserMedia';
 
@@ -93,10 +93,10 @@ export default class Pic extends React.Component{
       <div>
       <ItemBox>
         <div>
-          <div className={style.pictitle}>
+          <div className={styles.pictitle}>
             图片展示
             <p>建议大小400X400</p>
-            <Button onClick={()=>this.handleShow()} className={style.uploadBtn} type="primary" size="small">选择图片</Button>
+            <Button onClick={()=>this.handleShow()} className={styles.uploadBtn} type="primary" size="small">选择图片</Button>
           </div>
           <div>
             <PicList data={img} onDel={this.delImg} />
@@ -105,13 +105,13 @@ export default class Pic extends React.Component{
       </ItemBox>
       <ItemBox>
         <div>
-          <div className={style.timeTitle} style={{marginTop:'20px'}}>
+          <div className={styles.timeTitle} style={{marginTop:'20px'}}>
             <span>
               交互时间
             </span>
           </div>
-          <div className={style.timeInput}>
-            <div className={style.input}>
+          <div className={styles.timeInput}>
+            <div className={styles.input}>
             <InputNumber
               inputNumberValue= {time}
               max= {10}

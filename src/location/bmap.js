@@ -6,7 +6,7 @@ import {Checkbox,Input,Button,Icon} from 'antd';
 import {AsyncLoadMap,loadBdMap,MapSearchField} from "@yjtec/bmap";
 import BmapModal from './bmapModal';
 import {helpShow} from '@/utils/help';
-import style from './style.less';
+import styles from './style.less';
 import AppliedToScene from './appliedToScene';
 
 class Index extends Component{
@@ -94,50 +94,48 @@ class Index extends Component{
     const {bmapVisible,lng,lat,province,city,district,address} = this.state;
     return(
       <div>
-        <ItemBox>
-          <div className={style.title}>
-            <span className={style.checkboxC}>
-              <a onClick={()=>this.showBmap()}>设置标注</a>
-            </span>
-            <span style={{float:'left'}}>{title}</span>
-            {helpShow && 
-              (
-                <div style={{float:'left', width:'18px', height:'18px',position:'relative',marginLeft:'5px'}}>
-                  <Help link={help} style={{fontSize:'14px',color:'#999999',float:'left'}} />
-                </div>
-              )
-            }
-            <div style={{clear:'both'}}></div>
-          </div>
-          <div className={style.mapBox}>
-            <div>
-              <MapSearchField 
-                id={"mapView"}
-                value={{lng:data.lng,lat:data.lat}}            //默认坐标
-                isposition={'true'}
-                // searchinput={"false"}             //是否有输入框
-                onChange={this.props.handleCoordinateInfo}
-                ref={ref => this.refBmap = ref}      //把子组件的方法提到父组件中
-                style={{width:'200px',height:'200px'}}
-              />
 
-              <p style={{display:data.lng && data.lat ? 'none' : 'block'}}>
-                当前项目<br/>暂未设置地图标注
-              </p>
-              <span></span>
-              <div className={style.delLocation} style={{display:data.lng && data.lat ? 'block' : 'none'}} onClick={()=>this.handlePoint('')}>
-                <Icon type="delete" />
+        <div className={styles.title}>
+          <span className={styles.checkboxC}>
+            <a onClick={()=>this.showBmap()}>设置标注</a>
+          </span>
+          <span style={{float:'left'}}>{title}</span>
+          {helpShow && 
+            (
+              <div style={{float:'left', width:'18px', height:'18px',position:'relative',marginLeft:'5px'}}>
+                <Help link={help} style={{fontSize:'14px',color:'#999999',float:'left'}} />
               </div>
+            )
+          }
+          <div style={{clear:'both'}}></div>
+        </div>
+        <div className={styles.mapBox}>
+          <div>
+            <MapSearchField 
+              id={"mapView"}
+              value={{lng:data.lng,lat:data.lat}}            //默认坐标
+              isposition={'true'}
+              // searchinput={"false"}             //是否有输入框
+              onChange={this.props.handleCoordinateInfo}
+              ref={ref => this.refBmap = ref}      //把子组件的方法提到父组件中
+              style={{width:'200px',height:'200px'}}
+            />
+
+            <p style={{display:data.lng && data.lat ? 'none' : 'block'}}>
+              当前项目<br/>暂未设置地图标注
+            </p>
+            <span></span>
+            <div className={styles.delLocation} style={{display:data.lng && data.lat ? 'block' : 'none'}} onClick={()=>this.handlePoint('')}>
+              <Icon type="delete" />
             </div>
           </div>
-        </ItemBox>
+        </div>
+
         {this.props.applied && 
-          <ItemBox>
-            <div>
-              <span style={{float:'right'}}><AppliedToScene scenes={this.props.scenes} onSetAll={this.props.onSetAll} /></span>
-              应用到：
-            </div>
-          </ItemBox>
+          <div style={{marginTop:'20px'}}>
+            <span style={{float:'right'}}><AppliedToScene scenes={this.props.scenes} onSetAll={this.props.onSetAll} /></span>
+            应用到：
+          </div>
         }
         
         <BmapModal

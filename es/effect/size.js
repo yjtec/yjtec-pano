@@ -20,7 +20,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 import React from 'react';
-import style from './style.less';
+import styles from './style.less';
 
 var Size =
 /*#__PURE__*/
@@ -38,7 +38,7 @@ function (_React$Component) {
     value: function render() {
       var value = this.props.value;
       return React.createElement("div", {
-        className: style.sunlightSize
+        className: styles.sunlightSize
       }, React.createElement(_Radio.Group, {
         onChange: this.props.onChange,
         value: value

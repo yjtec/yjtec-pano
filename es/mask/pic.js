@@ -22,11 +22,11 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from "react";
 import { Component } from 'react';
 import { Help } from '@/components/';
-import style from './style.less';
+import styles from './style.less';
 import { mediaImgConfig } from '@/utils/oss.config';
 import ItemImg from '../components/ItemImg';
 import { Obj } from 'yjtec-support';
-import Modal from '@/components/AllScene';
+import Modal from '@/components/ApplyToScene';
 import { helpShow } from '@/utils/help';
 
 var Pic =
@@ -90,13 +90,13 @@ function (_Component) {
           scenesArr = _this$props.scenesArr;
       var sceneListVisible = this.state.sceneListVisible;
       return React.createElement("div", null, React.createElement("div", {
-        className: style.title,
+        className: styles.title,
         style: {
           margin: '10px 0 10px 0',
           lineHeight: '22px'
         }
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Button, {
         onClick: function onClick() {
           return _this2.appliedToScene();

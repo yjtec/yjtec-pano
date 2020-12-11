@@ -23,7 +23,7 @@ import React from "react";
 import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
 import { SliderSingle } from '@/components/Form';
-import style from './style.less';
+import styles from './style.less';
 import { helpShow } from '@/utils/help';
 
 var CruiseEdit =
@@ -107,7 +107,7 @@ function (_Component) {
         time: data.time,
         speed: data.speed ? data.speed : 5,
         switchScene: data.switchScene,
-        angle_view: data.angle_view ? data.angle_view : 1
+        angle_view: data.angle_view != undefined ? data.angle_view : 1
       });
     }
   }, {
@@ -122,13 +122,13 @@ function (_Component) {
           switchScene = _this$state.switchScene,
           angle_view = _this$state.angle_view;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: open == 1 ? true : false,
         onChange: this.isOpen,
-        className: style.checkbox
+        className: styles.checkbox
       })), React.createElement("span", {
         style: {
           float: 'left'
@@ -153,11 +153,11 @@ function (_Component) {
           clear: 'both'
         }
       })), React.createElement("div", {
-        className: style.mb20
+        className: styles.mb20
       }), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u573A\u666F\u65CB\u8F6C\u65F6\u95F4(S)"), React.createElement("div", {
-        className: style.sliderDiv
+        className: styles.sliderDiv
       }, React.createElement(SliderSingle, {
         defaultValue: time,
         max: 180,
@@ -167,11 +167,11 @@ function (_Component) {
           return _this2.handleRotateTime(value);
         }
       })), React.createElement("div", {
-        className: style.mb20
+        className: styles.mb20
       }), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u5DE1\u6E38\u901F\u5EA6(\u5EA6/S)"), React.createElement("div", {
-        className: style.sliderDiv
+        className: styles.sliderDiv
       }, React.createElement(SliderSingle, {
         defaultValue: speed,
         max: 100,
@@ -181,23 +181,23 @@ function (_Component) {
           return _this2.handleSpeed(value);
         }
       })), React.createElement("div", {
-        className: style.mb20
+        className: styles.mb20
       }), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: switchScene == 1 ? true : false,
         onChange: this.switchScene,
-        className: style.checkbox
+        className: styles.checkbox
       })), "\u65CB\u8F6C\u7ED3\u675F\u540E\u81EA\u52A8\u8DF3\u8F6C\u4E0B\u4E00\u4E2A\u573A\u666F"), React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, React.createElement("span", {
-        className: style.checkboxC
+        className: styles.checkboxC
       }, React.createElement(_Checkbox, {
         checked: angle_view == 1 ? true : false,
         onChange: this.angleView,
-        className: style.checkbox
+        className: styles.checkbox
       })), "\u4F7F\u7528\u573A\u666F\u89C6\u89D2\u5DE1\u6E38")));
     }
   }]);

@@ -21,7 +21,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 import React from 'react';
 import { ItemBox } from '@/components/';
-import style from '../style.less';
+import styles from '../style.less';
 
 var Text =
 /*#__PURE__*/
@@ -55,9 +55,9 @@ function (_React$Component) {
     value: function render() {
       var actionData = this.props.actionData;
       return React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
+        className: styles.title
       }, "\u6587\u672C\u4FE1\u606F"), React.createElement("div", {
-        className: style.setupInput
+        className: styles.setupInput
       }, React.createElement(_Input.TextArea, {
         value: actionData ? actionData.text : '',
         autosize: {

@@ -6,7 +6,7 @@ import {mediaImgConfig} from '@/utils/oss.config';
 import UserMedia from '@/components/MediaModal/UserMedia';
 
 import {Obj} from 'yjtec-support';
-import style from './style.less';
+import styles from './style.less';
 import { InputNumber } from '@/components/Form';
 
 export default class Edit extends React.Component{
@@ -139,13 +139,13 @@ export default class Edit extends React.Component{
   render(){
     const {videoUrl,title,thumbUrl,loop,autoplay,videoVisible,imgVisible,width,height} = this.state;
     const videoBox = (
-      <div className={style.videoList}>
-        <Icon type="play-square" className={style.icon}/>
+      <div className={styles.videoList}>
+        <Icon type="play-square" className={styles.icon}/>
         <p>{title}</p>
       </div>
     )
     const defaultVideoBox = (
-      <div className={style.videoList}>
+      <div className={styles.videoList}>
         <span>格式MP4 编码:H.264</span>
         <span>视频限制50M以内</span>
       </div>
@@ -153,8 +153,8 @@ export default class Edit extends React.Component{
 
     const thumbBox = (
       <div>
-        <img alt="嵌入视频封面" src={mediaImgConfig(thumbUrl,'img')} className={style.img}/>
-        <div className={style.delimg} onClick={()=>this.delImg()}>
+        <img alt="嵌入视频封面" src={mediaImgConfig(thumbUrl,'img')} className={styles.img}/>
+        <div className={styles.delimg} onClick={()=>this.delImg()}>
           <Icon type="delete" />
         </div>
       </div>
@@ -162,7 +162,7 @@ export default class Edit extends React.Component{
 
     const defaultThumbBox = (
       <div>
-        <div className={style.tips}>
+        <div className={styles.tips}>
           <p>
             封面请与视频尺寸保持一致
           </p>
@@ -171,35 +171,35 @@ export default class Edit extends React.Component{
     )
 
     return(
-      <div className={style.box}>
+      <div className={styles.box}>
         <ItemBox>
-          <div className={style.boxtitle}>
+          <div className={styles.boxtitle}>
             嵌入视频
-            <Button onClick={()=>this.handleVideoShow()} className={style.uploadBtn} type="primary" size="small">选择视频</Button>
+            <Button onClick={()=>this.handleVideoShow()} className={styles.uploadBtn} type="primary" size="small">选择视频</Button>
           </div>
           {(videoUrl && title) ? videoBox : defaultVideoBox}
         </ItemBox>
         <ItemBox>
-          <div className={style.boxtitle} style={{marginTop:'10px'}}>
+          <div className={styles.boxtitle} style={{marginTop:'10px'}}>
             移动端封面
-            <Button onClick={()=>this.handleImgShow()} className={style.uploadBtn} type="primary" size="small">选择图片</Button>
+            <Button onClick={()=>this.handleImgShow()} className={styles.uploadBtn} type="primary" size="small">选择图片</Button>
           </div>
-          <div className={style.thumb}>
+          <div className={styles.thumb}>
             {thumbUrl ? thumbBox : defaultThumbBox}
           </div>
-          {thumbUrl && <div className={style.notes}>注：封面请与视频尺寸保持一致</div>}
+          {thumbUrl && <div className={styles.notes}>注：封面请与视频尺寸保持一致</div>}
         </ItemBox>
 
         <ItemBox> 
-          <div className={style.title} style={{marginTop:10}}>
-            <span className={style.checkboxC}>
-              <Checkbox checked={autoplay == 1 ? true : false} onChange={this.handlePlay} className={style.checkbox}></Checkbox>
+          <div className={styles.title} style={{marginTop:10}}>
+            <span className={styles.checkboxC}>
+              <Checkbox checked={autoplay == 1 ? true : false} onChange={this.handlePlay} className={styles.checkbox}></Checkbox>
             </span>
             是否自动播放(PC有效)
           </div>
-          <div className={style.title} style={{marginTop:10}}>
-            <span className={style.checkboxC}>
-              <Checkbox checked={loop == 1 ? true : false} onChange={this.handleLoop} className={style.checkbox}></Checkbox>
+          <div className={styles.title} style={{marginTop:10}}>
+            <span className={styles.checkboxC}>
+              <Checkbox checked={loop == 1 ? true : false} onChange={this.handleLoop} className={styles.checkbox}></Checkbox>
             </span>
             是否循环播放
           </div>
