@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from 'antd';
 import PicList from '@/components/PicList';
 import {strRandom,Arr,Obj,isArray} from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 
 export default class ActionMedia extends React.Component{
   state ={
@@ -85,7 +85,8 @@ export default class ActionMedia extends React.Component{
         </p>
         <UserMedia
           title='图片素材库'
-          mediaType='1'
+          mediaType={1}
+          tabType={1}
           multipleChoices={true}
           width='900px'
           visible={userMediaVisible}

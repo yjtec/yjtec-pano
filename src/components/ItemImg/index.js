@@ -3,7 +3,7 @@ import {Button,Row,Col,Icon} from 'antd';
 import {Help} from '@/components/';
 import style from './style.less';
 import {Obj} from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 import {helpShow} from '@/utils/help';
 import {mediaImgConfig} from '@/utils/oss.config';
 
@@ -66,9 +66,10 @@ class ItemImg extends Component {
             {imgSize}
           </Col>
         </Row>
-        <UserMedia
+        <Media
           title='图片素材库'
-          mediaType='1'
+          mediaType={1}
+          tabType={1}
           multipleChoices={false}
           width='900px'
           visible={userMediaVisible}

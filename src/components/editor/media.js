@@ -178,9 +178,10 @@ export default class modalEditor extends React.Component {
           </div>
         </Modal>
 
-        <UserMedia
+        <Media
           title='图片素材库'
-          mediaType='1'
+          mediaType={1}
+          tabType={1}
           multipleChoices={true}
           width='900px'
           visible={userMediaVisible}
@@ -188,9 +189,10 @@ export default class modalEditor extends React.Component {
           onCancel={this.closeMediaModal}
         />
 
-        <UserMedia
+        <Media
           title='视频素材库'
-          mediaType='3'
+          mediaType={3}
+          tabType={1}
           multipleChoices={true}
           width='900px'
           visible={videoVisible}

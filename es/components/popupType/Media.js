@@ -24,7 +24,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import PicList from '@/components/PicList';
 import { strRandom, Arr, Obj, isArray } from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 
 var ActionMedia =
 /*#__PURE__*/
@@ -147,7 +147,8 @@ function (_React$Component) {
         size: "small"
       }, "\u9009\u62E9\u56FE\u7247")), React.createElement(UserMedia, {
         title: "\u56FE\u7247\u7D20\u6750\u5E93",
-        mediaType: "1",
+        mediaType: 1,
+        tabType: 1,
         multipleChoices: true,
         width: "900px",
         visible: userMediaVisible,

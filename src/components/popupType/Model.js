@@ -10,7 +10,7 @@ import styles from './ringsStyle.less';
 import {formatUrl} from '@/utils/utils';
 import {mediaImgConfig} from '@/utils/oss.config'
 
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 import {helpShow} from '@/utils/help';
 
 @connect(({ loading,model3d }) => ({
@@ -228,9 +228,10 @@ export default class Model extends React.Component {
           <Input placeholder='填写链接地址' value={jumpUrl} onBlur={this.formatJumpUrl}  onChange={this.setJumpUrl} />
         </div>
 
-        <UserMedia
+        <Media
           title='3D模型素材库'
-          mediaType='5'
+          mediaType={5}
+          tabType={1}
           multipleChoices={false}
           width='900px'
           visible={userMediaVisible}

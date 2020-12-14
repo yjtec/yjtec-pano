@@ -2,7 +2,7 @@ import React from 'react';
 import {Button} from '@/components/Form';
 import styles from './style.less';
 import {mediaImgConfig} from '@/utils/oss.config';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 
 export default class icon extends React.Component {
   state = {
@@ -59,9 +59,10 @@ export default class icon extends React.Component {
         </div>
         <div style={{clear:'both'}}></div>
 
-        <UserMedia
+        <Media
           title='图片素材库'
-          mediaType='1'
+          mediaType={1}
+          tabType={1}
           multipleChoices={false}
           width='900px'
           visible={userMediaVisible}

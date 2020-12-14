@@ -4,7 +4,7 @@ import {Button,Select,SliderSingle} from '@/components/Form';
 import {Checkbox,Row,Col,Drawer,Icon} from 'antd';
 import styles from './style.less';
 
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 
 import Modal from '@/components/ApplyToScene';
 
@@ -232,9 +232,10 @@ class Music extends Component {
         >
         </Modal>
 
-        <UserMedia
+        <Media
           title='音乐素材库'
-          mediaType='2'
+          mediaType={2}
+          tabType={1}
           multipleChoices={false}
           width='900px'
           visible={userMediaVisible}

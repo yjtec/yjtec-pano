@@ -33,7 +33,7 @@ import React from "react";
 import { ItemBox, Right, Content } from '@/components/';
 import { Button, Select } from '@/components/Form';
 import styles from './style.less';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 import { Obj } from 'yjtec-support';
 var defaultData = {
   media: false,
@@ -169,9 +169,10 @@ function (_React$Component) {
         style: {
           clear: 'both'
         }
-      })), React.createElement(UserMedia, {
+      })), React.createElement(Media, {
         title: "\u56FE\u7247\u7D20\u6750\u5E93",
-        mediaType: "2",
+        mediaType: 2,
+        tabType: 1,
         multipleChoices: false,
         width: "900px",
         visible: userMediaVisible,

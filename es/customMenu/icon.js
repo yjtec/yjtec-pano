@@ -20,7 +20,7 @@ import React from 'react';
 import { Button } from '@/components/Form';
 import styles from './style.less';
 import { mediaImgConfig } from '@/utils/oss.config';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 
 var icon =
 /*#__PURE__*/
@@ -116,9 +116,10 @@ function (_React$Component) {
         style: {
           clear: 'both'
         }
-      }), React.createElement(UserMedia, {
+      }), React.createElement(Media, {
         title: "\u56FE\u7247\u7D20\u6750\u5E93",
-        mediaType: "1",
+        mediaType: 1,
+        tabType: 1,
         multipleChoices: false,
         width: "900px",
         visible: userMediaVisible,

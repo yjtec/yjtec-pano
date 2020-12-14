@@ -30,7 +30,7 @@ import { Component } from 'react';
 import { Help } from '@/components/';
 import style from './style.less';
 import { Obj } from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 import { helpShow } from '@/utils/help';
 import { mediaImgConfig } from '@/utils/oss.config';
 
@@ -117,9 +117,10 @@ function (_Component) {
       }, "\u9009\u62E9\u56FE\u7247")), React.createElement(_Col, {
         span: 12,
         className: style.prompt
-      }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), imgSize)), React.createElement(UserMedia, {
+      }, "\u5EFA\u8BAE\u5927\u5C0F", React.createElement("br", null), imgSize)), React.createElement(Media, {
         title: "\u56FE\u7247\u7D20\u6750\u5E93",
-        mediaType: "1",
+        mediaType: 1,
+        tabType: 1,
         multipleChoices: false,
         width: "900px",
         visible: userMediaVisible,

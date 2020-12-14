@@ -26,7 +26,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import { ItemBox } from '@/components/';
 import { mediaImgConfig } from '@/utils/oss.config';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 import { Obj } from 'yjtec-support';
 import styles from './style.less';
 import { InputNumber } from '@/components/Form';
@@ -267,17 +267,19 @@ function (_React$Component) {
         checked: loop == 1 ? true : false,
         onChange: this.handleLoop,
         className: styles.checkbox
-      })), "\u662F\u5426\u5FAA\u73AF\u64AD\u653E")), React.createElement(UserMedia, {
+      })), "\u662F\u5426\u5FAA\u73AF\u64AD\u653E")), React.createElement(Media, {
         title: "\u89C6\u9891\u7D20\u6750\u5E93",
-        mediaType: "3",
+        mediaType: 3,
+        tabType: 1,
         multipleChoices: false,
         width: "900px",
         visible: videoVisible,
         onChange: this.handleVideoMedia,
         onCancel: this.closeVideoMediaModal
-      }), React.createElement(UserMedia, {
+      }), React.createElement(Media, {
         title: "\u56FE\u7247\u7D20\u6750\u5E93",
-        mediaType: "1",
+        mediaType: 1,
+        tabType: 1,
         multipleChoices: false,
         width: "900px",
         visible: imgVisible,

@@ -5,7 +5,7 @@ import { InputNumber } from '@/components/Form';
 import PicList from '@/components/PicList';
 import styles from '../style.less';
 import {strRandom} from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 
 export default class Pic extends React.Component{
   constructor(props) {
@@ -125,9 +125,10 @@ export default class Pic extends React.Component{
           </div>
         </div>
 
-        <UserMedia
+        <Media
           title='图片素材库'
-          mediaType='1'
+          mediaType={1}
+          tabType={1}
           multipleChoices={true}
           width='900px'
           visible={userMediaVisible}

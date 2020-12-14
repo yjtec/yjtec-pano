@@ -3,7 +3,7 @@ import { Icon,Button,Checkbox } from 'antd';
 import {ItemBox} from '@/components/';
 import {mediaImgConfig} from '@/utils/oss.config';
 
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 
 import {Obj} from 'yjtec-support';
 import styles from './style.less';
@@ -205,9 +205,10 @@ export default class Edit extends React.Component{
           </div>
         </ItemBox>
 
-        <UserMedia
+        <Media
           title='视频素材库'
-          mediaType='3'
+          mediaType={3}
+          tabType={1}
           multipleChoices={false}
           width='900px'
           visible={videoVisible}
@@ -215,9 +216,10 @@ export default class Edit extends React.Component{
           onCancel={this.closeVideoMediaModal}
         />
 
-        <UserMedia
+        <Media
           title='图片素材库'
-          mediaType='1'
+          mediaType={1}
+          tabType={1}
           multipleChoices={false}
           width='900px'
           visible={imgVisible}

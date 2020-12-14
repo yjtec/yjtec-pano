@@ -25,7 +25,7 @@ import { InputNumber } from '@/components/Form';
 import PicList from '@/components/PicList';
 import styles from '../style.less';
 import { strRandom } from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 
 var Pic =
 /*#__PURE__*/
@@ -175,9 +175,10 @@ function (_React$Component) {
         style: {
           width: '40px'
         }
-      })), React.createElement("p", null, "\u79D2\u540E\u81EA\u52A8\u64AD\u653E\u4E0B\u4E00\u5F20"))), React.createElement(UserMedia, {
+      })), React.createElement("p", null, "\u79D2\u540E\u81EA\u52A8\u64AD\u653E\u4E0B\u4E00\u5F20"))), React.createElement(Media, {
         title: "\u56FE\u7247\u7D20\u6750\u5E93",
-        mediaType: "1",
+        mediaType: 1,
+        tabType: 1,
         multipleChoices: true,
         width: "900px",
         visible: userMediaVisible,

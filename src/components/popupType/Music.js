@@ -4,7 +4,7 @@ import {Button,Select} from '@/components/Form';
 import {Checkbox,Row,Col,Drawer,Icon} from 'antd';
 import styles from './style.less';
 
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 
 import {Obj} from 'yjtec-support';
 
@@ -116,9 +116,10 @@ export default class Music extends React.Component{
           <div style={{clear:'both'}}></div>
         </div>
 
-        <UserMedia
+        <Media
           title='图片素材库'
-          mediaType='2'
+          mediaType={2}
+          tabType={1}
           multipleChoices={false}
           width='900px'
           visible={userMediaVisible}

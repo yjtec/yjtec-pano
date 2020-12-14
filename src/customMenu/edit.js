@@ -26,6 +26,7 @@ export default class CustomMenuEdit extends React.Component {
   componentDidMount() {
     const {data} = this.props;
     let panes = [];
+    if (JSON.stringify(data) == '{}' || !data) return;
     data.map(item=>{
       panes.push({title:item.type == 'button' ? '按钮' : '分组',key:item.index,content:item.type == 'button' ? <MenuBtn showIcon={true} index={item.index} type={item.type} data={item.data} onChange={this.editBtn} /> : <MenuGroup index={item.index} type={item.type} data={item.data} onChange={this.editBtn}/>, })
     })

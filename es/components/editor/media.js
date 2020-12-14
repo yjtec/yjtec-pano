@@ -265,17 +265,19 @@ function (_React$Component) {
         onClick: function onClick() {
           return _this2.setUploadType();
         }
-      }, uploadType == 1 ? '添加网络资源' : '添加本地资源'))), React.createElement(UserMedia, {
+      }, uploadType == 1 ? '添加网络资源' : '添加本地资源'))), React.createElement(Media, {
         title: "\u56FE\u7247\u7D20\u6750\u5E93",
-        mediaType: "1",
+        mediaType: 1,
+        tabType: 1,
         multipleChoices: true,
         width: "900px",
         visible: userMediaVisible,
         onChange: this.selectMedia,
         onCancel: this.closeMediaModal
-      }), React.createElement(UserMedia, {
+      }), React.createElement(Media, {
         title: "\u89C6\u9891\u7D20\u6750\u5E93",
-        mediaType: "3",
+        mediaType: 3,
+        tabType: 1,
         multipleChoices: true,
         width: "900px",
         visible: videoVisible,

@@ -36,7 +36,7 @@ import { Component } from "react";
 import { ItemBox, Right, Content, Help } from '@/components/';
 import { Button, Select, SliderSingle } from '@/components/Form';
 import styles from './style.less';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 import Modal from '@/components/ApplyToScene';
 import { Obj } from 'yjtec-support';
 import { helpShow } from '@/utils/help';
@@ -348,9 +348,10 @@ function (_Component) {
           volume: volume
         },
         onOk: this.setAllScene
-      }), React.createElement(UserMedia, {
+      }), React.createElement(Media, {
         title: "\u97F3\u4E50\u7D20\u6750\u5E93",
-        mediaType: "2",
+        mediaType: 2,
+        tabType: 1,
         multipleChoices: false,
         width: "900px",
         visible: userMediaVisible,

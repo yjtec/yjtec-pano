@@ -43,7 +43,7 @@ import { Obj } from 'yjtec-support';
 import styles from './ringsStyle.less';
 import { formatUrl } from '@/utils/utils';
 import { mediaImgConfig } from '@/utils/oss.config';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 import { helpShow } from '@/utils/help';
 var Model = (_dec = connect(function (_ref) {
   var loading = _ref.loading,
@@ -359,9 +359,10 @@ function (_React$Component) {
         value: jumpUrl,
         onBlur: this.formatJumpUrl,
         onChange: this.setJumpUrl
-      })), React.createElement(UserMedia, {
+      })), React.createElement(Media, {
         title: "3D\u6A21\u578B\u7D20\u6750\u5E93",
-        mediaType: "5",
+        mediaType: 5,
+        tabType: 1,
         multipleChoices: false,
         width: "900px",
         visible: userMediaVisible,
