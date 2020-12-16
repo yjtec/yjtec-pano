@@ -25,32 +25,28 @@ export default class CustomMenuEdit extends React.Component {
 
   componentDidMount() {
     const {data} = this.props;
-    let panes = [];
     if (JSON.stringify(data) == '{}' || !data) return;
-    data.map(item=>{
-      panes.push({title:item.type == 'button' ? '按钮' : '分组',key:item.index,content:item.type == 'button' ? <MenuBtn showIcon={true} index={item.index} type={item.type} data={item.data} onChange={this.editBtn} /> : <MenuGroup index={item.index} type={item.type} data={item.data} onChange={this.editBtn}/>, })
-    })
-    this.setState({
-      ...data ,
-      panes,
-      ui_data:data
-    });
+    this.setPanes(data);
   }
   componentDidUpdate(prevProps, prevState) {
     const {data} = this.props;
     if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
       if (data) {
-        let panes = [];
-        data.map(item=>{
-          panes.push({title:item.type == 'button' ? '按钮' : '分组',key:item.index,content:item.type == 'button' ? <MenuBtn showIcon={true} index={item.index} type={item.type} data={item.data} onChange={this.editBtn} /> : <MenuGroup index={item.index} type={item.type} data={item.data} onChange={this.editBtn}/>, })
-        })
-        this.setState({
-          ...data ,
-          panes,
-          ui_data:data
-        });
+        this.setPanes(data);
       }
     }
+  }
+
+  setPanes = data => {
+    let panes = [];
+    data.map(item=>{
+      panes.push({title:item.type == 'button' ? '按钮' : '分组',key:item.index,content:{}, })
+    })
+    this.setState({
+      ...this.state ,
+      panes,
+      ui_data:data
+    });
   }
 
   setCreate = () => {
@@ -72,7 +68,7 @@ export default class CustomMenuEdit extends React.Component {
     const newActiveKey = this.state.panes.length + 1;
     panes.push({ 
       title: paneItem.title, 
-      content: type == 'button' ? <MenuBtn showIcon={true} index={newActiveKey.toString()} type={type} data={''} onChange={this.editBtn} /> : <MenuGroup index={newActiveKey.toString()} type={type} data={''} onChange={this.editBtn}/>, 
+      content: {}, 
       key: newActiveKey.toString() 
     });
     ui_data.push({ 
@@ -96,37 +92,34 @@ export default class CustomMenuEdit extends React.Component {
     let { activeKey } = this.state;
     let lastIndex;
     this.state.panes.forEach((pane, i) => {
-      if (pane.key == targetKey) {
+      if (pane.key === targetKey) {
         lastIndex = i - 1;
       }
     });
-    let panes = this.state.panes.filter(pane => pane.key !== targetKey).map((item,i)=>{
+    let panes = this.state.panes.filter(pane => pane.key !== targetKey)
+    let new_panes = panes.map((item,i)=>{
       return {
         ...item,
         key: (i + 1).toString()
       }
     });
-    let ui_data = this.state.ui_data.filter(item => item.index !== targetKey).map((item,i)=>{
+    let ui_data = this.state.ui_data.filter(item => item.index !== targetKey)
+    let new_ui_data = ui_data.map((item,i)=>{
       return {
         ...item,
         index: (i + 1).toString()
       }
     });
-    if (panes.length && activeKey == targetKey) {
+    if (new_panes.length && activeKey == targetKey) {
       if (lastIndex >= 0) {
-        activeKey = panes[lastIndex].key;
+        activeKey = new_panes[lastIndex].key;
       } else {
-        activeKey = panes[0].key;
+        activeKey = new_panes[0].key;
       }
     }else{
-      activeKey = panes[0].key;
+      activeKey = (new_panes && JSON.stringify(new_panes) != '[]') ? new_panes[0].key : 1;
     }
-    
-    this.setState({ 
-      panes, 
-      activeKey,
-      ui_data
-    });
+    this.setPanes(new_ui_data)
   };
 
   onEdit = (targetKey, action) => {
@@ -156,11 +149,26 @@ export default class CustomMenuEdit extends React.Component {
 
   save = () => {
     this.props.onChange(this.state.ui_data);
+    console.log(this.state.ui_data)
     message.success('菜单已保存');
   }
 
   render() {
-    const {create,panes} = this.state;
+    const {create,panes,ui_data} = this.state;
+    let panes_data = [];
+    panes.map(i=>{
+      ui_data.map(j=>{
+        if (i.key === j.index) {
+          panes_data.push({
+            ...i,
+            content:{
+              ...j
+            }
+          })
+        }
+      })
+    })
+
     return (
       <div>
         <ItemBox>
@@ -189,18 +197,23 @@ export default class CustomMenuEdit extends React.Component {
           </div>
         </ItemBox>
         <div className={styles.content}>
-          {panes.length > 0 && <Tabs
+          {panes_data.length > 0 && <Tabs
             hideAdd
             onChange={this.switchActiveKey}
             activeKey={ this.state.activeKey.toString()}
             type="editable-card"
             onEdit={this.onEdit}
           >
-            {panes.map(pane => (
-              <TabPane tab={pane.title} key={pane.key}>
-                {pane.content}
-              </TabPane>
-            ))}
+            {panes_data.map(pane => {
+              return(
+                <TabPane tab={pane.title} key={pane.key}>
+                  {pane.type == 'button' ? 
+                    <MenuBtn showIcon={true} index={pane.content.index} type={pane.content.type} data={pane.content.data} onChange={this.editBtn} /> : 
+                    <MenuGroup index={pane.content.index} type={pane.content.type} data={pane.content.data} onChange={this.editBtn}/>
+                  }
+                </TabPane>
+              )
+            })}
           </Tabs>}
         </div>
 

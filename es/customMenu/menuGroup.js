@@ -167,8 +167,26 @@ function (_React$Component) {
       this.setState({
         index: index,
         type: type,
-        data: data ? data : defaultData
+        data: data && JSON.stringify(data) != '[]' ? data : defaultData
       });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this$props2 = this.props,
+          index = _this$props2.index,
+          type = _this$props2.type,
+          data = _this$props2.data;
+
+      if (JSON.stringify(this.props) != JSON.stringify(prevProps)) {
+        if (this.props) {
+          this.setState({
+            index: index,
+            type: type,
+            data: data && JSON.stringify(data) != '[]' ? data : defaultData
+          });
+        }
+      }
     } //选择素材返回值
 
   }, {
@@ -198,6 +216,7 @@ function (_React$Component) {
         className: styles.add_menu
       }, React.createElement(Button, {
         title: "\u6DFB\u52A0\u5B50\u83DC\u5355",
+        disabled: data.children && data.children.length >= 5 ? true : false,
         style: {
           display: 'block'
         },

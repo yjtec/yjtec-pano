@@ -75,6 +75,22 @@ function (_React$Component) {
       ui_data: []
     };
 
+    _this.setPanes = function (data) {
+      var panes = [];
+      data.map(function (item) {
+        panes.push({
+          title: item.type == 'button' ? '按钮' : '分组',
+          key: item.index,
+          content: {}
+        });
+      });
+
+      _this.setState(_objectSpread({}, _this.state, {
+        panes: panes,
+        ui_data: data
+      }));
+    };
+
     _this.setCreate = function () {
       _this.setState({
         create: true
@@ -98,18 +114,7 @@ function (_React$Component) {
       var newActiveKey = _this.state.panes.length + 1;
       panes.push({
         title: paneItem.title,
-        content: type == 'button' ? React.createElement(MenuBtn, {
-          showIcon: true,
-          index: newActiveKey.toString(),
-          type: type,
-          data: '',
-          onChange: _this.editBtn
-        }) : React.createElement(MenuGroup, {
-          index: newActiveKey.toString(),
-          type: type,
-          data: '',
-          onChange: _this.editBtn
-        }),
+        content: {},
         key: newActiveKey.toString()
       });
       ui_data.push({
@@ -138,14 +143,16 @@ function (_React$Component) {
       var lastIndex;
 
       _this.state.panes.forEach(function (pane, i) {
-        if (pane.key == targetKey) {
+        if (pane.key === targetKey) {
           lastIndex = i - 1;
         }
       });
 
       var panes = _this.state.panes.filter(function (pane) {
         return pane.key !== targetKey;
-      }).map(function (item, i) {
+      });
+
+      var new_panes = panes.map(function (item, i) {
         return _objectSpread({}, item, {
           key: (i + 1).toString()
         });
@@ -153,27 +160,25 @@ function (_React$Component) {
 
       var ui_data = _this.state.ui_data.filter(function (item) {
         return item.index !== targetKey;
-      }).map(function (item, i) {
+      });
+
+      var new_ui_data = ui_data.map(function (item, i) {
         return _objectSpread({}, item, {
           index: (i + 1).toString()
         });
       });
 
-      if (panes.length && activeKey == targetKey) {
+      if (new_panes.length && activeKey == targetKey) {
         if (lastIndex >= 0) {
-          activeKey = panes[lastIndex].key;
+          activeKey = new_panes[lastIndex].key;
         } else {
-          activeKey = panes[0].key;
+          activeKey = new_panes[0].key;
         }
       } else {
-        activeKey = panes[0].key;
+        activeKey = new_panes && JSON.stringify(new_panes) != '[]' ? new_panes[0].key : 1;
       }
 
-      _this.setState({
-        panes: panes,
-        activeKey: activeKey,
-        ui_data: ui_data
-      });
+      _this.setPanes(new_ui_data);
     };
 
     _this.onEdit = function (targetKey, action) {
@@ -205,6 +210,8 @@ function (_React$Component) {
     _this.save = function () {
       _this.props.onChange(_this.state.ui_data);
 
+      console.log(_this.state.ui_data);
+
       _message.success('菜单已保存');
     };
 
@@ -214,77 +221,40 @@ function (_React$Component) {
   _createClass(CustomMenuEdit, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
       var data = this.props.data;
-      var panes = [];
       if (JSON.stringify(data) == '{}' || !data) return;
-      data.map(function (item) {
-        panes.push({
-          title: item.type == 'button' ? '按钮' : '分组',
-          key: item.index,
-          content: item.type == 'button' ? React.createElement(MenuBtn, {
-            showIcon: true,
-            index: item.index,
-            type: item.type,
-            data: item.data,
-            onChange: _this2.editBtn
-          }) : React.createElement(MenuGroup, {
-            index: item.index,
-            type: item.type,
-            data: item.data,
-            onChange: _this2.editBtn
-          })
-        });
-      });
-      this.setState(_objectSpread({}, data, {
-        panes: panes,
-        ui_data: data
-      }));
+      this.setPanes(data);
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
-      var _this3 = this;
-
       var data = this.props.data;
 
       if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
         if (data) {
-          var panes = [];
-          data.map(function (item) {
-            panes.push({
-              title: item.type == 'button' ? '按钮' : '分组',
-              key: item.index,
-              content: item.type == 'button' ? React.createElement(MenuBtn, {
-                showIcon: true,
-                index: item.index,
-                type: item.type,
-                data: item.data,
-                onChange: _this3.editBtn
-              }) : React.createElement(MenuGroup, {
-                index: item.index,
-                type: item.type,
-                data: item.data,
-                onChange: _this3.editBtn
-              })
-            });
-          });
-          this.setState(_objectSpread({}, data, {
-            panes: panes,
-            ui_data: data
-          }));
+          this.setPanes(data);
         }
       }
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this2 = this;
 
       var _this$state2 = this.state,
           create = _this$state2.create,
-          panes = _this$state2.panes;
+          panes = _this$state2.panes,
+          ui_data = _this$state2.ui_data;
+      var panes_data = [];
+      panes.map(function (i) {
+        ui_data.map(function (j) {
+          if (i.key === j.index) {
+            panes_data.push(_objectSpread({}, i, {
+              content: _objectSpread({}, j)
+            }));
+          }
+        });
+      });
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         style: {
           padding: '10px 0'
@@ -318,7 +288,7 @@ function (_React$Component) {
           borderColor: '#008aff'
         },
         onClick: function onClick() {
-          return _this4.setCreate();
+          return _this2.setCreate();
         }
       }), React.createElement("div", {
         className: styles.createBtn,
@@ -330,7 +300,7 @@ function (_React$Component) {
         return React.createElement("p", {
           key: item.key,
           onClick: function onClick() {
-            return _this4.add(item.type);
+            return _this2.add(item.type);
           }
         }, item.title);
       }))), React.createElement("div", {
@@ -341,17 +311,28 @@ function (_React$Component) {
         className: styles.tips
       }, "\u6CE8: \u53EF\u6DFB\u52A03\u4E2A\u6309\u94AE\u6216\u5206\u7EC4, \u6BCF\u4E2A\u5206\u7EC4\u6700\u591A\u53EF\u6DFB\u52A05\u4E2A\u5B50\u6309\u94AE"))), React.createElement("div", {
         className: styles.content
-      }, panes.length > 0 && React.createElement(_Tabs, {
+      }, panes_data.length > 0 && React.createElement(_Tabs, {
         hideAdd: true,
         onChange: this.switchActiveKey,
         activeKey: this.state.activeKey.toString(),
         type: "editable-card",
         onEdit: this.onEdit
-      }, panes.map(function (pane) {
+      }, panes_data.map(function (pane) {
         return React.createElement(TabPane, {
           tab: pane.title,
           key: pane.key
-        }, pane.content);
+        }, pane.type == 'button' ? React.createElement(MenuBtn, {
+          showIcon: true,
+          index: pane.content.index,
+          type: pane.content.type,
+          data: pane.content.data,
+          onChange: _this2.editBtn
+        }) : React.createElement(MenuGroup, {
+          index: pane.content.index,
+          type: pane.content.type,
+          data: pane.content.data,
+          onChange: _this2.editBtn
+        }));
       }))), React.createElement("div", {
         style: {
           position: 'absolute',
@@ -374,7 +355,7 @@ function (_React$Component) {
       }, React.createElement(Button, {
         title: "\u5B8C\u6210",
         onClick: function onClick() {
-          return _this4.save();
+          return _this2.save();
         }
       }))))));
     }

@@ -25,8 +25,21 @@ export default class MenuGroup extends React.Component {
     this.setState({
       index: index,
       type:type,
-      data:data ? data : defaultData
+      data:(data && JSON.stringify(data) != '[]') ? data : defaultData
     });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const {index,type,data} = this.props;
+    if (JSON.stringify(this.props) != JSON.stringify(prevProps)) {
+      if (this.props) {
+        this.setState({
+          index: index,
+          type:type,
+          data:(data && JSON.stringify(data) != '[]') ? data : defaultData
+        });
+      }
+    }
   }
 
   //选择素材返回值
@@ -116,7 +129,7 @@ export default class MenuGroup extends React.Component {
           <Input placeholder='请添加分组名称' value={data.title} onChange={this.setTitle} style={{marginBottom:'5px'}}/>
         </div>
         <div className={styles.add_menu}>
-          <Button title="添加子菜单" style={{display:'block'}} onClick={()=>this.addChildren()}/>
+          <Button title="添加子菜单" disabled={(data.children && data.children.length >= 5) ? true : false} style={{display:'block'}} onClick={()=>this.addChildren()}/>
         </div>
         {data.children && data.children.map((item,i)=>(
           <div key={i} style={{marginTop:'15px'}}>

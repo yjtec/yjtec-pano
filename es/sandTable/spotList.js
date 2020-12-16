@@ -69,7 +69,7 @@ function (_Component) {
               return _this.props.delSpot(item.scene_id);
             }
           }, "\u5220\u9664"), React.createElement("img", {
-            className: editSpotId == item.scene_id ? style.click : '',
+            className: editSpotId == item.scene_id ? styles.click : '',
             alt: item.scene_name,
             src: item.scene_thumb
           }), React.createElement("div", {
@@ -85,7 +85,7 @@ function (_Component) {
               return _this.props.delSpot(item.scene_id);
             }
           }, "\u5220\u9664"), React.createElement("img", {
-            className: editSpotId == item.scene_id ? style.click : '',
+            className: editSpotId == item.scene_id ? styles.click : '',
             alt: item.scene_name,
             src: ossPanoUrl + item.scene_thumb
           }), React.createElement("div", {
@@ -101,7 +101,7 @@ function (_Component) {
               return _this.props.delSpot(item.scene_id);
             }
           }, "\u5220\u9664"), React.createElement("img", {
-            className: editSpotId == item.scene_id ? style.click : '',
+            className: editSpotId == item.scene_id ? styles.click : '',
             alt: item.scene_name,
             src: ossMediaUrl + item.scene_thumb
           }), React.createElement("div", {

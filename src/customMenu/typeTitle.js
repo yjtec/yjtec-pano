@@ -25,7 +25,7 @@ export default class typeTitle extends React.Component {
     if(prevProps.type != type || prevProps.title != title){
       if (type || title) {
         this.setState({
-          type: type,
+          type: Number(type),
           title: title
         });
       }

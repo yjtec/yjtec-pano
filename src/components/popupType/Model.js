@@ -58,6 +58,7 @@ export default class Model extends React.Component {
   //获取模型数据
   getModel3dInfo = id => {
     const {dispatch} = this.props;
+    console.log(this.props,id)
     dispatch({
       type:'model3d/getInfo',
       payload:{

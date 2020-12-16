@@ -117,8 +117,26 @@ function (_React$Component) {
       this.setState({
         index: index,
         type: type,
-        data: data ? data : defaultData
+        data: data && JSON.stringify(data) != '[]' ? data : defaultData
       });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var _this$props2 = this.props,
+          index = _this$props2.index,
+          type = _this$props2.type,
+          data = _this$props2.data;
+
+      if (JSON.stringify(this.props) != JSON.stringify(prevProps)) {
+        if (this.props) {
+          this.setState({
+            index: index,
+            type: type,
+            data: data && JSON.stringify(data) != '[]' ? data : defaultData
+          });
+        }
+      }
     } //选择素材返回值
 
   }, {
