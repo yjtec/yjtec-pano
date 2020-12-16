@@ -2,7 +2,7 @@ import React from 'react';
 import {Modal,Input,Icon} from 'antd';
 import BraftEditor from './braftEditor';
 import {Obj} from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 import styles from './media.less';
 import {mediaImgConfig} from '@/utils/oss.config';
 export default class modalEditor extends React.Component {

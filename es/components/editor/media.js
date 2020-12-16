@@ -24,7 +24,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 import React from 'react';
 import BraftEditor from './braftEditor';
 import { Obj } from 'yjtec-support';
-import UserMedia from '@/components/MediaModal/UserMedia';
+import Media from '@/components/MediaModal';
 import styles from './media.less';
 import { mediaImgConfig } from '@/utils/oss.config';
 

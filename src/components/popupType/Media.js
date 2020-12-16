@@ -83,7 +83,7 @@ export default class ActionMedia extends React.Component{
           相册
           <Button onClick={this.handleShow} style={{float:'right'}} type="primary" size="small">选择图片</Button>
         </p>
-        <UserMedia
+        <Media
           title='图片素材库'
           mediaType={1}
           tabType={1}

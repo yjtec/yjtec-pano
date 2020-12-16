@@ -145,7 +145,7 @@ function (_React$Component) {
         },
         type: "primary",
         size: "small"
-      }, "\u9009\u62E9\u56FE\u7247")), React.createElement(UserMedia, {
+      }, "\u9009\u62E9\u56FE\u7247")), React.createElement(Media, {
         title: "\u56FE\u7247\u7D20\u6750\u5E93",
         mediaType: 1,
         tabType: 1,
