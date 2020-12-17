@@ -50,8 +50,12 @@ export default class CustomMenuEdit extends React.Component {
   }
 
   setCreate = () => {
+    let create = true;
+    if (this.state.create) {
+      create = false
+    }
     this.setState({
-      create: true
+      create: create
     });
   }
 
@@ -119,7 +123,10 @@ export default class CustomMenuEdit extends React.Component {
     }else{
       activeKey = (new_panes && JSON.stringify(new_panes) != '[]') ? new_panes[0].key : 1;
     }
-    this.setPanes(new_ui_data)
+    this.setPanes(new_ui_data);
+    this.setState({
+      activeKey: activeKey
+    });
   };
 
   onEdit = (targetKey, action) => {
@@ -149,7 +156,6 @@ export default class CustomMenuEdit extends React.Component {
 
   save = () => {
     this.props.onChange(this.state.ui_data);
-    console.log(this.state.ui_data)
     message.success('菜单已保存');
   }
 
@@ -207,9 +213,9 @@ export default class CustomMenuEdit extends React.Component {
             {panes_data.map(pane => {
               return(
                 <TabPane tab={pane.title} key={pane.key}>
-                  {pane.type == 'button' ? 
-                    <MenuBtn showIcon={true} index={pane.content.index} type={pane.content.type} data={pane.content.data} onChange={this.editBtn} /> : 
-                    <MenuGroup index={pane.content.index} type={pane.content.type} data={pane.content.data} onChange={this.editBtn}/>
+                  {pane.content.type == 'button' ? 
+                    <MenuBtn showIcon={true} index={pane.content.index} type={pane.content.type} data={pane.content.data ? pane.content.data : ''} onChange={this.editBtn} /> : 
+                    <MenuGroup index={pane.content.index} type={pane.content.type} data={pane.content.data ? pane.content.data : ''} onChange={this.editBtn}/>
                   }
                 </TabPane>
               )

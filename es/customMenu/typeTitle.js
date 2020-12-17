@@ -152,6 +152,7 @@ function (_React$Component) {
           value: item.value
         }, item.title);
       })), React.createElement(_Input, {
+        maxLength: 10,
         style: {
           width: 'calc(100% - 72px)'
         },

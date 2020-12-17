@@ -89,8 +89,6 @@ function (_React$Component) {
         newData = data;
       }
 
-      console.log(data);
-
       _this.setState(_objectSpread({}, _this.state, {
         data: _objectSpread({}, _this.state.data, {
           action_data: newData

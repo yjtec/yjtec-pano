@@ -62,7 +62,7 @@ export default class typeTitle extends React.Component {
               <Option key={item.id} value={item.value}>{item.title}</Option>
             ))}
           </Select>
-          <Input style={{ width: 'calc(100% - 72px)' }} value={title} placeholder='请添加标题' onChange={this.setTitle} />
+          <Input maxLength={10} style={{ width: 'calc(100% - 72px)' }} value={title} placeholder='请添加标题' onChange={this.setTitle} />
         </InputGroup>
       </div>
     );

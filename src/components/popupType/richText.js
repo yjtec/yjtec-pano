@@ -30,8 +30,8 @@ export default class RichText extends React.Component {
     let {data} = this.props;
     this.setState({
       ...data,
-      richTextId: data.richTextId ? data.richTextId : '',
-      uuid: data.uuid ? data.uuid : uuidv4()
+      richTextId: (data && data.richTextId) ? data.richTextId : '',
+      uuid: (data && data.uuid) ? data.uuid : uuidv4()
     })
   }
 
@@ -41,8 +41,8 @@ export default class RichText extends React.Component {
       if (data) {
         this.setState({
           ...data,
-          richTextId: data.richTextId ? data.richTextId : '',
-          uuid: data.uuid ? data.uuid : uuidv4()
+          richTextId: (data && data.richTextId) ? data.richTextId : '',
+          uuid: (data && data.uuid) ? data.uuid : uuidv4()
         })
       }
     }

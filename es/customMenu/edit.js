@@ -92,8 +92,14 @@ function (_React$Component) {
     };
 
     _this.setCreate = function () {
+      var create = true;
+
+      if (_this.state.create) {
+        create = false;
+      }
+
       _this.setState({
-        create: true
+        create: create
       });
     };
 
@@ -179,6 +185,10 @@ function (_React$Component) {
       }
 
       _this.setPanes(new_ui_data);
+
+      _this.setState({
+        activeKey: activeKey
+      });
     };
 
     _this.onEdit = function (targetKey, action) {
@@ -209,8 +219,6 @@ function (_React$Component) {
 
     _this.save = function () {
       _this.props.onChange(_this.state.ui_data);
-
-      console.log(_this.state.ui_data);
 
       _message.success('菜单已保存');
     };
@@ -321,16 +329,16 @@ function (_React$Component) {
         return React.createElement(TabPane, {
           tab: pane.title,
           key: pane.key
-        }, pane.type == 'button' ? React.createElement(MenuBtn, {
+        }, pane.content.type == 'button' ? React.createElement(MenuBtn, {
           showIcon: true,
           index: pane.content.index,
           type: pane.content.type,
-          data: pane.content.data,
+          data: pane.content.data ? pane.content.data : '',
           onChange: _this2.editBtn
         }) : React.createElement(MenuGroup, {
           index: pane.content.index,
           type: pane.content.type,
-          data: pane.content.data,
+          data: pane.content.data ? pane.content.data : '',
           onChange: _this2.editBtn
         }));
       }))), React.createElement("div", {

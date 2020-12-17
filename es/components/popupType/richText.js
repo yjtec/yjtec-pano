@@ -166,8 +166,8 @@ function (_React$Component) {
     value: function componentDidMount() {
       var data = this.props.data;
       this.setState(_objectSpread({}, data, {
-        richTextId: data.richTextId ? data.richTextId : '',
-        uuid: data.uuid ? data.uuid : uuidv4()
+        richTextId: data && data.richTextId ? data.richTextId : '',
+        uuid: data && data.uuid ? data.uuid : uuidv4()
       }));
     }
   }, {
@@ -178,8 +178,8 @@ function (_React$Component) {
 
         if (data) {
           this.setState(_objectSpread({}, data, {
-            richTextId: data.richTextId ? data.richTextId : '',
-            uuid: data.uuid ? data.uuid : uuidv4()
+            richTextId: data && data.richTextId ? data.richTextId : '',
+            uuid: data && data.uuid ? data.uuid : uuidv4()
           }));
         }
       }
