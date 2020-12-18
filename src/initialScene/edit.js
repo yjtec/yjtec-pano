@@ -57,7 +57,7 @@ class InitialSceneEdit extends Component {
 
   render () {
     const {url,state,visible,scenesArr,scene} = this.state;
-    const scene = scenesArr.filter(item=> item.id == scene);
+    const new_scene = scenesArr.filter(item=> item.id == scene);
     return(
       <div>
         <ItemBox>
@@ -76,10 +76,10 @@ class InitialSceneEdit extends Component {
               <Button title='选择初始场景' onClick={()=> this.showAllScene()}/>
             </div>
             <div className={styles.sceneList}>
-              {scene.length > 0 ? <div>
-                <img src={scene[0].thumb.url} alt={scene[0].name} />
+              {new_scene.length > 0 ? <div>
+                <img src={new_scene[0].thumb.url} alt={new_scene[0].name} />
                 <p>
-                  {scene[0].name}
+                  {new_scene[0].name}
                 </p>
               </div> : <span>请选择场景</span>}
               <div style={{clear:'both'}}></div>

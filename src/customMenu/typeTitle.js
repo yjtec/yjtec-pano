@@ -5,14 +5,14 @@ import styles from './style.less';
 const InputGroup = Input.Group;
 const { Option } = Select;
 const actionType = [
-  {id:1,value: 1,title: '外链'},
-  {id:2,value: 2,title: '电话'},
-  {id:3,value: 3,title: '导航'},
-  {id:4,value: 4,title: '图文'},
-  {id:5,value: 5,title: '视频'},
-  {id:6,value: 6,title: '环物'},
-  {id:7,value: 7,title: '模型'},
-  {id:8,value: 8,title: '文章'},
+  {id:1,value: 2,title: '外链'},
+  {id:2,value: 3,title: '电话'},
+  {id:3,value: 1,title: '导航'},
+  {id:4,value: 5,title: '图文'},
+  {id:5,value: 8,title: '视频'},
+  {id:6,value: 7,title: '环物'},
+  {id:7,value: 11,title: '模型'},
+  {id:8,value: 14,title: '文章'},
 ];
 export default class typeTitle extends React.Component {
   state = {

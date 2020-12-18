@@ -206,7 +206,7 @@ function (_Component) {
         } //把子组件的方法提到父组件中
         ,
         style: {
-          width: '200px',
+          width: '100%',
           height: '200px'
         }
       }), React.createElement("p", {

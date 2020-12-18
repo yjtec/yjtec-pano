@@ -54,7 +54,7 @@ function (_Component) {
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(InitialSceneEdit)).call.apply(_getPrototypeOf2, [this].concat(args)));
     _this.state = {
       state: false,
-      scene_id: '',
+      scene: '',
       visible: false,
       scenesArr: []
     };
@@ -69,7 +69,7 @@ function (_Component) {
 
     _this.selectScene = function (sceneIds) {
       _this.setState({
-        scene_id: sceneIds[0]
+        scene: sceneIds[0]
       }, function () {
         return _this.save();
       });
@@ -90,7 +90,7 @@ function (_Component) {
     _this.save = function () {
       _this.props.onChange({
         state: _this.state.state,
-        scene_id: _this.state.scene_id
+        scene: _this.state.scene
       });
     };
 
@@ -117,9 +117,9 @@ function (_Component) {
           state = _this$state.state,
           visible = _this$state.visible,
           scenesArr = _this$state.scenesArr,
-          scene_id = _this$state.scene_id;
-      var scene = scenesArr.filter(function (item) {
-        return item.id == scene_id;
+          scene = _this$state.scene;
+      var new_scene = scenesArr.filter(function (item) {
+        return item.id == scene;
       });
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         className: styles.title
@@ -146,10 +146,10 @@ function (_Component) {
         }
       })), React.createElement("div", {
         className: styles.sceneList
-      }, scene.length > 0 ? React.createElement("div", null, React.createElement("img", {
-        src: scene[0].thumb.url,
-        alt: scene[0].name
-      }), React.createElement("p", null, scene[0].name)) : React.createElement("span", null, "\u8BF7\u9009\u62E9\u573A\u666F"), React.createElement("div", {
+      }, new_scene.length > 0 ? React.createElement("div", null, React.createElement("img", {
+        src: new_scene[0].thumb.url,
+        alt: new_scene[0].name
+      }), React.createElement("p", null, new_scene[0].name)) : React.createElement("span", null, "\u8BF7\u9009\u62E9\u573A\u666F"), React.createElement("div", {
         style: {
           clear: 'both'
         }
