@@ -11,7 +11,7 @@ import AllScene from '@/components/AllScene';
 class InitialSceneEdit extends Component {
   state = {
     state:false,
-    scene_id:'',
+    scene:'',
     visible:false,
     scenesArr:[]
   }
@@ -32,7 +32,7 @@ class InitialSceneEdit extends Component {
 
   selectScene = sceneIds => {
     this.setState({
-      scene_id: sceneIds[0]
+      scene: sceneIds[0]
     },()=>this.save());
   }
 
@@ -51,13 +51,13 @@ class InitialSceneEdit extends Component {
   save = () => {
     this.props.onChange({
       state:this.state.state,
-      scene_id:this.state.scene_id
+      scene:this.state.scene
     });
   }
 
   render () {
-    const {url,state,visible,scenesArr,scene_id} = this.state;
-    const scene = scenesArr.filter(item=> item.id == scene_id);
+    const {url,state,visible,scenesArr,scene} = this.state;
+    const scene = scenesArr.filter(item=> item.id == scene);
     return(
       <div>
         <ItemBox>

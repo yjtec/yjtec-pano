@@ -118,7 +118,7 @@ class Index extends Component{
               // searchinput={"false"}             //是否有输入框
               onChange={this.props.handleCoordinateInfo}
               ref={ref => this.refBmap = ref}      //把子组件的方法提到父组件中
-              style={{width:'200px',height:'200px'}}
+              style={{width:'100%',height:'200px'}}
             />
 
             <p style={{display:data.lng && data.lat ? 'none' : 'block'}}>
