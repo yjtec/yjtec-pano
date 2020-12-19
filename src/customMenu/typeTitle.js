@@ -7,7 +7,7 @@ const { Option } = Select;
 const actionType = [
   {id:1,value: 2,title: '外链'},
   {id:2,value: 3,title: '电话'},
-  {id:3,value: 1,title: '导航'},
+  {id:3,value: 15,title: '导航'},
   {id:4,value: 5,title: '图文'},
   {id:5,value: 8,title: '视频'},
   {id:6,value: 7,title: '环物'},
