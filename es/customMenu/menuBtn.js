@@ -163,7 +163,7 @@ function (_React$Component) {
         onChange: function onChange(e) {
           return _this2.handleData(e, 'phone');
         }
-      }), data.type == 1 && React.createElement(Location.Bmap, {
+      }), data.type == 15 && React.createElement(Location.Bmap, {
         help: 'location',
         title: '导航标注',
         data: data.action_data,
