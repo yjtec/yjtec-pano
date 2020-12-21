@@ -126,7 +126,7 @@ export default class MenuGroup extends React.Component {
       <div>
         <Icon url={data.icon} onChange={this.setIcon}/>
         <div className={styles.inputDiv} style={{marginTop:'10px'}}>
-          <Input placeholder='请添加分组名称' value={data.title} onChange={this.setTitle} style={{marginBottom:'5px'}}/>
+          <Input maxLength={10} placeholder='请添加分组名称' value={data.title} onChange={this.setTitle} style={{marginBottom:'5px'}}/>
         </div>
         <div className={styles.add_menu}>
           <Button title="添加子菜单" disabled={(data.children && data.children.length >= 5) ? true : false} style={{display:'block'}} onClick={()=>this.addChildren()}/>

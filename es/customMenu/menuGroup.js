@@ -206,6 +206,7 @@ function (_React$Component) {
           marginTop: '10px'
         }
       }, React.createElement(_Input, {
+        maxLength: 10,
         placeholder: "\u8BF7\u6DFB\u52A0\u5206\u7EC4\u540D\u79F0",
         value: data.title,
         onChange: this.setTitle,
