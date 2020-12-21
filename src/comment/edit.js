@@ -53,7 +53,7 @@ export default class CommentEdit extends React.Component {
     return (
       <div>
         <ItemBox>
-          <div className={style.title}>
+          {/*<div className={style.title}>
             <span className={style.checkboxC}>
               <Switch size="small" checked={state} onClick={(e)=>this.commentState(e)}/>
             </span>
@@ -62,7 +62,7 @@ export default class CommentEdit extends React.Component {
             <div className={style.tips}>
               注：关闭后所有人将不能对作品发表说一说，项目内以前的说一说将不再显示
             </div>
-          </div>
+          </div>*/}
 
           <div className={style.title} style={{marginTop: '20px'}}>
             <span className={style.checkboxC}>

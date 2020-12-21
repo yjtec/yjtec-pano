@@ -111,22 +111,6 @@ function (_React$Component) {
           content_state = _this$state.content_state,
           type = _this$state.type;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
-        className: style.title
-      }, React.createElement("span", {
-        className: style.checkboxC
-      }, React.createElement(_Switch, {
-        size: "small",
-        checked: state,
-        onClick: function onClick(e) {
-          return _this2.commentState(e);
-        }
-      })), "\u8BF4\u4E00\u8BF4\u529F\u80FD", React.createElement("div", {
-        style: {
-          clear: 'both'
-        }
-      }), React.createElement("div", {
-        className: style.tips
-      }, "\u6CE8\uFF1A\u5173\u95ED\u540E\u6240\u6709\u4EBA\u5C06\u4E0D\u80FD\u5BF9\u4F5C\u54C1\u53D1\u8868\u8BF4\u4E00\u8BF4\uFF0C\u9879\u76EE\u5185\u4EE5\u524D\u7684\u8BF4\u4E00\u8BF4\u5C06\u4E0D\u518D\u663E\u793A")), React.createElement("div", {
         className: style.title,
         style: {
           marginTop: '20px'

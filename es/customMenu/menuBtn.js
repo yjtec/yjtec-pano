@@ -32,7 +32,7 @@ import Icon from './icon';
 import TypeTitle from './typeTitle';
 import Location from '../location';
 var defaultData = {
-  type: 1,
+  type: 2,
   title: '',
   icon: '/image/2019/07/24/icon_link.png',
   action_data: ''
@@ -170,7 +170,7 @@ function (_React$Component) {
         onChange: function onChange(e) {
           return _this2.handleData(e, 'bmap');
         }
-      }), data.type == 4 && React.createElement(PopupType.MediaMul, {
+      }), data.type == 5 && React.createElement(PopupType.MediaMul, {
         data: data.action_data,
         onChange: function onChange(e) {
           return _this2.handleData(e, 'mediamul');
