@@ -23,6 +23,15 @@ class InitialSceneEdit extends Component {
       scenesArr:scenesArr
     })
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (JSON.stringify(prevProps.scenesArr) != JSON.stringify(this.props.scenesArr)) {
+      if (this.props.scenesArr) {
+        this.setState({
+          scenesArr: this.props.scenesArr
+        });
+      }
+    }
+  }
 
   initailSceneState = e => {
     this.setState({
