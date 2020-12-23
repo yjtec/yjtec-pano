@@ -148,8 +148,6 @@ function (_React$Component) {
     };
 
     _this.save = function () {
-      console.log(_this.state);
-
       _this.props.onChange(_this.state);
     };
 

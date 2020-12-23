@@ -116,7 +116,6 @@ export default class MenuGroup extends React.Component {
   }
 
   save = () => {
-    console.log(this.state)
     this.props.onChange(this.state);
   }
 
