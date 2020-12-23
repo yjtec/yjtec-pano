@@ -222,6 +222,8 @@ function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
+      console.log(this.props);
+
       if (!Obj.isEqual(prevProps.data, this.props.data)) {
         var data = this.props.data;
 

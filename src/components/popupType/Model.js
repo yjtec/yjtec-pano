@@ -42,6 +42,7 @@ export default class Model extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    console.log(this.props)
     if(!Obj.isEqual(prevProps.data,this.props.data)){
       let {data} = this.props;
       if (data) {
