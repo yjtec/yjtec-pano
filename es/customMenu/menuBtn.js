@@ -112,6 +112,8 @@ function (_React$Component) {
   _createClass(MenuBtn, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       var _this$props = this.props,
           index = _this$props.index,
           type = _this$props.type,
@@ -120,11 +122,15 @@ function (_React$Component) {
         index: index,
         type: type,
         data: data && JSON.stringify(data) != '[]' ? data : defaultData
+      }, function () {
+        return _this2.save();
       });
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
+      var _this3 = this;
+
       var _this$props2 = this.props,
           index = _this$props2.index,
           type = _this$props2.type,
@@ -136,6 +142,8 @@ function (_React$Component) {
             index: index,
             type: type,
             data: data && JSON.stringify(data) != '[]' ? data : defaultData
+          }, function () {
+            return _this3.save();
           });
         }
       }
@@ -144,7 +152,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       var _this$state = this.state,
           index = _this$state.index,
@@ -160,44 +168,44 @@ function (_React$Component) {
         className: styles.menu_type_c
       }, data.type == 2 && React.createElement(PopupType.Url, _extends({}, data.action_data, {
         onChange: function onChange(e) {
-          return _this2.handleData(e, 'url');
+          return _this4.handleData(e, 'url');
         }
       })), data.type == 3 && React.createElement(PopupType.Phone, {
         phone: data.action_data,
         onChange: function onChange(e) {
-          return _this2.handleData(e, 'phone');
+          return _this4.handleData(e, 'phone');
         }
       }), data.type == 15 && React.createElement(Location.Bmap, {
         help: 'location',
         title: '导航标注',
         data: data.action_data,
         onChange: function onChange(e) {
-          return _this2.handleData(e, 'bmap');
+          return _this4.handleData(e, 'bmap');
         }
       }), data.type == 5 && React.createElement(PopupType.MediaMul, {
         data: data.action_data,
         onChange: function onChange(e) {
-          return _this2.handleData(e, 'mediamul');
+          return _this4.handleData(e, 'mediamul');
         }
       }), data.type == 8 && React.createElement(PopupType.Video, {
         data: data.action_data,
         onChange: function onChange(e) {
-          return _this2.handleData(e, 'video');
+          return _this4.handleData(e, 'video');
         }
       }), data.type == 7 && React.createElement(PopupType.Rings, {
         data: data.action_data,
         onChange: function onChange(e) {
-          return _this2.handleData(e, 'rings');
+          return _this4.handleData(e, 'rings');
         }
       }), data.type == 11 && React.createElement(PopupType.Model, {
         data: data.action_data,
         onChange: function onChange(e) {
-          return _this2.handleData(e, 'model');
+          return _this4.handleData(e, 'model');
         }
       }), data.type == 14 && React.createElement(PopupType.RichText, {
         data: data.action_data,
         onChange: function onChange(e) {
-          return _this2.handleData(e, 'richtext');
+          return _this4.handleData(e, 'richtext');
         }
       })));
     }

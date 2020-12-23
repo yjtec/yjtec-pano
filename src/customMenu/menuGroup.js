@@ -12,7 +12,6 @@ const defaultData = {
 }
 const defaultBtnData = {
   type:'button',
-  data:{}
 }
 export default class MenuGroup extends React.Component {
   state = {
@@ -67,14 +66,14 @@ export default class MenuGroup extends React.Component {
     if (data.children == undefined || data.children.length == 0) {
       newChildren.push({...defaultBtnData,index:'1'})
     }else{
-      newChildren = data.children.concat({...defaultBtnData,index:data.children.length + 1});
+      newChildren = data.children.concat({...defaultBtnData,index:(data.children.length + 1).toString()});
     }
     this.setState({
       data:{
         ...this.state.data,
         children:newChildren
       } 
-    },()=>this.save());
+    });
   }
 
   editBtn = re => {
@@ -117,6 +116,7 @@ export default class MenuGroup extends React.Component {
   }
 
   save = () => {
+    console.log(this.state)
     this.props.onChange(this.state);
   }
 
