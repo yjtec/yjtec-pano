@@ -25,7 +25,7 @@ export default class MenuGroup extends React.Component {
       index: index,
       type:type,
       data:(data && JSON.stringify(data) != '[]') ? data : defaultData
-    });
+    },()=>this.save());
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -36,7 +36,7 @@ export default class MenuGroup extends React.Component {
           index: index,
           type:type,
           data:(data && JSON.stringify(data) != '[]') ? data : defaultData
-        });
+        },()=>this.save());
       }
     }
   }

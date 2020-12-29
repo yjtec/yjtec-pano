@@ -157,6 +157,8 @@ function (_React$Component) {
   _createClass(MenuGroup, [{
     key: "componentDidMount",
     value: function componentDidMount() {
+      var _this2 = this;
+
       var _this$props = this.props,
           index = _this$props.index,
           type = _this$props.type,
@@ -165,11 +167,15 @@ function (_React$Component) {
         index: index,
         type: type,
         data: data && JSON.stringify(data) != '[]' ? data : defaultData
+      }, function () {
+        return _this2.save();
       });
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps, prevState) {
+      var _this3 = this;
+
       var _this$props2 = this.props,
           index = _this$props2.index,
           type = _this$props2.type,
@@ -181,6 +187,8 @@ function (_React$Component) {
             index: index,
             type: type,
             data: data && JSON.stringify(data) != '[]' ? data : defaultData
+          }, function () {
+            return _this3.save();
           });
         }
       }
@@ -189,7 +197,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this4 = this;
 
       var _this$state = this.state,
           index = _this$state.index,
@@ -219,7 +227,7 @@ function (_React$Component) {
           display: 'block'
         },
         onClick: function onClick() {
-          return _this2.addChildren();
+          return _this4.addChildren();
         }
       })), data.children && data.children.map(function (item, i) {
         return React.createElement("div", {
@@ -235,14 +243,14 @@ function (_React$Component) {
         }, React.createElement("span", {
           className: styles.checkboxC,
           onClick: function onClick() {
-            return _this2.del(item.index);
+            return _this4.del(item.index);
           }
         }, "\u5220\u9664"), "\u5B50\u83DC\u5355(", item.index, ")"), React.createElement(MenuBtn, {
           showIcon: false,
           index: item.index,
           type: item.type,
           data: JSON.stringify(item.data) != '{}' ? item.data : '',
-          onChange: _this2.editBtn
+          onChange: _this4.editBtn
         }), React.createElement("div", {
           className: styles.lineDefaultBottom,
           style: {

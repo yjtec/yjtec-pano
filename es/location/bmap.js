@@ -28,6 +28,7 @@ import BmapModal from './bmapModal';
 import { helpShow } from '@/utils/help';
 import styles from './style.less';
 import AppliedToScene from './appliedToScene';
+import { strRandom } from 'yjtec-support';
 
 var Index =
 /*#__PURE__*/
@@ -55,7 +56,10 @@ function (_Component) {
       province: '',
       city: '',
       district: '',
-      address: ''
+      address: '',
+      mapId: "mapView" + strRandom(4, {
+        numbers: false
+      })
     };
 
     _this.showBmap = function () {
@@ -71,8 +75,6 @@ function (_Component) {
     };
 
     _this.handlePoint = function (e) {
-      console.log(e);
-
       _this.setState({
         lng: e ? e.lng : '',
         lat: e ? e.lat : '',
@@ -157,7 +159,8 @@ function (_Component) {
           province = _this$state2.province,
           city = _this$state2.city,
           district = _this$state2.district,
-          address = _this$state2.address;
+          address = _this$state2.address,
+          mapId = _this$state2.mapId;
       return React.createElement("div", null, React.createElement("div", {
         className: styles.title
       }, React.createElement("span", {
@@ -192,10 +195,10 @@ function (_Component) {
       })), React.createElement("div", {
         className: styles.mapBox
       }, React.createElement("div", null, React.createElement(MapSearchField, {
-        id: "mapView",
+        id: mapId,
         value: {
-          lng: data.lng,
-          lat: data.lat
+          lng: data && data.lng ? data.lng : '',
+          lat: data && data.lat ? data.lat : ''
         } //默认坐标
         ,
         isposition: 'true' // searchinput={"false"}             //是否有输入框
@@ -211,12 +214,12 @@ function (_Component) {
         }
       }), React.createElement("p", {
         style: {
-          display: data.lng && data.lat ? 'none' : 'block'
+          display: data && data.lng && data.lat ? 'none' : 'block'
         }
       }, "\u5F53\u524D\u9879\u76EE", React.createElement("br", null), "\u6682\u672A\u8BBE\u7F6E\u5730\u56FE\u6807\u6CE8"), React.createElement("span", null), React.createElement("div", {
         className: styles.delLocation,
         style: {
-          display: data.lng && data.lat ? 'block' : 'none'
+          display: data && data.lng && data.lat ? 'block' : 'none'
         },
         onClick: function onClick() {
           return _this2.handlePoint('');

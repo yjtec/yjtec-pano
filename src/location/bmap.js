@@ -9,6 +9,8 @@ import {helpShow} from '@/utils/help';
 import styles from './style.less';
 import AppliedToScene from './appliedToScene';
 
+import {strRandom} from 'yjtec-support';
+
 class Index extends Component{
   state={
     bmapVisible:false,
@@ -19,7 +21,8 @@ class Index extends Component{
     province: '',
     city: '',
     district: '',
-    address: ''
+    address: '',
+    mapId:"mapView" + strRandom(4,{numbers: false})
   }
 
   componentDidMount(){
@@ -63,7 +66,6 @@ class Index extends Component{
   }
 
   handlePoint = (e) => {
-    console.log(e)
     this.setState({
       lng: e ? e.lng : '',
       lat: e ? e.lat : '',
@@ -91,7 +93,7 @@ class Index extends Component{
   }
   render(){
     const {data,title,help} = this.props;
-    const {bmapVisible,lng,lat,province,city,district,address} = this.state;
+    const {bmapVisible,lng,lat,province,city,district,address,mapId} = this.state;
     return(
       <div>
 
@@ -112,8 +114,8 @@ class Index extends Component{
         <div className={styles.mapBox}>
           <div>
             <MapSearchField 
-              id={"mapView"}
-              value={{lng:data.lng,lat:data.lat}}            //默认坐标
+              id={mapId}
+              value={{lng:data && data.lng ? data.lng : '',lat:data && data.lat ? data.lat : ''}}            //默认坐标
               isposition={'true'}
               // searchinput={"false"}             //是否有输入框
               onChange={this.props.handleCoordinateInfo}
@@ -121,11 +123,11 @@ class Index extends Component{
               style={{width:'100%',height:'200px'}}
             />
 
-            <p style={{display:data.lng && data.lat ? 'none' : 'block'}}>
+            <p style={{display:data && data.lng && data.lat ? 'none' : 'block'}}>
               当前项目<br/>暂未设置地图标注
             </p>
             <span></span>
-            <div className={styles.delLocation} style={{display:data.lng && data.lat ? 'block' : 'none'}} onClick={()=>this.handlePoint('')}>
+            <div className={styles.delLocation} style={{display:data && data.lng && data.lat ? 'block' : 'none'}} onClick={()=>this.handlePoint('')}>
               <Icon type="delete" />
             </div>
           </div>

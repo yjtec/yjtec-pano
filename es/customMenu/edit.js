@@ -253,6 +253,7 @@ function (_React$Component) {
           create = _this$state2.create,
           panes = _this$state2.panes,
           ui_data = _this$state2.ui_data;
+      var helpShow = false;
       var panes_data = [];
       panes.map(function (i) {
         ui_data.map(function (j) {

@@ -40,6 +40,9 @@ function (_Component) {
     }
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(Phone)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this.state = {
+      phone: ''
+    };
 
     _this.handleChange = function (value) {
       _this.props.onChange(value);
@@ -60,11 +63,29 @@ function (_Component) {
   }
 
   _createClass(Phone, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.setState({
+        phone: this.props.phone ? this.props.phone : ''
+      });
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      if (JSON.stringify(this.props) != JSON.stringify(prevProps)) {
+        if (this.props.phone) {
+          this.setState({
+            phone: this.props.phone
+          });
+        }
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      var phone = this.props.phone;
+      var phone = this.state.phone;
       return React.createElement("div", null, React.createElement("div", {
         style: {
           marginBottom: '5px'

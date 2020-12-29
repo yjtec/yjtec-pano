@@ -3,6 +3,23 @@ import {isStr} from 'yjtec-support';
 import {Input} from '@/components/Form';
 import {message} from 'antd';
 export default class Phone extends Component{
+  state = {
+    phone:''
+  }
+  componentDidMount(){
+    this.setState({
+      phone:this.props.phone ? this.props.phone : ''
+    })
+  }
+  componentDidUpdate(prevProps) {
+    if(JSON.stringify(this.props) != JSON.stringify(prevProps)){
+      if (this.props.phone) {
+        this.setState({
+          phone: this.props.phone
+        });
+      }
+    }
+  }
   
   handleChange = (value) => {
     this.props.onChange(value)
@@ -19,7 +36,7 @@ export default class Phone extends Component{
   }
 
   render(){
-    const {phone} = this.props;
+    const {phone} = this.state;
     return (
       <div>
         <div style={{marginBottom:'5px'}}>电话号码</div>

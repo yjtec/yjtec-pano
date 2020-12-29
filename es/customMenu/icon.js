@@ -100,7 +100,7 @@ function (_React$Component) {
       return React.createElement("div", {
         className: styles.menu_icon
       }, React.createElement("img", {
-        src: url ? mediaImgConfig(url, 'img') : '',
+        src: mediaImgConfig(url ? url : '', 'img'),
         alt: "\u56FE\u6807"
       }), React.createElement("span", {
         style: {

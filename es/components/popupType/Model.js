@@ -212,7 +212,10 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var data = this.props.data;
-      this.setState(_objectSpread({}, data));
+
+      if (data) {
+        this.setState(_objectSpread({}, data));
+      }
 
       if (data && data.model_id) {
         this.getModel3dInfo(data.model_id);
@@ -225,9 +228,9 @@ function (_React$Component) {
         var data = this.props.data;
 
         if (data) {
-          this.setState(_objectSpread({}, this.props.data));
+          this.setState(_objectSpread({}, data));
 
-          if (data.model_id && data.model_id != prevProps.data.model_id) {
+          if (data.model_id) {
             this.getModel3dInfo(data.model_id);
           }
         }

@@ -50,7 +50,7 @@ export default class icon extends React.Component {
     const {userMediaVisible,url} = this.state;
     return (
       <div className={styles.menu_icon}>
-        <img src={url ? mediaImgConfig(url,'img') : ''} alt='图标'/>
+        <img src={mediaImgConfig(url ? url : '','img')} alt='图标'/>
         <span style={{marginLeft:'10px',color: 'rgba(255,255,255,0.45)'}}>
           建议尺寸<br/>100X100
         </span>

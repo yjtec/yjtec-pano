@@ -32,10 +32,11 @@ export default class Model extends React.Component {
 
   componentDidMount(){
     let {data} = this.props;
-    this.setState({
-      ...data
-    })
-
+    if (data) {
+      this.setState({
+        ...data
+      })
+    }
     if (data && data.model_id) {
       this.getModel3dInfo(data.model_id);
     }
@@ -46,9 +47,9 @@ export default class Model extends React.Component {
       let {data} = this.props;
       if (data) {
         this.setState({
-          ...this.props.data
+          ...data
         })
-        if (data.model_id && data.model_id != prevProps.data.model_id) {
+        if (data.model_id) {
           this.getModel3dInfo(data.model_id);
         }
       }

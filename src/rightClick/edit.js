@@ -83,6 +83,7 @@ class RightClickEdit extends Component {
 
   render () {
     const {data} = this.state;
+    const helpShow = false;
     return(
       <div>
         <ItemBox>
