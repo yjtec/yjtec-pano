@@ -1,3 +1,5 @@
+import "antd/es/checkbox/style";
+import _Checkbox from "antd/es/checkbox";
 import "antd/es/button/style";
 import _Button from "antd/es/button";
 
@@ -28,6 +30,11 @@ import ItemImg from '../components/ItemImg';
 import { Obj } from 'yjtec-support';
 import Modal from '@/components/ApplyToScene';
 import { helpShow } from '@/utils/help';
+import { SliderSingle } from '@/components/Form';
+var defaultData = {
+  scale: 1,
+  distorted: false
+};
 
 var Pic =
 /*#__PURE__*/
@@ -50,12 +57,51 @@ function (_Component) {
       sceneListVisible: false
     };
 
-    _this.delImg = function () {
-      _this.props.onDelImg();
+    _this.setScale = function (value) {
+      _this.setState({
+        scale: value
+      }, function () {
+        _this.save();
+      });
     };
 
     _this.selectImg = function (arr) {
-      _this.props.selectImg(arr[0].path.path);
+      _this.setState({
+        url: arr[0].path.path
+      }, function () {
+        return _this.save();
+      });
+    };
+
+    _this.setDistorted = function (e) {
+      _this.setState({
+        distorted: e.target.checked
+      }, function () {
+        return _this.save();
+      });
+    };
+
+    _this.delImg = function () {
+      _this.setState({
+        url: '',
+        scale: defaultData.scale,
+        distorted: defaultData.distorted
+      }, function () {
+        return _this.save();
+      });
+    };
+
+    _this.save = function () {
+      var _this$state = _this.state,
+          url = _this$state.url,
+          scale = _this$state.scale,
+          distorted = _this$state.distorted;
+
+      _this.props.onEdit({
+        url: url,
+        scale: scale,
+        distorted: distorted
+      });
     };
 
     _this.appliedToScene = function () {
@@ -78,6 +124,40 @@ function (_Component) {
   }
 
   _createClass(Pic, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var data = this.props.data;
+
+      if (data) {
+        this.setState({
+          url: data.url ? data.url : '',
+          scale: data.scale ? data.scale : defaultData.scale,
+          distorted: data.distorted ? data.distorted : defaultData.distorted
+        });
+      }
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps, prevState) {
+      var data = this.props.data;
+
+      if (JSON.stringify(prevProps.data) != JSON.stringify(data)) {
+        if (data) {
+          this.setState({
+            url: data.url ? data.url : '',
+            scale: data.scale ? data.scale : defaultData.scale,
+            distorted: data.distorted ? data.distorted : defaultData.distorted
+          });
+        } else {
+          this.setState({
+            url: '',
+            scale: defaultData.scale,
+            distorted: defaultData.distorted
+          });
+        }
+      }
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this2 = this;
@@ -85,10 +165,13 @@ function (_Component) {
       var _this$props = this.props,
           title = _this$props.title,
           visible = _this$props.visible,
-          url = _this$props.url,
           categoryArr = _this$props.categoryArr,
           scenesArr = _this$props.scenesArr;
-      var sceneListVisible = this.state.sceneListVisible;
+      var _this$state2 = this.state,
+          sceneListVisible = _this$state2.sceneListVisible,
+          url = _this$state2.url,
+          scale = _this$state2.scale,
+          distorted = _this$state2.distorted;
       return React.createElement("div", null, React.createElement("div", {
         className: styles.title,
         style: {
@@ -137,7 +220,39 @@ function (_Component) {
         imgSize: "500X500",
         onChange: this.selectImg,
         onDel: this.delImg
-      }), React.createElement(Modal, {
+      }), url && React.createElement("div", null, React.createElement("div", {
+        className: styles.title,
+        style: {
+          marginBottom: '4px',
+          marginTop: '10px'
+        }
+      }, "\u8C03\u6574\u5927\u5C0F(\u500D)"), React.createElement("div", {
+        className: styles.sliderDiv
+      }, React.createElement(SliderSingle, {
+        defaultValue: scale,
+        max: 1.5,
+        min: 0.2,
+        step: 0.01,
+        onChange: function onChange(value) {
+          return _this2.setScale(value);
+        }
+      })), React.createElement("div", {
+        className: styles.title
+      }, React.createElement("span", {
+        className: styles.checkboxC
+      }, React.createElement(_Checkbox, {
+        checked: distorted,
+        onChange: this.setDistorted,
+        className: styles.checkbox
+      })), React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u8DDF\u968F\u5168\u666F\u8F6C\u52A8"), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      }))), React.createElement(Modal, {
         visible: sceneListVisible,
         title: "\u9009\u62E9\u573A\u666F",
         onCancel: this.onCancelAppliedToScene,
