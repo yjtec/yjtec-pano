@@ -201,9 +201,11 @@ export default class Model extends React.Component {
         </div>
         
         {
-          model_id != '' 
+          modelData.files && JSON.stringify(modelData.files) !== '[]' && modelData.files.length > 0
           &&
-          <div className={styles.ringsC} style={{height:'200px'}}><Model3dView data={modelData} /></div>
+          <div className={styles.ringsC} style={{height:'200px'}}>
+            <Model3dView data={modelData} />
+          </div>
         }
         
         <div className={styles.title} style={{marginTop:10}}>

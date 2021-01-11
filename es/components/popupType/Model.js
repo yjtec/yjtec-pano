@@ -296,7 +296,7 @@ function (_React$Component) {
         style: {
           clear: 'both'
         }
-      })), model_id != '' && React.createElement("div", {
+      })), modelData.files && JSON.stringify(modelData.files) !== '[]' && modelData.files.length > 0 && React.createElement("div", {
         className: styles.ringsC,
         style: {
           height: '200px'
