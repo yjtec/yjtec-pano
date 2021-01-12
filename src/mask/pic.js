@@ -30,6 +30,12 @@ class Pic extends Component {
         scale:data.scale ? data.scale : defaultData.scale,
         distorted:data.distorted ? data.distorted : defaultData.distorted
       });
+    }else{
+      this.setState({
+        url:'',
+        scale:defaultData.scale,
+        distorted:defaultData.distorted
+      });
     }
   }
 
@@ -52,14 +58,14 @@ class Pic extends Component {
     }
   }
 
-  setScale = value => {
-    this.setState({
-      scale: value
-    },()=>{this.save()})
-  }
   selectImg = arr => {
     this.setState({
       url: arr[0].path.path 
+    },()=>this.save())
+  }
+  setScale = value => {
+    this.setState({
+      scale: value
     },()=>this.save())
   }
   setDistorted = e => {
@@ -75,11 +81,12 @@ class Pic extends Component {
     },()=>this.save());
   }
   save=()=>{
-    const {url,scale,distorted} = this.state
+    const {url,scale,distorted} = this.state;
+    console.log(this.state)
     this.props.onEdit({
-      url,
+      url:url,
       scale:scale,
-      distorted
+      distorted:distorted
     });
   }
 

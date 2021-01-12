@@ -57,17 +57,17 @@ function (_Component) {
       sceneListVisible: false
     };
 
-    _this.setScale = function (value) {
-      _this.setState({
-        scale: value
-      }, function () {
-        _this.save();
-      });
-    };
-
     _this.selectImg = function (arr) {
       _this.setState({
         url: arr[0].path.path
+      }, function () {
+        return _this.save();
+      });
+    };
+
+    _this.setScale = function (value) {
+      _this.setState({
+        scale: value
       }, function () {
         return _this.save();
       });
@@ -96,6 +96,7 @@ function (_Component) {
           url = _this$state.url,
           scale = _this$state.scale,
           distorted = _this$state.distorted;
+      console.log(_this.state);
 
       _this.props.onEdit({
         url: url,
@@ -133,6 +134,12 @@ function (_Component) {
           url: data.url ? data.url : '',
           scale: data.scale ? data.scale : defaultData.scale,
           distorted: data.distorted ? data.distorted : defaultData.distorted
+        });
+      } else {
+        this.setState({
+          url: '',
+          scale: defaultData.scale,
+          distorted: defaultData.distorted
         });
       }
     }
