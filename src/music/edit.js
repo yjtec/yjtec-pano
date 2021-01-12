@@ -188,7 +188,7 @@ class Music extends Component {
         </div>
 
         <div className={styles.title} style={{marginTop:10}}>
-          设置音量
+          设置音量 <i style={{color:'#999999'}}>(仅PC和安卓端有效)</i>
         </div>
         <div className={styles.sliderDiv}>
           <SliderSingle

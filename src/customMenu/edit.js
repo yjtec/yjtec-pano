@@ -161,7 +161,6 @@ export default class CustomMenuEdit extends React.Component {
 
   render() {
     const {create,panes,ui_data} = this.state;
-    const helpShow = false;
     let panes_data = [];
     panes.map(i=>{
       ui_data.map(j=>{

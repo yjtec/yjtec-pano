@@ -272,7 +272,11 @@ function (_Component) {
         style: {
           marginTop: 10
         }
-      }, "\u8BBE\u7F6E\u97F3\u91CF"), React.createElement("div", {
+      }, "\u8BBE\u7F6E\u97F3\u91CF ", React.createElement("i", {
+        style: {
+          color: '#999999'
+        }
+      }, "(\u4EC5PC\u548C\u5B89\u5353\u7AEF\u6709\u6548)")), React.createElement("div", {
         className: styles.sliderDiv
       }, React.createElement(SliderSingle, {
         defaultValue: volume,

@@ -138,7 +138,6 @@ function (_Component) {
       var _this2 = this;
 
       var data = this.state.data;
-      var helpShow = false;
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         style: {
           padding: '10px 0'
