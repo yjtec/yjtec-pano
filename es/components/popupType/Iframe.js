@@ -189,4 +189,4 @@ function (_React$Component) {
   return HotspotIframe;
 }(React.Component);
 
-export { HotspotIframe as default };
+export default HotspotIframe;

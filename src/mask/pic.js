@@ -82,7 +82,6 @@ class Pic extends Component {
   }
   save=()=>{
     const {url,scale,distorted} = this.state;
-    console.log(this.state)
     this.props.onEdit({
       url:url,
       scale:scale,

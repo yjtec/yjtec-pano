@@ -96,7 +96,6 @@ function (_Component) {
           url = _this$state.url,
           scale = _this$state.scale,
           distorted = _this$state.distorted;
-      console.log(_this.state);
 
       _this.props.onEdit({
         url: url,

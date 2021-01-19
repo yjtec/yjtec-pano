@@ -2,7 +2,7 @@ import React from "react";
 import { Checkbox, Input } from "antd";
 import styles from "./style.less";
 import {formatUrl} from '@/utils/utils';
-export default class HotspotIframe extends React.Component {
+class HotspotIframe extends React.Component {
   constructor(props) {
     super(props);
     const { data } = props;
@@ -107,3 +107,4 @@ export default class HotspotIframe extends React.Component {
     );
   }
 }
+export default HotspotIframe;
