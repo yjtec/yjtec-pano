@@ -25,6 +25,7 @@ import { Slider } from '@/components/Form/';
 import View from './pano';
 import styles from './style.less';
 import { helpShow } from '@/utils/help';
+import Modal from '@/components/ApplyToScene';
 
 var ViewEdit =
 /*#__PURE__*/
@@ -43,9 +44,28 @@ function (_React$Component) {
     }
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(ViewEdit)).call.apply(_getPrototypeOf2, [this].concat(args)));
+    _this.state = {
+      selectSceneVisible: false
+    };
 
     _this.handleView = function (k, v) {
       _this.props.editView(k, v);
+    };
+
+    _this.appliedToScene = function () {
+      _this.setState({
+        selectSceneVisible: true
+      });
+    };
+
+    _this.onCancelAppliedToScene = function () {
+      _this.setState({
+        selectSceneVisible: false
+      });
+    };
+
+    _this.setAllScene = function (data, sceneIds) {
+      _this.props.onSetAll(data, sceneIds);
     };
 
     return _this;
@@ -56,9 +76,12 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      var selectSceneVisible = this.state.selectSceneVisible;
       var _this$props = this.props,
           viewdata = _this$props.viewdata,
-          flag = _this$props.flag;
+          flag = _this$props.flag,
+          categoryArr = _this$props.categoryArr,
+          scenesArr = _this$props.scenesArr;
       return React.createElement("div", {
         style: {
           height: "inherit"
@@ -129,13 +152,49 @@ function (_React$Component) {
         defaultValue: [Number(viewdata.hlookatmin), Number(viewdata.hlookatmax)],
         label: ['最低', '最高']
       })), React.createElement(ItemBox, null, React.createElement("div", {
+        className: styles.title,
+        style: {
+          margin: '10px 0',
+          lineHeight: '22px'
+        }
+      }, React.createElement("span", {
+        className: styles.checkboxC
+      }, React.createElement(_Button, {
+        onClick: function onClick() {
+          return _this2.appliedToScene();
+        },
+        style: {
+          padding: '0 5px',
+          height: 'auto',
+          background: 'none',
+          fontSize: '12px',
+          color: '#fff',
+          borderColor: '#008aff'
+        }
+      }, "\u9009\u62E9\u573A\u666F")), React.createElement("span", {
+        style: {
+          float: 'left'
+        }
+      }, "\u5E94\u7528\u5230\uFF1A"), React.createElement("div", {
+        style: {
+          clear: 'both'
+        }
+      }))), React.createElement(ItemBox, null, React.createElement("div", {
         style: {
           textAlign: 'center'
         }
       }, React.createElement(_Button, {
         type: "primary",
         onClick: this.props.reset
-      }, "\u6062\u590D\u9ED8\u8BA4\u8BBE\u7F6E")))));
+      }, "\u6062\u590D\u9ED8\u8BA4\u8BBE\u7F6E")))), React.createElement(Modal, {
+        visible: selectSceneVisible,
+        title: "\u9009\u62E9\u573A\u666F",
+        onCancel: this.onCancelAppliedToScene,
+        categoryArr: categoryArr,
+        scenesArr: scenesArr,
+        data: '',
+        onOk: this.setAllScene
+      }));
     }
   }]);
 

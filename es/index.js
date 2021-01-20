@@ -19,11 +19,12 @@ import Comment from './comment';
 import LoadingConfig from './loadingConfig';
 import InitialScene from './initialScene';
 import SysTemplate from './sysTemplate';
-import CustomMenu from './customMenu'; //单组件
+import CustomMenu from './customMenu';
+import Compass from './compass'; //单组件
 
 import ItemImg from './components/ItemImg';
 import Editor from './components/editor';
 import PopupType from './components/popupType';
 export { //页面功能页
-Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, LoadsceneAction, ViewPwd, Gyro, OpenAnimation, SandTable, Details, RightClick, Comment, LoadingConfig, InitialScene, SysTemplate, CustomMenu //单组件
+Mask, Music, Effect, Location, View, Cruise, Embed, Roll, Prompt, PageCover, LoadsceneAction, ViewPwd, Gyro, OpenAnimation, SandTable, Details, RightClick, Comment, LoadingConfig, InitialScene, SysTemplate, CustomMenu, Compass //单组件
 , ItemImg, Editor, PopupType };

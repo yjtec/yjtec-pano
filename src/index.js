@@ -20,6 +20,7 @@ import LoadingConfig from './loadingConfig';
 import InitialScene from './initialScene';
 import SysTemplate from './sysTemplate';
 import CustomMenu from './customMenu';
+import Compass from './compass';
 //单组件
 import ItemImg from './components/ItemImg';
 import Editor from './components/editor';
@@ -48,6 +49,7 @@ export {
   InitialScene,
   SysTemplate,
   CustomMenu,
+  Compass,
   //单组件
   ItemImg,
   Editor,

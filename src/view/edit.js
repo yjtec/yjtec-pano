@@ -7,14 +7,35 @@ import View from './pano';
 import styles from './style.less';
 import {helpShow} from '@/utils/help';
 
+import Modal from '@/components/ApplyToScene';
+
 export default class ViewEdit extends React.Component{
+
+  state = {
+    selectSceneVisible:false,
+  }
 
   handleView = (k,v) => {
     this.props.editView(k,v);
   }
 
+  appliedToScene=()=>{
+    this.setState({
+      selectSceneVisible: true
+    })
+  }
+  onCancelAppliedToScene=()=>{
+    this.setState({
+      selectSceneVisible: false
+    })
+  }
+  setAllScene=(data,sceneIds)=>{
+    this.props.onSetAll(data,sceneIds)
+  }
+
   render(){
-    const { viewdata,flag } = this.props;
+    const { selectSceneVisible } = this.state;
+    const { viewdata,flag,categoryArr,scenesArr } = this.props;
     return(
       <div style={{height:"inherit"}}>
         <div style={{position:'absolute','left':'50%',marginLeft:'-196px',marginTop:'100px',top:'50%'}}>
@@ -76,12 +97,34 @@ export default class ViewEdit extends React.Component{
               label={['最低','最高']}
             />
           </ItemBox>
+          <ItemBox>
+            <div className={styles.title} style={{margin:'10px 0',lineHeight:'22px'}}>
+              <span className={styles.checkboxC}>
+                <Button onClick={()=>this.appliedToScene()} style={{padding:'0 5px',height:'auto',background:'none',fontSize:'12px',color:'#fff',borderColor: '#008aff'}}>
+                  选择场景
+                </Button>
+              </span>
+              <span style={{float:'left'}}>应用到：</span>
+              <div style={{clear:'both'}}></div>
+            </div>
+          </ItemBox>
           <ItemBox >
             <div style={{textAlign:'center'}}>
             <Button type="primary" onClick={this.props.reset}>恢复默认设置</Button>
             </div>
           </ItemBox>
         </Right>
+
+        <Modal
+          visible={selectSceneVisible}
+          title='选择场景'
+          onCancel={this.onCancelAppliedToScene}
+          categoryArr={categoryArr}
+          scenesArr={scenesArr}
+          data={''}
+          onOk={this.setAllScene}
+        >
+        </Modal>
       </div>
     )
   }

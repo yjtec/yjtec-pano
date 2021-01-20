@@ -154,9 +154,7 @@ class Pic extends Component {
             </div>
           </div>
         }
-        
-
-
+      
         <Modal
           visible={sceneListVisible}
           title='选择场景'
