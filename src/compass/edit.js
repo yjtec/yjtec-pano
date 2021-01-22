@@ -93,7 +93,6 @@ export default class CompassEdit extends React.Component {
     const {visible,categoryArr,scenesArr} = this.props;
     const helpShow = false;
 
-    console.log(angle,currentAngle)
     return (
       <div>
         <ItemBox>
@@ -130,9 +129,14 @@ export default class CompassEdit extends React.Component {
           </div>
         </ItemBox>
         <ItemBox>
-          <Button type='primary' onClick={()=> this.save()} style={{margin:'10px 0',width:'100%'}}>
+          <Button type='primary' onClick={()=> this.save()} style={{margin:'10px 0 0 0',width:'100%'}}>
             应用当前角度为正北方向
           </Button>
+          <div className={styles.tips}>
+              <p>
+                注：编辑后将自动开始指南针功能，如需关闭请前往《基础设置》
+              </p>
+            </div>
         </ItemBox>
 
         <Modal

@@ -155,7 +155,6 @@ function (_React$Component) {
           categoryArr = _this$props3.categoryArr,
           scenesArr = _this$props3.scenesArr;
       var helpShow = false;
-      console.log(angle, currentAngle);
       return React.createElement("div", null, React.createElement(ItemBox, null, React.createElement("div", {
         className: styles.title,
         style: {
@@ -227,10 +226,12 @@ function (_React$Component) {
           return _this4.save();
         },
         style: {
-          margin: '10px 0',
+          margin: '10px 0 0 0',
           width: '100%'
         }
-      }, "\u5E94\u7528\u5F53\u524D\u89D2\u5EA6\u4E3A\u6B63\u5317\u65B9\u5411")), React.createElement(Modal, {
+      }, "\u5E94\u7528\u5F53\u524D\u89D2\u5EA6\u4E3A\u6B63\u5317\u65B9\u5411"), React.createElement("div", {
+        className: styles.tips
+      }, React.createElement("p", null, "\u6CE8\uFF1A\u7F16\u8F91\u540E\u5C06\u81EA\u52A8\u5F00\u59CB\u6307\u5357\u9488\u529F\u80FD\uFF0C\u5982\u9700\u5173\u95ED\u8BF7\u524D\u5F80\u300A\u57FA\u7840\u8BBE\u7F6E\u300B"))), React.createElement(Modal, {
         visible: sceneListVisible,
         title: "\u9009\u62E9\u573A\u666F",
         onCancel: this.onCancelAppliedToScene,
