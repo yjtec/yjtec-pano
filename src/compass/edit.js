@@ -30,6 +30,7 @@ export default class CompassEdit extends React.Component {
     krpano.set('events.onviewchanged',()=>{
       this.scrollFunc()
     });
+    this.scrollFunc()
   }
 
   componentDidUpdate(prevProps, prevState) {

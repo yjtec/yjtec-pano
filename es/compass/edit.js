@@ -119,6 +119,7 @@ function (_React$Component) {
       krpano.set('events.onviewchanged', function () {
         _this2.scrollFunc();
       });
+      this.scrollFunc();
     }
   }, {
     key: "componentDidUpdate",
