@@ -131,7 +131,7 @@ export default class MenuGroup extends React.Component {
           <Button title="添加子菜单" disabled={(data.children && data.children.length >= 5) ? true : false} style={{display:'block'}} onClick={()=>this.addChildren()}/>
         </div>
         {data.children && data.children.map((item,i)=>(
-          <div key={i} style={{marginTop:'15px'}}>
+          <div key={i} style={{marginTop:'15px',marginBottom:'15px'}}>
             <div className={styles.title} style={{fontSize:'14px'}}>
               <span className={styles.checkboxC} onClick={()=>this.del(item.index)}>
                 删除
@@ -139,7 +139,7 @@ export default class MenuGroup extends React.Component {
               子菜单({item.index})
             </div>
             <MenuBtn showIcon={false} index={item.index} type={item.type} data={JSON.stringify(item.data) != '{}' ? item.data : ''} onChange={this.editBtn} />
-            <div className={styles.lineDefaultBottom} style={{margin:'10px 0 0 0'}}></div>
+            
             <div style={{clear:'both'}}></div>
           </div>
         ))}

@@ -233,7 +233,8 @@ function (_React$Component) {
         return React.createElement("div", {
           key: i,
           style: {
-            marginTop: '15px'
+            marginTop: '15px',
+            marginBottom: '15px'
           }
         }, React.createElement("div", {
           className: styles.title,
@@ -251,11 +252,6 @@ function (_React$Component) {
           type: item.type,
           data: JSON.stringify(item.data) != '{}' ? item.data : '',
           onChange: _this4.editBtn
-        }), React.createElement("div", {
-          className: styles.lineDefaultBottom,
-          style: {
-            margin: '10px 0 0 0'
-          }
         }), React.createElement("div", {
           style: {
             clear: 'both'
